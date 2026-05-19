@@ -4,9 +4,16 @@ import { createSki, deleteSki, getSki } from './methods/ski/ski'
 import { createSkiInputSchema } from './schemas/skiSchema'
 
 export const skiRouter = router({
-  getSki: publicProcedure.query(async () => {
-    return await getSki()
-  }),
+  getSki: publicProcedure
+    .input(
+      z.object({
+        page: z.number().int().min(1).default(1),
+        itemsPerPage: z.number().int().min(1).default(25),
+      })
+    )
+    .query(async ({ input }) => {
+      return await getSki(input)
+    }),
   createSki: publicProcedure
     .input(createSkiInputSchema)
     .mutation(async ({ input }) => {

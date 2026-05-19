@@ -1,7 +1,12 @@
 import { prisma } from '@ski-blazek/db'
 import type { CreateSkiInput } from '../../schemas/skiSchema'
 
-export const getSki = async () => {
+type GetSkiInput = {
+  page: number
+  itemsPerPage: number
+}
+
+export const getSki = async ({ page, itemsPerPage }: GetSkiInput) => {
   const ski = await prisma.ski.findMany({
     where: {},
     select: {
@@ -13,9 +18,18 @@ export const getSki = async () => {
       createdAt: true,
       updatedAt: true,
     },
+    skip: (page - 1) * itemsPerPage,
+    take: itemsPerPage,
   })
 
-  return ski
+  const totalCount = await prisma.ski.count({
+    where: {},
+  })
+
+  return {
+    ski,
+    totalCount,
+  }
 }
 
 export const createSki = async (input: CreateSkiInput) =>
