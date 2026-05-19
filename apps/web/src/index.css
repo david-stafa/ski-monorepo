@@ -1,0 +1,4 @@
+@import '@ski-blazek/ui/styles/globals.css';
+
+/* force Tailwind to look into UI package for scanning */
+@source '../node_modules/@ski-blazek/ui';

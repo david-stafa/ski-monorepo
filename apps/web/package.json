@@ -1,0 +1,48 @@
+{
+  "name": "@ski-blazek/web",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint . --fix",
+    "start": "pnpx serve -s dist",
+    "check-types": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "@ski-blazek/api": "workspace:*",
+    "@ski-blazek/auth": "workspace:*",
+    "@ski-blazek/ui": "workspace:*",
+    "@tailwindcss/vite": "^4.3.0",
+    "@tanstack/react-form": "^1.28.2",
+    "@tanstack/react-query": "^5.90.21",
+    "@tanstack/react-router": "^1.170.4",
+    "@trpc/client": "^11.15.1",
+    "@trpc/server": "^11.15.1",
+    "@trpc/tanstack-react-query": "^11.15.1",
+    "axios": "^1.13.5",
+    "lucide-react": "^1.3.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "sonner": "^2.0.7",
+    "tailwindcss": "^4.1.18",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@ski-blazek/eslint-config": "workspace:*",
+    "@ski-blazek/typescript-config": "workspace:*",
+    "@tanstack/router-plugin": "^1.168.6",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react-swc": "^4.3.1",
+    "eslint": "^9.39.1",
+    "prettier": "^3.7.4",
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "typescript": "~5.9.3",
+    "vite": "^8.0.0"
+  }
+}

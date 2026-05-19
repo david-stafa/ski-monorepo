@@ -1,0 +1,15 @@
+services:
+    postgres:
+        image: postgres:18.1
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=password
+            - POSTGRES_DB=ski-blazek
+        volumes:
+            - postgres-db-volume:/var/lib/postgresql
+        ports:
+            # host:container — Postgres in the image listens on 5432 inside the container
+            - 5433:5432
+
+volumes:
+    postgres-db-volume:

@@ -1,0 +1,48 @@
+model Ski {
+  id        String   @id @default(cuid(2))
+  brand     String
+  model     String
+  length    Int
+  isVIP     Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Snowboard {
+  id        String   @id @default(cuid(2))
+  brand     String
+  model     String
+  length    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Helmet {
+  id                    String   @id @default(cuid(2))
+  name                  String
+  size                  String
+  color                 String
+  description           String?
+  withIntegratedGoogles Boolean  @default(false)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
+
+model SkiBoot {
+  id        String   @id @default(cuid(2))
+  brand     String
+  model     String
+  length    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SnowboardBoot {
+  id        String   @id @default(cuid(2))
+  brand     String
+  model     String
+  length    Int
+  isBoa     Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

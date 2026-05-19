@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "../../packages/ui/src/styles/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true
+  },
+  "iconLibrary": "lucide",
+  "aliases": {
+    "components": "@ski-blazek-web/src/components",
+    "utils": "@ski-blazek-web/src/lib/utils",
+    "hooks": "@ski-blazek-web/src/hooks",
+    "lib": "@ski-blazek/ui/lib",
+    "ui": "@ski-blazek/ui/components"
+  }
+}
