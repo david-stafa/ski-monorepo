@@ -1,10 +1,5 @@
-import { Button } from '@ski-blazek/ui/components/button'
-import { Input } from '@ski-blazek/ui/components/input'
-import { Label } from '@ski-blazek/ui/components/label'
-import { Checkbox } from '@ski-blazek/ui/components/checkbox'
-import { useForm } from '@tanstack/react-form'
 import z from 'zod'
-import { FieldInfo } from '~/components/form/FieldInfo'
+import { useAppForm } from '~/components/form/SharedFormFields'
 import { queryClient, trpc } from '~/lib/trpc'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
@@ -39,10 +34,10 @@ export const SkiForm = ({ close }: { close: () => void }) => {
     })
   )
 
-  const form = useForm({
+  const form = useAppForm({
     defaultValues: defaultValues,
     validators: {
-      onChange: formSchema,
+      onChange: formSchema, 
     },
     onSubmitMeta: defaultMeta,
     onSubmit: async ({ value, meta }) => {
@@ -70,88 +65,39 @@ export const SkiForm = ({ close }: { close: () => void }) => {
       }}
       className="flex flex-col gap-2"
     >
-      <form.Field
+      <form.AppField
         name="brand"
-        children={(field) => (
-          <>
-            <Label htmlFor="brand">Značka</Label>
-            <Input
-              id="brand"
-              value={field.state.value}
-              onBlur={field.handleBlur}
-              onChange={(e) => field.handleChange(e.target.value)}
-            />
-            <FieldInfo field={field} />
-          </>
-        )}
-      />
-      <form.Field
-        name="model"
-        children={(field) => (
-          <>
-            <Label htmlFor="model">Model</Label>
-            <Input
-              id="model"
-              value={field.state.value}
-              onBlur={field.handleBlur}
-              onChange={(e) => field.handleChange(e.target.value)}
-            />
-            <FieldInfo field={field} />
-          </>
-        )}
-      />
-      <form.Field
-        name="length"
-        children={(field) => (
-          <>
-            <Label htmlFor="length">Délka</Label>
-            <Input
-              type="number"
-              id="length"
-              value={field.state.value}
-              onBlur={field.handleBlur}
-              onChange={(e) => field.handleChange(e.target.valueAsNumber)}
-            />
-            <FieldInfo field={field} />
-          </>
-        )}
+        children={(field) => <field.TextField label="Značka" />}
       />
 
-      <form.Field
-        name="isVIP"
-        children={(field) => (
-          <div className="flex gap-2">
-            <Label htmlFor="isVIP">Jsou VIP:</Label>
-            <Checkbox
-              id="isVIP"
-              className="h-6 w-6"
-              checked={field.state.value}
-              onBlur={field.handleBlur}
-              onCheckedChange={(checked) =>
-                field.handleChange(checked === true)
-              }
-            />
-            <FieldInfo field={field} />
-          </div>
-        )}
+      <form.AppField
+        name="model"
+        children={(field) => <field.TextField label="Model" />}
       />
+
+      <form.AppField
+        name="length"
+        children={(field) => <field.NumberField label="Délka" />}
+      />
+
+      <form.AppField
+        name="isVIP"
+        children={(field) => <field.CheckboxField label="Jsou VIP:" />}
+      />
+
       <div className="ml-auto">
-        <Button
-          type="submit"
-          variant="secondary"
-          className="mr-2"
-          disabled={form.state.isSubmitting}
-          onClick={() => form.handleSubmit({ submitAction: 'addAnother' })}
-        >
-          Vytvořit a přidat další
-        </Button>
-        <Button
-          type="submit"
-          disabled={form.state.isSubmitting}
-          onClick={() => form.handleSubmit({ submitAction: 'close' })}
-        >
-          Vytvořit lyže
-        </Button>
+        <form.AppForm>
+          <form.SubscribeButton
+            label="Vytvořit a přidat další"
+            onClick={() => form.handleSubmit({ submitAction: 'addAnother' })}
+            variant="secondary"
+            className="mr-2"
+          />
+          <form.SubscribeButton
+            label="Vytvořit lyže"
+            onClick={() => form.handleSubmit({ submitAction: 'close' })}
+          />
+        </form.AppForm>
       </div>
     </form>
   )
