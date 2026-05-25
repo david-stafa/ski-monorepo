@@ -15,7 +15,7 @@ export const AddSkiButton = () => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button>
           <PlusIcon />
           Přidat lyže
