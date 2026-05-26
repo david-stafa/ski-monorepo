@@ -1,20 +1,22 @@
+import { Toaster } from '@ski-blazek/ui/components/sonner'
 import { ThemeProvider } from '@ski-blazek/ui/components/theme-provider'
+import { TooltipProvider } from '@ski-blazek/ui/components/tooltip'
 import { createRootRoute, HeadContent, Outlet } from '@tanstack/react-router'
 import { authClient } from '~/lib/auth'
-import { TooltipProvider } from '@ski-blazek/ui/components/tooltip'
-import { Toaster } from '@ski-blazek/ui/components/sonner'
+import { queryClient, trpc } from '~/lib/trpc'
 
 export const Route = createRootRoute({
   beforeLoad: async () => {
     const { data } = await authClient.getSession()
 
     return {
+      queryClient: queryClient,
+      trpc: trpc,
       session: data?.session || null,
       user: data?.user || null,
     }
   },
   component: RootLayout,
-  notFoundComponent: () => <div>404 Not Found</div>,
 })
 
 function RootLayout() {

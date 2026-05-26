@@ -8,14 +8,22 @@ import {
   TableRow,
 } from '@ski-blazek/ui/components/table'
 import { TypographyH1 } from '@ski-blazek/ui/components/typography'
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useMutation, useSuspenseQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
-import { Loader2Icon, Trash2Icon } from 'lucide-react'
+import { Trash2Icon } from 'lucide-react'
 import { CustomPagination } from '~/components/ui/CustomPagination'
 import { AddSkiButton } from '~/domains/equipment/ski/AddSkiButton'
 import { queryClient, trpc } from '~/lib/trpc'
 
 export const Route = createFileRoute('/_authenticated/equipment/ski')({
+  loaderDeps: ({ search: { page, itemsPerPage } }) => ({ page, itemsPerPage }),
+  loader: async ({ context, deps: { page, itemsPerPage } }) => {
+    await new Promise((resolve) => setTimeout(resolve, 10000))
+    
+    return context.queryClient.ensureQueryData(
+      context.trpc.equipment.ski.getSki.queryOptions({ page, itemsPerPage })
+    )
+  },
   component: RouteComponent,
 })
 
@@ -33,21 +41,12 @@ function RouteComponent() {
   )
 
   /*  Get Ski Query   */
-  const { data, isPending } = useQuery(
+  const { data } = useSuspenseQuery(
     trpc.equipment.ski.getSki.queryOptions({
       page,
       itemsPerPage,
     })
   )
-
-  /* Loading spinner */
-  if (isPending) {
-    return (
-      <div className="flex h-full items-center justify-center p-2 md:p-4">
-        <Loader2Icon className="text-primary size-10 animate-spin" />
-      </div>
-    )
-  }
 
   return (
     <div className="p-2 md:p-4">
@@ -67,14 +66,14 @@ function RouteComponent() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data?.ski.map((item) => (
+          {data.ski.map((item) => (
             <TableRow key={item.id}>
               <TableCell>{item.brand}</TableCell>
               <TableCell>{item.model}</TableCell>
               <TableCell>{item.length}</TableCell>
               <TableCell>{item.isVIP ? 'VIP' : 'Standart'}</TableCell>
               <TableCell>
-                <Button onClick={() => deleteSki.mutate(item.id)}>
+                <Button onClick={() => deleteSki.mutate(item.id)} size="icon-sm">
                   <Trash2Icon />
                 </Button>
               </TableCell>
@@ -86,7 +85,7 @@ function RouteComponent() {
       {/*  Pagination   */}
       <CustomPagination
         currentPage={page}
-        itemsCount={data?.totalCount ?? 0}
+        itemsCount={data.totalCount}
         itemsPerPage={itemsPerPage}
       />
     </div>
