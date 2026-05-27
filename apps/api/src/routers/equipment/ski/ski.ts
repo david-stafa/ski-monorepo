@@ -1,16 +1,12 @@
 import z from 'zod'
+import { getSkiInputSchema } from '../../../schemas/ski'
 import { publicProcedure, router } from '../../_context'
 import { createSki, deleteSki, getSki } from './methods/ski/ski'
 import { createSkiInputSchema } from './schemas/skiSchema'
 
 export const skiRouter = router({
   getSki: publicProcedure
-    .input(
-      z.object({
-        page: z.number().int().min(1).default(1),
-        itemsPerPage: z.number().int().min(1).default(25),
-      })
-    )
+    .input(getSkiInputSchema)
     .query(async ({ input }) => {
       return await getSki(input)
     }),

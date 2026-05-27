@@ -34,6 +34,7 @@
     "typescript": "^5.9.3"
   },
   "exports": {
-    "./trpc": "./src/routers/_app.ts"
+    "./trpc": "./src/routers/_app.ts",
+    "./schemas": "./src/schemas/index.ts"
   }
 }

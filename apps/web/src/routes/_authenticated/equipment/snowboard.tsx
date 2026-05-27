@@ -1,6 +1,8 @@
+import { getSnowboardInputSchema } from '@ski-blazek/api/schemas'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_authenticated/equipment/snowboard')({
+  validateSearch: getSnowboardInputSchema,
   component: RouteComponent,
 })
 

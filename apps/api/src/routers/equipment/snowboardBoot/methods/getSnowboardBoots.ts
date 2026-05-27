@@ -1,6 +1,10 @@
 import { prisma } from '@ski-blazek/db'
+import type { GetSnowboardBootInput } from '~/schemas'
 
-export const getSnowboardBoots = async () => {
+export const getSnowboardBoots = async ({
+  page,
+  itemsPerPage,
+}: GetSnowboardBootInput) => {
   const snowboardBoots = await prisma.snowboardBoot.findMany({
     where: {},
     select: {
@@ -10,6 +14,16 @@ export const getSnowboardBoots = async () => {
       length: true,
       isBoa: true,
     },
+    skip: (page - 1) * itemsPerPage,
+    take: itemsPerPage,
   })
-  return snowboardBoots
+
+  const totalCount = await prisma.snowboardBoot.count({
+    where: {},
+  })
+
+  return {
+    snowboardBoots,
+    totalCount,
+  }
 }

@@ -1,3 +1,4 @@
+import { getSkiInputSchema } from '@ski-blazek/api/schemas'
 import { Button } from '@ski-blazek/ui/components/button'
 import {
   Table,
@@ -16,10 +17,9 @@ import { AddSkiButton } from '~/domains/equipment/ski/AddSkiButton'
 import { queryClient, trpc } from '~/lib/trpc'
 
 export const Route = createFileRoute('/_authenticated/equipment/ski')({
+  validateSearch: getSkiInputSchema,
   loaderDeps: ({ search: { page, itemsPerPage } }) => ({ page, itemsPerPage }),
   loader: async ({ context, deps: { page, itemsPerPage } }) => {
-    await new Promise((resolve) => setTimeout(resolve, 10000))
-    
     return context.queryClient.ensureQueryData(
       context.trpc.equipment.ski.getSki.queryOptions({ page, itemsPerPage })
     )
@@ -73,7 +73,11 @@ function RouteComponent() {
               <TableCell>{item.length}</TableCell>
               <TableCell>{item.isVIP ? 'VIP' : 'Standart'}</TableCell>
               <TableCell>
-                <Button onClick={() => deleteSki.mutate(item.id)} size="icon-sm">
+                {/* TODO: Add confirm dialog */}
+                <Button
+                  onClick={() => deleteSki.mutate(item.id)}
+                  size="icon-sm"
+                >
                   <Trash2Icon />
                 </Button>
               </TableCell>
