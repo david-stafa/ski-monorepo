@@ -17,7 +17,7 @@ export default [
     rules: {
       'react/no-unescaped-entities': 'off',
       'react/no-children-prop': [
-        true,
+        "error",
         {
           allowFunctions: true,
         },
