@@ -78,6 +78,9 @@ importers:
       '@ski-blazek/auth':
         specifier: workspace:*
         version: link:../../packages/auth
+      '@ski-blazek/db':
+        specifier: workspace:*
+        version: link:../../packages/database
       '@ski-blazek/ui':
         specifier: workspace:*
         version: link:../../packages/ui

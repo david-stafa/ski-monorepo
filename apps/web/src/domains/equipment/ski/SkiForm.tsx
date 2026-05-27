@@ -1,3 +1,4 @@
+import type { Ski } from '@ski-blazek/db/browser'
 import z from 'zod'
 import { useAppForm } from '~/components/form/SharedFormFields'
 import { queryClient, trpc } from '~/lib/trpc'
@@ -14,13 +15,23 @@ const formSchema = z.object({
 type FormType = z.infer<typeof formSchema>
 type FormMeta = { submitAction: 'close' | 'addAnother' | null }
 
-export const SkiForm = ({ close }: { close: () => void }) => {
-  const defaultValues: FormType = {
-    brand: '',
-    model: '',
-    length: 0,
-    isVIP: false,
-  }
+type SkiFormProps = {
+  close: () => void
+  defaultValues?: Omit<Ski, 'createdAt' | 'updatedAt'>
+}
+
+export const SkiForm = ({ close, defaultValues }: SkiFormProps) => {
+  const initialValues: FormType = defaultValues
+    ? {
+        ...defaultValues,
+      }
+    : {
+        brand: '',
+        model: '',
+        length: 0,
+        isVIP: false,
+      }
+
   const defaultMeta: FormMeta = {
     submitAction: null,
   }
@@ -35,9 +46,9 @@ export const SkiForm = ({ close }: { close: () => void }) => {
   )
 
   const form = useAppForm({
-    defaultValues: defaultValues,
+    defaultValues: initialValues,
     validators: {
-      onChange: formSchema, 
+      onChange: formSchema,
     },
     onSubmitMeta: defaultMeta,
     onSubmit: async ({ value, meta }) => {

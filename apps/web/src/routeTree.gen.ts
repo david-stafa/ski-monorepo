@@ -14,13 +14,13 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AuthenticatedEquipmentRouteImport } from './routes/_authenticated/equipment'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedEquipmentIndexRouteImport } from './routes/_authenticated/equipment/index'
+import { Route as AuthenticatedEquipmentSnowboardBootRouteImport } from './routes/_authenticated/equipment/snowboard-boot'
 import { Route as AuthenticatedEquipmentSnowboardRouteImport } from './routes/_authenticated/equipment/snowboard'
+import { Route as AuthenticatedEquipmentSkiBootRouteImport } from './routes/_authenticated/equipment/ski-boot'
 import { Route as AuthenticatedEquipmentSkiRouteImport } from './routes/_authenticated/equipment/ski'
 import { Route as AuthenticatedEquipmentHelmetRouteImport } from './routes/_authenticated/equipment/helmet'
-import { Route as AuthenticatedEquipmentBootRouteImport } from './routes/_authenticated/equipment/boot'
 
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
@@ -46,11 +46,6 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedEquipmentRoute = AuthenticatedEquipmentRouteImport.update({
-  id: '/equipment',
-  path: '/equipment',
-  getParentRoute: () => AuthenticatedRoute,
-} as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -58,33 +53,39 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
 } as any)
 const AuthenticatedEquipmentIndexRoute =
   AuthenticatedEquipmentIndexRouteImport.update({
-    id: '/',
-    path: '/',
-    getParentRoute: () => AuthenticatedEquipmentRoute,
+    id: '/equipment/',
+    path: '/equipment/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedEquipmentSnowboardBootRoute =
+  AuthenticatedEquipmentSnowboardBootRouteImport.update({
+    id: '/equipment/snowboard-boot',
+    path: '/equipment/snowboard-boot',
+    getParentRoute: () => AuthenticatedRoute,
   } as any)
 const AuthenticatedEquipmentSnowboardRoute =
   AuthenticatedEquipmentSnowboardRouteImport.update({
-    id: '/snowboard',
-    path: '/snowboard',
-    getParentRoute: () => AuthenticatedEquipmentRoute,
+    id: '/equipment/snowboard',
+    path: '/equipment/snowboard',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedEquipmentSkiBootRoute =
+  AuthenticatedEquipmentSkiBootRouteImport.update({
+    id: '/equipment/ski-boot',
+    path: '/equipment/ski-boot',
+    getParentRoute: () => AuthenticatedRoute,
   } as any)
 const AuthenticatedEquipmentSkiRoute =
   AuthenticatedEquipmentSkiRouteImport.update({
-    id: '/ski',
-    path: '/ski',
-    getParentRoute: () => AuthenticatedEquipmentRoute,
+    id: '/equipment/ski',
+    path: '/equipment/ski',
+    getParentRoute: () => AuthenticatedRoute,
   } as any)
 const AuthenticatedEquipmentHelmetRoute =
   AuthenticatedEquipmentHelmetRouteImport.update({
-    id: '/helmet',
-    path: '/helmet',
-    getParentRoute: () => AuthenticatedEquipmentRoute,
-  } as any)
-const AuthenticatedEquipmentBootRoute =
-  AuthenticatedEquipmentBootRouteImport.update({
-    id: '/boot',
-    path: '/boot',
-    getParentRoute: () => AuthenticatedEquipmentRoute,
+    id: '/equipment/helmet',
+    path: '/equipment/helmet',
+    getParentRoute: () => AuthenticatedRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -93,11 +94,11 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
-  '/equipment': typeof AuthenticatedEquipmentRouteWithChildren
-  '/equipment/boot': typeof AuthenticatedEquipmentBootRoute
   '/equipment/helmet': typeof AuthenticatedEquipmentHelmetRoute
   '/equipment/ski': typeof AuthenticatedEquipmentSkiRoute
+  '/equipment/ski-boot': typeof AuthenticatedEquipmentSkiBootRoute
   '/equipment/snowboard': typeof AuthenticatedEquipmentSnowboardRoute
+  '/equipment/snowboard-boot': typeof AuthenticatedEquipmentSnowboardBootRoute
   '/equipment/': typeof AuthenticatedEquipmentIndexRoute
 }
 export interface FileRoutesByTo {
@@ -106,10 +107,11 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
-  '/equipment/boot': typeof AuthenticatedEquipmentBootRoute
   '/equipment/helmet': typeof AuthenticatedEquipmentHelmetRoute
   '/equipment/ski': typeof AuthenticatedEquipmentSkiRoute
+  '/equipment/ski-boot': typeof AuthenticatedEquipmentSkiBootRoute
   '/equipment/snowboard': typeof AuthenticatedEquipmentSnowboardRoute
+  '/equipment/snowboard-boot': typeof AuthenticatedEquipmentSnowboardBootRoute
   '/equipment': typeof AuthenticatedEquipmentIndexRoute
 }
 export interface FileRoutesById {
@@ -120,11 +122,11 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
-  '/_authenticated/equipment': typeof AuthenticatedEquipmentRouteWithChildren
-  '/_authenticated/equipment/boot': typeof AuthenticatedEquipmentBootRoute
   '/_authenticated/equipment/helmet': typeof AuthenticatedEquipmentHelmetRoute
   '/_authenticated/equipment/ski': typeof AuthenticatedEquipmentSkiRoute
+  '/_authenticated/equipment/ski-boot': typeof AuthenticatedEquipmentSkiBootRoute
   '/_authenticated/equipment/snowboard': typeof AuthenticatedEquipmentSnowboardRoute
+  '/_authenticated/equipment/snowboard-boot': typeof AuthenticatedEquipmentSnowboardBootRoute
   '/_authenticated/equipment/': typeof AuthenticatedEquipmentIndexRoute
 }
 export interface FileRouteTypes {
@@ -135,11 +137,11 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/dashboard'
-    | '/equipment'
-    | '/equipment/boot'
     | '/equipment/helmet'
     | '/equipment/ski'
+    | '/equipment/ski-boot'
     | '/equipment/snowboard'
+    | '/equipment/snowboard-boot'
     | '/equipment/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -148,10 +150,11 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/dashboard'
-    | '/equipment/boot'
     | '/equipment/helmet'
     | '/equipment/ski'
+    | '/equipment/ski-boot'
     | '/equipment/snowboard'
+    | '/equipment/snowboard-boot'
     | '/equipment'
   id:
     | '__root__'
@@ -161,11 +164,11 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/_authenticated/dashboard'
-    | '/_authenticated/equipment'
-    | '/_authenticated/equipment/boot'
     | '/_authenticated/equipment/helmet'
     | '/_authenticated/equipment/ski'
+    | '/_authenticated/equipment/ski-boot'
     | '/_authenticated/equipment/snowboard'
+    | '/_authenticated/equipment/snowboard-boot'
     | '/_authenticated/equipment/'
   fileRoutesById: FileRoutesById
 }
@@ -214,13 +217,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/equipment': {
-      id: '/_authenticated/equipment'
-      path: '/equipment'
-      fullPath: '/equipment'
-      preLoaderRoute: typeof AuthenticatedEquipmentRouteImport
-      parentRoute: typeof AuthenticatedRoute
-    }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
       path: '/dashboard'
@@ -230,72 +226,68 @@ declare module '@tanstack/react-router' {
     }
     '/_authenticated/equipment/': {
       id: '/_authenticated/equipment/'
-      path: '/'
+      path: '/equipment'
       fullPath: '/equipment/'
       preLoaderRoute: typeof AuthenticatedEquipmentIndexRouteImport
-      parentRoute: typeof AuthenticatedEquipmentRoute
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/equipment/snowboard-boot': {
+      id: '/_authenticated/equipment/snowboard-boot'
+      path: '/equipment/snowboard-boot'
+      fullPath: '/equipment/snowboard-boot'
+      preLoaderRoute: typeof AuthenticatedEquipmentSnowboardBootRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/equipment/snowboard': {
       id: '/_authenticated/equipment/snowboard'
-      path: '/snowboard'
+      path: '/equipment/snowboard'
       fullPath: '/equipment/snowboard'
       preLoaderRoute: typeof AuthenticatedEquipmentSnowboardRouteImport
-      parentRoute: typeof AuthenticatedEquipmentRoute
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/equipment/ski-boot': {
+      id: '/_authenticated/equipment/ski-boot'
+      path: '/equipment/ski-boot'
+      fullPath: '/equipment/ski-boot'
+      preLoaderRoute: typeof AuthenticatedEquipmentSkiBootRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/equipment/ski': {
       id: '/_authenticated/equipment/ski'
-      path: '/ski'
+      path: '/equipment/ski'
       fullPath: '/equipment/ski'
       preLoaderRoute: typeof AuthenticatedEquipmentSkiRouteImport
-      parentRoute: typeof AuthenticatedEquipmentRoute
+      parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/equipment/helmet': {
       id: '/_authenticated/equipment/helmet'
-      path: '/helmet'
+      path: '/equipment/helmet'
       fullPath: '/equipment/helmet'
       preLoaderRoute: typeof AuthenticatedEquipmentHelmetRouteImport
-      parentRoute: typeof AuthenticatedEquipmentRoute
-    }
-    '/_authenticated/equipment/boot': {
-      id: '/_authenticated/equipment/boot'
-      path: '/boot'
-      fullPath: '/equipment/boot'
-      preLoaderRoute: typeof AuthenticatedEquipmentBootRouteImport
-      parentRoute: typeof AuthenticatedEquipmentRoute
+      parentRoute: typeof AuthenticatedRoute
     }
   }
 }
-
-interface AuthenticatedEquipmentRouteChildren {
-  AuthenticatedEquipmentBootRoute: typeof AuthenticatedEquipmentBootRoute
-  AuthenticatedEquipmentHelmetRoute: typeof AuthenticatedEquipmentHelmetRoute
-  AuthenticatedEquipmentSkiRoute: typeof AuthenticatedEquipmentSkiRoute
-  AuthenticatedEquipmentSnowboardRoute: typeof AuthenticatedEquipmentSnowboardRoute
-  AuthenticatedEquipmentIndexRoute: typeof AuthenticatedEquipmentIndexRoute
-}
-
-const AuthenticatedEquipmentRouteChildren: AuthenticatedEquipmentRouteChildren =
-  {
-    AuthenticatedEquipmentBootRoute: AuthenticatedEquipmentBootRoute,
-    AuthenticatedEquipmentHelmetRoute: AuthenticatedEquipmentHelmetRoute,
-    AuthenticatedEquipmentSkiRoute: AuthenticatedEquipmentSkiRoute,
-    AuthenticatedEquipmentSnowboardRoute: AuthenticatedEquipmentSnowboardRoute,
-    AuthenticatedEquipmentIndexRoute: AuthenticatedEquipmentIndexRoute,
-  }
-
-const AuthenticatedEquipmentRouteWithChildren =
-  AuthenticatedEquipmentRoute._addFileChildren(
-    AuthenticatedEquipmentRouteChildren,
-  )
 
 interface AuthenticatedRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
-  AuthenticatedEquipmentRoute: typeof AuthenticatedEquipmentRouteWithChildren
+  AuthenticatedEquipmentHelmetRoute: typeof AuthenticatedEquipmentHelmetRoute
+  AuthenticatedEquipmentSkiRoute: typeof AuthenticatedEquipmentSkiRoute
+  AuthenticatedEquipmentSkiBootRoute: typeof AuthenticatedEquipmentSkiBootRoute
+  AuthenticatedEquipmentSnowboardRoute: typeof AuthenticatedEquipmentSnowboardRoute
+  AuthenticatedEquipmentSnowboardBootRoute: typeof AuthenticatedEquipmentSnowboardBootRoute
+  AuthenticatedEquipmentIndexRoute: typeof AuthenticatedEquipmentIndexRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
-  AuthenticatedEquipmentRoute: AuthenticatedEquipmentRouteWithChildren,
+  AuthenticatedEquipmentHelmetRoute: AuthenticatedEquipmentHelmetRoute,
+  AuthenticatedEquipmentSkiRoute: AuthenticatedEquipmentSkiRoute,
+  AuthenticatedEquipmentSkiBootRoute: AuthenticatedEquipmentSkiBootRoute,
+  AuthenticatedEquipmentSnowboardRoute: AuthenticatedEquipmentSnowboardRoute,
+  AuthenticatedEquipmentSnowboardBootRoute:
+    AuthenticatedEquipmentSnowboardBootRoute,
+  AuthenticatedEquipmentIndexRoute: AuthenticatedEquipmentIndexRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
