@@ -1,4 +1,7 @@
-import { createFileRoute, redirect, Outlet, Link } from '@tanstack/react-router'
+import {
+  Collapsible,
+  CollapsibleContent,
+} from '@ski-blazek/ui/components/collapsible'
 import {
   Sidebar,
   SidebarContent,
@@ -14,18 +17,14 @@ import {
   SidebarMenuSubItem,
   SidebarProvider,
   SidebarRail,
-  // SidebarTrigger,
 } from '@ski-blazek/ui/components/sidebar'
+import { createFileRoute, Link, Outlet, redirect } from '@tanstack/react-router'
 import {
-  CollapsibleTrigger,
-  CollapsibleContent,
-  Collapsible,
-} from '@ski-blazek/ui/components/collapsible'
-import {
-  ChevronDown,
   Footprints,
+  FootprintsIcon,
   HardHat,
   Mountain,
+  MountainSnowIcon,
   Package,
   Snowflake,
   User,
@@ -52,7 +51,7 @@ function AuthenticatedLayout() {
         <AppSidebar />
         <main className="flex-1">
           {/* <SidebarTrigger /> */}
-          <Outlet/>
+          <Outlet />
         </main>
       </SidebarProvider>
     </>
@@ -65,9 +64,11 @@ export function AppSidebar() {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton tooltip="Ski Blazek">
-              <Mountain />
-              <span>Ski Blazek</span>
+            <SidebarMenuButton tooltip="Ski Blazek" asChild>
+              <Link to="/dashboard">
+                <Mountain />
+                <span>Ski Blazek</span>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
@@ -79,20 +80,30 @@ export function AppSidebar() {
             <SidebarMenu>
               <Collapsible defaultOpen className="group/collapsible">
                 <SidebarMenuItem>
-                  <CollapsibleTrigger asChild>
-                    <SidebarMenuButton tooltip="Vybavení">
+                  <SidebarMenuButton tooltip="Vybavení" asChild>
+                    <Link to="/equipment" className="w-full">
                       <Package />
-                      <span>Vybavení</span>
+                      Vybavení
+                    </Link>
+                    {/* <CollapsibleTrigger asChild>
                       <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
-                    </SidebarMenuButton>
-                  </CollapsibleTrigger>
+                    </CollapsibleTrigger> */}
+                  </SidebarMenuButton>
                   <CollapsibleContent>
                     <SidebarMenuSub>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
                           <Link to="/equipment/ski">
-                            <Mountain />
+                            <MountainSnowIcon />
                             <span>Lyže</span>
+                          </Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton asChild>
+                          <Link to="/equipment/ski-boot">
+                            <Footprints />
+                            <span>Lyžařské boty</span>
                           </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
@@ -106,9 +117,9 @@ export function AppSidebar() {
                       </SidebarMenuSubItem>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <Link to="/equipment/boot">
-                            <Footprints />
-                            <span>Boty</span>
+                          <Link to="/equipment/snowboard-boot">
+                            <FootprintsIcon />
+                            <span>Snowboardové boty</span>
                           </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
