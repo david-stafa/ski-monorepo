@@ -14,7 +14,7 @@ import { routeTree } from './routeTree.gen'
 // Create a new router instance
 const router = createRouter({
   routeTree,
-  defaultPendingMs: 300,
+  defaultPendingMs: 1000, 
   defaultPendingMinMs: 500,
   defaultPendingComponent: () => (
     <div className="bg-background flex h-full w-full items-center justify-center">

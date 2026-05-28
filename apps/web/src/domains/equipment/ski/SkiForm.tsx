@@ -21,16 +21,13 @@ type SkiFormProps = {
 }
 
 export const SkiForm = ({ close, defaultValues }: SkiFormProps) => {
-  const initialValues: FormType = defaultValues
-    ? {
-        ...defaultValues,
-      }
-    : {
-        brand: '',
-        model: '',
-        length: 0,
-        isVIP: false,
-      }
+  const isEdit = !!defaultValues
+  const initialValues: FormType = {
+    brand: defaultValues?.brand ?? '',
+    model: defaultValues?.model ?? '',
+    length: defaultValues?.length ?? 0,
+    isVIP: defaultValues?.isVIP ?? false,
+  }
 
   const defaultMeta: FormMeta = {
     submitAction: null,
@@ -98,14 +95,16 @@ export const SkiForm = ({ close, defaultValues }: SkiFormProps) => {
 
       <div className="ml-auto">
         <form.AppForm>
+          {!isEdit && (
+            <form.SubscribeButton
+              label={'Vytvořit a přidat další'}
+              onClick={() => form.handleSubmit({ submitAction: 'addAnother' })}
+              variant="secondary"
+              className="mr-2"
+            />
+          )}
           <form.SubscribeButton
-            label="Vytvořit a přidat další"
-            onClick={() => form.handleSubmit({ submitAction: 'addAnother' })}
-            variant="secondary"
-            className="mr-2"
-          />
-          <form.SubscribeButton
-            label="Vytvořit lyže"
+            label={isEdit ? 'Uložit změny' : 'Vytvořit lyže'}
             onClick={() => form.handleSubmit({ submitAction: 'close' })}
           />
         </form.AppForm>

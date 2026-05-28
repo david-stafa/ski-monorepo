@@ -2,6 +2,13 @@ packages:
   - apps/*
   - packages/*
 
+allowBuilds:
+  '@prisma/engines': true
+  '@swc/core': true
+  core-js-pure: true
+  esbuild: true
+  prisma: true
+
 onlyBuiltDependencies:
   - '@prisma/engines'
   - '@swc/core'
