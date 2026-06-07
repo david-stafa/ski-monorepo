@@ -1,7 +1,10 @@
 import z from 'zod'
 import { createSkiInputSchema, getSkiInputSchema } from '../../../schemas/ski'
 import { publicProcedure, router } from '../../_context'
-import { createSki, deleteSki, getSki, updateSki } from './methods/ski/ski'
+import { getSki } from './methods/getSki'
+import { createSki } from './methods/createSki'
+import { deleteSki } from './methods/deleteSki'
+import { updateSki } from './methods/updateSki'
 import { updateSkiInputSchema } from './schemas/skiSchema'
 
 export const skiRouter = router({
