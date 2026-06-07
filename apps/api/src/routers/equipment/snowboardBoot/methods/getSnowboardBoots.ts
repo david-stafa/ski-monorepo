@@ -1,5 +1,5 @@
 import { prisma } from '@ski-blazek/db'
-import type { GetSnowboardBootInput } from '~/schemas'
+import type { GetSnowboardBootInput } from '../../../../schemas'
 
 export const getSnowboardBoots = async ({
   page,

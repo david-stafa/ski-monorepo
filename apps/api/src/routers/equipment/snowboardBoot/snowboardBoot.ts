@@ -4,7 +4,7 @@ import { createSnowboardBootInputSchema } from './schemas/snowboardBootSchemas'
 import { getSnowboardBoots } from './methods/getSnowboardBoots'
 import { createSnowboardBoot } from './methods/createSnowboardBoot'
 import { deleteSnowboardBoot } from './methods/deleteSnowboardBoot'
-import { getSnowboardBootInputSchema } from '~/schemas'
+import { getSnowboardBootInputSchema } from '../../../schemas'
 
 export const snowboardBootRouter = router({
   getSnowboardBoot: publicProcedure

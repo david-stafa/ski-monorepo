@@ -15,12 +15,13 @@ export const ResetFiltersButton = ({
 }: ResetFiltersButtonProps) => {
   const isDefault = areObjectsEqual(defaultSearch, currentSearch)
 
-  if (isDefault) {
-    return null
-  }
-
   return (
-    <Button variant="outline" size="sm" onClick={resetFilters}>
+    <Button
+      variant="outline"
+      size="sm"
+      onClick={resetFilters}
+      disabled={isDefault}
+    >
       <RefreshCcwIcon className="size-4" />
       Resetovat filtry
     </Button>

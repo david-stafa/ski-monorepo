@@ -12,11 +12,10 @@ import { EditSkiDialog } from './EditSkiDialog'
 import type { Ski } from '@ski-blazek/db/browser'
 
 type SkiActionsProps = {
-  id: string
-  defaultValues?: Omit<Ski, 'createdAt' | 'updatedAt'>
+  defaultValues: Omit<Ski, 'createdAt' | 'updatedAt'>
 }
 
-export const SkiActions = ({ id, defaultValues }: SkiActionsProps) => {
+export const SkiActions = ({ defaultValues }: SkiActionsProps) => {
   const [editOpen, setEditOpen] = useState(false)
   const [deleteOpen, setDeleteOpen] = useState(false)
 
@@ -49,7 +48,7 @@ export const SkiActions = ({ id, defaultValues }: SkiActionsProps) => {
         defaultValues={defaultValues}
       />
       <DeleteSkiDialog
-        id={id}
+        id={defaultValues.id}
         open={deleteOpen}
         onOpenChange={setDeleteOpen}
       />

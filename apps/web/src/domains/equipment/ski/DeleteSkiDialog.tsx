@@ -8,8 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@ski-blazek/ui/components/dialog'
-import { useMutation } from '@tanstack/react-query'
-import { queryClient, trpc } from '~/lib/trpc'
+import { useDeleteSki } from './queries/skiQueries'
 
 type DeleteSkiDialogProps = {
   id: string
@@ -22,14 +21,7 @@ export const DeleteSkiDialog = ({
   open,
   onOpenChange,
 }: DeleteSkiDialogProps) => {
-  const deleteSki = useMutation(
-    trpc.equipment.ski.deleteSki.mutationOptions({
-      onSuccess: () =>
-        queryClient.invalidateQueries({
-          queryKey: trpc.equipment.ski.getSki.queryKey(),
-        }),
-    })
-  )
+  const deleteSki = useDeleteSki()
 
   const handleDelete = () => {
     deleteSki.mutate(id)

@@ -30,55 +30,54 @@ export const CustomPagination = ({
   const totalPages = Math.ceil(itemsCount / itemsPerPage)
   const pages = Array.from({ length: totalPages }, (_, index) => index + 1)
 
+  if (itemsCount == 0) return null
+
   return (
     <Pagination>
-        <PaginationContent>
-          {/* Previous page */}
-          <PaginationItem>
-            <PaginationPrevious asChild>
-              <Link
-                to="."
-                search={(prev) => ({
-                  ...prev,
-                  page: currentPage - 1,
-                  itemsPerPage,
-                })}
-                disabled={currentPage === 1}
-                className={cn(currentPage === 1 && 'invisible')}
-              />
-            </PaginationPrevious>
-          </PaginationItem>
+      <PaginationContent>
+        {/* Previous page */}
+        <PaginationItem>
+          <PaginationPrevious asChild>
+            <Link
+              to="."
+              search={(prev) => ({
+                ...prev,
+                page: currentPage - 1,
+                itemsPerPage,
+              })}
+              disabled={currentPage === 1}
+              className={cn(currentPage === 1 && 'invisible')}
+            />
+          </PaginationPrevious>
+        </PaginationItem>
 
-          {/* Pages */}
-          {pages.map((page) => (
-            <PaginationItem key={page}>
-              <PaginationLink asChild isActive={currentPage === page}>
-                <Link
-                  to="."
-                  search={(prev) => ({ ...prev, page, itemsPerPage })}
-                >
-                  {page}
-                </Link>
-              </PaginationLink>
-            </PaginationItem>
-          ))}
-
-          {/* Next page */}
-          <PaginationItem>
-            <PaginationNext asChild>
-              <Link
-                to="."
-                search={(prev) => ({
-                  ...prev,
-                  page: currentPage + 1,
-                  itemsPerPage,
-                })}
-                disabled={currentPage === totalPages}
-                className={cn(currentPage === totalPages && 'invisible')}
-              />
-            </PaginationNext>
+        {/* Pages */}
+        {pages.map((page) => (
+          <PaginationItem key={page}>
+            <PaginationLink asChild isActive={currentPage === page}>
+              <Link to="." search={(prev) => ({ ...prev, page, itemsPerPage })}>
+                {page}
+              </Link>
+            </PaginationLink>
           </PaginationItem>
-        </PaginationContent>
+        ))}
+
+        {/* Next page */}
+        <PaginationItem>
+          <PaginationNext asChild>
+            <Link
+              to="."
+              search={(prev) => ({
+                ...prev,
+                page: currentPage + 1,
+                itemsPerPage,
+              })}
+              disabled={currentPage === totalPages}
+              className={cn(currentPage === totalPages && 'invisible')}
+            />
+          </PaginationNext>
+        </PaginationItem>
+      </PaginationContent>
     </Pagination>
   )
 }
@@ -91,11 +90,8 @@ export const CustomItemPerPageSelect = ({
   itemsPerPage: number
 }) => {
   return (
-    <Select
-      value={String(itemsPerPage)}
-      onValueChange={onValueChange}
-    >
-      <SelectTrigger>
+    <Select value={String(itemsPerPage)} onValueChange={onValueChange}>
+      <SelectTrigger className="ml-auto">
         <SelectValue />
       </SelectTrigger>
       <SelectContent>

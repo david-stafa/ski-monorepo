@@ -1,9 +1,7 @@
 import type { Ski } from '@ski-blazek/db/browser'
 import z from 'zod'
 import { useAppForm } from '~/components/form/SharedFormFields'
-import { queryClient, trpc } from '~/lib/trpc'
-import { useMutation } from '@tanstack/react-query'
-import { toast } from 'sonner'
+import { useCreateSki, useUpdateSki } from './queries/skiQueries'
 
 const formSchema = z.object({
   brand: z.string().min(2),
@@ -33,14 +31,11 @@ export const SkiForm = ({ close, defaultValues }: SkiFormProps) => {
     submitAction: null,
   }
 
-  const createSki = useMutation(
-    trpc.equipment.ski.createSki.mutationOptions({
-      onSuccess: () =>
-        queryClient.invalidateQueries({
-          queryKey: trpc.equipment.ski.getSki.queryKey(),
-        }),
-    })
-  )
+  /**
+   * Mutations
+   */
+  const createSki = useCreateSki()
+  const updateSki = useUpdateSki()
 
   const form = useAppForm({
     defaultValues: initialValues,
@@ -49,7 +44,11 @@ export const SkiForm = ({ close, defaultValues }: SkiFormProps) => {
     },
     onSubmitMeta: defaultMeta,
     onSubmit: async ({ value, meta }) => {
-      await createSki.mutateAsync(value)
+      if (isEdit) {
+        await updateSki.mutateAsync({ id: defaultValues.id, ...value })
+      } else {
+        await createSki.mutateAsync(value)
+      }
 
       if (meta.submitAction === 'close') {
         close()
@@ -57,10 +56,6 @@ export const SkiForm = ({ close, defaultValues }: SkiFormProps) => {
 
       if (meta.submitAction === 'addAnother') {
         form.reset()
-        toast.success('Lyže přidány', {
-          description: 'Můžete přidat další.',
-          position: 'top-right',
-        })
       }
     },
   })

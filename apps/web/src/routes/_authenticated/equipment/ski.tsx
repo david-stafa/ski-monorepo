@@ -16,6 +16,7 @@ import {
   CustomPagination,
 } from '~/components/ui/CustomPagination'
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
+import { SearchField } from '~/components/ui/SearchField'
 import { AddSkiButton } from '~/domains/equipment/ski/AddSkiButton'
 import { SkiActions } from '~/domains/equipment/ski/SkiActions'
 import { useFilters } from '~/hooks/useFilter'
@@ -24,8 +25,8 @@ import { trpc } from '~/lib/trpc'
 export const Route = createFileRoute('/_authenticated/equipment/ski')({
   validateSearch: getSkiInputSchema,
   loaderDeps: ({
-    search: { page, itemsPerPage, orderBy, orderDirection },
-  }) => ({ page, itemsPerPage, orderBy, orderDirection }),
+    search: { page, itemsPerPage, orderBy, orderDirection, search },
+  }) => ({ page, itemsPerPage, orderBy, orderDirection, search }),
   loader: async ({ context, deps }) => {
     return context.queryClient.ensureQueryData(
       context.trpc.equipment.ski.getSki.queryOptions(deps)
@@ -36,16 +37,17 @@ export const Route = createFileRoute('/_authenticated/equipment/ski')({
 
 function RouteComponent() {
   const {
-    filters: { page, itemsPerPage, orderBy, orderDirection },
+    filters: { page, itemsPerPage, orderBy, orderDirection, search },
     setFilters,
     resetFilters,
   } = useFilters(Route.id)
 
-  const handleFilterClick = (orderBy: GetSkiInput['orderBy']) => {
+  const handleFilterClick = (nextOrderBy: GetSkiInput['orderBy']) => {
     setFilters({
-      orderBy,
+      orderBy: nextOrderBy,
       orderDirection:
-        orderBy === orderBy && orderDirection === 'asc' ? 'desc' : 'asc',
+        nextOrderBy === orderBy && orderDirection === 'asc' ? 'desc' : 'asc',
+      page: 1,
     })
   }
 
@@ -56,6 +58,7 @@ function RouteComponent() {
       itemsPerPage,
       orderBy,
       orderDirection,
+      search,
     })
   )
 
@@ -72,10 +75,22 @@ function RouteComponent() {
       {/*  Add ski and reset filters button  */}
       <div className="mb-4 flex items-center justify-between gap-2">
         <AddSkiButton />
+
+        <SearchField
+          searchValue={search}
+          onSearch={(search) => setFilters({ search, page: 1 })}
+        />
+
         <ResetFiltersButton
           resetFilters={resetFilters}
           defaultSearch={getSkiInputSchema.parse({})}
-          currentSearch={{ page, itemsPerPage, orderBy, orderDirection }}
+          currentSearch={{
+            page,
+            itemsPerPage,
+            orderBy,
+            orderDirection,
+            search,
+          }}
         />
       </div>
 
@@ -111,17 +126,25 @@ function RouteComponent() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data.ski.map((item) => (
-            <TableRow key={item.id}>
-              <TableCell className="flex items-center gap-2">
-                <SkiActions id={item.id} defaultValues={item} />
+          {data.ski.length === 0 ? (
+            <TableRow>
+              <TableCell colSpan={5} className="h-50 text-center">
+                Žádné lyže nebyly nalezeny.
               </TableCell>
-              <TableCell>{item.brand}</TableCell>
-              <TableCell>{item.model}</TableCell>
-              <TableCell>{item.length}</TableCell>
-              <TableCell>{item.isVIP ? 'VIP' : 'Standart'}</TableCell>
             </TableRow>
-          ))}
+          ) : (
+            data.ski.map((item) => (
+              <TableRow key={item.id}>
+                <TableCell className="flex items-center gap-2">
+                  <SkiActions defaultValues={item} />
+                </TableCell>
+                <TableCell>{item.brand}</TableCell>
+                <TableCell>{item.model}</TableCell>
+                <TableCell>{item.length}</TableCell>
+                <TableCell>{item.isVIP ? 'VIP' : 'Standart'}</TableCell>
+              </TableRow>
+            ))
+          )}
         </TableBody>
       </Table>
 
