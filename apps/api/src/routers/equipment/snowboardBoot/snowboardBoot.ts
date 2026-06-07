@@ -3,9 +3,11 @@ import { publicProcedure, router } from '../../_context'
 import { getSnowboardBoots } from './methods/getSnowboardBoots'
 import { createSnowboardBoot } from './methods/createSnowboardBoot'
 import { deleteSnowboardBoot } from './methods/deleteSnowboardBoot'
+import { updateSnowboardBoot } from './methods/updateSnowboardBoot'
 import {
   createSnowboardBootInputSchema,
   getSnowboardBootInputSchema,
+  updateSnowboardBootInputSchema,
 } from '../../../schemas/snowboardBoot'
 
 export const snowboardBootRouter = router({
@@ -23,5 +25,10 @@ export const snowboardBootRouter = router({
     .input(z.string())
     .mutation(async ({ input }) => {
       return await deleteSnowboardBoot(input)
+    }),
+  updateSnowboardBoot: publicProcedure
+    .input(updateSnowboardBootInputSchema)
+    .mutation(async ({ input }) => {
+      return await updateSnowboardBoot(input)
     }),
 })

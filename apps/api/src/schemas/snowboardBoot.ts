@@ -7,7 +7,7 @@ export const createSnowboardBootInputSchema = z.object({
   brand: z.string().min(2),
   model: z.string().min(2),
   length: z.number().int().min(10),
-  isBoa: z.boolean().default(false),
+  isBoa: z.boolean(),
 }) satisfies z.ZodType<Omit<SnowboardBoot, 'id' | 'createdAt' | 'updatedAt'>>
 export type CreateSnowboardBootInput = z.infer<
   typeof createSnowboardBootInputSchema
@@ -22,6 +22,10 @@ export type UpdateSnowboardBootInput = z.infer<
   typeof updateSnowboardBootInputSchema
 >
 
-/** list query (pagination) */
-export const getSnowboardBootInputSchema = paginationSchema.extend({})
+/** list query (search / sort / pagination) */
+export const getSnowboardBootInputSchema = paginationSchema.extend({
+  search: z.string().optional(),
+  orderBy: z.enum(['length', 'brand', 'model', 'isBoa']).default('length'),
+  orderDirection: z.enum(['asc', 'desc']).default('asc'),
+})
 export type GetSnowboardBootInput = z.infer<typeof getSnowboardBootInputSchema>
