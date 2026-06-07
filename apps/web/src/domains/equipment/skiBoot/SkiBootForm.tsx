@@ -1,26 +1,25 @@
 import {
-  createSkiInputSchema,
-  type CreateSkiInput,
+  createSkiBootInputSchema,
+  type CreateSkiBootInput,
 } from '@ski-blazek/api/schemas'
-import type { Ski } from '@ski-blazek/db/browser'
+import type { SkiBoot } from '@ski-blazek/db/browser'
 import { useAppForm } from '~/components/form/SharedFormFields'
-import { useCreateSki, useUpdateSki } from './queries/skiQueries'
+import { useCreateSkiBoot, useUpdateSkiBoot } from './queries/skiBootQueries'
 
-type FormType = CreateSkiInput
+type FormType = CreateSkiBootInput
 type FormMeta = { submitAction: 'close' | 'addAnother' | null }
 
-type SkiFormProps = {
+type SkiBootFormProps = {
   close: () => void
-  defaultValues?: Omit<Ski, 'createdAt' | 'updatedAt'>
+  defaultValues?: Omit<SkiBoot, 'createdAt' | 'updatedAt'>
 }
 
-export const SkiForm = ({ close, defaultValues }: SkiFormProps) => {
+export const SkiBootForm = ({ close, defaultValues }: SkiBootFormProps) => {
   const isEdit = !!defaultValues
   const initialValues: FormType = {
     brand: defaultValues?.brand ?? '',
     model: defaultValues?.model ?? '',
     length: defaultValues?.length ?? 0,
-    isVIP: defaultValues?.isVIP ?? false,
   }
 
   const defaultMeta: FormMeta = {
@@ -30,20 +29,20 @@ export const SkiForm = ({ close, defaultValues }: SkiFormProps) => {
   /**
    * Mutations
    */
-  const createSki = useCreateSki()
-  const updateSki = useUpdateSki()
+  const createSkiBoot = useCreateSkiBoot()
+  const updateSkiBoot = useUpdateSkiBoot()
 
   const form = useAppForm({
     defaultValues: initialValues,
     validators: {
-      onChange: createSkiInputSchema,
+      onChange: createSkiBootInputSchema,
     },
     onSubmitMeta: defaultMeta,
     onSubmit: async ({ value, meta }) => {
       if (isEdit) {
-        await updateSki.mutateAsync({ id: defaultValues.id, ...value })
+        await updateSkiBoot.mutateAsync({ id: defaultValues.id, ...value })
       } else {
-        await createSki.mutateAsync(value)
+        await createSkiBoot.mutateAsync(value)
       }
 
       if (meta.submitAction === 'close') {
@@ -79,11 +78,6 @@ export const SkiForm = ({ close, defaultValues }: SkiFormProps) => {
         children={(field) => <field.NumberField label="Délka" />}
       />
 
-      <form.AppField
-        name="isVIP"
-        children={(field) => <field.CheckboxField label="Jsou VIP:" />}
-      />
-
       <div className="ml-auto">
         <form.AppForm>
           {!isEdit && (
@@ -95,7 +89,7 @@ export const SkiForm = ({ close, defaultValues }: SkiFormProps) => {
             />
           )}
           <form.SubscribeButton
-            label={isEdit ? 'Uložit změny' : 'Vytvořit lyže'}
+            label={isEdit ? 'Uložit změny' : 'Vytvořit lyžařskou botu'}
             onClick={() => form.handleSubmit({ submitAction: 'close' })}
           />
         </form.AppForm>

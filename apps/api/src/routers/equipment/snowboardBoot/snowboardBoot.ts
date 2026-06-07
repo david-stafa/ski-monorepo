@@ -1,10 +1,12 @@
 import z from 'zod'
 import { publicProcedure, router } from '../../_context'
-import { createSnowboardBootInputSchema } from './schemas/snowboardBootSchemas'
 import { getSnowboardBoots } from './methods/getSnowboardBoots'
 import { createSnowboardBoot } from './methods/createSnowboardBoot'
 import { deleteSnowboardBoot } from './methods/deleteSnowboardBoot'
-import { getSnowboardBootInputSchema } from '../../../schemas'
+import {
+  createSnowboardBootInputSchema,
+  getSnowboardBootInputSchema,
+} from '../../../schemas/snowboardBoot'
 
 export const snowboardBootRouter = router({
   getSnowboardBoot: publicProcedure

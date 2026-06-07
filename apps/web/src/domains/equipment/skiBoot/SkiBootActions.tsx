@@ -1,3 +1,4 @@
+import type { SkiBoot } from '@ski-blazek/db/browser'
 import { Button } from '@ski-blazek/ui/components/button'
 import {
   DropdownMenu,
@@ -7,15 +8,14 @@ import {
 } from '@ski-blazek/ui/components/dropdown-menu'
 import { EllipsisVerticalIcon, PencilIcon, Trash2Icon } from 'lucide-react'
 import { useState } from 'react'
-import { DeleteSkiDialog } from './DeleteSkiDialog'
-import { EditSkiDialog } from './EditSkiDialog'
-import type { Ski } from '@ski-blazek/db/browser'
+import { DeleteSkiBootDialog } from './DeleteSkiBootDialog'
+import { EditSkiBootDialog } from './EditSkiBootDialog'
 
-type SkiActionsProps = {
-  defaultValues: Omit<Ski, 'createdAt' | 'updatedAt'>
+type SkiBootActionsProps = {
+  defaultValues: Omit<SkiBoot, 'createdAt' | 'updatedAt'>
 }
 
-export const SkiActions = ({ defaultValues }: SkiActionsProps) => {
+export const SkiBootActions = ({ defaultValues }: SkiBootActionsProps) => {
   const [editOpen, setEditOpen] = useState(false)
   const [deleteOpen, setDeleteOpen] = useState(false)
 
@@ -42,12 +42,12 @@ export const SkiActions = ({ defaultValues }: SkiActionsProps) => {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <EditSkiDialog
+      <EditSkiBootDialog
         open={editOpen}
         onOpenChange={setEditOpen}
         defaultValues={defaultValues}
       />
-      <DeleteSkiDialog
+      <DeleteSkiBootDialog
         defaultValues={defaultValues}
         open={deleteOpen}
         onOpenChange={setDeleteOpen}

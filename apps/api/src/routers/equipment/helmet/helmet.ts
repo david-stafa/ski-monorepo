@@ -1,6 +1,6 @@
 import z from 'zod'
 import { publicProcedure, router } from '../../_context'
-import { createHelmetInputSchema } from './schemas/helmetSchemas'
+import { createHelmetInputSchema } from '../../../schemas/helmet'
 import { getHelmets } from './methods/getHelmets'
 import { createHelmet } from './methods/createHelmet'
 import { deleteHelmet } from './methods/deleteHelmet'

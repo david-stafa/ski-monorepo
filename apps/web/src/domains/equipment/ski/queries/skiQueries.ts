@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { toast } from 'sonner'
+import { notifyError, notifySuccess } from '~/lib/notify'
 import { queryClient, trpc } from '~/lib/trpc'
 
 /** Invalidate every cached `getSki` list so it refetches after a mutation. */
@@ -7,12 +7,6 @@ const invalidateSkiList = () =>
   queryClient.invalidateQueries({
     queryKey: trpc.equipment.ski.getSki.queryKey(),
   })
-
-const notifyError = (message: string, description: string) =>
-  toast.error(message, { description, position: 'top-right' })
-
-const notifySuccess = (message: string, description: string) =>
-  toast.success(message, { description, position: 'top-right' })
 
 /* ---------------------------- Mutations ---------------------------- */
 

@@ -1,11 +1,14 @@
 import z from 'zod'
-import { createSkiInputSchema, getSkiInputSchema } from '../../../schemas/ski'
+import {
+  createSkiInputSchema,
+  getSkiInputSchema,
+  updateSkiInputSchema,
+} from '../../../schemas/ski'
 import { publicProcedure, router } from '../../_context'
 import { getSki } from './methods/getSki'
 import { createSki } from './methods/createSki'
 import { deleteSki } from './methods/deleteSki'
 import { updateSki } from './methods/updateSki'
-import { updateSkiInputSchema } from './schemas/skiSchema'
 
 export const skiRouter = router({
   getSki: publicProcedure.input(getSkiInputSchema).query(async ({ input }) => {

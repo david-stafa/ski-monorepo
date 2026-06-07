@@ -1,6 +1,6 @@
 import z from 'zod'
 import { publicProcedure, router } from '../../_context'
-import { createSnowboardInputSchema } from './schemas/snowboardSchemas'
+import { createSnowboardInputSchema } from '../../../schemas/snowboard'
 import { getSnowboards } from './methods/getSnowboards'
 import { createSnowboard } from './methods/createSnowboard'
 import { deleteSnowboard } from './methods/deleteSnowboard'
