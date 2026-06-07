@@ -1,14 +1,47 @@
 import { prisma } from '@ski-blazek/db'
+import type { GetHelmetInput } from '../../../../schemas/helmet'
 
-export const getHelmets = async () => {
+export const getHelmets = async ({
+  page,
+  itemsPerPage,
+  orderBy,
+  orderDirection,
+  search,
+}: GetHelmetInput) => {
+  const where = search
+    ? {
+        OR: [
+          { name: { contains: search, mode: 'insensitive' as const } },
+          { color: { contains: search, mode: 'insensitive' as const } },
+        ],
+      }
+    : {}
+
   const helmets = await prisma.helmet.findMany({
-    where: {},
+    where,
     select: {
       id: true,
       name: true,
       size: true,
       color: true,
+      description: true,
+      withIntegratedGoogles: true,
     },
+    skip: (page - 1) * itemsPerPage,
+    take: itemsPerPage,
+    orderBy: [
+      {
+        [orderBy]: orderDirection,
+      },
+    ],
   })
-  return helmets
+
+  const totalCount = await prisma.helmet.count({
+    where,
+  })
+
+  return {
+    helmets,
+    totalCount,
+  }
 }

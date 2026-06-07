@@ -1,5 +1,5 @@
 import { prisma } from '@ski-blazek/db'
-import type { UpdateSkiInput } from '../schemas/skiSchema'
+import type { UpdateSkiInput } from '../../../../schemas/ski'
 
 export const updateSki = async (input: UpdateSkiInput) => {
   const ski = await prisma.ski.findUnique({

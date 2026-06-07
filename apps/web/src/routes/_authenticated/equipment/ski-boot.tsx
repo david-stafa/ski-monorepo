@@ -125,8 +125,8 @@ function RouteComponent() {
         <TableBody>
           {data.skiBoots.length === 0 ? (
             <TableRow>
-              <TableCell colSpan={5} className="h-50 text-center">
-                Žádné lyže nebyly nalezeny.
+              <TableCell colSpan={4} className="h-50 text-center">
+                Žádné lyžařské boty nebyly nalezeny.
               </TableCell>
             </TableRow>
           ) : (
