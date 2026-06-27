@@ -32,7 +32,7 @@ export const DeleteHelmetDialog = ({
         <TypographySmall>Barva: {defaultValues.color}</TypographySmall>
         <TypographySmall>
           Integrované brýle:{' '}
-          {defaultValues.withIntegratedGoogles ? 'Ano' : 'Ne'}
+          {defaultValues.withIntegratedGoggles ? 'Ano' : 'Ne'}
         </TypographySmall>
         {defaultValues.description && (
           <TypographySmall>Popis: {defaultValues.description}</TypographySmall>

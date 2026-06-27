@@ -26,7 +26,7 @@ export const getHelmets = async ({
         size: true,
         color: true,
         description: true,
-        withIntegratedGoogles: true,
+        withIntegratedGoggles: true,
       },
       skip: (page - 1) * itemsPerPage,
       take: itemsPerPage,

@@ -122,9 +122,9 @@ function RouteComponent() {
             </TableHeadSortable>
             <TableHeadSortable
               sorted={
-                orderBy === 'withIntegratedGoogles' ? orderDirection : false
+                orderBy === 'withIntegratedGoggles' ? orderDirection : false
               }
-              onClick={() => handleFilterClick('withIntegratedGoogles')}
+              onClick={() => handleFilterClick('withIntegratedGoggles')}
             >
               Integrované brýle
             </TableHeadSortable>
@@ -147,7 +147,7 @@ function RouteComponent() {
                 <TableCell>{item.size}</TableCell>
                 <TableCell>{item.color}</TableCell>
                 <TableCell>
-                  {item.withIntegratedGoogles ? 'Ano' : 'Ne'}
+                  {item.withIntegratedGoggles ? 'Ano' : 'Ne'}
                 </TableCell>
               </TableRow>
             ))

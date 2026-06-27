@@ -21,7 +21,7 @@ export const HelmetForm = ({ close, defaultValues }: HelmetFormProps) => {
     size: defaultValues?.size ?? '',
     color: defaultValues?.color ?? '',
     description: defaultValues?.description ?? '',
-    withIntegratedGoogles: defaultValues?.withIntegratedGoogles ?? false,
+    withIntegratedGoggles: defaultValues?.withIntegratedGoggles ?? false,
   }
 
   const defaultMeta: FormMeta = {
@@ -86,7 +86,7 @@ export const HelmetForm = ({ close, defaultValues }: HelmetFormProps) => {
       />
 
       <form.AppField
-        name="withIntegratedGoogles"
+        name="withIntegratedGoggles"
         children={(field) => (
           <field.CheckboxField label="Integrované brýle:" />
         )}

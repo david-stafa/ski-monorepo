@@ -8,7 +8,7 @@ export const createHelmetInputSchema = z.object({
   size: z.string(),
   color: z.string(),
   description: z.string().nullable(),
-  withIntegratedGoogles: z.boolean(),
+  withIntegratedGoggles: z.boolean(),
 }) satisfies z.ZodType<Omit<Helmet, 'id' | 'createdAt' | 'updatedAt'>>
 export type CreateHelmetInput = z.infer<typeof createHelmetInputSchema>
 
@@ -22,7 +22,7 @@ export type UpdateHelmetInput = z.infer<typeof updateHelmetInputSchema>
 export const getHelmetInputSchema = paginationSchema.extend({
   search: z.string().optional(),
   orderBy: z
-    .enum(['name', 'size', 'color', 'withIntegratedGoogles'])
+    .enum(['name', 'size', 'color', 'withIntegratedGoggles'])
     .default('name'),
   orderDirection: z.enum(['asc', 'desc']).default('asc'),
 })

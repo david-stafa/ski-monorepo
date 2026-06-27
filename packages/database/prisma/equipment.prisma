@@ -23,7 +23,7 @@ model Helmet {
   size                  String
   color                 String
   description           String?
-  withIntegratedGoogles Boolean  @default(false)
+  withIntegratedGoggles Boolean  @default(false)
   createdAt             DateTime @default(now())
   updatedAt             DateTime @updatedAt
 }
