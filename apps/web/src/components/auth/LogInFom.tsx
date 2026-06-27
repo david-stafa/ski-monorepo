@@ -37,12 +37,14 @@ export const LogInForm = () => {
         fetchOptions: {
           onSuccess: () => navigate({ to: '/dashboard' }),
           onError: (ctx) => {
-            setFormError(ctx.error.message)
+            setFormError(ctx.error.message || 'Přihlášení se nezdařilo.')
           },
         },
       })
     },
   })
+
+  console.log('formError', formError)
 
   return (
     <form
