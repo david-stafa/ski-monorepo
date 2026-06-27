@@ -17,26 +17,28 @@ export const getSkiBoots = async ({
       }
     : {}
 
-  const skiBoots = await prisma.skiBoot.findMany({
-    where,
-    select: {
-      id: true,
-      brand: true,
-      model: true,
-      length: true,
-    },
-    skip: (page - 1) * itemsPerPage,
-    take: itemsPerPage,
-    orderBy: [
-      {
-        [orderBy]: orderDirection,
+  const [skiBoots, totalCount] = await prisma.$transaction([
+    prisma.skiBoot.findMany({
+      where,
+      select: {
+        id: true,
+        brand: true,
+        model: true,
+        length: true,
       },
-    ],
-  })
+      skip: (page - 1) * itemsPerPage,
+      take: itemsPerPage,
+      orderBy: [
+        {
+          [orderBy]: orderDirection,
+        },
+      ],
+    }),
 
-  const totalCount = await prisma.skiBoot.count({
-    where,
-  })
+    prisma.skiBoot.count({
+      where,
+    }),
+  ])
 
   return {
     skiBoots,

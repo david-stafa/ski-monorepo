@@ -17,28 +17,30 @@ export const getHelmets = async ({
       }
     : {}
 
-  const helmets = await prisma.helmet.findMany({
-    where,
-    select: {
-      id: true,
-      name: true,
-      size: true,
-      color: true,
-      description: true,
-      withIntegratedGoogles: true,
-    },
-    skip: (page - 1) * itemsPerPage,
-    take: itemsPerPage,
-    orderBy: [
-      {
-        [orderBy]: orderDirection,
+  const [helmets, totalCount] = await prisma.$transaction([
+    prisma.helmet.findMany({
+      where,
+      select: {
+        id: true,
+        name: true,
+        size: true,
+        color: true,
+        description: true,
+        withIntegratedGoogles: true,
       },
-    ],
-  })
+      skip: (page - 1) * itemsPerPage,
+      take: itemsPerPage,
+      orderBy: [
+        {
+          [orderBy]: orderDirection,
+        },
+      ],
+    }),
 
-  const totalCount = await prisma.helmet.count({
-    where,
-  })
+    prisma.helmet.count({
+      where,
+    }),
+  ])
 
   return {
     helmets,
