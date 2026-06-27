@@ -1,5 +1,6 @@
 import { prisma } from '@ski-blazek/db'
 import type { GetSnowboardBootInput } from '../../../../schemas/snowboardBoot'
+import type { Prisma } from '@ski-blazek/db/browser'
 
 export const getSnowboardBoots = async ({
   page,
@@ -8,11 +9,16 @@ export const getSnowboardBoots = async ({
   orderDirection,
   search,
 }: GetSnowboardBootInput) => {
-  const where = search
+  const where: Prisma.SnowboardBootWhereInput = search
     ? {
         OR: [
-          { brand: { contains: search, mode: 'insensitive' as const } },
-          { model: { contains: search, mode: 'insensitive' as const } },
+          { brand: { contains: search, mode: 'insensitive' } },
+          { model: { contains: search, mode: 'insensitive' } },
+          {
+            length: {
+              equals: isNaN(Number(search)) ? undefined : Number(search),
+            },
+          },
         ],
       }
     : {}
