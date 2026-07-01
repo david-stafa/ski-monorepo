@@ -1,0 +1,105 @@
+model Reservation {
+    id          String            @id @default(cuid(2))
+    name        String
+    phoneNumber String
+    note        String?
+    status      ReservationStatus @default(BOOKED)
+
+    people           Person[]
+    reservationItems ReservationItem[]
+
+    startDate DateTime
+    endDate   DateTime
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Person {
+    id     String @id @default(cuid(2))
+    name   String
+    weight Int
+    height Int
+    age    Int
+    gender Gender
+
+    status PersonStatus @default(ACTIVE)
+
+    poles          Int?
+    backProtection Boolean @default(false)
+    skiCover       Boolean @default(false)
+    bootCover      Boolean @default(false)
+    goggles        Boolean @default(false)
+
+    reservationId String
+    reservation   Reservation @relation(fields: [reservationId], references: [id], onDelete: Cascade)
+
+    reservationItems ReservationItem[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model ReservationItem {
+    id        String   @id @default(cuid(2))
+    startDate DateTime
+    endDate   DateTime
+
+    reservationId String
+    reservation   Reservation @relation(fields: [reservationId], references: [id], onDelete: Cascade)
+
+    personId String?
+    person   Person? @relation(fields: [personId], references: [id], onDelete: SetNull)
+
+    equipmentItemId String
+    equipmentItem   EquipmentItem @relation(fields: [equipmentItemId], references: [id], onDelete: Restrict)
+
+    createdAt DateTime @default(now())
+
+    @@index([equipmentItemId])
+    @@index([reservationId])
+    @@index([personId])
+}
+
+model EquipmentItem {
+    id            String            @id @default(cuid(2))
+    type          EquipmentItemType
+    articleNumber Int
+    retiredAt     DateTime?
+
+    ski           Ski?
+    snowboard     Snowboard?
+    helmet        Helmet?
+    skiBoot       SkiBoot?
+    snowboardBoot SnowboardBoot?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    reservationItems ReservationItem[]
+}
+
+enum EquipmentItemType {
+    SKI
+    SKI_BOOT
+    SNOWBOARD
+    SNOWBOARD_BOOT
+    HELMET
+}
+
+enum Gender {
+    MALE
+    FEMALE
+}
+
+enum ReservationStatus {
+    BOOKED
+    PICKED_UP
+    RETURNED
+    CANCELLED
+}
+
+enum PersonStatus {
+    ACTIVE
+    CANCELLED
+}

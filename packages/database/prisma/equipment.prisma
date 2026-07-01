@@ -1,48 +1,65 @@
 model Ski {
-  id        String   @id @default(cuid(2))
-  brand     String
-  model     String
-  length    Int
-  isVIP     Boolean  @default(false)
+  id              String        @id @default(cuid(2))
+  brand           String
+  model           String
+  length          Int
+  isVIP           Boolean       @default(false)
+  equipmentItemId String        @unique
+  equipmentItem   EquipmentItem @relation(fields: [equipmentItemId], references: [id], onDelete: Cascade)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Snowboard {
-  id        String   @id @default(cuid(2))
-  brand     String
-  model     String
-  length    Int
+  id              String        @id @default(cuid(2))
+  brand           String
+  model           String
+  length          Int
+  equipmentItemId String        @unique
+  equipmentItem   EquipmentItem @relation(fields: [equipmentItemId], references: [id], onDelete: Cascade)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Helmet {
-  id                    String   @id @default(cuid(2))
+  id                    String        @id @default(cuid(2))
   name                  String
   size                  String
   color                 String
   description           String?
-  withIntegratedGoggles Boolean  @default(false)
-  createdAt             DateTime @default(now())
-  updatedAt             DateTime @updatedAt
+  withIntegratedGoggles Boolean       @default(false)
+  equipmentItemId       String        @unique
+  equipmentItem         EquipmentItem @relation(fields: [equipmentItemId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model SkiBoot {
-  id        String   @id @default(cuid(2))
-  brand     String
-  model     String
-  length    Int
+  id     String @id @default(cuid(2))
+  brand  String
+  model  String
+  length Int
+
+  equipmentItemId String        @unique
+  equipmentItem   EquipmentItem @relation(fields: [equipmentItemId], references: [id], onDelete: Cascade)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model SnowboardBoot {
-  id        String   @id @default(cuid(2))
-  brand     String
-  model     String
-  length    Int
-  isBoa     Boolean  @default(false)
+  id     String  @id @default(cuid(2))
+  brand  String
+  model  String
+  length Int
+  isBoa  Boolean @default(false)
+
+  equipmentItemId String        @unique
+  equipmentItem   EquipmentItem @relation(fields: [equipmentItemId], references: [id], onDelete: Cascade)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
