@@ -6,7 +6,8 @@
     "postinstall": "prisma generate --config ./prisma.config.ts",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
-    "db:deploy": "prisma migrate deploy"
+    "db:deploy": "prisma migrate deploy",
+    "db:studio": "prisma studio"
   },
   "devDependencies": {
     "@ski-blazek/eslint-config": "workspace:*",

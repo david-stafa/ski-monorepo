@@ -10,7 +10,8 @@
     "lint": "turbo run lint",
     "check-types": "turbo run check-types",
     "format": "turbo run format",
-    "format:check": "turbo run format:check"
+    "format:check": "turbo run format:check",
+    "db:studio": "turbo run db:studio"
   },
   "devDependencies": {
     "prettier": "^3.5.3",
