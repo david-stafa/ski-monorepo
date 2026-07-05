@@ -8,7 +8,9 @@ export const createSnowboardBootInputSchema = z.object({
   model: z.string().min(2),
   length: z.number().int().min(10),
   isBoa: z.boolean(),
-}) satisfies z.ZodType<Omit<SnowboardBoot, 'id' | 'createdAt' | 'updatedAt'>>
+}) satisfies z.ZodType<
+  Omit<SnowboardBoot, 'id' | 'createdAt' | 'updatedAt' | 'equipmentItemId'>
+>
 export type CreateSnowboardBootInput = z.infer<
   typeof createSnowboardBootInputSchema
 >

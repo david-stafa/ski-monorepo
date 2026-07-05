@@ -9,7 +9,9 @@ export const createHelmetInputSchema = z.object({
   color: z.string(),
   description: z.string().nullable(),
   withIntegratedGoggles: z.boolean(),
-}) satisfies z.ZodType<Omit<Helmet, 'id' | 'createdAt' | 'updatedAt'>>
+}) satisfies z.ZodType<
+  Omit<Helmet, 'id' | 'createdAt' | 'updatedAt' | 'equipmentItemId'>
+>
 export type CreateHelmetInput = z.infer<typeof createHelmetInputSchema>
 
 /** update = create + id */

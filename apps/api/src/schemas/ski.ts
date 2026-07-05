@@ -13,7 +13,9 @@ export const createSkiInputSchema = z.object({
   model: z.string().min(2),
   length: z.number().int().min(50),
   isVIP: z.boolean(),
-}) satisfies z.ZodType<Omit<Ski, 'id' | 'createdAt' | 'updatedAt'>>
+}) satisfies z.ZodType<
+  Omit<Ski, 'id' | 'createdAt' | 'updatedAt' | 'equipmentItemId'>
+>
 export type CreateSkiInput = z.infer<typeof createSkiInputSchema>
 
 /** update = create + id */

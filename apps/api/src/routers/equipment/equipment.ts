@@ -7,7 +7,7 @@ import { snowboardRouter } from './snowboard/snowboard'
 import { snowboardBootRouter } from './snowboardBoot/snowboardBoot'
 
 export const equipmentRouter = router({
-  equipment: equipmentItemRouter,
+  equipmentItem: equipmentItemRouter,
   ski: skiRouter,
   skiBoot: skiBootRouter,
   snowboard: snowboardRouter,
