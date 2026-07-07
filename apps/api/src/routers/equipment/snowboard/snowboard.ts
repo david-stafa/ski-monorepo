@@ -1,4 +1,3 @@
-import z from 'zod'
 import { publicProcedure, router } from '../../_context'
 import {
   createSnowboardInputSchema,
@@ -7,7 +6,6 @@ import {
 } from '../../../schemas/snowboard'
 import { getSnowboards } from './methods/getSnowboards'
 import { createSnowboard } from './methods/createSnowboard'
-import { deleteSnowboard } from './methods/deleteSnowboard'
 import { updateSnowboard } from './methods/updateSnowboard'
 
 export const snowboardRouter = router({
@@ -20,11 +18,6 @@ export const snowboardRouter = router({
     .input(createSnowboardInputSchema)
     .mutation(async ({ input }) => {
       return await createSnowboard(input)
-    }),
-  deleteSnowboard: publicProcedure
-    .input(z.string())
-    .mutation(async ({ input }) => {
-      return await deleteSnowboard(input)
     }),
   updateSnowboard: publicProcedure
     .input(updateSnowboardInputSchema)

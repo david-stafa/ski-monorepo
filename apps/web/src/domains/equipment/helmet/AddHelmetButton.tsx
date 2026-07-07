@@ -9,13 +9,8 @@ import {
 } from '@ski-blazek/ui/components/dialog'
 import { PlusIcon } from 'lucide-react'
 import { HelmetForm } from './HelmetForm'
-import type { Helmet } from '@ski-blazek/db/browser'
 
-type AddHelmetButtonProps = {
-  defaultValues?: Omit<Helmet, 'createdAt' | 'updatedAt'>
-}
-
-export const AddHelmetButton = ({ defaultValues }: AddHelmetButtonProps) => {
+export const AddHelmetButton = () => {
   const [open, setOpen] = useState(false)
 
   return (
@@ -30,7 +25,7 @@ export const AddHelmetButton = ({ defaultValues }: AddHelmetButtonProps) => {
         <DialogHeader>
           <DialogTitle>Přidat helmu</DialogTitle>
         </DialogHeader>
-        <HelmetForm close={() => setOpen(false)} defaultValues={defaultValues} />
+        <HelmetForm close={() => setOpen(false)} />
       </DialogContent>
     </Dialog>
   )

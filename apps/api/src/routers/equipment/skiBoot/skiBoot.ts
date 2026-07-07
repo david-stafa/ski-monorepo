@@ -1,8 +1,6 @@
-import z from 'zod'
 import { publicProcedure, router } from '../../_context'
 import { getSkiBoots } from './methods/getSkiBoots'
 import { createSkiBoot } from './methods/createSkiBoot'
-import { deleteSkiBoot } from './methods/deleteSkiBoot'
 import {
   createSkiBootInputSchema,
   getSkiBootInputSchema,
@@ -18,11 +16,6 @@ export const skiBootRouter = router({
     .input(createSkiBootInputSchema)
     .mutation(async ({ input }) => {
       return await createSkiBoot(input)
-    }),
-  deleteSkiBoot: publicProcedure
-    .input(z.string())
-    .mutation(async ({ input }) => {
-      return await deleteSkiBoot(input)
     }),
   updateSkiBoot: publicProcedure
     .input(updateSkiBootInputSchema)

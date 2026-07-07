@@ -1,8 +1,8 @@
-import type { Helmet } from '@ski-blazek/db/browser'
+import { EquipmentItemType, type Helmet } from '@ski-blazek/db/browser'
 import { Separator } from '@ski-blazek/ui/components/separator'
 import { TypographySmall } from '@ski-blazek/ui/components/typography'
+import { useDeleteItem } from '../_shared/queries/equipmentQueries'
 import { DeleteDialog } from '../DeleteDialog'
-import { useDeleteHelmet } from './queries/helmetQueries'
 
 type DeleteHelmetDialogProps = {
   open: boolean
@@ -15,7 +15,7 @@ export const DeleteHelmetDialog = ({
   onOpenChange,
   defaultValues,
 }: DeleteHelmetDialogProps) => {
-  const deleteHelmet = useDeleteHelmet()
+  const deleteHelmet = useDeleteItem(EquipmentItemType.HELMET)
 
   return (
     <DeleteDialog
@@ -23,7 +23,9 @@ export const DeleteHelmetDialog = ({
       onOpenChange={onOpenChange}
       title="Opravdu chcete smazat tuto helmu?"
       description="Tato akce je nevratná a helma bude smazána z databáze."
-      onDelete={() => deleteHelmet.mutate(defaultValues.id)}
+      onDelete={() =>
+        deleteHelmet.mutate({ id: defaultValues.equipmentItemId })
+      }
     >
       <Separator />
       <div className="flex flex-col gap-2">

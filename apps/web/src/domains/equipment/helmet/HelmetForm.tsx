@@ -87,9 +87,7 @@ export const HelmetForm = ({ close, defaultValues }: HelmetFormProps) => {
 
       <form.AppField
         name="withIntegratedGoggles"
-        children={(field) => (
-          <field.CheckboxField label="Integrované brýle:" />
-        )}
+        children={(field) => <field.CheckboxField label="Integrované brýle:" />}
       />
 
       <div className="ml-auto">

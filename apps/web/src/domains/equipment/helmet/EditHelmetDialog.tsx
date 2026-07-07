@@ -10,7 +10,7 @@ import type { Helmet } from '@ski-blazek/db/browser'
 type EditHelmetDialogProps = {
   open: boolean
   onOpenChange: (open: boolean) => void
-  defaultValues?: Omit<Helmet, 'createdAt' | 'updatedAt'>
+  defaultValues: Omit<Helmet, 'createdAt' | 'updatedAt'>
 }
 
 export const EditHelmetDialog = ({

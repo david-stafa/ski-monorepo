@@ -33,15 +33,3 @@ export const useUpdateSki = () =>
         notifyError(error.message, 'Nepodařilo se upravit lyže.'),
     })
   )
-
-export const useDeleteSki = () =>
-  useMutation(
-    trpc.equipment.ski.deleteSki.mutationOptions({
-      onSuccess: () => {
-        invalidateSkiList()
-        notifySuccess('Lyže smazána', 'Lyže byla úspěšně smazána.')
-      },
-      onError: (error) =>
-        notifyError(error.message, 'Nepodařilo se smazat lyži.'),
-    })
-  )

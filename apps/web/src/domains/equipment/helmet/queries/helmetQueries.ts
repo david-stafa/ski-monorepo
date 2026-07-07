@@ -33,15 +33,3 @@ export const useUpdateHelmet = () =>
         notifyError(error.message, 'Nepodařilo se upravit helmu.'),
     })
   )
-
-export const useDeleteHelmet = () =>
-  useMutation(
-    trpc.equipment.helmet.deleteHelmet.mutationOptions({
-      onSuccess: () => {
-        invalidateHelmetList()
-        notifySuccess('Helma smazána', 'Helma byla úspěšně smazána.')
-      },
-      onError: (error) =>
-        notifyError(error.message, 'Nepodařilo se smazat helmu.'),
-    })
-  )

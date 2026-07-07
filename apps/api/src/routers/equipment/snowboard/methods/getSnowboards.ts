@@ -31,6 +31,7 @@ export const getSnowboards = async ({
         brand: true,
         model: true,
         length: true,
+        equipmentItemId: true,
       },
       skip: (page - 1) * itemsPerPage,
       take: itemsPerPage,

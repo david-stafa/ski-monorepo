@@ -33,15 +33,3 @@ export const useUpdateSnowboard = () =>
         notifyError(error.message, 'Nepodařilo se upravit snowboard.'),
     })
   )
-
-export const useDeleteSnowboard = () =>
-  useMutation(
-    trpc.equipment.snowboard.deleteSnowboard.mutationOptions({
-      onSuccess: () => {
-        invalidateSnowboardList()
-        notifySuccess('Snowboard smazán', 'Snowboard byl úspěšně smazán.')
-      },
-      onError: (error) =>
-        notifyError(error.message, 'Nepodařilo se smazat snowboard.'),
-    })
-  )

@@ -33,15 +33,3 @@ export const useUpdateSkiBoot = () =>
         notifyError(error.message, 'Nepodařilo se upravit lyžařskou botu.'),
     })
   )
-
-export const useDeleteSkiBoot = () =>
-  useMutation(
-    trpc.equipment.skiBoot.deleteSkiBoot.mutationOptions({
-      onSuccess: () => {
-        invalidateSkiBootList()
-        notifySuccess('Lyžařská bot smazána', 'Lyžařská bot byla úspěšně smazána.')
-      },
-      onError: (error) =>
-        notifyError(error.message, 'Nepodařilo se smazat lyžařskou botu.'),
-    })
-  )

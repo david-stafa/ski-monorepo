@@ -39,18 +39,3 @@ export const useUpdateSnowboardBoot = () =>
         notifyError(error.message, 'Nepodařilo se upravit snowboardovou botu.'),
     })
   )
-
-export const useDeleteSnowboardBoot = () =>
-  useMutation(
-    trpc.equipment.snowboardBoot.deleteSnowboardBoot.mutationOptions({
-      onSuccess: () => {
-        invalidateSnowboardBootList()
-        notifySuccess(
-          'Snowboardová bota smazána',
-          'Snowboardová bota byla úspěšně smazána.'
-        )
-      },
-      onError: (error) =>
-        notifyError(error.message, 'Nepodařilo se smazat snowboardovou botu.'),
-    })
-  )

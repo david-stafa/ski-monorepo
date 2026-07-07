@@ -35,6 +35,7 @@ export const getSki = async ({
         isVIP: true,
         createdAt: true,
         updatedAt: true,
+        equipmentItemId: true,
       },
       skip: (page - 1) * itemsPerPage,
       take: itemsPerPage,
