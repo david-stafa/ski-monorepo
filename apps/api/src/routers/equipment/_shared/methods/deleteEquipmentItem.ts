@@ -1,6 +1,6 @@
 import { prisma } from '@ski-blazek/db'
 import { TRPCError } from '@trpc/server'
-import type { DeleteEquipmenInput } from '~/schemas/equipmentItem'
+import type { DeleteEquipmenInput } from '../../../../schemas/equipmentItem'
 
 export const deleteEquipmentItem = async ({ id }: DeleteEquipmenInput) => {
   // Find item with all reservations

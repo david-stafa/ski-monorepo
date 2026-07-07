@@ -1,6 +1,6 @@
 import { prisma } from '@ski-blazek/db'
 import { TRPCError } from '@trpc/server'
-import type { RetireEquipmenInput } from '~/schemas/equipmentItem'
+import type { RetireEquipmenInput } from '../../../../schemas/equipmentItem'
 
 export const retireEquipmentItem = async ({ id }: RetireEquipmenInput) => {
   const item = await prisma.equipmentItem.findFirst({

@@ -3,7 +3,7 @@ import * as trpcExpress from '@trpc/server/adapters/express'
 
 // created for each request
 export const createContext =
-  ({}: trpcExpress.CreateExpressContextOptions) => ({})
+  (_opts: trpcExpress.CreateExpressContextOptions) => ({})
 
 type Context = Awaited<ReturnType<typeof createContext>>
 

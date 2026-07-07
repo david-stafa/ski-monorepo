@@ -1,7 +1,7 @@
 import {
   deleteEquipmentInputSchema,
   retireEquipmentInputSchema,
-} from '~/schemas/equipmentItem'
+} from '../../../schemas/equipmentItem'
 import { publicProcedure, router } from '../../_context'
 import { retireEquipmentItem } from './methods/retireEquipmentItem'
 import { deleteEquipmentItem } from './methods/deleteEquipmentItem'
