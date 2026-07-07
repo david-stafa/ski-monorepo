@@ -17,8 +17,8 @@ import {
 } from '~/components/ui/CustomPagination'
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
-import { AddSkiButton } from '~/domains/equipment/ski/AddSkiButton'
-import { SkiActions } from '~/domains/equipment/ski/SkiActions'
+import { AddSkiButton } from '~/domains/equipment/ski/components/AddSkiButton'
+import { SkiActions } from '~/domains/equipment/ski/components/SkiActions'
 import { useFilters } from '~/hooks/useFilter'
 import { trpc } from '~/lib/trpc'
 

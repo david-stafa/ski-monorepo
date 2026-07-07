@@ -20,8 +20,8 @@ import {
 } from '~/components/ui/CustomPagination'
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
-import { AddSnowboardBootButton } from '~/domains/equipment/snowboardBoot/AddSnowboardBootButton'
-import { SnowboardBootActions } from '~/domains/equipment/snowboardBoot/SnowboardBootActions'
+import { AddSnowboardBootButton } from '~/domains/equipment/snowboardBoot/components/AddSnowboardBootButton'
+import { SnowboardBootActions } from '~/domains/equipment/snowboardBoot/components/SnowboardBootActions'
 import { useFilters } from '~/hooks/useFilter'
 import { trpc } from '~/lib/trpc'
 

@@ -20,8 +20,8 @@ import {
 } from '~/components/ui/CustomPagination'
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
-import { AddHelmetButton } from '~/domains/equipment/helmet/AddHelmetButton'
-import { HelmetActions } from '~/domains/equipment/helmet/HelmetActions'
+import { AddHelmetButton } from '~/domains/equipment/helmet/components/AddHelmetButton'
+import { HelmetActions } from '~/domains/equipment/helmet/components/HelmetActions'
 import { useFilters } from '~/hooks/useFilter'
 import { trpc } from '~/lib/trpc'
 

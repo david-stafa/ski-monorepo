@@ -20,8 +20,8 @@ import {
 } from '~/components/ui/CustomPagination'
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
-import { AddSkiBootButton } from '~/domains/equipment/skiBoot/AddSkiBootButton'
-import { SkiBootActions } from '~/domains/equipment/skiBoot/SkiBootActions'
+import { AddSkiBootButton } from '~/domains/equipment/skiBoot/components/AddSkiBootButton'
+import { SkiBootActions } from '~/domains/equipment/skiBoot/components/SkiBootActions'
 import { useFilters } from '~/hooks/useFilter'
 import { trpc } from '~/lib/trpc'
 

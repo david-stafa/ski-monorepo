@@ -2,6 +2,7 @@ import { QueryClient } from '@tanstack/react-query'
 import { createTRPCClient, httpBatchLink } from '@trpc/client'
 import { createTRPCOptionsProxy } from '@trpc/tanstack-react-query'
 import type { AppRouter } from '@ski-blazek/api/trpc'
+import type { inferRouterOutputs } from '@trpc/server'
 
 export const queryClient = new QueryClient()
 
@@ -27,3 +28,5 @@ export const trpc = createTRPCOptionsProxy<AppRouter>({
   client: trpcClient,
   queryClient,
 })
+
+export type Outputs = inferRouterOutputs<AppRouter>
