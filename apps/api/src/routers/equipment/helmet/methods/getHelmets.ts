@@ -28,6 +28,12 @@ export const getHelmets = async ({
         description: true,
         withIntegratedGoggles: true,
         equipmentItemId: true,
+        equipmentItem: {
+          select: {
+            retiredAt: true,
+            articleNumber: true,
+          },
+        },
       },
       skip: (page - 1) * itemsPerPage,
       take: itemsPerPage,
