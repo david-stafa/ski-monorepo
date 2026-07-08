@@ -1,8 +1,8 @@
 import { prisma } from '@ski-blazek/db'
 import { TRPCError } from '@trpc/server'
-import type { DeleteEquipmenInput } from '../../../../schemas/equipmentItem'
+import type { EquipmentIdInput } from '../../../../schemas/equipmentItem'
 
-export const deleteEquipmentItem = async ({ id }: DeleteEquipmenInput) => {
+export const deleteEquipmentItem = async ({ id }: EquipmentIdInput) => {
   // Find item with all reservations
   const item = await prisma.equipmentItem.findUnique({
     where: { id },

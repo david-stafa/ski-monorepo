@@ -4,7 +4,7 @@ import type { TRPCQueryKeyWithoutPrefix } from '@trpc/tanstack-react-query'
 import { notifyError, notifySuccess } from '~/lib/notify'
 import { queryClient, trpc } from '~/lib/trpc'
 
-type EquipmentAction = 'delete' | 'retire'
+type EquipmentAction = 'delete' | 'retire' | 'unretire'
 
 interface EquipmentMeta {
   /** List query to invalidate after a mutation for this equipment type. */
@@ -29,6 +29,10 @@ const EQUIPMENT_META: Record<EquipmentItemType, EquipmentMeta> = {
         success: 'Lyže byly úspěšně archivovány.',
         error: 'Nepodařilo se archivovat lyže.',
       },
+      unretire: {
+        success: 'Lyže byly úspěšně aktivovány.',
+        error: 'Nepodařilo se aktivovat lyže.',
+      },
     },
   },
   [EquipmentItemType.SKI_BOOT]: {
@@ -41,6 +45,10 @@ const EQUIPMENT_META: Record<EquipmentItemType, EquipmentMeta> = {
       retire: {
         success: 'Lyžařské boty byly úspěšně archivovány.',
         error: 'Nepodařilo se archivovat lyžařské boty.',
+      },
+      unretire: {
+        success: 'Lyžařské boty byly úspěšně aktivovány.',
+        error: 'Nepodařilo se aktivovat lyžařské boty.',
       },
     },
   },
@@ -55,6 +63,10 @@ const EQUIPMENT_META: Record<EquipmentItemType, EquipmentMeta> = {
         success: 'Snowboard byl úspěšně archivován.',
         error: 'Nepodařilo se archivovat snowboard.',
       },
+      unretire: {
+        success: 'Snowboard byl úspěšně aktivován.',
+        error: 'Nepodařilo se aktivovat snowboard.',
+      },
     },
   },
   [EquipmentItemType.SNOWBOARD_BOOT]: {
@@ -68,6 +80,10 @@ const EQUIPMENT_META: Record<EquipmentItemType, EquipmentMeta> = {
         success: 'Snowboardové boty byly úspěšně archivovány.',
         error: 'Nepodařilo se archivovat snowboardové boty.',
       },
+      unretire: {
+        success: 'Snowboardové boty byly úspěšně aktivovány.',
+        error: 'Nepodařilo se aktivovat snowboardové boty.',
+      },
     },
   },
   [EquipmentItemType.HELMET]: {
@@ -80,6 +96,10 @@ const EQUIPMENT_META: Record<EquipmentItemType, EquipmentMeta> = {
       retire: {
         success: 'Helma byla úspěšně archivována.',
         error: 'Nepodařilo se archivovat helmu.',
+      },
+      unretire: {
+        success: 'Helma byla úspěšně aktivována.',
+        error: 'Nepodařilo se aktivovat helmu.',
       },
     },
   },
@@ -109,6 +129,20 @@ export const useRetireItem = (type: EquipmentItemType) => {
         notifySuccess('Archivováno', messages.retire.success)
       },
       onError: (error) => notifyError(error.message, messages.retire.error),
+    })
+  )
+}
+
+export const useUnretireItem = (type: EquipmentItemType) => {
+  const { invalidate, messages } = EQUIPMENT_META[type]
+
+  return useMutation(
+    trpc.equipment.equipmentItem.unretire.mutationOptions({
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: invalidate })
+        notifySuccess('Aktivováno', messages.unretire.success)
+      },
+      onError: (error) => notifyError(error.message, messages.unretire.error),
     })
   )
 }

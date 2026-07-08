@@ -2,7 +2,7 @@ import { prisma } from '@ski-blazek/db'
 import { TRPCError } from '@trpc/server'
 import type { EquipmentIdInput } from '../../../../schemas/equipmentItem'
 
-export const retireEquipmentItem = async ({ id }: EquipmentIdInput) => {
+export const unretireEquipmentItem = async ({ id }: EquipmentIdInput) => {
   const item = await prisma.equipmentItem.findUnique({
     where: {
       id,
@@ -16,7 +16,7 @@ export const retireEquipmentItem = async ({ id }: EquipmentIdInput) => {
       id,
     },
     data: {
-      retiredAt: new Date(),
+      retiredAt: null,
     },
   })
 }

@@ -36,6 +36,12 @@ export const getSki = async ({
         createdAt: true,
         updatedAt: true,
         equipmentItemId: true,
+        equipmentItem: {
+          select: {
+            articleNumber: true,
+            retiredAt: true,
+          },
+        },
       },
       skip: (page - 1) * itemsPerPage,
       take: itemsPerPage,
