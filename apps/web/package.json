@@ -35,7 +35,7 @@
   "devDependencies": {
     "@ski-blazek/eslint-config": "workspace:*",
     "@ski-blazek/typescript-config": "workspace:*",
-    "@tanstack/router-plugin": "^1.168.6",
+    "@tanstack/router-plugin": "^1.168.19",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
