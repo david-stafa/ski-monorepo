@@ -1,7 +1,11 @@
-import { equipmentIdInputSchema } from '../../../schemas/equipmentItem'
+import {
+  equipmentIdInputSchema,
+  findAvailableInputSchema,
+} from '../../../schemas/equipmentItem'
 import { publicProcedure, router } from '../../_context'
-import { retireEquipmentItem } from './methods/retireEquipmentItem'
 import { deleteEquipmentItem } from './methods/deleteEquipmentItem'
+import { findAvailable } from './methods/findAvailable'
+import { retireEquipmentItem } from './methods/retireEquipmentItem'
 import { unretireEquipmentItem } from './methods/unretireEquipmentItem'
 
 export const equipmentItemRouter = router({
@@ -19,5 +23,10 @@ export const equipmentItemRouter = router({
     .input(equipmentIdInputSchema)
     .mutation(async ({ input }) => {
       return await deleteEquipmentItem(input)
+    }),
+  findAvailable: publicProcedure
+    .input(findAvailableInputSchema)
+    .query(async ({ input }) => {
+      return await findAvailable(input)
     }),
 })
