@@ -1,8 +1,10 @@
 import { router } from './_context'
 import { equipmentRouter } from './equipment/equipment'
+import { reservationRouter } from './reservation/reservation'
 
 export const appRouter = router({
   equipment: equipmentRouter,
+  reservation: reservationRouter,
 })
 
 // Export only the type of a router!

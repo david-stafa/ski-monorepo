@@ -1,5 +1,8 @@
 import { prisma } from '@ski-blazek/db'
-import type { FindAvailableInput } from '../../../../schemas/equipmentItem'
+import type {
+  FindAvailableInput,
+  IsItemAvailableInput,
+} from '../../../../schemas/equipmentItem'
 
 export const findAvailable = async ({
   type,
@@ -30,6 +33,31 @@ export const findAvailable = async ({
     },
     orderBy: {
       articleNumber: 'asc',
+    },
+  })
+
+  return availableItems
+}
+
+export const isItemAvailable = async ({
+  id,
+  startDate: reqStart,
+  endDate: reqEnd,
+}: IsItemAvailableInput) => {
+  const availableItems = await prisma.equipmentItem.findUnique({
+    where: {
+      id,
+      retiredAt: null,
+      reservationItems: {
+        // none meeans zero of those exists
+        none: {
+          startDate: { lt: reqEnd }, // start < reqEnd
+          endDate: { gt: reqStart }, // end > reqStart   ← implicitly AND-ed
+          person: {
+            status: 'ACTIVE',
+          },
+        },
+      },
     },
   })
 

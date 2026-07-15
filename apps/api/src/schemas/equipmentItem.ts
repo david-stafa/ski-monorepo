@@ -13,3 +13,11 @@ export const findAvailableInputSchema = z.object({
 })
 
 export type FindAvailableInput = z.infer<typeof findAvailableInputSchema>
+
+export const isItemAvailableInputSchema = z.object({
+  id: z.string(),
+  startDate: z.date(),
+  endDate: z.date(),
+})
+
+export type IsItemAvailableInput = z.infer<typeof isItemAvailableInputSchema>
