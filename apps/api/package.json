@@ -31,7 +31,7 @@
     "@ski-blazek/typescript-config": "workspace:*",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
-    "@types/node": "^25.0.6",
+    "@types/node": "^26.1.1",
     "eslint": "^9.39.1",
     "tsup": "^8.5.1",
     "typescript": "catalog:"
