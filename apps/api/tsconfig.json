@@ -1,16 +1,18 @@
 {
-  "extends": "@ski-blazek/typescript-config/express.json",
+  // Extends base.json (like every other package) so the API is held to the same
+  // strictness as its consumers. apps/web imports this package's raw .ts source
+  // via `@ski-blazek/api/trpc`, so web's `tsc -b` typechecks these files under
+  // web's config: anything this config allows but base.json forbids compiles
+  // here and then fails the web build.
+  "extends": "@ski-blazek/typescript-config/base.json",
   "compilerOptions": {
-    "lib": ["es2024", "ESNext.Array", "ESNext.Collection", "ESNext.Iterator"],
-    "module": "ESNext",
-    "target": "es2022",
+    // Node runtime, so no DOM. Must stay a subset of what web's lib provides,
+    // or web cannot typecheck the source it imports from here.
+    "lib": ["ES2025"],
+
     "rootDir": "./src",
     "outDir": "./dist",
-    "strict": true,
     "verbatimModuleSyntax": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "moduleResolution": "bundler",
     "paths": {
       "~/*": ["./src/*"]
     }

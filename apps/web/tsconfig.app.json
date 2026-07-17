@@ -1,7 +1,6 @@
 {
   "extends": "@ski-blazek/typescript-config/react-library.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
       "@ski-blazek/ui/*": ["../../packages/ui/src/*"],
       "react": ["./node_modules/@types/react"],
@@ -9,22 +8,21 @@
       "~/*": ["./src/*"]
     },
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-    "target": "ES2022",
+    // Browser runtime. Kept explicit so web's supported-browser floor is a
+    // deliberate app-level decision, not whatever base.json happens to be.
+    // esbuild (via Vite/tsup) caps at es2024, and ES2025 adds no new syntax over
+    // ES2024, so target stays ES2024. lib is ES2025 because only tsc reads it.
+    "target": "ES2024",
+    "lib": ["ES2025", "DOM", "DOM.Iterable"],
     "useDefineForClassFields": true,
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
     "types": ["vite/client"],
-    "skipLibCheck": true,
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "noEmit": true,
-    "jsx": "react-jsx",
 
-    /* Linting */
-    "strict": true,
+    /* Linting (in addition to base's `strict`) */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,

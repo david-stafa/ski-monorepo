@@ -13,24 +13,30 @@ type PrismaClientOrTx = Prisma.TransactionClient
 export const getFreeArticleNumbers = async (
   client: PrismaClientOrTx,
   equipmentItemType: EquipmentItemType
-) => {
+): Promise<[number, ...number[]]> => {
   const articleNumbers = await client.equipmentItem.findMany({
     where: { type: equipmentItemType, retiredAt: null },
     select: { articleNumber: true },
     orderBy: { articleNumber: 'desc' },
   })
 
-  if (articleNumbers.length === 0) return [1]
+  const [highest] = articleNumbers
 
-  const databaseSet = new Set(articleNumbers.map((n) => n.articleNumber))
-  const wholeSet = new Set(
-    Array.from({ length: articleNumbers[0].articleNumber }, (_, i) => i + 1)
-  )
+  if (!highest) return [1]
 
-  return [
-    ...wholeSet.difference(databaseSet),
-    articleNumbers[0].articleNumber + 1,
-  ]
+  const taken = new Set(articleNumbers.map((n) => n.articleNumber))
+  const gaps: number[] = []
+
+  for (let n = 1; n <= highest.articleNumber; n++) {
+    if (!taken.has(n)) gaps.push(n)
+  }
+
+  // `next` is what makes the result non-empty, so the tuple type holds even
+  // when there are no gaps to reuse.
+  const next = highest.articleNumber + 1
+  const [lowestGap, ...otherGaps] = gaps
+
+  return lowestGap === undefined ? [next] : [lowestGap, ...otherGaps, next]
 }
 
 export const assignLowestFreeNumber = async (
