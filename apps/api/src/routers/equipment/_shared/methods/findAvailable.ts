@@ -1,4 +1,4 @@
-import { prisma } from '@ski-blazek/db'
+import { Prisma, prisma } from '@ski-blazek/db'
 import type {
   FindAvailableInput,
   IsItemAvailableInput,
@@ -39,12 +39,11 @@ export const findAvailable = async ({
   return availableItems
 }
 
-export const isItemAvailable = async ({
-  id,
-  startDate: reqStart,
-  endDate: reqEnd,
-}: IsItemAvailableInput) => {
-  const availableItems = await prisma.equipmentItem.findUnique({
+export const isItemAvailable = async (
+  { id, startDate: reqStart, endDate: reqEnd }: IsItemAvailableInput,
+  prismaClient: Prisma.TransactionClient = prisma // defaults to the global client
+) => {
+  const availableItem = await prismaClient.equipmentItem.findUnique({
     where: {
       id,
       retiredAt: null,
@@ -61,5 +60,5 @@ export const isItemAvailable = async ({
     },
   })
 
-  return availableItems
+  return availableItem ? true : false
 }
