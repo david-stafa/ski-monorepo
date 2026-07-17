@@ -36,7 +36,7 @@
     "@ski-blazek/eslint-config": "workspace:*",
     "@ski-blazek/typescript-config": "workspace:*",
     "@tanstack/router-plugin": "^1.168.6",
-    "@types/node": "^24.10.1",
+    "@types/node": "^26.1.1",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react-swc": "^4.3.1",
