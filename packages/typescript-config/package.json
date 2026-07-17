@@ -4,10 +4,6 @@
   "private": true,
   "exports": {
     "./base.json": "./base.json",
-    "./react-library.json": "./react-library.json",
-    "./express.json": "./express.json"
-  },
-  "devDependencies": {
-    "@tsconfig/node22": "^22.0.5"
+    "./react-library.json": "./react-library.json"
   }
 }

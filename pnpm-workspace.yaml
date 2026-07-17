@@ -2,6 +2,12 @@ packages:
   - apps/*
   - packages/*
 
+# Single source of truth for shared dependency versions.
+# Reference from any package.json as: "typescript": "catalog:"
+# TypeScript is pinned with ~ (patch-only)
+catalog:
+  typescript: ~6.0.3
+
 allowBuilds:
   '@prisma/engines': true
   '@swc/core': true

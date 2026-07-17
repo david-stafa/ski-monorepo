@@ -34,7 +34,7 @@
     "@types/node": "^25.0.6",
     "eslint": "^9.39.1",
     "tsup": "^8.5.1",
-    "typescript": "^5.9.3"
+    "typescript": "catalog:"
   },
   "exports": {
     "./trpc": "./src/routers/_app.ts",

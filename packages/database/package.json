@@ -14,7 +14,7 @@
     "@ski-blazek/typescript-config": "workspace:*",
     "@types/pg": "^8.16.0",
     "prisma": "^7.2.0",
-    "typescript": "^5.9.3",
+    "typescript": "catalog:",
     "eslint": "^9.22.0"
   },
   "dependencies": {

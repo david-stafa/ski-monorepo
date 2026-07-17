@@ -33,7 +33,7 @@
     "@types/react-dom": "^19.1.7",
     "eslint": "^9.32.0",
     "tailwindcss": "^4.1.11",
-    "typescript": "^5.9.2"
+    "typescript": "catalog:"
   },
   "exports": {
     "./globals.css": "./src/styles/globals.css",
