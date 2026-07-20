@@ -1,5 +1,6 @@
 import type { UpdateHelmetInput } from '../../../../schemas/helmet'
 import { prisma } from '@ski-blazek/db'
+import { TRPCError } from '@trpc/server'
 
 export const updateHelmet = async (input: UpdateHelmetInput) => {
   const helmet = await prisma.helmet.findUnique({
@@ -7,7 +8,7 @@ export const updateHelmet = async (input: UpdateHelmetInput) => {
   })
 
   if (!helmet) {
-    throw new Error('Helmet not found')
+    throw new TRPCError({ code: 'NOT_FOUND', message: 'Helmet not found' })
   }
 
   return await prisma.helmet.update({

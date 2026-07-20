@@ -1,4 +1,5 @@
 import { prisma } from '@ski-blazek/db'
+import { TRPCError } from '@trpc/server'
 import type { UpdateSkiInput } from '../../../../schemas/ski'
 
 export const updateSki = async (input: UpdateSkiInput) => {
@@ -7,7 +8,7 @@ export const updateSki = async (input: UpdateSkiInput) => {
   })
 
   if (!ski) {
-    throw new Error('Ski not found')
+    throw new TRPCError({ code: 'NOT_FOUND', message: 'Ski not found' })
   }
 
   await prisma.ski.update({

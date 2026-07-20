@@ -1,5 +1,6 @@
 import type { UpdateSnowboardInput } from '../../../../schemas/snowboard'
 import { prisma } from '@ski-blazek/db'
+import { TRPCError } from '@trpc/server'
 
 export const updateSnowboard = async (input: UpdateSnowboardInput) => {
   const snowboard = await prisma.snowboard.findUnique({
@@ -7,7 +8,7 @@ export const updateSnowboard = async (input: UpdateSnowboardInput) => {
   })
 
   if (!snowboard) {
-    throw new Error('Snowboard not found')
+    throw new TRPCError({ code: 'NOT_FOUND', message: 'Snowboard not found' })
   }
 
   return await prisma.snowboard.update({
