@@ -3,7 +3,7 @@ import type { CreateSnowboardBootInput } from '../../../../schemas/snowboardBoot
 import { assignLowestFreeNumber } from '../../_shared/lib/assignArticleNumber'
 
 export const createSnowboardBoot = async (input: CreateSnowboardBootInput) => {
-  await prisma.snowboardBoot.create({
+  return await prisma.snowboardBoot.create({
     data: {
       ...input,
       equipmentItem: {
@@ -13,5 +13,6 @@ export const createSnowboardBoot = async (input: CreateSnowboardBootInput) => {
         },
       },
     },
+    include: { equipmentItem: true },
   })
 }

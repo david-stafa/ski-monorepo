@@ -11,7 +11,7 @@ export const unretireEquipmentItem = async ({ id }: EquipmentIdInput) => {
 
   if (!item) throw new TRPCError({ code: 'NOT_FOUND' })
 
-  await prisma.equipmentItem.update({
+  return await prisma.equipmentItem.update({
     where: {
       id,
     },

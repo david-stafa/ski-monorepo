@@ -13,4 +13,5 @@ export const createSki = async (input: CreateSkiInput) =>
         },
       },
     },
+    include: { equipmentItem: true },
   })

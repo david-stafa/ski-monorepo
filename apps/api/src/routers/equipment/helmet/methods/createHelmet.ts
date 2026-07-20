@@ -13,5 +13,6 @@ export const createHelmet = async (input: CreateHelmetInput) => {
         },
       },
     },
+    include: { equipmentItem: true },
   })
 }

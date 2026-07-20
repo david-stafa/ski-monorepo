@@ -11,12 +11,8 @@ export const updateSki = async (input: UpdateSkiInput) => {
     throw new TRPCError({ code: 'NOT_FOUND', message: 'Ski not found' })
   }
 
-  await prisma.ski.update({
+  return await prisma.ski.update({
     where: { id: input.id },
     data: input,
   })
-
-  return {
-    success: true,
-  }
 }
