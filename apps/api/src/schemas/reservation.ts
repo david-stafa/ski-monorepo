@@ -1,6 +1,7 @@
 import type { Person } from '@ski-blazek/db'
-import { Gender } from '@ski-blazek/db/browser'
+import { Gender, ReservationStatus } from '@ski-blazek/db/browser'
 import z from 'zod'
+import { paginationSchema } from './pagination'
 
 // DB-aligned person fields (keep the satisfies check on these)
 const personFieldsSchema = z.object({
@@ -36,4 +37,24 @@ export const createReservationInputSchema = z
   })
 export type CreateReservationInput = z.infer<
   typeof createReservationInputSchema
+>
+
+export const getReservationsInputSchema = paginationSchema.extend({
+  search: z.string().optional(),
+  status: z.enum(ReservationStatus).optional(),
+  from: z.coerce.date().optional(),
+  to: z.coerce.date().optional(),
+  dateMode: z.enum(['PICKUP', 'RETURN', 'ACTIVE']).default('PICKUP'),
+  orderBy: z.enum(['name', 'startDate', 'endDate']).default('startDate'),
+  orderDirection: z.enum(['asc', 'desc']).default('asc'),
+})
+
+export type GetReservationsInput = z.infer<typeof getReservationsInputSchema>
+
+export const getSingleReservationInputSchema = z.object({
+  id: z.string(),
+})
+
+export type GetSingleReservationInput = z.infer<
+  typeof getSingleReservationInputSchema
 >

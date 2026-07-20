@@ -51,3 +51,12 @@ export {
   updateHelmetInputSchema,
   type UpdateHelmetInput,
 } from './helmet'
+
+export {
+  createReservationInputSchema,
+  type CreateReservationInput,
+  getReservationsInputSchema,
+  type GetReservationsInput,
+  getSingleReservationInputSchema,
+  type GetSingleReservationInput,
+} from './reservation'
