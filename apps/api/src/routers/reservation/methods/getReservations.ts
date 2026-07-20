@@ -2,7 +2,7 @@ import { prisma } from '@ski-blazek/db'
 import type { Prisma } from '@ski-blazek/db/browser'
 import type { GetReservationsInput } from '../../../schemas/reservation'
 
-export const getReservations = async ({
+export const listReservations = async ({
   orderBy,
   orderDirection,
   page,
