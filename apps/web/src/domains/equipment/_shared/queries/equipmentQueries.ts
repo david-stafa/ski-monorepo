@@ -19,7 +19,7 @@ interface EquipmentMeta {
  */
 const EQUIPMENT_META: Record<EquipmentItemType, EquipmentMeta> = {
   [EquipmentItemType.SKI]: {
-    invalidate: trpc.equipment.ski.getSki.pathKey(),
+    invalidate: trpc.equipment.ski.list.pathKey(),
     messages: {
       delete: {
         success: 'Lyže byly úspěšně smazány.',
@@ -36,7 +36,7 @@ const EQUIPMENT_META: Record<EquipmentItemType, EquipmentMeta> = {
     },
   },
   [EquipmentItemType.SKI_BOOT]: {
-    invalidate: trpc.equipment.skiBoot.getSkiBoot.pathKey(),
+    invalidate: trpc.equipment.skiBoot.list.pathKey(),
     messages: {
       delete: {
         success: 'Lyžařské boty byly úspěšně smazány.',
@@ -53,7 +53,7 @@ const EQUIPMENT_META: Record<EquipmentItemType, EquipmentMeta> = {
     },
   },
   [EquipmentItemType.SNOWBOARD]: {
-    invalidate: trpc.equipment.snowboard.getSnowboard.pathKey(),
+    invalidate: trpc.equipment.snowboard.list.pathKey(),
     messages: {
       delete: {
         success: 'Snowboard byl úspěšně smazán.',
@@ -70,7 +70,7 @@ const EQUIPMENT_META: Record<EquipmentItemType, EquipmentMeta> = {
     },
   },
   [EquipmentItemType.SNOWBOARD_BOOT]: {
-    invalidate: trpc.equipment.snowboardBoot.getSnowboardBoot.pathKey(),
+    invalidate: trpc.equipment.snowboardBoot.list.pathKey(),
     messages: {
       delete: {
         success: 'Snowboardové boty byly úspěšně smazány.',
@@ -87,7 +87,7 @@ const EQUIPMENT_META: Record<EquipmentItemType, EquipmentMeta> = {
     },
   },
   [EquipmentItemType.HELMET]: {
-    invalidate: trpc.equipment.helmet.getHelmet.pathKey(),
+    invalidate: trpc.equipment.helmet.list.pathKey(),
     messages: {
       delete: {
         success: 'Helma byla úspěšně smazána.',

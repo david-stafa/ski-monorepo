@@ -32,7 +32,7 @@ export const Route = createFileRoute('/_authenticated/equipment/ski-boot')({
   }) => ({ page, itemsPerPage, orderBy, orderDirection, search }),
   loader: async ({ context, deps }) => {
     return context.queryClient.ensureQueryData(
-      context.trpc.equipment.skiBoot.getSkiBoot.queryOptions(deps)
+      context.trpc.equipment.skiBoot.list.queryOptions(deps)
     )
   },
   component: RouteComponent,
@@ -56,7 +56,7 @@ function RouteComponent() {
 
   /*  Get Ski Query   */
   const { data } = useSuspenseQuery(
-    trpc.equipment.skiBoot.getSkiBoot.queryOptions({
+    trpc.equipment.skiBoot.list.queryOptions({
       page,
       itemsPerPage,
       orderBy,

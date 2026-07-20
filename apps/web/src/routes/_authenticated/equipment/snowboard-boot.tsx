@@ -34,7 +34,7 @@ export const Route = createFileRoute(
   }) => ({ page, itemsPerPage, orderBy, orderDirection, search }),
   loader: async ({ context, deps }) => {
     return context.queryClient.ensureQueryData(
-      context.trpc.equipment.snowboardBoot.getSnowboardBoot.queryOptions(deps)
+      context.trpc.equipment.snowboardBoot.list.queryOptions(deps)
     )
   },
   component: RouteComponent,
@@ -58,7 +58,7 @@ function RouteComponent() {
 
   /*  Get Snowboard Boot Query   */
   const { data } = useSuspenseQuery(
-    trpc.equipment.snowboardBoot.getSnowboardBoot.queryOptions({
+    trpc.equipment.snowboardBoot.list.queryOptions({
       page,
       itemsPerPage,
       orderBy,

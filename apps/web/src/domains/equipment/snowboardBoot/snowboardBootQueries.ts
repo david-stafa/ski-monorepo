@@ -5,14 +5,14 @@ import { queryClient, trpc } from '~/lib/trpc'
 /** Invalidate every cached `getSnowboardBoot` list so it refetches after a mutation. */
 const invalidateSnowboardBootList = () =>
   queryClient.invalidateQueries({
-    queryKey: trpc.equipment.snowboardBoot.getSnowboardBoot.queryKey(),
+    queryKey: trpc.equipment.snowboardBoot.list.queryKey(),
   })
 
 /* ---------------------------- Mutations ---------------------------- */
 
 export const useCreateSnowboardBoot = () =>
   useMutation(
-    trpc.equipment.snowboardBoot.createSnowboardBoot.mutationOptions({
+    trpc.equipment.snowboardBoot.create.mutationOptions({
       onSuccess: () => {
         invalidateSnowboardBootList()
         notifySuccess(
@@ -30,7 +30,7 @@ export const useCreateSnowboardBoot = () =>
 
 export const useUpdateSnowboardBoot = () =>
   useMutation(
-    trpc.equipment.snowboardBoot.updateSnowboardBoot.mutationOptions({
+    trpc.equipment.snowboardBoot.update.mutationOptions({
       onSuccess: () => {
         invalidateSnowboardBootList()
         notifySuccess(

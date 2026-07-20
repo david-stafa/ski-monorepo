@@ -2,7 +2,7 @@ import { prisma } from '@ski-blazek/db'
 import type { GetSkiInput } from '../../../../schemas/ski'
 import type { Prisma } from '@ski-blazek/db/browser'
 
-export const getSki = async ({
+export const listSkis = async ({
   page,
   itemsPerPage,
   orderBy,
@@ -24,7 +24,7 @@ export const getSki = async ({
       }
     : {}
 
-  const [ski, totalCount] = await prisma.$transaction([
+  const [skis, totalCount] = await prisma.$transaction([
     prisma.ski.findMany({
       where,
       select: {
@@ -61,7 +61,7 @@ export const getSki = async ({
   ])
 
   return {
-    ski,
+    skis,
     totalCount,
   }
 }

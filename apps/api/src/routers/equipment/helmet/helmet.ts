@@ -4,22 +4,22 @@ import {
   getHelmetInputSchema,
   updateHelmetInputSchema,
 } from '../../../schemas/helmet'
-import { getHelmets } from './methods/getHelmets'
+import { listHelmets } from './methods/listHelmets'
 import { createHelmet } from './methods/createHelmet'
 import { updateHelmet } from './methods/updateHelmet'
 
 export const helmetRouter = router({
-  getHelmet: publicProcedure
+  list: publicProcedure
     .input(getHelmetInputSchema)
     .query(async ({ input }) => {
-      return await getHelmets(input)
+      return await listHelmets(input)
     }),
-  createHelmet: publicProcedure
+  create: publicProcedure
     .input(createHelmetInputSchema)
     .mutation(async ({ input }) => {
       return await createHelmet(input)
     }),
-  updateHelmet: publicProcedure
+  update: publicProcedure
     .input(updateHelmetInputSchema)
     .mutation(async ({ input }) => {
       return await updateHelmet(input)

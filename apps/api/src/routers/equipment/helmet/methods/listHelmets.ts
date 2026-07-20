@@ -1,7 +1,7 @@
 import { prisma } from '@ski-blazek/db'
 import type { GetHelmetInput } from '../../../../schemas/helmet'
 
-export const getHelmets = async ({
+export const listHelmets = async ({
   page,
   itemsPerPage,
   orderBy,

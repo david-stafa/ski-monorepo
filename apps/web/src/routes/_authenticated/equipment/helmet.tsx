@@ -32,7 +32,7 @@ export const Route = createFileRoute('/_authenticated/equipment/helmet')({
   }) => ({ page, itemsPerPage, orderBy, orderDirection, search }),
   loader: async ({ context, deps }) => {
     return context.queryClient.ensureQueryData(
-      context.trpc.equipment.helmet.getHelmet.queryOptions(deps)
+      context.trpc.equipment.helmet.list.queryOptions(deps)
     )
   },
   component: RouteComponent,
@@ -56,7 +56,7 @@ function RouteComponent() {
 
   /*  Get Helmet Query   */
   const { data } = useSuspenseQuery(
-    trpc.equipment.helmet.getHelmet.queryOptions({
+    trpc.equipment.helmet.list.queryOptions({
       page,
       itemsPerPage,
       orderBy,

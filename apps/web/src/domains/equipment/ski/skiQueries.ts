@@ -5,14 +5,14 @@ import { queryClient, trpc } from '~/lib/trpc'
 /** Invalidate every cached `getSki` list so it refetches after a mutation. */
 const invalidateSkiList = () =>
   queryClient.invalidateQueries({
-    queryKey: trpc.equipment.ski.getSki.queryKey(),
+    queryKey: trpc.equipment.ski.list.queryKey(),
   })
 
 /* ---------------------------- Mutations ---------------------------- */
 
 export const useCreateSki = () =>
   useMutation(
-    trpc.equipment.ski.createSki.mutationOptions({
+    trpc.equipment.ski.create.mutationOptions({
       onSuccess: () => {
         invalidateSkiList()
         notifySuccess('Lyže přidány', 'Lyže byly úspěšně vytvořeny.')
@@ -24,7 +24,7 @@ export const useCreateSki = () =>
 
 export const useUpdateSki = () =>
   useMutation(
-    trpc.equipment.ski.updateSki.mutationOptions({
+    trpc.equipment.ski.update.mutationOptions({
       onSuccess: () => {
         invalidateSkiList()
         notifySuccess('Lyže upraveny', 'Lyže byly úspěšně upraveny.')

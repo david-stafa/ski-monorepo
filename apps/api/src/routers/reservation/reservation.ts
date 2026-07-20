@@ -6,7 +6,7 @@ import {
 import { publicProcedure, router } from '../_context'
 import { createReservation } from './methods/createReservation'
 import { getReservation } from './methods/getReservation'
-import { listReservations } from './methods/getReservations'
+import { listReservations } from './methods/listReservations'
 
 export const reservationRouter = router({
   create: publicProcedure

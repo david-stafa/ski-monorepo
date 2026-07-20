@@ -4,20 +4,20 @@ import {
   updateSkiInputSchema,
 } from '../../../schemas/ski'
 import { publicProcedure, router } from '../../_context'
-import { getSki } from './methods/getSki'
+import { listSkis } from './methods/listSkis'
 import { createSki } from './methods/createSki'
 import { updateSki } from './methods/updateSki'
 
 export const skiRouter = router({
-  getSki: publicProcedure.input(getSkiInputSchema).query(async ({ input }) => {
-    return await getSki(input)
+  list: publicProcedure.input(getSkiInputSchema).query(async ({ input }) => {
+    return await listSkis(input)
   }),
-  createSki: publicProcedure
+  create: publicProcedure
     .input(createSkiInputSchema)
     .mutation(async ({ input }) => {
       return await createSki(input)
     }),
-  updateSki: publicProcedure
+  update: publicProcedure
     .input(updateSkiInputSchema)
     .mutation(async ({ input }) => {
       return await updateSki(input)

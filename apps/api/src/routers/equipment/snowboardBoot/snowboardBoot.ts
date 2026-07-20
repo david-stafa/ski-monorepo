@@ -1,5 +1,5 @@
 import { publicProcedure, router } from '../../_context'
-import { getSnowboardBoots } from './methods/getSnowboardBoots'
+import { listSnowboardBoots } from './methods/listSnowboardBoots'
 import { createSnowboardBoot } from './methods/createSnowboardBoot'
 import { updateSnowboardBoot } from './methods/updateSnowboardBoot'
 import {
@@ -9,17 +9,17 @@ import {
 } from '../../../schemas/snowboardBoot'
 
 export const snowboardBootRouter = router({
-  getSnowboardBoot: publicProcedure
+  list: publicProcedure
     .input(getSnowboardBootInputSchema)
     .query(async ({ input }) => {
-      return await getSnowboardBoots(input)
+      return await listSnowboardBoots(input)
     }),
-  createSnowboardBoot: publicProcedure
+  create: publicProcedure
     .input(createSnowboardBootInputSchema)
     .mutation(async ({ input }) => {
       return await createSnowboardBoot(input)
     }),
-  updateSnowboardBoot: publicProcedure
+  update: publicProcedure
     .input(updateSnowboardBootInputSchema)
     .mutation(async ({ input }) => {
       return await updateSnowboardBoot(input)

@@ -29,7 +29,7 @@ export const Route = createFileRoute('/_authenticated/equipment/ski')({
   }) => ({ page, itemsPerPage, orderBy, orderDirection, search }),
   loader: async ({ context, deps }) => {
     return context.queryClient.ensureQueryData(
-      context.trpc.equipment.ski.getSki.queryOptions(deps)
+      context.trpc.equipment.ski.list.queryOptions(deps)
     )
   },
   component: RouteComponent,
@@ -53,7 +53,7 @@ function RouteComponent() {
 
   /*  Get Ski Query   */
   const { data } = useSuspenseQuery(
-    trpc.equipment.ski.getSki.queryOptions({
+    trpc.equipment.ski.list.queryOptions({
       page,
       itemsPerPage,
       orderBy,
@@ -126,14 +126,14 @@ function RouteComponent() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data.ski.length === 0 ? (
+          {data.skis.length === 0 ? (
             <TableRow>
               <TableCell colSpan={5} className="h-50 text-center">
                 Žádné lyže nebyly nalezeny.
               </TableCell>
             </TableRow>
           ) : (
-            data.ski.map((item) => (
+            data.skis.map((item) => (
               <TableRow key={item.id}>
                 <TableCell className="flex items-center gap-2">
                   <SkiActions defaultValues={item} />

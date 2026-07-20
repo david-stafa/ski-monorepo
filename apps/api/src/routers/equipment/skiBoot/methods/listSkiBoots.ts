@@ -1,15 +1,15 @@
 import { prisma } from '@ski-blazek/db'
-import type { GetSnowboardBootInput } from '../../../../schemas/snowboardBoot'
+import type { GetSkiBootInput } from '../../../../schemas/skiBoot'
 import type { Prisma } from '@ski-blazek/db/browser'
 
-export const getSnowboardBoots = async ({
+export const listSkiBoots = async ({
   page,
   itemsPerPage,
   orderBy,
   orderDirection,
   search,
-}: GetSnowboardBootInput) => {
-  const where: Prisma.SnowboardBootWhereInput = search
+}: GetSkiBootInput) => {
+  const where: Prisma.SkiBootWhereInput = search
     ? {
         OR: [
           { brand: { contains: search, mode: 'insensitive' } },
@@ -23,15 +23,14 @@ export const getSnowboardBoots = async ({
       }
     : {}
 
-  const [snowboardBoots, totalCount] = await prisma.$transaction([
-    prisma.snowboardBoot.findMany({
+  const [skiBoots, totalCount] = await prisma.$transaction([
+    prisma.skiBoot.findMany({
       where,
       select: {
         id: true,
         brand: true,
         model: true,
         length: true,
-        isBoa: true,
         equipmentItemId: true,
         equipmentItem: {
           select: {
@@ -49,13 +48,13 @@ export const getSnowboardBoots = async ({
       ],
     }),
 
-    prisma.snowboardBoot.count({
+    prisma.skiBoot.count({
       where,
     }),
   ])
 
   return {
-    snowboardBoots,
+    skiBoots,
     totalCount,
   }
 }
