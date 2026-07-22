@@ -41,9 +41,10 @@ model Person {
 }
 
 model ReservationItem {
-    id        String   @id @default(cuid(2))    
+    id        String                @id @default(cuid(2))
     startDate DateTime
     endDate   DateTime
+    status    ReservationItemStatus @default(ACTIVE)
 
     reservationId String
     reservation   Reservation @relation(fields: [reservationId], references: [id], onDelete: Cascade)
@@ -101,6 +102,11 @@ enum ReservationStatus {
 }
 
 enum PersonStatus {
+    ACTIVE
+    CANCELLED
+}
+
+enum ReservationItemStatus {
     ACTIVE
     CANCELLED
 }

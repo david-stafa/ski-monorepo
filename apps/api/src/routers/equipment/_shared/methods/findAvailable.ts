@@ -4,6 +4,21 @@ import type {
   IsItemAvailableInput,
 } from '../../../../schemas/equipmentItem'
 
+/**
+ * A booking that occupies an item for the requested window: overlapping dates
+ * (half-open — start < reqEnd AND end > reqStart) AND still active. Shared by
+ * findAvailable + isItemAvailable so the "what counts as booked" rule lives in
+ * one place and the two can't drift.
+ */
+const overlappingActiveBooking = (
+  reqStart: Date,
+  reqEnd: Date
+): Prisma.ReservationItemWhereInput => ({
+  startDate: { lt: reqEnd },
+  endDate: { gt: reqStart },
+  status: 'ACTIVE',
+})
+
 export const findAvailable = async ({
   type,
   startDate: reqStart,
@@ -13,16 +28,8 @@ export const findAvailable = async ({
     where: {
       type,
       retiredAt: null,
-      reservationItems: {
-        // none meeans zero of those exists
-        none: {
-          startDate: { lt: reqEnd }, // start < reqEnd
-          endDate: { gt: reqStart }, // end > reqStart   ← implicitly AND-ed
-          person: {
-            status: 'ACTIVE',
-          },
-        },
-      },
+      // available = no overlapping active booking exists
+      reservationItems: { none: overlappingActiveBooking(reqStart, reqEnd) },
     },
     include: {
       ski: true,
@@ -47,16 +54,7 @@ export const isItemAvailable = async (
     where: {
       id,
       retiredAt: null,
-      reservationItems: {
-        // none meeans zero of those exists
-        none: {
-          startDate: { lt: reqEnd }, // start < reqEnd
-          endDate: { gt: reqStart }, // end > reqStart   ← implicitly AND-ed
-          person: {
-            status: 'ACTIVE',
-          },
-        },
-      },
+      reservationItems: { none: overlappingActiveBooking(reqStart, reqEnd) },
     },
   })
 

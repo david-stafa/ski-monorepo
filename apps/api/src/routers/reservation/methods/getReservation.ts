@@ -1,8 +1,10 @@
 import { prisma } from '@ski-blazek/db'
 import { TRPCError } from '@trpc/server'
-import type { GetSingleReservationInput } from '../../../schemas/reservation'
+import type {
+  ReservationIdInput
+} from '../../../schemas/reservation'
 
-export const getReservation = async ({ id }: GetSingleReservationInput) => {
+export const getReservation = async ({ id }: ReservationIdInput) => {
   const reservation = await prisma.reservation.findUnique({
     where: { id },
     include: {

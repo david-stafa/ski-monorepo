@@ -57,6 +57,6 @@ export {
   type CreateReservationInput,
   getReservationsInputSchema,
   type GetReservationsInput,
-  getSingleReservationInputSchema,
-  type GetSingleReservationInput,
+  reservationIdInputSchema,
+  type ReservationIdInput,
 } from './reservation'

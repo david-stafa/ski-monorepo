@@ -51,10 +51,8 @@ export const getReservationsInputSchema = paginationSchema.extend({
 
 export type GetReservationsInput = z.infer<typeof getReservationsInputSchema>
 
-export const getSingleReservationInputSchema = z.object({
+export const reservationIdInputSchema = z.object({
   id: z.string(),
 })
 
-export type GetSingleReservationInput = z.infer<
-  typeof getSingleReservationInputSchema
->
+export type ReservationIdInput = z.infer<typeof reservationIdInputSchema>

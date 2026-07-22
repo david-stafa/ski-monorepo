@@ -40,9 +40,12 @@ export const createReservation = async (data: CreateReservationInput) => {
           ...person,
           reservation: { connect: { id: reservation.id } },
           reservationItems: {
+            // TypeSafety does not work during development - during runtime prisma fails if there is wrong value passed
+            // TODO: Find a way to add type safety in this snippet
             create: items.map((item) => ({
               startDate: reservation.startDate,
               endDate: reservation.endDate,
+              status: 'ACTIVE',
               reservation: { connect: { id: reservation.id } },
               equipmentItem: { connect: { id: item.equipmentItemId } },
             })),
