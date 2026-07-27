@@ -3,6 +3,7 @@ import { createTRPCClient, httpBatchLink } from '@trpc/client'
 import { createTRPCOptionsProxy } from '@trpc/tanstack-react-query'
 import type { AppRouter } from '@ski-blazek/api/trpc'
 import type { inferRouterOutputs } from '@trpc/server'
+import superjson from 'superjson'
 
 export const queryClient = new QueryClient()
 
@@ -14,6 +15,7 @@ const trpcClient = createTRPCClient<AppRouter>({
   links: [
     httpBatchLink({
       url: trpcUrl,
+      transformer: superjson,
       fetch(url, options) {
         return fetch(url, {
           ...options,

@@ -29,8 +29,8 @@ export const createReservationInputSchema = z
     name: z.string(),
     phoneNumber: z.string(),
     note: z.string().nullable(),
-    startDate: z.coerce.date(),
-    endDate: z.coerce.date(),
+    startDate: z.date(),
+    endDate: z.date(),
   })
   .extend({
     people: z.array(personInputSchema),
@@ -42,8 +42,8 @@ export type CreateReservationInput = z.infer<
 export const getReservationsInputSchema = paginationSchema.extend({
   search: z.string().optional(),
   status: z.enum(ReservationStatus).optional(),
-  from: z.coerce.date().optional(),
-  to: z.coerce.date().optional(),
+  from: z.date().optional(),
+  to: z.date().optional(),
   dateMode: z.enum(['PICKUP', 'RETURN', 'ACTIVE']).default('PICKUP'),
   orderBy: z.enum(['name', 'startDate', 'endDate']).default('startDate'),
   orderDirection: z.enum(['asc', 'desc']).default('asc'),

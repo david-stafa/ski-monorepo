@@ -14,16 +14,17 @@
   "license": "ISC",
   "packageManager": "pnpm@10.27.0",
   "dependencies": {
-    "@ski-blazek/auth": "workspace:*",
-    "@ski-blazek/db": "workspace:*",
     "@prisma/adapter-pg": "^7.2.0",
     "@prisma/client": "^7.2.0",
+    "@ski-blazek/auth": "workspace:*",
+    "@ski-blazek/db": "workspace:*",
     "@trpc/server": "^11.15.1",
     "better-auth": "^1.4.12",
     "cors": "^2.8.5",
-    "pg": "^8.16.3",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
+    "pg": "^8.16.3",
+    "superjson": "catalog:",
     "zod": "^4.3.6"
   },
   "devDependencies": {

@@ -8,16 +8,16 @@ export type EquipmentIdInput = z.infer<typeof equipmentIdInputSchema>
 
 export const findAvailableInputSchema = z.object({
   type: z.enum(EquipmentItemType),
-  startDate: z.coerce.date(),
-  endDate: z.coerce.date(),
+  startDate: z.date(),
+  endDate: z.date(),
 })
 
 export type FindAvailableInput = z.infer<typeof findAvailableInputSchema>
 
 export const isItemAvailableInputSchema = z.object({
   id: z.string(),
-  startDate: z.coerce.date(),
-  endDate: z.coerce.date(),
+  startDate: z.date(),
+  endDate: z.date(),
 })
 
 export type IsItemAvailableInput = z.infer<typeof isItemAvailableInputSchema>

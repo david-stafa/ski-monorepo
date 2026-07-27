@@ -94,8 +94,10 @@ const [reservations, totalCount] = await prisma.$transaction([
 
 ## Gotchas
 
-- **Dates in schemas: `z.coerce.date()`**, not `z.date()`. The wire sends strings;
-  `z.date()` type-checks fine and throws at runtime.
+- **Dates in schemas: `z.date()`.** superjson is configured as the tRPC transformer on
+  both server (`_context.ts`) and client (`web/src/lib/trpc.ts`), so `Date` survives the
+  wire as a real `Date`. Don't use `z.coerce.date()` — its Zod *input* type is `unknown`,
+  which breaks schemas shared with TanStack Form validators.
 - **Intervals are half-open `[start, end)`** — strict `lt`/`gt`, so back-to-back is allowed.
   Matches the Postgres `tsrange` used by the exclusion constraint.
 - **Awaiting in a loop: use `for...of`.** `.map`/`.forEach` with an `async` callback do
