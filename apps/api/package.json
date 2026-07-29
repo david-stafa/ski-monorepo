@@ -25,7 +25,7 @@
     "express": "^5.2.1",
     "pg": "^8.16.3",
     "superjson": "catalog:",
-    "zod": "^4.3.6"
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@ski-blazek/eslint-config": "workspace:*",
