@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@ski-blazek/db": "workspace:*",
-    "better-auth": "^1.6.22"
+    "better-auth": "^1.6.25"
   },
   "devDependencies": {
     "@ski-blazek/typescript-config": "workspace:*",
