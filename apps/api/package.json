@@ -19,7 +19,7 @@
     "@ski-blazek/auth": "workspace:*",
     "@ski-blazek/db": "workspace:*",
     "@trpc/server": "^11.15.1",
-    "better-auth": "^1.6.22",
+    "better-auth": "^1.6.25",
     "cors": "^2.8.6",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
