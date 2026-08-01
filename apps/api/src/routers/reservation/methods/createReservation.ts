@@ -5,11 +5,13 @@ import type { CreateReservationInput } from '../../../schemas/reservation'
 
 export const createReservation = async (data: CreateReservationInput) => {
   return await prisma.$transaction(async (tx) => {
-    for (const { items } of data.people) {
-      for (const item of items) {
+    for (const { equipment } of data.people) {
+      for (const equipmentItemId of Object.values(equipment)) {
+        if (!equipmentItemId) continue
+
         const isAvailable = await isItemAvailable(
           {
-            id: item.equipmentItemId,
+            id: equipmentItemId,
             startDate: data.startDate,
             endDate: data.endDate,
           },
@@ -18,7 +20,7 @@ export const createReservation = async (data: CreateReservationInput) => {
         if (!isAvailable) {
           throw new TRPCError({
             code: 'CONFLICT',
-            message: `Item ${item.equipmentItemId} is already booked`,
+            message: `Item ${equipmentItemId} is already booked`,
           })
         }
       }
@@ -34,7 +36,7 @@ export const createReservation = async (data: CreateReservationInput) => {
       },
     })
 
-    for (const { items, ...person } of data.people) {
+    for (const { equipment, ...person } of data.people) {
       await tx.person.create({
         data: {
           ...person,
@@ -42,13 +44,15 @@ export const createReservation = async (data: CreateReservationInput) => {
           reservationItems: {
             // TypeSafety does not work during development - during runtime prisma fails if there is wrong value passed
             // TODO: Find a way to add type safety in this snippet
-            create: items.map((item) => ({
-              startDate: reservation.startDate,
-              endDate: reservation.endDate,
-              status: 'ACTIVE',
-              reservation: { connect: { id: reservation.id } },
-              equipmentItem: { connect: { id: item.equipmentItemId } },
-            })),
+            create: Object.values(equipment)
+              .filter((equipmentItemId) => equipmentItemId !== null)
+              .map((equipmentItemId) => ({
+                startDate: reservation.startDate,
+                endDate: reservation.endDate,
+                status: 'ACTIVE',
+                reservation: { connect: { id: reservation.id } },
+                equipmentItem: { connect: { id: equipmentItemId } },
+              })),
           },
         },
       })

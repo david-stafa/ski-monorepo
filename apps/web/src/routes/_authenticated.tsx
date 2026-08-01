@@ -1,3 +1,4 @@
+import { Button } from '@ski-blazek/ui/components/button'
 import {
   Collapsible,
   CollapsibleContent,
@@ -20,12 +21,15 @@ import {
 } from '@ski-blazek/ui/components/sidebar'
 import { createFileRoute, Link, Outlet, redirect } from '@tanstack/react-router'
 import {
+  CalendarDays,
   Footprints,
   FootprintsIcon,
   HardHat,
+  ListCheckIcon,
   Mountain,
   MountainSnowIcon,
   Package,
+  PlusCircleIcon,
   Snowflake,
   User,
 } from 'lucide-react'
@@ -78,17 +82,59 @@ export function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
+              <SidebarMenuSubItem>
+                <SidebarMenuSubButton asChild>
+                  <Button asChild>
+                    <Link to="/reservation/create">
+                      <PlusCircleIcon />
+                      <span>Vytvořit rezervaci</span>
+                    </Link>
+                  </Button>
+                </SidebarMenuSubButton>
+              </SidebarMenuSubItem>
+              <Collapsible defaultOpen className="group/collapsible">
+                <SidebarMenuItem>
+                  <SidebarMenuButton tooltip="Rezervace" asChild>
+                    <Link to="/reservation" className="w-full">
+                      <CalendarDays />
+                      <span>Rezervace</span>
+                    </Link>
+                  </SidebarMenuButton>
+                  {/* <CollapsibleTrigger asChild>
+                    <SidebarMenuAction className="transition-transform data-[state=open]:rotate-180">
+                      <ChevronDown />
+                      <span className="sr-only">Přepnout</span>
+                    </SidebarMenuAction>
+                  </CollapsibleTrigger> */}
+                  <CollapsibleContent>
+                    <SidebarMenuSub>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton asChild>
+                          <Link to="/reservation/create">
+                            <ListCheckIcon />
+                            <span>Rezervace tento týden</span>
+                          </Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    </SidebarMenuSub>
+                  </CollapsibleContent>
+                </SidebarMenuItem>
+              </Collapsible>
+
               <Collapsible defaultOpen className="group/collapsible">
                 <SidebarMenuItem>
                   <SidebarMenuButton tooltip="Vybavení" asChild>
                     <Link to="/equipment" className="w-full">
                       <Package />
-                      Vybavení
+                      <span>Vybavení</span>
                     </Link>
-                    {/* <CollapsibleTrigger asChild>
-                      <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
-                    </CollapsibleTrigger> */}
                   </SidebarMenuButton>
+                  {/* <CollapsibleTrigger asChild>
+                    <SidebarMenuAction className="transition-transform data-[state=open]:rotate-180">
+                      <ChevronDown />
+                      <span className="sr-only">Přepnout</span>
+                    </SidebarMenuAction>
+                  </CollapsibleTrigger> */}
                   <CollapsibleContent>
                     <SidebarMenuSub>
                       <SidebarMenuSubItem>

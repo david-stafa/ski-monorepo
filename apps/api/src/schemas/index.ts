@@ -55,6 +55,7 @@ export {
 export {
   createReservationInputSchema,
   type CreateReservationInput,
+  personInputSchema,
   getReservationsInputSchema,
   type GetReservationsInput,
   reservationIdInputSchema,

@@ -16,12 +16,14 @@ model Reservation {
 }
 
 model Person {
-    id     String @id @default(cuid(2))
+    id     String  @id @default(cuid(2))
     name   String
     weight Int
     height Int
     age    Int
     gender Gender
+    level  Level?
+    note   String?
 
     status PersonStatus @default(ACTIVE)
 
@@ -109,4 +111,12 @@ enum PersonStatus {
 enum ReservationItemStatus {
     ACTIVE
     CANCELLED
+}
+
+enum Level {
+    BEGINNER
+    BEGINNER_INTERMEDIATE
+    INTERMEDIATE
+    INTERMEDIATE_EXPERT
+    EXPERT
 }

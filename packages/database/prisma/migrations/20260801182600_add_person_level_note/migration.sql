@@ -1,0 +1,6 @@
+-- CreateEnum
+CREATE TYPE "Level" AS ENUM ('BEGINNER', 'BEGINNER_INTERMEDIATE', 'INTERMEDIATE', 'INTERMEDIATE_EXPERT', 'EXPERT');
+
+-- AlterTable
+ALTER TABLE "Person" ADD COLUMN     "level" "Level",
+ADD COLUMN     "note" TEXT;

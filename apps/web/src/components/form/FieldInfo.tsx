@@ -1,6 +1,12 @@
-import type { AnyFieldApi } from '@tanstack/react-form'
+import type { AnyFieldMeta } from '@tanstack/react-form'
 
-export function FieldInfo({ field }: { field: AnyFieldApi }) {
+// structural, not `AnyFieldApi`, so fields coming from a field group
+// (`withFieldGroup`) are accepted too
+export function FieldInfo({
+  field,
+}: {
+  field: { state: { meta: AnyFieldMeta } }
+}) {
   return (
     <>
       {field.state.meta.isTouched && !field.state.meta.isValid ? (

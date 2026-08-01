@@ -1,40 +1,61 @@
-import type { Person } from '@ski-blazek/db'
-import { Gender, ReservationStatus } from '@ski-blazek/db/browser'
+import type { EquipmentItemType, Person } from '@ski-blazek/db'
+import { Gender, Level, ReservationStatus } from '@ski-blazek/db/browser'
 import z from 'zod'
 import { paginationSchema } from './pagination'
 
 // DB-aligned person fields (keep the satisfies check on these)
 const personFieldsSchema = z.object({
-  name: z.string(),
-  weight: z.number().int(),
-  height: z.number().int(),
-  age: z.number().int(),
+  name: z.string().min(2, 'Jméno musí mít alespoň dva znaky'),
+  weight: z.number().int().min(10, 'Zadejte váhu větší než 10'),
+  height: z.number().int().min(80, 'zadejte výšku větší než 80'),
+  age: z.number().int().min(1, 'Zadejte věk').max(120, 'Zadejte věk'),
   gender: z.enum(Gender),
-  poles: z.number().int().nullable(),
-  backProtection: z.boolean().default(false),
-  skiCover: z.boolean().default(false),
-  bootCover: z.boolean().default(false),
-  goggles: z.boolean().default(false),
+  // length in cm, matching the range offered by `poleOptions` on the web side
+  poles: z
+    .number()
+    .int()
+    .min(50, 'Zadejte délku holí větší než 50')
+    .max(140, 'Zadejte délku holí menší než 140')
+    .nullable(),
+  backProtection: z.boolean(),
+  skiCover: z.boolean(),
+  bootCover: z.boolean(),
+  goggles: z.boolean(),
+  level: z.enum(Level).nullable(),
+  note: z.string().nullable(),
 }) satisfies z.ZodType<
   Omit<Person, 'id' | 'createdAt' | 'updatedAt' | 'status' | 'reservationId'>
 >
+// one item per equipment type per person
+const personEquipmentSchema = z.object({
+  SKI: z.string().nullable(),
+  SKI_BOOT: z.string().nullable(),
+  SNOWBOARD: z.string().nullable(),
+  SNOWBOARD_BOOT: z.string().nullable(),
+  HELMET: z.string().nullable(),
+}) satisfies z.ZodType<Record<EquipmentItemType, string | null>>
 
 // person + the gear assigned to them
-const personInputSchema = personFieldsSchema.extend({
-  items: z.array(z.object({ equipmentItemId: z.string() })),
+export const personInputSchema = personFieldsSchema.extend({
+  equipment: personEquipmentSchema,
 })
 
 export const createReservationInputSchema = z
   .object({
-    name: z.string(),
-    phoneNumber: z.string(),
+    name: z.string().min(2, 'Jméno musí mít alespoň dva znaky'),
+    phoneNumber: z.string().trim().min(9, 'Telefon musí mít alespoň 9 čísel'),
     note: z.string().nullable(),
     startDate: z.date(),
     endDate: z.date(),
   })
   .extend({
-    people: z.array(personInputSchema),
+    people: z.array(personInputSchema).min(1),
   })
+  .refine((data) => data.startDate < data.endDate, {
+    error: 'Začátek rezervace musí být dřív než konec rezervace',
+    path: ['endDate'],
+  })
+
 export type CreateReservationInput = z.infer<
   typeof createReservationInputSchema
 >
@@ -42,8 +63,8 @@ export type CreateReservationInput = z.infer<
 export const getReservationsInputSchema = paginationSchema.extend({
   search: z.string().optional(),
   status: z.enum(ReservationStatus).optional(),
-  from: z.date().optional(),
-  to: z.date().optional(),
+  from: z.coerce.date<string>().optional(),
+  to: z.coerce.date<string>().optional(),
   dateMode: z.enum(['PICKUP', 'RETURN', 'ACTIVE']).default('PICKUP'),
   orderBy: z.enum(['name', 'startDate', 'endDate']).default('startDate'),
   orderDirection: z.enum(['asc', 'desc']).default('asc'),
