@@ -23,7 +23,9 @@ export const DeleteHelmetDialog = ({
       onOpenChange={onOpenChange}
       title="Opravdu chcete smazat tuto helmu?"
       description="Tato akce je nevratná a helma bude smazána z databáze."
-      onDelete={() => deleteHelmet.mutate({ id: defaultValues.equipmentItemId })}
+      onDelete={() =>
+        deleteHelmet.mutate({ id: defaultValues.equipmentItemId })
+      }
     >
       <HelmetDialogDescription defaultValues={defaultValues} />
     </DeleteDialog>

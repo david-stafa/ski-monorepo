@@ -1,7 +1,4 @@
-import {
-  TypographyH2,
-  TypographyP,
-} from '@ski-blazek/ui/components/typography'
+import { TypographyH2, TypographyP } from '@ski-blazek/ui/components/typography'
 import { LogInForm } from '~/components/auth/LogInFom'
 
 export const LogInPage = () => {
@@ -14,7 +11,7 @@ export const LogInPage = () => {
           Fill the form below to log in to your account
         </TypographyP>
         <LogInForm />
-      </div>  
+      </div>
     </div>
   )
 }

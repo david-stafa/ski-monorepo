@@ -15,7 +15,9 @@ export const ActivateSnowboardBootDialog = ({
   onOpenChange,
   defaultValues,
 }: ActivateSnowboardBootDialogProps) => {
-  const activateSnowboardBoot = useUnretireItem(EquipmentItemType.SNOWBOARD_BOOT)
+  const activateSnowboardBoot = useUnretireItem(
+    EquipmentItemType.SNOWBOARD_BOOT
+  )
 
   return (
     <ActivateDialog

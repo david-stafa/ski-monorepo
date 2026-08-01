@@ -47,7 +47,10 @@ export const SnowboardBootForm = ({
     onSubmitMeta: defaultMeta,
     onSubmit: async ({ value, meta }) => {
       if (isEdit) {
-        await updateSnowboardBoot.mutateAsync({ id: defaultValues.id, ...value })
+        await updateSnowboardBoot.mutateAsync({
+          id: defaultValues.id,
+          ...value,
+        })
       } else {
         await createSnowboardBoot.mutateAsync(value)
       }

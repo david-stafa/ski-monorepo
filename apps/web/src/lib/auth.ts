@@ -6,8 +6,7 @@ const apiBaseUrl =
 export const authClient = createAuth({ apiBaseUrl })
 
 export type AuthResult =
-  | { success: true }
-  | { success: false; error: { message: string } }
+  { success: true } | { success: false; error: { message: string } }
 
 export const signInWithEmail = async (
   email: string,

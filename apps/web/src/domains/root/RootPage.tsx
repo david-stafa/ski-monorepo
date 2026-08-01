@@ -18,8 +18,7 @@ export const RootPage = () => {
       </nav>
       <div className="flex flex-1 items-center justify-center">
         <TypographyH1>
-          Welcome to your new{' '}
-          <span className="text-primary">Ski Blazek</span>
+          Welcome to your new <span className="text-primary">Ski Blazek</span>
         </TypographyH1>
       </div>
     </div>

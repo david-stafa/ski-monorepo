@@ -23,7 +23,9 @@ export const RetireHelmetDialog = ({
       onOpenChange={onOpenChange}
       title="Opravdu chcete archivovat tuto helmu?"
       description="Tato akce vyřadí helmu z aktivního seznamu (nebude ji možné rezervovat). Tato akce je vratná."
-      onRetire={() => retireHelmet.mutate({ id: defaultValues.equipmentItemId })}
+      onRetire={() =>
+        retireHelmet.mutate({ id: defaultValues.equipmentItemId })
+      }
     >
       <HelmetDialogDescription defaultValues={defaultValues} />
     </RetireDialog>

@@ -18,7 +18,7 @@ export function useFilters<T extends RouteIds<RegisteredRouter['routeTree']>>(
       to: '.',
       search: (prev) => cleanEmptyParams({ ...prev, ...partialFilters }),
     })
-    
+
   const resetFilters = () => navigate({ to: '.', search: {} })
 
   return { filters, setFilters, resetFilters }

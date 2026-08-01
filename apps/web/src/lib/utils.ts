@@ -13,7 +13,7 @@ export const areObjectsEqual = (obj1: object, obj2: object) => {
     ) ===
     JSON.stringify(
       Object.entries(obj2)
-          .filter(([, value]) => value !== undefined && value !== null)
+        .filter(([, value]) => value !== undefined && value !== null)
         .sort()
     )
   )
