@@ -14,19 +14,19 @@
   "license": "ISC",
   "packageManager": "pnpm@10.27.0",
   "dependencies": {
-    "@prisma/adapter-pg": "^7.2.0",
-    "@prisma/client": "^7.9.1",
+    "@prisma/adapter-pg": "catalog:",
+    "@prisma/client": "catalog:",
     "@ski-blazek/auth": "workspace:*",
     "@ski-blazek/db": "workspace:*",
-    "@trpc/server": "^11.15.1",
-    "better-auth": "^1.6.25",
+    "@trpc/server": "catalog:",
+    "better-auth": "catalog:",
     "cors": "^2.8.6",
     "date-fns": "^4.4.0",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "pg": "^8.16.3",
     "superjson": "catalog:",
-    "zod": "^4.3.6"
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@ski-blazek/eslint-config": "workspace:*",
@@ -34,7 +34,7 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^26.1.2",
-    "eslint": "^10.8.0",
+    "eslint": "catalog:",
     "tsup": "^8.5.1",
     "typescript": "catalog:"
   },

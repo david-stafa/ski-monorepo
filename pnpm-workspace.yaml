@@ -5,9 +5,33 @@ packages:
 # Single source of truth for shared dependency versions.
 # Reference from any package.json as: "typescript": "catalog:"
 # TypeScript is pinned with ~ (patch-only)
+#
+# Only dependencies declared by two or more workspace packages belong here —
+# ones where a version split would actually break something (a second copy of
+# React, mismatched Prisma client/CLI, two zod majors across the api/web type
+# boundary, or the per-package eslint drift that made #18/#24 unmergeable).
 catalog:
   typescript: ~6.0.3
   superjson: ^2.2.2
+
+  # React — a second copy in the bundle breaks hooks
+  react: ^19.2.0
+  react-dom: ^19.2.0
+  '@types/react': ^19.2.5
+  '@types/react-dom': ^19.2.3
+
+  # Type surfaces shared between api and web
+  zod: ^4.3.6
+  '@trpc/server': ^11.15.1
+  better-auth: ^1.6.25
+
+  # Prisma client and adapter must match the CLI in @ski-blazek/db
+  '@prisma/client': ^7.9.1
+  '@prisma/adapter-pg': ^7.9.1
+
+  # Tooling
+  eslint: ^10.8.0
+  tailwindcss: ^4.1.18
 
 # eslint-plugin-react still declares `eslint: ^9.7` in its peers as of 7.37.5.
 # It runs fine on ESLint 10 (flat-config native) — drop this once a release
