@@ -26,13 +26,13 @@ export const reactConfig = [
       },
     },
   },
+  // v7 ships the React Compiler rules alongside rules-of-hooks/exhaustive-deps.
+  pluginReactHooks.configs.flat['recommended-latest'],
   {
-    plugins: {
-      'react-hooks': pluginReactHooks,
-    },
-    settings: { react: { version: 'detect' } },
+    // Pinned rather than 'detect': eslint-plugin-react's version detection
+    // calls context.getFilename(), removed in ESLint 10.
+    settings: { react: { version: '19.2' } },
     rules: {
-      ...pluginReactHooks.configs.recommended.rules,
       // React scope no longer necessary with new JSX transform.
       'react/react-in-jsx-scope': 'off',
       'no-restricted-imports': [
