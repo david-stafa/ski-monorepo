@@ -5,10 +5,43 @@
 
 version: 2
 updates:
-  - package-ecosystem: "npm"
+  - package-ecosystem: 'npm'
     directories:
-      - "/apps/*"
-      - "/packeges/*"
-      - "/"
+      - '/'
+      - '/apps/*'
+      - '/packages/*'
     schedule:
-      interval: "weekly"
+      interval: 'weekly'
+    # Tooling that has to move in lockstep across workspace packages is grouped
+    # into one PR — per-package bumps of eslint or prisma produce PRs that
+    # cannot be merged on their own.
+    groups:
+      eslint:
+        patterns:
+          - 'eslint'
+          - '@eslint/*'
+          - 'eslint-plugin-*'
+          - 'eslint-config-*'
+          - 'typescript-eslint'
+          - '@typescript-eslint/*'
+      prisma:
+        patterns:
+          - 'prisma'
+          - '@prisma/*'
+      trpc:
+        patterns:
+          - '@trpc/*'
+      tanstack:
+        patterns:
+          - '@tanstack/*'
+      react:
+        patterns:
+          - 'react'
+          - 'react-dom'
+          - '@types/react'
+          - '@types/react-dom'
+      tailwind:
+        patterns:
+          - 'tailwindcss'
+          - '@tailwindcss/*'
+          - 'prettier-plugin-tailwindcss'
