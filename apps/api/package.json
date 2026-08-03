@@ -34,7 +34,7 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^26.1.2",
-    "eslint": "^9.39.1",
+    "eslint": "^10.8.0",
     "tsup": "^8.5.1",
     "typescript": "catalog:"
   },
