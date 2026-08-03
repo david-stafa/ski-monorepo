@@ -9,6 +9,13 @@ catalog:
   typescript: ~6.0.3
   superjson: ^2.2.2
 
+# eslint-plugin-react still declares `eslint: ^9.7` in its peers as of 7.37.5.
+# It runs fine on ESLint 10 (flat-config native) — drop this once a release
+# ships with ^10 in its peer range.
+peerDependencyRules:
+  allowedVersions:
+    eslint-plugin-react>eslint: '10'
+
 allowBuilds:
   '@prisma/engines': true
   '@swc/core': true
@@ -21,3 +28,6 @@ onlyBuiltDependencies:
   - '@swc/core'
   - esbuild
   - prisma
+
+minimumReleaseAgeExclude:
+  - globals@17.9.0
