@@ -5,11 +5,6 @@ packages:
 # Single source of truth for shared dependency versions.
 # Reference from any package.json as: "typescript": "catalog:"
 # TypeScript is pinned with ~ (patch-only)
-#
-# Only dependencies declared by two or more workspace packages belong here —
-# ones where a version split would actually break something (a second copy of
-# React, mismatched Prisma client/CLI, two zod majors across the api/web type
-# boundary, or the per-package eslint drift that made #18/#24 unmergeable).
 catalog:
   typescript: ~6.0.3
   superjson: ^2.2.2
