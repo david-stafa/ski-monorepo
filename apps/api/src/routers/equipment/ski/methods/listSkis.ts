@@ -1,6 +1,11 @@
 import { prisma } from '@ski-blazek/db'
 import type { GetSkiInput } from '../../../../schemas/ski'
 import type { Prisma } from '@ski-blazek/db/browser'
+import {
+  articleNumberOrderBy,
+  articleNumberSearchFilter,
+  wholeNumberSearch,
+} from '../../_shared/lib/equipmentListQuery'
 
 export const listSkis = async ({
   page,
@@ -14,15 +19,16 @@ export const listSkis = async ({
         OR: [
           { brand: { contains: search, mode: 'insensitive' } },
           { model: { contains: search, mode: 'insensitive' } },
-          // TODO:: add this to other get equipment methods
-          {
-            length: {
-              equals: isNaN(Number(search)) ? undefined : Number(search),
-            },
-          },
+          { length: { equals: wholeNumberSearch(search) } },
+          ...articleNumberSearchFilter(search),
         ],
       }
     : {}
+
+  const orderByClause: Prisma.SkiOrderByWithRelationInput[] =
+    orderBy === 'articleNumber'
+      ? articleNumberOrderBy(orderDirection)
+      : [{ [orderBy]: orderDirection }, { brand: 'asc' }]
 
   const [skis, totalCount] = await prisma.$transaction([
     prisma.ski.findMany({
@@ -38,6 +44,7 @@ export const listSkis = async ({
         equipmentItemId: true,
         equipmentItem: {
           select: {
+            articleGroup: true,
             articleNumber: true,
             retiredAt: true,
           },
@@ -45,14 +52,7 @@ export const listSkis = async ({
       },
       skip: (page - 1) * itemsPerPage,
       take: itemsPerPage,
-      orderBy: [
-        {
-          [orderBy]: orderDirection,
-        },
-        {
-          brand: 'asc',
-        },
-      ],
+      orderBy: orderByClause,
     }),
 
     prisma.ski.count({

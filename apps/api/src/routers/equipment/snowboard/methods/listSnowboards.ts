@@ -1,6 +1,11 @@
 import { prisma } from '@ski-blazek/db'
 import type { GetSnowboardInput } from '../../../../schemas/snowboard'
 import type { Prisma } from '@ski-blazek/db/browser'
+import {
+  articleNumberOrderBy,
+  articleNumberSearchFilter,
+  wholeNumberSearch,
+} from '../../_shared/lib/equipmentListQuery'
 
 export const listSnowboards = async ({
   page,
@@ -14,14 +19,16 @@ export const listSnowboards = async ({
         OR: [
           { brand: { contains: search, mode: 'insensitive' } },
           { model: { contains: search, mode: 'insensitive' } },
-          {
-            length: {
-              equals: isNaN(Number(search)) ? undefined : Number(search),
-            },
-          },
+          { length: { equals: wholeNumberSearch(search) } },
+          ...articleNumberSearchFilter(search),
         ],
       }
     : {}
+
+  const orderByClause: Prisma.SnowboardOrderByWithRelationInput[] =
+    orderBy === 'articleNumber'
+      ? articleNumberOrderBy(orderDirection)
+      : [{ [orderBy]: orderDirection }]
 
   const [snowboards, totalCount] = await prisma.$transaction([
     prisma.snowboard.findMany({
@@ -35,17 +42,14 @@ export const listSnowboards = async ({
         equipmentItem: {
           select: {
             retiredAt: true,
+            articleGroup: true,
             articleNumber: true,
           },
         },
       },
       skip: (page - 1) * itemsPerPage,
       take: itemsPerPage,
-      orderBy: [
-        {
-          [orderBy]: orderDirection,
-        },
-      ],
+      orderBy: orderByClause,
     }),
 
     prisma.snowboard.count({

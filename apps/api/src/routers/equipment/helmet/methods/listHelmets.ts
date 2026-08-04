@@ -1,5 +1,10 @@
 import { prisma } from '@ski-blazek/db'
 import type { GetHelmetInput } from '../../../../schemas/helmet'
+import type { Prisma } from '@ski-blazek/db/browser'
+import {
+  articleNumberOrderBy,
+  articleNumberSearchFilter,
+} from '../../_shared/lib/equipmentListQuery'
 
 export const listHelmets = async ({
   page,
@@ -8,14 +13,20 @@ export const listHelmets = async ({
   orderDirection,
   search,
 }: GetHelmetInput) => {
-  const where = search
+  const where: Prisma.HelmetWhereInput = search
     ? {
         OR: [
-          { name: { contains: search, mode: 'insensitive' as const } },
-          { color: { contains: search, mode: 'insensitive' as const } },
+          { name: { contains: search, mode: 'insensitive' } },
+          { color: { contains: search, mode: 'insensitive' } },
+          ...articleNumberSearchFilter(search),
         ],
       }
     : {}
+
+  const orderByClause: Prisma.HelmetOrderByWithRelationInput[] =
+    orderBy === 'articleNumber'
+      ? articleNumberOrderBy(orderDirection)
+      : [{ [orderBy]: orderDirection }]
 
   const [helmets, totalCount] = await prisma.$transaction([
     prisma.helmet.findMany({
@@ -31,17 +42,14 @@ export const listHelmets = async ({
         equipmentItem: {
           select: {
             retiredAt: true,
+            articleGroup: true,
             articleNumber: true,
           },
         },
       },
       skip: (page - 1) * itemsPerPage,
       take: itemsPerPage,
-      orderBy: [
-        {
-          [orderBy]: orderDirection,
-        },
-      ],
+      orderBy: orderByClause,
     }),
 
     prisma.helmet.count({

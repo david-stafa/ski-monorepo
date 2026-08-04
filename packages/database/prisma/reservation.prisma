@@ -66,10 +66,18 @@ model ReservationItem {
 }
 
 model EquipmentItem {
-    id            String            @id @default(cuid(2))
-    type          EquipmentItemType
+    id   String            @id @default(cuid(2))
+    type EquipmentItemType
+
+    /// Sticker prefix — the whole mondopoint size for boots, null for the types
+    /// that carry a plain running number. Stored rather than derived from
+    /// `length` because half-size boots are stickered into a whole-size pool:
+    /// which pool a boot lands in is a labelling decision, not a measurement.
+    articleGroup Int?
+    /// Sequence within (type, articleGroup). The `86` in the sticker `26.86`.
     articleNumber Int
-    retiredAt     DateTime?
+
+    retiredAt DateTime?
 
     ski           Ski?
     snowboard     Snowboard?
@@ -81,6 +89,18 @@ model EquipmentItem {
     updatedAt DateTime @updatedAt
 
     reservationItems ReservationItem[]
+
+    /// No two live items share a number. Partial, so retiring an item releases
+    /// its number for reuse — a retired 26.2 and a live 26.2 can coexist.
+    ///
+    /// The migration adds `NULLS NOT DISTINCT` to this index by hand. Prisma
+    /// can't express it and can't see it, so it won't fight you over it — but it
+    /// won't recreate it either. Without it the index would be inert for skis,
+    /// snowboards and helmets, whose `articleGroup` is null: SQL treats null as
+    /// never equal to itself, so every row would look unique. Keep the modifier
+    /// on any future migration that rebuilds this index, and don't use
+    /// `db push`, which skips migrations entirely.
+    @@unique([type, articleGroup, articleNumber], where: raw("\"retiredAt\" IS NULL"), map: "EquipmentItem_live_article_key")
 }
 
 enum EquipmentItemType {

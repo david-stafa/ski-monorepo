@@ -27,7 +27,9 @@ export type UpdateSkiInput = z.infer<typeof updateSkiInputSchema>
 /** list query (search / sort / pagination) */
 export const getSkiInputSchema = paginationSchema.extend({
   search: z.string().optional(),
-  orderBy: z.enum(['length', 'brand', 'model', 'isVIP']).default('length'),
+  orderBy: z
+    .enum(['articleNumber', 'length', 'brand', 'model', 'isVIP'])
+    .default('length'),
   orderDirection: z.enum(['asc', 'desc']).default('asc'),
 })
 export type GetSkiInput = z.infer<typeof getSkiInputSchema>

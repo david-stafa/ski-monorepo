@@ -24,7 +24,7 @@ export type UpdateHelmetInput = z.infer<typeof updateHelmetInputSchema>
 export const getHelmetInputSchema = paginationSchema.extend({
   search: z.string().optional(),
   orderBy: z
-    .enum(['name', 'size', 'color', 'withIntegratedGoggles'])
+    .enum(['articleNumber', 'name', 'size', 'color', 'withIntegratedGoggles'])
     .default('name'),
   orderDirection: z.enum(['asc', 'desc']).default('asc'),
 })

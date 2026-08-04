@@ -5,8 +5,12 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider        = "prisma-client"
+  output          = "../generated/prisma"
+  // partialIndexes: lets `@@unique` carry a `where:`, which EquipmentItem needs
+  // so retiring an item frees its article number. Preview — it can change on a
+  // Prisma upgrade, so re-check this index after bumping the version.
+  previewFeatures = ["partialIndexes"]
 }
 
 datasource db {

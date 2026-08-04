@@ -17,6 +17,7 @@ import {
 } from '~/components/ui/CustomPagination'
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
+import { formatArticleNumber } from '~/domains/equipment/_shared/helpers/formatArticleNumber'
 import { AddSkiButton } from '~/domains/equipment/ski/components/AddSkiButton'
 import { SkiActions } from '~/domains/equipment/ski/components/SkiActions'
 import { useFilters } from '~/hooks/useFilter'
@@ -100,6 +101,12 @@ function RouteComponent() {
           <TableRow>
             <TableHead>Akce</TableHead>
             <TableHeadSortable
+              sorted={orderBy === 'articleNumber' ? orderDirection : false}
+              onClick={() => handleFilterClick('articleNumber')}
+            >
+              Číslo
+            </TableHeadSortable>
+            <TableHeadSortable
               sorted={orderBy === 'brand' ? orderDirection : false}
               onClick={() => handleFilterClick('brand')}
             >
@@ -128,7 +135,7 @@ function RouteComponent() {
         <TableBody>
           {data.skis.length === 0 ? (
             <TableRow>
-              <TableCell colSpan={5} className="h-50 text-center">
+              <TableCell colSpan={6} className="h-50 text-center">
                 Žádné lyže nebyly nalezeny.
               </TableCell>
             </TableRow>
@@ -138,6 +145,7 @@ function RouteComponent() {
                 <TableCell className="flex items-center gap-2">
                   <SkiActions defaultValues={item} />
                 </TableCell>
+                <TableCell>{formatArticleNumber(item.equipmentItem)}</TableCell>
                 <TableCell>{item.brand}</TableCell>
                 <TableCell>{item.model}</TableCell>
                 <TableCell>{item.length}</TableCell>

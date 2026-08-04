@@ -1,3 +1,4 @@
+import { formatArticleNumber } from '~/domains/equipment/_shared/helpers/formatArticleNumber'
 import type { Outputs } from '~/lib/trpc'
 
 type AvailableItem =
@@ -44,7 +45,7 @@ const describeEquipmentItem = (item: AvailableItem): string | null => {
  */
 export const getEquipmentItemLabel = (item: AvailableItem): string => {
   const description = describeEquipmentItem(item)
-  return description
-    ? `${item.articleNumber}: ${description}`
-    : `${item.articleNumber}`
+  const articleNumber = formatArticleNumber(item)
+
+  return description ? `${articleNumber}: ${description}` : articleNumber
 }

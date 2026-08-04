@@ -20,6 +20,7 @@ import {
 } from '~/components/ui/CustomPagination'
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
+import { formatArticleNumber } from '~/domains/equipment/_shared/helpers/formatArticleNumber'
 import { AddHelmetButton } from '~/domains/equipment/helmet/components/AddHelmetButton'
 import { HelmetActions } from '~/domains/equipment/helmet/components/HelmetActions'
 import { useFilters } from '~/hooks/useFilter'
@@ -103,6 +104,12 @@ function RouteComponent() {
           <TableRow>
             <TableHead>Akce</TableHead>
             <TableHeadSortable
+              sorted={orderBy === 'articleNumber' ? orderDirection : false}
+              onClick={() => handleFilterClick('articleNumber')}
+            >
+              Číslo
+            </TableHeadSortable>
+            <TableHeadSortable
               sorted={orderBy === 'name' ? orderDirection : false}
               onClick={() => handleFilterClick('name')}
             >
@@ -133,7 +140,7 @@ function RouteComponent() {
         <TableBody>
           {data.helmets.length === 0 ? (
             <TableRow>
-              <TableCell colSpan={5} className="h-50 text-center">
+              <TableCell colSpan={6} className="h-50 text-center">
                 Žádné helmy nebyly nalezeny.
               </TableCell>
             </TableRow>
@@ -143,6 +150,7 @@ function RouteComponent() {
                 <TableCell className="flex items-center gap-2">
                   <HelmetActions defaultValues={item} />
                 </TableCell>
+                <TableCell>{formatArticleNumber(item.equipmentItem)}</TableCell>
                 <TableCell>{item.name}</TableCell>
                 <TableCell>{item.size}</TableCell>
                 <TableCell>{item.color}</TableCell>

@@ -1,18 +1,33 @@
 import { prisma } from '@ski-blazek/db'
 import type { CreateSnowboardBootInput } from '../../../../schemas/snowboardBoot'
-import { assignLowestFreeNumber } from '../../_shared/lib/assignArticleNumber'
+import {
+  articleGroupForBootLength,
+  asArticleNumberConflict,
+  assignLowestFreeNumber,
+} from '../../_shared/lib/assignArticleNumber'
 
 export const createSnowboardBoot = async (input: CreateSnowboardBootInput) => {
-  return await prisma.snowboardBoot.create({
-    data: {
-      ...input,
-      equipmentItem: {
-        create: {
-          type: 'SNOWBOARD_BOOT',
-          articleNumber: await assignLowestFreeNumber(prisma, 'SNOWBOARD_BOOT'),
+  const articleGroup = articleGroupForBootLength(input.length)
+
+  try {
+    return await prisma.snowboardBoot.create({
+      data: {
+        ...input,
+        equipmentItem: {
+          create: {
+            type: 'SNOWBOARD_BOOT',
+            articleGroup,
+            articleNumber: await assignLowestFreeNumber(
+              prisma,
+              'SNOWBOARD_BOOT',
+              articleGroup
+            ),
+          },
         },
       },
-    },
-    include: { equipmentItem: true },
-  })
+      include: { equipmentItem: true },
+    })
+  } catch (error) {
+    throw asArticleNumberConflict(error)
+  }
 }

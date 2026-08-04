@@ -27,7 +27,9 @@ export type UpdateSnowboardBootInput = z.infer<
 /** list query (search / sort / pagination) */
 export const getSnowboardBootInputSchema = paginationSchema.extend({
   search: z.string().optional(),
-  orderBy: z.enum(['length', 'brand', 'model', 'isBoa']).default('length'),
+  orderBy: z
+    .enum(['articleNumber', 'length', 'brand', 'model', 'isBoa'])
+    .default('length'),
   orderDirection: z.enum(['asc', 'desc']).default('asc'),
 })
 export type GetSnowboardBootInput = z.infer<typeof getSnowboardBootInputSchema>
