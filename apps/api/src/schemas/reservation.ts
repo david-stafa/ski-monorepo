@@ -63,9 +63,11 @@ export type CreateReservationInput = z.infer<
 export const getReservationsInputSchema = paginationSchema.extend({
   search: z.string().optional(),
   status: z.enum(ReservationStatus).optional(),
-  from: z.coerce.date<string>().optional(),
-  to: z.coerce.date<string>().optional(),
-  dateMode: z.enum(['PICKUP', 'RETURN', 'ACTIVE']).default('PICKUP'),
+  // date-only ISO strings ('2026-08-06') — these live in the URL as search
+  // params, so keep them readable; listReservations widens them to a day range
+  from: z.iso.date().optional(),
+  to: z.iso.date().optional(),
+  dateMode: z.enum(['PICKUP', 'RETURN', 'ACTIVE']).optional(),
   orderBy: z.enum(['name', 'startDate', 'endDate']).default('startDate'),
   orderDirection: z.enum(['asc', 'desc']).default('asc'),
 })

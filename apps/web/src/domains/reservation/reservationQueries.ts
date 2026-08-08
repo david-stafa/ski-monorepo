@@ -24,3 +24,15 @@ export const useCreateReservation = () =>
         notifyError(error.message, 'Nepodařilo se vytvořit rezervaci.'),
     })
   )
+
+export const useCancelReservation = () =>
+  useMutation(
+    trpc.reservation.cancel.mutationOptions({
+      onSuccess: () => {
+        invalidateReservationList()
+        notifySuccess('Rezervace zrušena', 'Rezervace byla úspěšně zrušena.')
+      },
+      onError: (error) =>
+        notifyError(error.message, 'Nepodařilo se zrušit rezervaci.'),
+    })
+  )

@@ -25,7 +25,6 @@ import {
   Footprints,
   FootprintsIcon,
   HardHat,
-  ListCheckIcon,
   Mountain,
   MountainSnowIcon,
   Package,
@@ -106,18 +105,7 @@ export function AppSidebar() {
                       <span className="sr-only">Přepnout</span>
                     </SidebarMenuAction>
                   </CollapsibleTrigger> */}
-                  <CollapsibleContent>
-                    <SidebarMenuSub>
-                      <SidebarMenuSubItem>
-                        <SidebarMenuSubButton asChild>
-                          <Link to="/reservation/create">
-                            <ListCheckIcon />
-                            <span>Rezervace tento týden</span>
-                          </Link>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                    </SidebarMenuSub>
-                  </CollapsibleContent>
+                  {/* sub-items land here once the list gets its date filter */}
                 </SidebarMenuItem>
               </Collapsible>
 
