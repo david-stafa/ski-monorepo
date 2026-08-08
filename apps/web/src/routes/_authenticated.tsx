@@ -82,14 +82,14 @@ export function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuSubItem>
-                <SidebarMenuSubButton asChild>
-                  <Button asChild>
+
+                  <Button asChild className="w-full" variant="default" size="sm">
                     <Link to="/reservation/create">
                       <PlusCircleIcon />
                       <span>Vytvořit rezervaci</span>
                     </Link>
                   </Button>
-                </SidebarMenuSubButton>
+            
               </SidebarMenuSubItem>
               <Collapsible defaultOpen className="group/collapsible">
                 <SidebarMenuItem>
