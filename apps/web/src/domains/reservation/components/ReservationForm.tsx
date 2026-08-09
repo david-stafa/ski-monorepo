@@ -1,6 +1,5 @@
 import { createReservationInputSchema } from '@ski-blazek/api/schemas'
 import { Button } from '@ski-blazek/ui/components/button'
-import { Separator } from '@ski-blazek/ui/components/separator'
 import {
   TypographyH1,
   TypographyH4,
@@ -69,7 +68,7 @@ export const ReservationForm = () => {
           form.handleSubmit()
         }}
       >
-        <section className="flex flex-col gap-4">
+        <section className="bg-muted/40 mb-4 flex flex-col gap-4 rounded-xl border p-2 md:p-4">
           <div className="flex items-center gap-2">
             <FileTextIcon
               className="bg-primary text-primary-foreground rounded-full p-1.5"
@@ -111,8 +110,6 @@ export const ReservationForm = () => {
             )}
           />
         </section>
-
-        <Separator className="my-4" />
 
         <form.AppField name="people" mode="array">
           {(peopleField) => {
