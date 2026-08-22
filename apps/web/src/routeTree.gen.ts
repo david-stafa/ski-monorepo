@@ -23,6 +23,7 @@ import { Route as AuthenticatedEquipmentSnowboardRouteImport } from './routes/_a
 import { Route as AuthenticatedEquipmentSnowboardBootRouteImport } from './routes/_authenticated/equipment/snowboard-boot'
 import { Route as AuthenticatedReservationIndexRouteImport } from './routes/_authenticated/reservation/index'
 import { Route as AuthenticatedReservationCreateRouteImport } from './routes/_authenticated/reservation/create'
+import { Route as AuthenticatedReservationPickUpRouteImport } from './routes/_authenticated/reservation/pick-up'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -101,6 +102,12 @@ const AuthenticatedReservationCreateRoute =
     path: '/reservation/create',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedReservationPickUpRoute =
+  AuthenticatedReservationPickUpRouteImport.update({
+    id: '/reservation/pick-up',
+    path: '/reservation/pick-up',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -114,6 +121,7 @@ export interface FileRoutesByFullPath {
   '/equipment/snowboard': typeof AuthenticatedEquipmentSnowboardRoute
   '/equipment/snowboard-boot': typeof AuthenticatedEquipmentSnowboardBootRoute
   '/reservation/create': typeof AuthenticatedReservationCreateRoute
+  '/reservation/pick-up': typeof AuthenticatedReservationPickUpRoute
   '/equipment/': typeof AuthenticatedEquipmentIndexRoute
   '/reservation/': typeof AuthenticatedReservationIndexRoute
 }
@@ -129,6 +137,7 @@ export interface FileRoutesByTo {
   '/equipment/snowboard': typeof AuthenticatedEquipmentSnowboardRoute
   '/equipment/snowboard-boot': typeof AuthenticatedEquipmentSnowboardBootRoute
   '/reservation/create': typeof AuthenticatedReservationCreateRoute
+  '/reservation/pick-up': typeof AuthenticatedReservationPickUpRoute
   '/equipment': typeof AuthenticatedEquipmentIndexRoute
   '/reservation': typeof AuthenticatedReservationIndexRoute
 }
@@ -146,6 +155,7 @@ export interface FileRoutesById {
   '/_authenticated/equipment/snowboard': typeof AuthenticatedEquipmentSnowboardRoute
   '/_authenticated/equipment/snowboard-boot': typeof AuthenticatedEquipmentSnowboardBootRoute
   '/_authenticated/reservation/create': typeof AuthenticatedReservationCreateRoute
+  '/_authenticated/reservation/pick-up': typeof AuthenticatedReservationPickUpRoute
   '/_authenticated/equipment/': typeof AuthenticatedEquipmentIndexRoute
   '/_authenticated/reservation/': typeof AuthenticatedReservationIndexRoute
 }
@@ -163,6 +173,7 @@ export interface FileRouteTypes {
     | '/equipment/snowboard'
     | '/equipment/snowboard-boot'
     | '/reservation/create'
+    | '/reservation/pick-up'
     | '/equipment/'
     | '/reservation/'
   fileRoutesByTo: FileRoutesByTo
@@ -178,6 +189,7 @@ export interface FileRouteTypes {
     | '/equipment/snowboard'
     | '/equipment/snowboard-boot'
     | '/reservation/create'
+    | '/reservation/pick-up'
     | '/equipment'
     | '/reservation'
   id:
@@ -194,6 +206,7 @@ export interface FileRouteTypes {
     | '/_authenticated/equipment/snowboard'
     | '/_authenticated/equipment/snowboard-boot'
     | '/_authenticated/reservation/create'
+    | '/_authenticated/reservation/pick-up'
     | '/_authenticated/equipment/'
     | '/_authenticated/reservation/'
   fileRoutesById: FileRoutesById
@@ -306,6 +319,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedReservationCreateRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/reservation/pick-up': {
+      id: '/_authenticated/reservation/pick-up'
+      path: '/reservation/pick-up'
+      fullPath: '/reservation/pick-up'
+      preLoaderRoute: typeof AuthenticatedReservationPickUpRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
   }
 }
 
@@ -317,6 +337,7 @@ interface AuthenticatedRouteChildren {
   AuthenticatedEquipmentSnowboardRoute: typeof AuthenticatedEquipmentSnowboardRoute
   AuthenticatedEquipmentSnowboardBootRoute: typeof AuthenticatedEquipmentSnowboardBootRoute
   AuthenticatedReservationCreateRoute: typeof AuthenticatedReservationCreateRoute
+  AuthenticatedReservationPickUpRoute: typeof AuthenticatedReservationPickUpRoute
   AuthenticatedEquipmentIndexRoute: typeof AuthenticatedEquipmentIndexRoute
   AuthenticatedReservationIndexRoute: typeof AuthenticatedReservationIndexRoute
 }
@@ -330,6 +351,7 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedEquipmentSnowboardBootRoute:
     AuthenticatedEquipmentSnowboardBootRoute,
   AuthenticatedReservationCreateRoute: AuthenticatedReservationCreateRoute,
+  AuthenticatedReservationPickUpRoute: AuthenticatedReservationPickUpRoute,
   AuthenticatedEquipmentIndexRoute: AuthenticatedEquipmentIndexRoute,
   AuthenticatedReservationIndexRoute: AuthenticatedReservationIndexRoute,
 }

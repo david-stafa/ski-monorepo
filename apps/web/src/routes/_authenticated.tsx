@@ -25,9 +25,11 @@ import {
   Footprints,
   FootprintsIcon,
   HardHat,
+  ListIcon,
   Mountain,
   MountainSnowIcon,
   Package,
+  PackageOpenIcon,
   PlusCircleIcon,
   Snowflake,
   User,
@@ -82,14 +84,12 @@ export function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuSubItem>
-
-                  <Button asChild className="w-full" variant="default" size="sm">
-                    <Link to="/reservation/create">
-                      <PlusCircleIcon />
-                      <span>Vytvořit rezervaci</span>
-                    </Link>
-                  </Button>
-            
+                <Button asChild className="w-full" variant="default" size="sm">
+                  <Link to="/reservation/create">
+                    <PlusCircleIcon />
+                    <span>Vytvořit rezervaci</span>
+                  </Link>
+                </Button>
               </SidebarMenuSubItem>
               <Collapsible defaultOpen className="group/collapsible">
                 <SidebarMenuItem>
@@ -105,7 +105,26 @@ export function AppSidebar() {
                       <span className="sr-only">Přepnout</span>
                     </SidebarMenuAction>
                   </CollapsibleTrigger> */}
-                  {/* sub-items land here once the list gets its date filter */}
+                  <CollapsibleContent>
+                    <SidebarMenuSub>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton asChild>
+                          <Link to="/reservation">
+                            <ListIcon />
+                            <span>Přehled</span>
+                          </Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton asChild>
+                          <Link to="/reservation/pick-up">
+                            <PackageOpenIcon />
+                            <span>Výdej</span>
+                          </Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    </SidebarMenuSub>
+                  </CollapsibleContent>
                 </SidebarMenuItem>
               </Collapsible>
 

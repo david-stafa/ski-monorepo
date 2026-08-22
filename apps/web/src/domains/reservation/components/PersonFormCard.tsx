@@ -1,4 +1,4 @@
-import { Gender, Level } from '@ski-blazek/db/browser'
+import { Gender } from '@ski-blazek/db/browser'
 import { Button } from '@ski-blazek/ui/components/button'
 import { TypographyH4 } from '@ski-blazek/ui/components/typography'
 import { TrashIcon, UserIcon } from 'lucide-react'
@@ -6,6 +6,7 @@ import { withForm } from '~/components/form/SharedFormFields'
 import { EquipmentSelectField } from './EquipmentSelectField'
 import { poleOptions } from '../helpers/poleOptions'
 import { initialValues } from '../helpers/initialValues'
+import { LEVEL_OPTIONS } from '../helpers/levelMeta'
 
 export const PersonFormCard = withForm({
   defaultValues: initialValues,
@@ -86,19 +87,7 @@ export const PersonFormCard = withForm({
                   <subField.SelectField
                     label="Zdatnost"
                     placeholder="Vyberte zdatnost"
-                    options={[
-                      { value: Level.BEGINNER, label: 'Začátečník - L' },
-                      {
-                        value: Level.BEGINNER_INTERMEDIATE,
-                        label: 'Lepší začátečník - L/A',
-                      },
-                      { value: Level.INTERMEDIATE, label: 'Pokročilý - L' },
-                      {
-                        value: Level.INTERMEDIATE_EXPERT,
-                        label: 'Středně pokročilý - A/S',
-                      },
-                      { value: Level.EXPERT, label: 'Expert - S' },
-                    ]}
+                    options={LEVEL_OPTIONS}
                   />
                 )}
               </form.AppField>

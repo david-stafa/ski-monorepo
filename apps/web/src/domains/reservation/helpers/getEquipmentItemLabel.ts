@@ -1,8 +1,21 @@
+import type { EquipmentItemType } from '@ski-blazek/db/browser'
 import { formatArticleNumber } from '~/domains/equipment/_shared/helpers/formatArticleNumber'
 import type { Outputs } from '~/lib/trpc'
 
 type AvailableItem =
   Outputs['equipment']['equipmentItem']['findAvailable'][number]
+
+/**
+ * Emoji rather than lucide icons because the label is a plain string — the
+ * select options in the shared form kit take `label: string`, not a node.
+ */
+const TYPE_ICONS: Record<EquipmentItemType, string> = {
+  SKI: '🎿:',
+  SKI_BOOT: '🥾:',
+  SNOWBOARD: '🏂:',
+  SNOWBOARD_BOOT: '👢:',
+  HELMET: '⛑️:',
+}
 
 /**
  * EquipmentItem is common-table-inheritance: exactly one of the five relations
@@ -40,12 +53,15 @@ const describeEquipmentItem = (item: AvailableItem): string | null => {
 }
 
 /**
- * The whole option label, article number included — owning the full string here
- * is what stops a caller prefixing the article number a second time.
+ * The whole option label, icon and article number included — owning the full
+ * string here is what stops a caller prefixing either one a second time.
  */
 export const getEquipmentItemLabel = (item: AvailableItem): string => {
   const description = describeEquipmentItem(item)
   const articleNumber = formatArticleNumber(item)
+  const icon = TYPE_ICONS[item.type]
 
-  return description ? `${articleNumber}: ${description}` : articleNumber
+  return description
+    ? `${icon} ${articleNumber}. ${description}`
+    : `${icon} ${articleNumber}`
 }
