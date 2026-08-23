@@ -9,13 +9,13 @@ type BadgeVariant = React.ComponentProps<typeof Badge>['variant']
  * status to the Prisma enum is a compile error until it is filled in here.
  */
 export const RESERVATION_STATUS_META: Record<
-  ReservationStatus,
-  { label: string; variant: BadgeVariant }
+	ReservationStatus,
+	{ label: string; variant: BadgeVariant }
 > = {
-  [ReservationStatus.BOOKED]: { label: 'Rezervováno', variant: 'secondary' },
-  [ReservationStatus.PICKED_UP]: { label: 'Vyzvednuto', variant: 'default' },
-  [ReservationStatus.RETURNED]: { label: 'Vráceno', variant: 'outline' },
-  [ReservationStatus.CANCELLED]: { label: 'Zrušeno', variant: 'destructive' },
+	[ReservationStatus.BOOKED]: { label: 'Rezervováno', variant: 'secondary' },
+	[ReservationStatus.PICKED_UP]: { label: 'Vyzvednuto', variant: 'default' },
+	[ReservationStatus.RETURNED]: { label: 'Vráceno', variant: 'outline' },
+	[ReservationStatus.CANCELLED]: { label: 'Zrušeno', variant: 'destructive' },
 }
 
 /** The statuses in the order they should appear in the filter dropdown. */

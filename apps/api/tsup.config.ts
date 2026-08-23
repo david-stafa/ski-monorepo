@@ -1,17 +1,12 @@
 import { defineConfig } from 'tsup'
 
 export default defineConfig({
-  entry: ['src/index.ts'],
-  format: ['esm'],
-  target: 'es2024',
-  platform: 'node',
-  clean: true,
-  sourcemap: true,
-  noExternal: [/@ski-blazek\/[\w-]+/],
-  external: [
-    'pg',
-    /^@prisma\//,
-    'better-auth',
-    /^better-auth\//,
-  ],
+	entry: ['src/index.ts'],
+	format: ['esm'],
+	target: 'es2024',
+	platform: 'node',
+	clean: true,
+	sourcemap: true,
+	noExternal: [/@ski-blazek\/[\w-]+/],
+	external: ['pg', /^@prisma\//, 'better-auth', /^better-auth\//],
 })

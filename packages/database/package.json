@@ -1,31 +1,31 @@
 {
-  "name": "@ski-blazek/db",
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "postinstall": "prisma generate --config ./prisma.config.ts",
-    "db:generate": "prisma generate",
-    "db:migrate": "prisma migrate dev",
-    "db:deploy": "prisma migrate deploy",
-    "db:studio": "prisma studio"
-  },
-  "devDependencies": {
-    "@ski-blazek/eslint-config": "workspace:*",
-    "@ski-blazek/typescript-config": "workspace:*",
-    "@types/pg": "^8.16.0",
-    "prisma": "^7.9.1",
-    "typescript": "catalog:",
-    "eslint": "catalog:"
-  },
-  "dependencies": {
-    "@prisma/adapter-pg": "catalog:",
-    "@prisma/client": "catalog:",
-    "dotenv": "^17.2.3",
-    "pg": "^8.16.3"
-  },
-  "exports": {
-    ".": "./src/index.ts",
-    "./browser": "./generated/prisma/browser.ts",
-    "./types": "./generated/prisma/types.ts"
-  }
+	"name": "@ski-blazek/db",
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"postinstall": "prisma generate --config ./prisma.config.ts",
+		"db:generate": "prisma generate",
+		"db:migrate": "prisma migrate dev",
+		"db:deploy": "prisma migrate deploy",
+		"db:studio": "prisma studio"
+	},
+	"devDependencies": {
+		"@ski-blazek/eslint-config": "workspace:*",
+		"@ski-blazek/typescript-config": "workspace:*",
+		"@types/pg": "^8.16.0",
+		"prisma": "^7.9.1",
+		"typescript": "catalog:",
+		"eslint": "catalog:"
+	},
+	"dependencies": {
+		"@prisma/adapter-pg": "catalog:",
+		"@prisma/client": "catalog:",
+		"dotenv": "^17.2.3",
+		"pg": "^8.16.3"
+	},
+	"exports": {
+		".": "./src/index.ts",
+		"./browser": "./generated/prisma/browser.ts",
+		"./types": "./generated/prisma/types.ts"
+	}
 }

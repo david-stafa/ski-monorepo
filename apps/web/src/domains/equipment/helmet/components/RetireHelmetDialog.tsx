@@ -5,29 +5,27 @@ import type { HelmetListItem } from '../helmet.types'
 import { HelmetDialogDescription } from './HelmetDialogDescription'
 
 type RetireHelmetDialogProps = {
-  open: boolean
-  onOpenChange: (open: boolean) => void
-  defaultValues: HelmetListItem
+	open: boolean
+	onOpenChange: (open: boolean) => void
+	defaultValues: HelmetListItem
 }
 
 export const RetireHelmetDialog = ({
-  open,
-  onOpenChange,
-  defaultValues,
+	open,
+	onOpenChange,
+	defaultValues,
 }: RetireHelmetDialogProps) => {
-  const retireHelmet = useRetireItem(EquipmentItemType.HELMET)
+	const retireHelmet = useRetireItem(EquipmentItemType.HELMET)
 
-  return (
-    <RetireDialog
-      open={open}
-      onOpenChange={onOpenChange}
-      title="Opravdu chcete archivovat tuto helmu?"
-      description="Tato akce vyřadí helmu z aktivního seznamu (nebude ji možné rezervovat). Tato akce je vratná."
-      onRetire={() =>
-        retireHelmet.mutate({ id: defaultValues.equipmentItemId })
-      }
-    >
-      <HelmetDialogDescription defaultValues={defaultValues} />
-    </RetireDialog>
-  )
+	return (
+		<RetireDialog
+			open={open}
+			onOpenChange={onOpenChange}
+			title="Opravdu chcete archivovat tuto helmu?"
+			description="Tato akce vyřadí helmu z aktivního seznamu (nebude ji možné rezervovat). Tato akce je vratná."
+			onRetire={() => retireHelmet.mutate({ id: defaultValues.equipmentItemId })}
+		>
+			<HelmetDialogDescription defaultValues={defaultValues} />
+		</RetireDialog>
+	)
 }

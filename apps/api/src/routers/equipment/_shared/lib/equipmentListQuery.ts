@@ -14,7 +14,7 @@ type SortOrder = 'asc' | 'desc'
  * back with the entire size-26 shelf.
  */
 export const wholeNumberSearch = (search: string) =>
-  /^\d+$/.test(search.trim()) ? Number(search.trim()) : undefined
+	/^\d+$/.test(search.trim()) ? Number(search.trim()) : undefined
 
 /**
  * A sticker as staff type it: `26.86` for a boot, or a bare `86`. A bare number
@@ -22,18 +22,18 @@ export const wholeNumberSearch = (search: string) =>
  * boot without noting the size still finds it.
  */
 export const parseArticleSearch = (search: string) => {
-  const trimmed = search.trim()
+	const trimmed = search.trim()
 
-  const sticker = /^(\d+)\.(\d+)$/.exec(trimmed)
+	const sticker = /^(\d+)\.(\d+)$/.exec(trimmed)
 
-  if (sticker) {
-    return {
-      articleGroup: Number(sticker[1]),
-      articleNumber: Number(sticker[2]),
-    }
-  }
+	if (sticker) {
+		return {
+			articleGroup: Number(sticker[1]),
+			articleNumber: Number(sticker[2]),
+		}
+	}
 
-  return /^\d+$/.test(trimmed) ? { articleNumber: Number(trimmed) } : null
+	return /^\d+$/.test(trimmed) ? { articleNumber: Number(trimmed) } : null
 }
 
 /**
@@ -41,9 +41,9 @@ export const parseArticleSearch = (search: string) => {
  * so a text search stays a text search.
  */
 export const articleNumberSearchFilter = (search: string) => {
-  const parsed = parseArticleSearch(search)
+	const parsed = parseArticleSearch(search)
 
-  return parsed ? [{ equipmentItem: parsed }] : []
+	return parsed ? [{ equipmentItem: parsed }] : []
 }
 
 /**
@@ -53,6 +53,6 @@ export const articleNumberSearchFilter = (search: string) => {
  * key a no-op for them.
  */
 export const articleNumberOrderBy = (orderDirection: SortOrder) => [
-  { equipmentItem: { articleGroup: orderDirection } },
-  { equipmentItem: { articleNumber: orderDirection } },
+	{ equipmentItem: { articleGroup: orderDirection } },
+	{ equipmentItem: { articleNumber: orderDirection } },
 ]

@@ -12,16 +12,16 @@ import { reactConfig } from '@ski-blazek/eslint-config/react'
  */
 
 export default [
-  ...reactConfig,
-  {
-    rules: {
-      'react/no-unescaped-entities': 'off',
-      'react/no-children-prop': [
-        'error',
-        {
-          allowFunctions: true,
-        },
-      ],
-    },
-  },
+	...reactConfig,
+	{
+		rules: {
+			'react/no-unescaped-entities': 'off',
+			'react/no-children-prop': [
+				'error',
+				{
+					allowFunctions: true,
+				},
+			],
+		},
+	},
 ]

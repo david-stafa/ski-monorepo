@@ -1,11 +1,11 @@
 {
-  "extends": "@ski-blazek/typescript-config/base.json",
-  "compilerOptions": {
-    // Node runtime (Prisma client), so drop DOM from base's lib.
-    "lib": ["ES2025"],
-    "outDir": "dist",
-    "rootDir": "."
-  },
-  "include": ["src/**/*", "generated/**/*"],
-  "exclude": ["node_modules", "dist"]
+	"extends": "@ski-blazek/typescript-config/base.json",
+	"compilerOptions": {
+		// Node runtime (Prisma client), so drop DOM from base's lib.
+		"lib": ["ES2025"],
+		"outDir": "dist",
+		"rootDir": "."
+	},
+	"include": ["src/**/*", "generated/**/*"],
+	"exclude": ["node_modules", "dist"]
 }

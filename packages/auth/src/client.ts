@@ -8,15 +8,16 @@
 import { createAuthClient } from 'better-auth/react'
 
 interface AuthClientOptions {
-  apiBaseUrl: string
+	apiBaseUrl: string
 }
 
-export const createAuth = ({apiBaseUrl}: AuthClientOptions) => createAuthClient({
-  baseURL: apiBaseUrl, // The base URL of your auth server,
-  emailAndPassword: {
-    enabled: true,
-  },
-})
+export const createAuth = ({ apiBaseUrl }: AuthClientOptions) =>
+	createAuthClient({
+		baseURL: apiBaseUrl, // The base URL of your auth server,
+		emailAndPassword: {
+			enabled: true,
+		},
+	})
 
 // Re-export types from the server instance
 // export type { Session } from "./index.js";

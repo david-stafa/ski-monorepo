@@ -1,12 +1,12 @@
 {
-    "name": "@ski-blazek/tailwind-config",
-    "version": "0.0.0",
-    "type": "module",
-    "private": true,
-    "exports": {
-      ".": "./shared-styles.css"
-    },
-    "devDependencies": {
-      "tailwindcss": "catalog:"
-    }
-  }
+	"name": "@ski-blazek/tailwind-config",
+	"version": "0.0.0",
+	"type": "module",
+	"private": true,
+	"exports": {
+		".": "./shared-styles.css"
+	},
+	"devDependencies": {
+		"tailwindcss": "catalog:"
+	}
+}

@@ -1,34 +1,22 @@
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from '@ski-blazek/ui/components/dialog'
-import { HelmetForm } from './HelmetForm'
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@ski-blazek/ui/components/dialog'
 import type { HelmetListItem } from '../helmet.types'
+import { HelmetForm } from './HelmetForm'
 
 type EditHelmetDialogProps = {
-  open: boolean
-  onOpenChange: (open: boolean) => void
-  defaultValues: HelmetListItem
+	open: boolean
+	onOpenChange: (open: boolean) => void
+	defaultValues: HelmetListItem
 }
 
-export const EditHelmetDialog = ({
-  open,
-  onOpenChange,
-  defaultValues,
-}: EditHelmetDialogProps) => {
-  return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Upravit helmu</DialogTitle>
-        </DialogHeader>
-        <HelmetForm
-          close={() => onOpenChange(false)}
-          defaultValues={defaultValues}
-        />
-      </DialogContent>
-    </Dialog>
-  )
+export const EditHelmetDialog = ({ open, onOpenChange, defaultValues }: EditHelmetDialogProps) => {
+	return (
+		<Dialog open={open} onOpenChange={onOpenChange}>
+			<DialogContent>
+				<DialogHeader>
+					<DialogTitle>Upravit helmu</DialogTitle>
+				</DialogHeader>
+				<HelmetForm close={() => onOpenChange(false)} defaultValues={defaultValues} />
+			</DialogContent>
+		</Dialog>
+	)
 }

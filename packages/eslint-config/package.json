@@ -1,22 +1,21 @@
 {
-  "name": "@ski-blazek/eslint-config",
-  "version": "0.0.0",
-  "type": "module",
-  "private": true,
-  "exports": {
-    "./base": "./base.js",
-    "./react": "./react.js"
-  },
-  "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "eslint": "catalog:",
-    "eslint-config-prettier": "^10.1.1",
-    "eslint-plugin-only-warn": "^1.1.0",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.1.1",
-    "eslint-plugin-turbo": "^2.10.8",
-    "globals": "^17.9.0",
-    "typescript": "catalog:",
-    "typescript-eslint": "^8.65.0"
-  }
+	"name": "@ski-blazek/eslint-config",
+	"version": "0.0.0",
+	"type": "module",
+	"private": true,
+	"exports": {
+		"./base": "./base.js",
+		"./react": "./react.js"
+	},
+	"devDependencies": {
+		"@eslint/js": "^10.0.1",
+		"eslint": "catalog:",
+		"eslint-plugin-only-warn": "^1.1.0",
+		"eslint-plugin-react": "^7.37.5",
+		"eslint-plugin-react-hooks": "^7.1.1",
+		"eslint-plugin-turbo": "^2.10.8",
+		"globals": "^17.9.0",
+		"typescript": "catalog:",
+		"typescript-eslint": "^8.65.0"
+	}
 }

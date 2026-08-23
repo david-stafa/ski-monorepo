@@ -3,8 +3,8 @@ import { toDateString } from './format'
 
 /** A `from`/`to` pair of `yyyy-MM-dd` strings, as the list inputs take them. */
 export type DateRangeStrings = {
-  from: string
-  to: string
+	from: string
+	to: string
 }
 
 /**
@@ -14,17 +14,17 @@ export type DateRangeStrings = {
  * instead — a week boundary the shop never sees.
  */
 export const getWeekRange = (weekOffset = 0): DateRangeStrings => {
-  const day = addWeeks(new Date(), weekOffset)
+	const day = addWeeks(new Date(), weekOffset)
 
-  return {
-    from: toDateString(startOfWeek(day, { weekStartsOn: 1 })),
-    to: toDateString(endOfWeek(day, { weekStartsOn: 1 })),
-  }
+	return {
+		from: toDateString(startOfWeek(day, { weekStartsOn: 1 })),
+		to: toDateString(endOfWeek(day, { weekStartsOn: 1 })),
+	}
 }
 
 /** Today on both ends — a one-day window. */
 export const getTodayRange = (): DateRangeStrings => {
-  const today = toDateString(new Date())
+	const today = toDateString(new Date())
 
-  return { from: today, to: today }
+	return { from: today, to: today }
 }

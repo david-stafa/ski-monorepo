@@ -3,14 +3,14 @@
   <head>
     <!-- Must match ThemeProvider storageKey + defaultTheme; runs before paint to avoid light flash on reload -->
     <script>
-      ;(function () {
+      ;(() => {
         try {
-          var key = 'vite-ui-theme'
-          var theme = localStorage.getItem(key) || 'system'
-          var root = document.documentElement
+          const key = 'vite-ui-theme'
+          const theme = localStorage.getItem(key) || 'system'
+          const root = document.documentElement
           root.classList.remove('light', 'dark')
           if (theme === 'system') {
-            var dark = window.matchMedia('(prefers-color-scheme: dark)').matches
+            const dark = window.matchMedia('(prefers-color-scheme: dark)').matches
             root.classList.add(dark ? 'dark' : 'light')
           } else {
             root.classList.add(theme)
@@ -20,6 +20,7 @@
     </script>
     <!-- Inline so first paint matches theme before globals.css loads from the JS bundle -->
     <style>
+      /* biome-ignore-all lint/suspicious/noDuplicateProperties: the first value of each pair is a fallback for browsers without dvh/oklch */
       html {
         min-height: 100vh;
         min-height: 100dvh;

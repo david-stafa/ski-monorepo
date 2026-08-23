@@ -9,27 +9,23 @@ import { paginationSchema } from './pagination'
  * `z.infer` stays the source of truth for the input type.
  */
 export const createSkiInputSchema = z.object({
-  brand: z.string().min(2),
-  model: z.string().min(2),
-  length: z.number().int().min(50),
-  isVIP: z.boolean(),
-}) satisfies z.ZodType<
-  Omit<Ski, 'id' | 'createdAt' | 'updatedAt' | 'equipmentItemId'>
->
+	brand: z.string().min(2),
+	model: z.string().min(2),
+	length: z.number().int().min(50),
+	isVIP: z.boolean(),
+}) satisfies z.ZodType<Omit<Ski, 'id' | 'createdAt' | 'updatedAt' | 'equipmentItemId'>>
 export type CreateSkiInput = z.infer<typeof createSkiInputSchema>
 
 /** update = create + id */
 export const updateSkiInputSchema = createSkiInputSchema.extend({
-  id: z.string(),
+	id: z.string(),
 })
 export type UpdateSkiInput = z.infer<typeof updateSkiInputSchema>
 
 /** list query (search / sort / pagination) */
 export const getSkiInputSchema = paginationSchema.extend({
-  search: z.string().optional(),
-  orderBy: z
-    .enum(['articleNumber', 'length', 'brand', 'model', 'isVIP'])
-    .default('length'),
-  orderDirection: z.enum(['asc', 'desc']).default('asc'),
+	search: z.string().optional(),
+	orderBy: z.enum(['articleNumber', 'length', 'brand', 'model', 'isVIP']).default('length'),
+	orderDirection: z.enum(['asc', 'desc']).default('asc'),
 })
 export type GetSkiInput = z.infer<typeof getSkiInputSchema>

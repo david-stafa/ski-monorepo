@@ -1,23 +1,23 @@
 {
-  "extends": "@ski-blazek/typescript-config/base.json",
-  "compilerOptions": {
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
-    "target": "ES2024",
-    // Node runtime (vite.config.ts runs on your machine), so drop DOM from base's lib.
-    "lib": ["ES2025"],
-    "types": ["node"],
+	"extends": "@ski-blazek/typescript-config/base.json",
+	"compilerOptions": {
+		"tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+		"target": "ES2024",
+		// Node runtime (vite.config.ts runs on your machine), so drop DOM from base's lib.
+		"lib": ["ES2025"],
+		"types": ["node"],
 
-    /* Bundler mode */
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
-    "noEmit": true,
+		/* Bundler mode */
+		"allowImportingTsExtensions": true,
+		"verbatimModuleSyntax": true,
+		"noEmit": true,
 
-    /* Linting (in addition to base's `strict`) */
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
-  },
-  "include": ["vite.config.ts"]
+		/* Linting (in addition to base's `strict`) */
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"erasableSyntaxOnly": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUncheckedSideEffectImports": true
+	},
+	"include": ["vite.config.ts"]
 }

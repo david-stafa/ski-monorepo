@@ -1,34 +1,33 @@
+import type { AppRouter } from '@ski-blazek/api/trpc'
 import { QueryClient } from '@tanstack/react-query'
 import { createTRPCClient, httpBatchLink } from '@trpc/client'
-import { createTRPCOptionsProxy } from '@trpc/tanstack-react-query'
-import type { AppRouter } from '@ski-blazek/api/trpc'
 import type { inferRouterOutputs } from '@trpc/server'
+import { createTRPCOptionsProxy } from '@trpc/tanstack-react-query'
 import superjson from 'superjson'
 
 export const queryClient = new QueryClient()
 
-const apiOrigin =
-  (import.meta.env.VITE_API_URL as string) || 'http://localhost:3001'
+const apiOrigin = (import.meta.env.VITE_API_URL as string) || 'http://localhost:3001'
 const trpcUrl = `${apiOrigin.replace(/\/$/, '')}/api/trpc`
 
 const trpcClient = createTRPCClient<AppRouter>({
-  links: [
-    httpBatchLink({
-      url: trpcUrl,
-      transformer: superjson,
-      fetch(url, options) {
-        return fetch(url, {
-          ...options,
-          credentials: 'include',
-        })
-      },
-    }),
-  ],
+	links: [
+		httpBatchLink({
+			url: trpcUrl,
+			transformer: superjson,
+			fetch(url, options) {
+				return fetch(url, {
+					...options,
+					credentials: 'include',
+				})
+			},
+		}),
+	],
 })
 
 export const trpc = createTRPCOptionsProxy<AppRouter>({
-  client: trpcClient,
-  queryClient,
+	client: trpcClient,
+	queryClient,
 })
 
 export type Outputs = inferRouterOutputs<AppRouter>

@@ -3,20 +3,20 @@ import { TRPCError } from '@trpc/server'
 import type { EquipmentIdInput } from '../../../../schemas/equipmentItem'
 
 export const retireEquipmentItem = async ({ id }: EquipmentIdInput) => {
-  const item = await prisma.equipmentItem.findUnique({
-    where: {
-      id,
-    },
-  })
+	const item = await prisma.equipmentItem.findUnique({
+		where: {
+			id,
+		},
+	})
 
-  if (!item) throw new TRPCError({ code: 'NOT_FOUND' })
+	if (!item) throw new TRPCError({ code: 'NOT_FOUND' })
 
-  return await prisma.equipmentItem.update({
-    where: {
-      id,
-    },
-    data: {
-      retiredAt: new Date(),
-    },
-  })
+	return await prisma.equipmentItem.update({
+		where: {
+			id,
+		},
+		data: {
+			retiredAt: new Date(),
+		},
+	})
 }

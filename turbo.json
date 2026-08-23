@@ -1,44 +1,38 @@
 {
-  "$schema": "https://v2-10-4.turborepo.dev/schema.json",
-  "envMode": "loose",
-  "tasks": {
-    "build": {
-      "dependsOn": ["^build", "^db:generate"],
-      "outputs": ["dist/**", "build/**"],
-      "inputs": ["src/**", "generated/**", "package.json", "tsconfig.json"],
-      "env": ["DATABASE_URL"]
-    },
-    "dev": {
-      "cache": false,
-      "persistent": true
-    },
-    "lint": {
-      "dependsOn": ["^lint"],
-      "outputs": []
-    },
-    "check-types": {
-      "dependsOn": ["^check-types"]
-    },
-    "format": {
-      "dependsOn": ["^format"]
-    },
-    "format:check": {
-      "dependsOn": ["^format:check"]
-    },
-    "db:generate": {
-      "dependsOn": ["^db:generate"],
-      "outputs": ["generated/**"],
-      "cache": false
-    },
-    "db:migrate": {
-      "cache": false,
-      "persistent": true
-    },
-    "db:deploy": {
-      "cache": false
-    },
-    "db:studio": {
-      "cache": false
-    }
-  }
+	"$schema": "https://v2-10-4.turborepo.dev/schema.json",
+	"envMode": "loose",
+	"tasks": {
+		"build": {
+			"dependsOn": ["^build", "^db:generate"],
+			"outputs": ["dist/**", "build/**"],
+			"inputs": ["src/**", "generated/**", "package.json", "tsconfig.json"],
+			"env": ["DATABASE_URL"]
+		},
+		"dev": {
+			"cache": false,
+			"persistent": true
+		},
+		"lint": {
+			"dependsOn": ["^lint"],
+			"outputs": []
+		},
+		"check-types": {
+			"dependsOn": ["^check-types"]
+		},
+		"db:generate": {
+			"dependsOn": ["^db:generate"],
+			"outputs": ["generated/**"],
+			"cache": false
+		},
+		"db:migrate": {
+			"cache": false,
+			"persistent": true
+		},
+		"db:deploy": {
+			"cache": false
+		},
+		"db:studio": {
+			"cache": false
+		}
+	}
 }

@@ -1,6 +1,6 @@
 type ArticleNumber = {
-  articleGroup: number | null
-  articleNumber: number
+	articleGroup: number | null
+	articleNumber: number
 }
 
 /**
@@ -12,10 +12,5 @@ type ArticleNumber = {
  * a formatting concern: as a single number `26.9` would sort above `26.86`,
  * which is the wrong way round for a sequence.
  */
-export const formatArticleNumber = ({
-  articleGroup,
-  articleNumber,
-}: ArticleNumber) =>
-  articleGroup === null
-    ? `${articleNumber}`
-    : `${articleGroup}.${articleNumber}`
+export const formatArticleNumber = ({ articleGroup, articleNumber }: ArticleNumber) =>
+	articleGroup === null ? `${articleNumber}` : `${articleGroup}.${articleNumber}`

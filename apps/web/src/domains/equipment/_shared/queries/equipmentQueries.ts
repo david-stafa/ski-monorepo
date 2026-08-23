@@ -7,9 +7,9 @@ import { queryClient, trpc } from '~/lib/trpc'
 type EquipmentAction = 'delete' | 'retire' | 'unretire'
 
 interface EquipmentMeta {
-  /** List query to invalidate after a mutation for this equipment type. */
-  invalidate: TRPCQueryKeyWithoutPrefix
-  messages: Record<EquipmentAction, { success: string; error: string }>
+	/** List query to invalidate after a mutation for this equipment type. */
+	invalidate: TRPCQueryKeyWithoutPrefix
+	messages: Record<EquipmentAction, { success: string; error: string }>
 }
 
 /**
@@ -18,131 +18,131 @@ interface EquipmentMeta {
  * so adding a new equipment type is a compile error until it is filled in here.
  */
 const EQUIPMENT_META: Record<EquipmentItemType, EquipmentMeta> = {
-  [EquipmentItemType.SKI]: {
-    invalidate: trpc.equipment.ski.list.pathKey(),
-    messages: {
-      delete: {
-        success: 'Lyže byly úspěšně smazány.',
-        error: 'Nepodařilo se smazat lyže.',
-      },
-      retire: {
-        success: 'Lyže byly úspěšně archivovány.',
-        error: 'Nepodařilo se archivovat lyže.',
-      },
-      unretire: {
-        success: 'Lyže byly úspěšně aktivovány.',
-        error: 'Nepodařilo se aktivovat lyže.',
-      },
-    },
-  },
-  [EquipmentItemType.SKI_BOOT]: {
-    invalidate: trpc.equipment.skiBoot.list.pathKey(),
-    messages: {
-      delete: {
-        success: 'Lyžařské boty byly úspěšně smazány.',
-        error: 'Nepodařilo se smazat lyžařské boty.',
-      },
-      retire: {
-        success: 'Lyžařské boty byly úspěšně archivovány.',
-        error: 'Nepodařilo se archivovat lyžařské boty.',
-      },
-      unretire: {
-        success: 'Lyžařské boty byly úspěšně aktivovány.',
-        error: 'Nepodařilo se aktivovat lyžařské boty.',
-      },
-    },
-  },
-  [EquipmentItemType.SNOWBOARD]: {
-    invalidate: trpc.equipment.snowboard.list.pathKey(),
-    messages: {
-      delete: {
-        success: 'Snowboard byl úspěšně smazán.',
-        error: 'Nepodařilo se smazat snowboard.',
-      },
-      retire: {
-        success: 'Snowboard byl úspěšně archivován.',
-        error: 'Nepodařilo se archivovat snowboard.',
-      },
-      unretire: {
-        success: 'Snowboard byl úspěšně aktivován.',
-        error: 'Nepodařilo se aktivovat snowboard.',
-      },
-    },
-  },
-  [EquipmentItemType.SNOWBOARD_BOOT]: {
-    invalidate: trpc.equipment.snowboardBoot.list.pathKey(),
-    messages: {
-      delete: {
-        success: 'Snowboardové boty byly úspěšně smazány.',
-        error: 'Nepodařilo se smazat snowboardové boty.',
-      },
-      retire: {
-        success: 'Snowboardové boty byly úspěšně archivovány.',
-        error: 'Nepodařilo se archivovat snowboardové boty.',
-      },
-      unretire: {
-        success: 'Snowboardové boty byly úspěšně aktivovány.',
-        error: 'Nepodařilo se aktivovat snowboardové boty.',
-      },
-    },
-  },
-  [EquipmentItemType.HELMET]: {
-    invalidate: trpc.equipment.helmet.list.pathKey(),
-    messages: {
-      delete: {
-        success: 'Helma byla úspěšně smazána.',
-        error: 'Nepodařilo se smazat helmu.',
-      },
-      retire: {
-        success: 'Helma byla úspěšně archivována.',
-        error: 'Nepodařilo se archivovat helmu.',
-      },
-      unretire: {
-        success: 'Helma byla úspěšně aktivována.',
-        error: 'Nepodařilo se aktivovat helmu.',
-      },
-    },
-  },
+	[EquipmentItemType.SKI]: {
+		invalidate: trpc.equipment.ski.list.pathKey(),
+		messages: {
+			delete: {
+				success: 'Lyže byly úspěšně smazány.',
+				error: 'Nepodařilo se smazat lyže.',
+			},
+			retire: {
+				success: 'Lyže byly úspěšně archivovány.',
+				error: 'Nepodařilo se archivovat lyže.',
+			},
+			unretire: {
+				success: 'Lyže byly úspěšně aktivovány.',
+				error: 'Nepodařilo se aktivovat lyže.',
+			},
+		},
+	},
+	[EquipmentItemType.SKI_BOOT]: {
+		invalidate: trpc.equipment.skiBoot.list.pathKey(),
+		messages: {
+			delete: {
+				success: 'Lyžařské boty byly úspěšně smazány.',
+				error: 'Nepodařilo se smazat lyžařské boty.',
+			},
+			retire: {
+				success: 'Lyžařské boty byly úspěšně archivovány.',
+				error: 'Nepodařilo se archivovat lyžařské boty.',
+			},
+			unretire: {
+				success: 'Lyžařské boty byly úspěšně aktivovány.',
+				error: 'Nepodařilo se aktivovat lyžařské boty.',
+			},
+		},
+	},
+	[EquipmentItemType.SNOWBOARD]: {
+		invalidate: trpc.equipment.snowboard.list.pathKey(),
+		messages: {
+			delete: {
+				success: 'Snowboard byl úspěšně smazán.',
+				error: 'Nepodařilo se smazat snowboard.',
+			},
+			retire: {
+				success: 'Snowboard byl úspěšně archivován.',
+				error: 'Nepodařilo se archivovat snowboard.',
+			},
+			unretire: {
+				success: 'Snowboard byl úspěšně aktivován.',
+				error: 'Nepodařilo se aktivovat snowboard.',
+			},
+		},
+	},
+	[EquipmentItemType.SNOWBOARD_BOOT]: {
+		invalidate: trpc.equipment.snowboardBoot.list.pathKey(),
+		messages: {
+			delete: {
+				success: 'Snowboardové boty byly úspěšně smazány.',
+				error: 'Nepodařilo se smazat snowboardové boty.',
+			},
+			retire: {
+				success: 'Snowboardové boty byly úspěšně archivovány.',
+				error: 'Nepodařilo se archivovat snowboardové boty.',
+			},
+			unretire: {
+				success: 'Snowboardové boty byly úspěšně aktivovány.',
+				error: 'Nepodařilo se aktivovat snowboardové boty.',
+			},
+		},
+	},
+	[EquipmentItemType.HELMET]: {
+		invalidate: trpc.equipment.helmet.list.pathKey(),
+		messages: {
+			delete: {
+				success: 'Helma byla úspěšně smazána.',
+				error: 'Nepodařilo se smazat helmu.',
+			},
+			retire: {
+				success: 'Helma byla úspěšně archivována.',
+				error: 'Nepodařilo se archivovat helmu.',
+			},
+			unretire: {
+				success: 'Helma byla úspěšně aktivována.',
+				error: 'Nepodařilo se aktivovat helmu.',
+			},
+		},
+	},
 }
 
 export const useDeleteItem = (type: EquipmentItemType) => {
-  const { invalidate, messages } = EQUIPMENT_META[type]
+	const { invalidate, messages } = EQUIPMENT_META[type]
 
-  return useMutation(
-    trpc.equipment.equipmentItem.delete.mutationOptions({
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: invalidate })
-        notifySuccess('Smazáno', messages.delete.success)
-      },
-      onError: (error) => notifyError(error.message, messages.delete.error),
-    })
-  )
+	return useMutation(
+		trpc.equipment.equipmentItem.delete.mutationOptions({
+			onSuccess: () => {
+				queryClient.invalidateQueries({ queryKey: invalidate })
+				notifySuccess('Smazáno', messages.delete.success)
+			},
+			onError: (error) => notifyError(error.message, messages.delete.error),
+		})
+	)
 }
 
 export const useRetireItem = (type: EquipmentItemType) => {
-  const { invalidate, messages } = EQUIPMENT_META[type]
+	const { invalidate, messages } = EQUIPMENT_META[type]
 
-  return useMutation(
-    trpc.equipment.equipmentItem.retire.mutationOptions({
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: invalidate })
-        notifySuccess('Archivováno', messages.retire.success)
-      },
-      onError: (error) => notifyError(error.message, messages.retire.error),
-    })
-  )
+	return useMutation(
+		trpc.equipment.equipmentItem.retire.mutationOptions({
+			onSuccess: () => {
+				queryClient.invalidateQueries({ queryKey: invalidate })
+				notifySuccess('Archivováno', messages.retire.success)
+			},
+			onError: (error) => notifyError(error.message, messages.retire.error),
+		})
+	)
 }
 
 export const useUnretireItem = (type: EquipmentItemType) => {
-  const { invalidate, messages } = EQUIPMENT_META[type]
+	const { invalidate, messages } = EQUIPMENT_META[type]
 
-  return useMutation(
-    trpc.equipment.equipmentItem.unretire.mutationOptions({
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: invalidate })
-        notifySuccess('Aktivováno', messages.unretire.success)
-      },
-      onError: (error) => notifyError(error.message, messages.unretire.error),
-    })
-  )
+	return useMutation(
+		trpc.equipment.equipmentItem.unretire.mutationOptions({
+			onSuccess: () => {
+				queryClient.invalidateQueries({ queryKey: invalidate })
+				notifySuccess('Aktivováno', messages.unretire.success)
+			},
+			onError: (error) => notifyError(error.message, messages.unretire.error),
+		})
+	)
 }

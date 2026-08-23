@@ -15,11 +15,11 @@ app.set('trust proxy', true)
 
 // Configure CORS middleware
 app.use(
-  cors({
-    origin: WEB_URL, // Replace with your frontend's origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed HTTP methods
-    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
-  })
+	cors({
+		origin: WEB_URL, // Replace with your frontend's origin
+		methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed HTTP methods
+		credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+	})
 )
 
 app.use(express.json())
@@ -27,13 +27,13 @@ app.use(express.json())
 app.all('/api/auth/*splat', toNodeHandler(auth))
 
 app.use(
-  '/api/trpc',
-  trpcExpress.createExpressMiddleware({
-    router: appRouter,
-    createContext,
-  })
+	'/api/trpc',
+	trpcExpress.createExpressMiddleware({
+		router: appRouter,
+		createContext,
+	})
 )
 
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`)
+	console.log(`Example app listening on port ${PORT}`)
 })

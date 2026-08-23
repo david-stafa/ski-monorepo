@@ -8,10 +8,10 @@ const today = startOfDay(new Date())
 const tomorrow = endOfDay(addDays(today, 1))
 
 export const initialValues: FormType = {
-  name: '',
-  phoneNumber: '',
-  startDate: today,
-  endDate: tomorrow,
-  note: null,
-  people: [createEmptyPerson()],
+	name: '',
+	phoneNumber: '',
+	startDate: today,
+	endDate: tomorrow,
+	note: null,
+	people: [createEmptyPerson()],
 }

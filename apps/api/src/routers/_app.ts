@@ -4,9 +4,9 @@ import { personRouter } from './person/person'
 import { reservationRouter } from './reservation/reservation'
 
 export const appRouter = router({
-  equipment: equipmentRouter,
-  reservation: reservationRouter,
-  person: personRouter,
+	equipment: equipmentRouter,
+	reservation: reservationRouter,
+	person: personRouter,
 })
 
 // Export only the type of a router!

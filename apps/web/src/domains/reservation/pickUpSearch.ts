@@ -1,7 +1,4 @@
-import {
-  getReservationsInputSchema,
-  type GetReservationsInput,
-} from '@ski-blazek/api/schemas'
+import { type GetReservationsInput, getReservationsInputSchema } from '@ski-blazek/api/schemas'
 import { ReservationStatus } from '@ski-blazek/db/browser'
 import z from 'zod'
 import { getWeekRange } from '~/lib/dateRange'
@@ -19,13 +16,13 @@ import { getWeekRange } from '~/lib/dateRange'
  *   handed over yet.
  */
 export const pickUpSearchSchema = getReservationsInputSchema.extend({
-  from: z.iso.date().default(() => getWeekRange().from),
-  to: z.iso.date().default(() => getWeekRange().to),
-  dateMode: z.literal('PICKUP').default('PICKUP'),
-  // `null` is the "all statuses" choice, and it has to be spelled out rather
-  // than left undefined: cleanEmptyParams drops undefined from the URL, so the
-  // default would put BOOKED straight back and the filter could never clear.
-  status: z.enum(ReservationStatus).nullish().default(ReservationStatus.BOOKED),
+	from: z.iso.date().default(() => getWeekRange().from),
+	to: z.iso.date().default(() => getWeekRange().to),
+	dateMode: z.literal('PICKUP').default('PICKUP'),
+	// `null` is the "all statuses" choice, and it has to be spelled out rather
+	// than left undefined: cleanEmptyParams drops undefined from the URL, so the
+	// default would put BOOKED straight back and the filter could never clear.
+	status: z.enum(ReservationStatus).nullish().default(ReservationStatus.BOOKED),
 })
 
 export type PickUpSearch = z.infer<typeof pickUpSearchSchema>
@@ -35,10 +32,7 @@ export type PickUpSearch = z.infer<typeof pickUpSearchSchema>
  * route loader and the component produce the identical query key — otherwise
  * the prefetched data is missed and the page suspends on every navigation.
  */
-export const toListInput = ({
-  status,
-  ...rest
-}: PickUpSearch): GetReservationsInput => ({
-  ...rest,
-  status: status ?? undefined,
+export const toListInput = ({ status, ...rest }: PickUpSearch): GetReservationsInput => ({
+	...rest,
+	status: status ?? undefined,
 })

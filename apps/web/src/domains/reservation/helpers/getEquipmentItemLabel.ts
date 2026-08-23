@@ -2,19 +2,18 @@ import type { EquipmentItemType } from '@ski-blazek/db/browser'
 import { formatArticleNumber } from '~/domains/equipment/_shared/helpers/formatArticleNumber'
 import type { Outputs } from '~/lib/trpc'
 
-type AvailableItem =
-  Outputs['equipment']['equipmentItem']['findAvailable'][number]
+type AvailableItem = Outputs['equipment']['equipmentItem']['findAvailable'][number]
 
 /**
  * Emoji rather than lucide icons because the label is a plain string — the
  * select options in the shared form kit take `label: string`, not a node.
  */
 const TYPE_ICONS: Record<EquipmentItemType, string> = {
-  SKI: '🎿:',
-  SKI_BOOT: '🥾:',
-  SNOWBOARD: '🏂:',
-  SNOWBOARD_BOOT: '👢:',
-  HELMET: '⛑️:',
+	SKI: '🎿:',
+	SKI_BOOT: '🥾:',
+	SNOWBOARD: '🏂:',
+	SNOWBOARD_BOOT: '👢:',
+	HELMET: '⛑️:',
 }
 
 /**
@@ -23,33 +22,33 @@ const TYPE_ICONS: Record<EquipmentItemType, string> = {
  * as nullable, so `describe` returns null if the detail row is somehow missing.
  */
 const describeEquipmentItem = (item: AvailableItem): string | null => {
-  switch (item.type) {
-    case 'SKI': {
-      const ski = item.ski
-      if (!ski) return null
-      return `${ski.brand} ${ski.model} ${ski.length} cm${ski.isVIP ? ' ⭐' : ''}`
-    }
-    case 'SNOWBOARD': {
-      const snowboard = item.snowboard
-      if (!snowboard) return null
-      return `${snowboard.brand} ${snowboard.model} ${snowboard.length} cm`
-    }
-    case 'SKI_BOOT': {
-      const boot = item.skiBoot
-      if (!boot) return null
-      return `${boot.brand} ${boot.model} ${boot.length} mp`
-    }
-    case 'SNOWBOARD_BOOT': {
-      const boot = item.snowboardBoot
-      if (!boot) return null
-      return `${boot.brand} ${boot.model} ${boot.length} mp${boot.isBoa ? ' BOA' : ''}`
-    }
-    case 'HELMET': {
-      const helmet = item.helmet
-      if (!helmet) return null
-      return `${helmet.name} ${helmet.size} ${helmet.color}`
-    }
-  }
+	switch (item.type) {
+		case 'SKI': {
+			const ski = item.ski
+			if (!ski) return null
+			return `${ski.brand} ${ski.model} ${ski.length} cm${ski.isVIP ? ' ⭐' : ''}`
+		}
+		case 'SNOWBOARD': {
+			const snowboard = item.snowboard
+			if (!snowboard) return null
+			return `${snowboard.brand} ${snowboard.model} ${snowboard.length} cm`
+		}
+		case 'SKI_BOOT': {
+			const boot = item.skiBoot
+			if (!boot) return null
+			return `${boot.brand} ${boot.model} ${boot.length} mp`
+		}
+		case 'SNOWBOARD_BOOT': {
+			const boot = item.snowboardBoot
+			if (!boot) return null
+			return `${boot.brand} ${boot.model} ${boot.length} mp${boot.isBoa ? ' BOA' : ''}`
+		}
+		case 'HELMET': {
+			const helmet = item.helmet
+			if (!helmet) return null
+			return `${helmet.name} ${helmet.size} ${helmet.color}`
+		}
+	}
 }
 
 /**
@@ -57,11 +56,9 @@ const describeEquipmentItem = (item: AvailableItem): string | null => {
  * string here is what stops a caller prefixing either one a second time.
  */
 export const getEquipmentItemLabel = (item: AvailableItem): string => {
-  const description = describeEquipmentItem(item)
-  const articleNumber = formatArticleNumber(item)
-  const icon = TYPE_ICONS[item.type]
+	const description = describeEquipmentItem(item)
+	const articleNumber = formatArticleNumber(item)
+	const icon = TYPE_ICONS[item.type]
 
-  return description
-    ? `${icon} ${articleNumber}. ${description}`
-    : `${icon} ${articleNumber}`
+	return description ? `${icon} ${articleNumber}. ${description}` : `${icon} ${articleNumber}`
 }

@@ -21,47 +21,43 @@ export const articleGroupForBootLength = (length: number) => Math.floor(length)
  * ski boots and of size-26 snowboard boots.
  */
 export const getFreeArticleNumbers = async (
-  client: PrismaClientOrTx,
-  equipmentItemType: EquipmentItemType,
-  articleGroup: number | null
+	client: PrismaClientOrTx,
+	equipmentItemType: EquipmentItemType,
+	articleGroup: number | null
 ): Promise<[number, ...number[]]> => {
-  const articleNumbers = await client.equipmentItem.findMany({
-    where: { type: equipmentItemType, articleGroup, retiredAt: null },
-    select: { articleNumber: true },
-    orderBy: { articleNumber: 'desc' },
-  })
+	const articleNumbers = await client.equipmentItem.findMany({
+		where: { type: equipmentItemType, articleGroup, retiredAt: null },
+		select: { articleNumber: true },
+		orderBy: { articleNumber: 'desc' },
+	})
 
-  const [highest] = articleNumbers
+	const [highest] = articleNumbers
 
-  if (!highest) return [1]
+	if (!highest) return [1]
 
-  const taken = new Set(articleNumbers.map((n) => n.articleNumber))
-  const gaps: number[] = []
+	const taken = new Set(articleNumbers.map((n) => n.articleNumber))
+	const gaps: number[] = []
 
-  for (let n = 1; n <= highest.articleNumber; n++) {
-    if (!taken.has(n)) gaps.push(n)
-  }
+	for (let n = 1; n <= highest.articleNumber; n++) {
+		if (!taken.has(n)) gaps.push(n)
+	}
 
-  // `next` is what makes the result non-empty, so the tuple type holds even
-  // when there are no gaps to reuse.
-  const next = highest.articleNumber + 1
-  const [lowestGap, ...otherGaps] = gaps
+	// `next` is what makes the result non-empty, so the tuple type holds even
+	// when there are no gaps to reuse.
+	const next = highest.articleNumber + 1
+	const [lowestGap, ...otherGaps] = gaps
 
-  return lowestGap === undefined ? [next] : [lowestGap, ...otherGaps, next]
+	return lowestGap === undefined ? [next] : [lowestGap, ...otherGaps, next]
 }
 
 export const assignLowestFreeNumber = async (
-  client: PrismaClientOrTx,
-  equipmentItemType: EquipmentItemType,
-  articleGroup: number | null
+	client: PrismaClientOrTx,
+	equipmentItemType: EquipmentItemType,
+	articleGroup: number | null
 ) => {
-  const [lowest] = await getFreeArticleNumbers(
-    client,
-    equipmentItemType,
-    articleGroup
-  )
+	const [lowest] = await getFreeArticleNumbers(client, equipmentItemType, articleGroup)
 
-  return lowest
+	return lowest
 }
 
 /**
@@ -76,7 +72,7 @@ export const assignLowestFreeNumber = async (
  * to one of the equipment tables; until then it would be a check that never runs.
  */
 const isArticleNumberConflict = (error: unknown) =>
-  error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002'
+	error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002'
 
 /**
  * The error to throw after a write that assigns an article number: a CONFLICT
@@ -89,11 +85,11 @@ const isArticleNumberConflict = (error: unknown) =>
  * the equipment mutations pass `error.message` straight into the toast.
  */
 export const asArticleNumberConflict = (error: unknown) => {
-  if (!isArticleNumberConflict(error)) return error
+	if (!isArticleNumberConflict(error)) return error
 
-  return new TRPCError({
-    code: 'CONFLICT',
-    message: 'Číslo bylo právě obsazeno, zkuste to prosím znovu.',
-    cause: error,
-  })
+	return new TRPCError({
+		code: 'CONFLICT',
+		message: 'Číslo bylo právě obsazeno, zkuste to prosím znovu.',
+		cause: error,
+	})
 }
