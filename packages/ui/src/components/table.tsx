@@ -1,7 +1,6 @@
 'use client'
 
 import { cn } from '@ski-blazek/ui/lib/utils'
-import { ArrowUpDownIcon } from 'lucide-react'
 import type * as React from 'react'
 
 function Table({ className, ...props }: React.ComponentProps<'table'>) {
@@ -58,7 +57,7 @@ function TableHead({ className, ...props }: React.ComponentProps<'th'>) {
 		<th
 			data-slot="table-head"
 			className={cn(
-				'h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]',
+				'h-12 px-3 text-left align-middle font-medium whitespace-nowrap text-foreground [&:has([role=checkbox])]:pr-0',
 				className
 			)}
 			{...props}
@@ -66,48 +65,11 @@ function TableHead({ className, ...props }: React.ComponentProps<'th'>) {
 	)
 }
 
-type TableHeadSortableProps = React.ComponentProps<'th'> & {
-	/** Pass the column's sort direction when active, or `false` when inactive. */
-	sorted?: 'asc' | 'desc' | false
-}
-
-function TableHeadSortable({
-	className,
-	children,
-	sorted = false,
-	...props
-}: TableHeadSortableProps) {
-	return (
-		<th
-			data-slot="table-head"
-			className={cn(
-				'h-10 cursor-pointer px-2 text-left align-middle font-medium whitespace-nowrap text-foreground select-none [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]',
-				className
-			)}
-			{...props}
-		>
-			<div className="flex items-center">
-				{children}
-				<ArrowUpDownIcon
-					className={cn(
-						'ml-2 size-4 shrink-0 transition-transform duration-200 text-primary',
-						sorted === 'desc' && 'rotate-180',
-						!sorted && 'text-muted-foreground'
-					)}
-				/>
-			</div>
-		</th>
-	)
-}
-
 function TableCell({ className, ...props }: React.ComponentProps<'td'>) {
 	return (
 		<td
 			data-slot="table-cell"
-			className={cn(
-				'p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]',
-				className
-			)}
+			className={cn('p-3 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0', className)}
 			{...props}
 		/>
 	)
@@ -123,14 +85,4 @@ function TableCaption({ className, ...props }: React.ComponentProps<'caption'>) 
 	)
 }
 
-export {
-	Table,
-	TableBody,
-	TableCaption,
-	TableCell,
-	TableFooter,
-	TableHead,
-	TableHeader,
-	TableHeadSortable,
-	TableRow,
-}
+export { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow }

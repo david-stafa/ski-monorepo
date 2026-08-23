@@ -1,6 +1,6 @@
 {
 	"$schema": "https://ui.shadcn.com/schema.json",
-	"style": "new-york",
+	"style": "base-luma",
 	"rsc": true,
 	"tsx": true,
 	"tailwind": {
@@ -11,10 +11,13 @@
 	},
 	"iconLibrary": "lucide",
 	"aliases": {
-		"components": "@ski-blazek-web/src/components",
-		"utils": "@ski-blazek-web/src/lib/utils",
-		"hooks": "@ski-blazek-web/src/hooks",
+		"components": "~/components",
+		"utils": "~/lib/utils",
+		"hooks": "@ski-blazek/ui/hooks",
 		"lib": "@ski-blazek/ui/lib",
 		"ui": "@ski-blazek/ui/components"
-	}
+	},
+	"rtl": false,
+	"menuColor": "default",
+	"menuAccent": "subtle"
 }
