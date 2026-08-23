@@ -4,9 +4,10 @@ packages:
 
 # Single source of truth for shared dependency versions.
 # Reference from any package.json as: "typescript": "catalog:"
-# TypeScript is pinned with ~ (patch-only)
 catalog:
-  typescript: ~6.0.3
+  # TS 7 = the native (Go) compiler. It ships no tsserver.js, so editors need
+  # the TypeScript native extension — `typescript.tsdk` does not apply.
+  typescript: ^7.0.2
   superjson: ^2.2.2
 
   # React — a second copy in the bundle breaks hooks

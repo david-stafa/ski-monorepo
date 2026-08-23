@@ -15,6 +15,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Biome (root `biome.json`) handles formatting, linting, and import sorting for the whole monorepo — there is no per-package lint config.
 
+TypeScript is **7.x — the native Go compiler** — pinned once in the `pnpm-workspace.yaml` catalog. `tsc` is used only for typechecking; nothing in the repo emits with it (the API bundles via tsup/esbuild, web via Vite) and nothing imports the TypeScript API. Note TS 7 ships no `tsserver.js`, so editors need the TypeScript native extension rather than a `typescript.tsdk` setting.
+
 ## Commands
 
 ```bash
