@@ -151,8 +151,8 @@ importers:
         specifier: ^11.15.1
         version: 11.18.0(@tanstack/react-query@5.101.4(react@19.2.8))(@trpc/client@11.18.0(@trpc/server@11.18.0(typescript@7.0.2))(typescript@7.0.2))(@trpc/server@11.18.0(typescript@7.0.2))(react@19.2.8)(typescript@7.0.2)
       axios:
-        specifier: ^1.18.0
-        version: 1.18.1(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0)
+        specifier: ^1.19.0
+        version: 1.19.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0)
       date-fns:
         specifier: ^4.4.0
         version: 4.4.0
@@ -2538,9 +2538,6 @@ packages:
     peerDependencies:
       '@types/react': ^19.2.0
 
-  '@types/react@19.2.17':
-    resolution: {integrity: sha512-MXfmqaVPEVgkBT/aY0aGCkRWWtByiYQXo3xdQ8r5RzuFrPiRn8Gar2tQdXSUQ2GKV3bkXckek89V8wQBY2Q/Aw==}
-
   '@types/react@19.2.18':
     resolution: {integrity: sha512-AnzbBERsrLKtk2XSfTbYRLjQPdy116Sty4q+T+Bp3IC4l6jNBvreVPAHmpq9qhXQM7CXZPjLVmGMw9sy+hxQ3w==}
 
@@ -2763,8 +2760,8 @@ packages:
     resolution: {integrity: sha512-NZKeq9AfyQvEeNlN0zSYAaWrmBffJh3IELMZfRpJVWgrpEbtEpnjvzqBPf+mxoI287JohRDoa+/nsfqqiZmF6g==}
     engines: {node: '>= 6.0.0'}
 
-  axios@1.18.1:
-    resolution: {integrity: sha512-3nTvFlvpn9Zu/RkHUqtc7/+al4UpRW5az71ap5zccp6e8RAYEzhMTecX8Dz1wWDYrPpUoB1HAQEGEAEvUr7S9g==}
+  axios@1.19.0:
+    resolution: {integrity: sha512-ht/iuYZXEjFxLH/Hkezgd7m6JKlHHXEUSneaDz8uZe1Gj5QZtCnpyDsckvAiEnT89OEbCLmnte4R4sn7P0EKFw==}
 
   babel-dead-code-elimination@1.0.12:
     resolution: {integrity: sha512-GERT7L2TiYcYDtYk1IpD+ASAYXjKbLTDPhBtYj7X1NuRMDTMtAx9kyBenub1Ev41lo91OHCKdmP+egTDmfQ7Ig==}
@@ -6207,10 +6204,6 @@ snapshots:
     dependencies:
       '@types/react': 19.2.18
 
-  '@types/react@19.2.17':
-    dependencies:
-      csstype: 3.2.3
-
   '@types/react@19.2.18':
     dependencies:
       csstype: 3.2.3
@@ -6290,12 +6283,12 @@ snapshots:
 
   '@visx/event@4.0.1-alpha.0':
     dependencies:
-      '@types/react': 19.2.17
+      '@types/react': 19.2.18
       '@visx/point': 4.0.1-alpha.0
 
   '@visx/grid@4.0.1-alpha.0(react@19.2.8)':
     dependencies:
-      '@types/react': 19.2.17
+      '@types/react': 19.2.18
       '@visx/curve': 4.0.1-alpha.0
       '@visx/group': 4.0.1-alpha.0(react@19.2.8)
       '@visx/point': 4.0.1-alpha.0
@@ -6306,7 +6299,7 @@ snapshots:
 
   '@visx/group@4.0.1-alpha.0(react@19.2.8)':
     dependencies:
-      '@types/react': 19.2.17
+      '@types/react': 19.2.18
       classnames: 2.5.1
       react: 19.2.8
 
@@ -6315,7 +6308,7 @@ snapshots:
   '@visx/responsive@4.0.1-alpha.0(react@19.2.8)':
     dependencies:
       '@types/lodash': 4.17.24
-      '@types/react': 19.2.17
+      '@types/react': 19.2.18
       lodash: 4.18.1
       react: 19.2.8
 
@@ -6326,7 +6319,7 @@ snapshots:
   '@visx/shape@4.0.1-alpha.0(react@19.2.8)':
     dependencies:
       '@types/lodash': 4.17.24
-      '@types/react': 19.2.17
+      '@types/react': 19.2.18
       '@visx/curve': 4.0.1-alpha.0
       '@visx/group': 4.0.1-alpha.0(react@19.2.8)
       '@visx/scale': 4.0.1-alpha.0
@@ -6404,7 +6397,7 @@ snapshots:
 
   aws-ssl-profiles@1.1.2: {}
 
-  axios@1.18.1(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0):
+  axios@1.19.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0):
     dependencies:
       follow-redirects: 1.16.0(debug@4.4.3(supports-color@7.2.0))
       form-data: 4.0.6
