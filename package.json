@@ -7,7 +7,6 @@
 	"scripts": {
 		"build": "turbo run build",
 		"dev": "turbo run dev --ui tui",
-		"lint": "turbo run lint",
 		"check-types": "turbo run check-types",
 		"format": "biome check --write .",
 		"check": "biome ci .",

@@ -15,7 +15,9 @@
           } else {
             root.classList.add(theme)
           }
-        } catch (_) {}
+        } catch (error) {
+          console.log(error)
+        }
       })()
     </script>
     <!-- Inline so first paint matches theme before globals.css loads from the JS bundle -->

@@ -13,17 +13,12 @@ updates:
     schedule:
       interval: 'weekly'
     # Tooling that has to move in lockstep across workspace packages is grouped
-    # into one PR — per-package bumps of eslint or prisma produce PRs that
+    # into one PR — per-package bumps of biome or prisma produce PRs that
     # cannot be merged on their own.
     groups:
-      eslint:
+      biome:
         patterns:
-          - 'eslint'
-          - '@eslint/*'
-          - 'eslint-plugin-*'
-          - 'eslint-config-*'
-          - 'typescript-eslint'
-          - '@typescript-eslint/*'
+          - '@biomejs/biome'
       prisma:
         patterns:
           - 'prisma'

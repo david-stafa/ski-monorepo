@@ -11,7 +11,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `packages/database` — Prisma client + schema (`@ski-blazek/db`)
 - `packages/auth` — better-auth server + client factories (`@ski-blazek/auth`)
 - `packages/ui` — shared shadcn/ui components with Tailwind v4 (`@ski-blazek/ui`)
-- `packages/eslint-config`, `packages/typescript-config`, `packages/tailwind-config` — shared tooling
+- `packages/typescript-config`, `packages/tailwind-config` — shared tooling
+
+Biome (root `biome.json`) handles formatting, linting, and import sorting for the whole monorepo — there is no per-package lint config.
 
 ## Commands
 
@@ -19,7 +21,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 # Root (runs all apps via Turbo)
 pnpm dev          # start all dev servers (TUI mode)
 pnpm build        # build everything
-pnpm lint         # lint all packages
+pnpm check        # biome ci — format + lint + import sort, no writes
+pnpm format       # biome check --write — autofix
 pnpm check-types  # typecheck all packages
 pnpm format       # format all packages
 

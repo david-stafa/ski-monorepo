@@ -6,15 +6,12 @@
 			"dependsOn": ["^build", "^db:generate"],
 			"outputs": ["dist/**", "build/**"],
 			"inputs": ["src/**", "generated/**", "package.json", "tsconfig.json"],
-			"env": ["DATABASE_URL"]
+			"env": ["DATABASE_URL", "PORT", "API_URL", "WEB_URL"]
 		},
 		"dev": {
 			"cache": false,
-			"persistent": true
-		},
-		"lint": {
-			"dependsOn": ["^lint"],
-			"outputs": []
+			"persistent": true,
+			"env": ["DATABASE_URL", "PORT", "API_URL", "WEB_URL"]
 		},
 		"check-types": {
 			"dependsOn": ["^check-types"]

@@ -25,7 +25,18 @@
 		"expand": "auto",
 		"useEditorconfig": true
 	},
-	"linter": { "enabled": true, "rules": { "preset": "recommended" } },
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"preset": "recommended",
+			"correctness": {
+				"useHookAtTopLevel": "error"
+			},
+			"suspicious": {
+				"noUndeclaredEnvVars": "warn"
+			}
+		}
+	},
 	"javascript": {
 		"formatter": {
 			"jsxQuoteStyle": "double",
@@ -39,19 +50,61 @@
 			"bracketSpacing": true
 		}
 	},
+	"css": {
+		"parser": { "tailwindDirectives": true }
+	},
 	"html": {
-		"formatter": {
-			"indentScriptAndStyle": false,
-			"selfCloseVoidElements": "always"
-		}
+		"formatter": { "indentScriptAndStyle": false, "selfCloseVoidElements": "always" }
 	},
 	"assist": {
 		"enabled": true,
 		"actions": { "source": { "organizeImports": "on" } }
 	},
-	"css": {
-		"parser": {
-			"tailwindDirectives": true
+	"overrides": [
+		{
+			"includes": ["apps/api/**"],
+			"linter": {
+				"rules": {
+					"style": {
+						"noRestrictedImports": {
+							"level": "error",
+							"options": {
+								"patterns": [
+									{
+										"group": ["~/**"],
+										"message": "Use a relative import instead of the \"~/\" alias in apps/api. The web app resolves AppRouter from api source using its own tsconfig, which turns \"~/\" imports into `any` and breaks tRPC input types."
+									}
+								]
+							}
+						}
+					}
+				}
+			}
+		},
+		{
+			"includes": ["apps/web/**"],
+			"linter": {
+				"rules": {
+					"style": {
+						"noRestrictedImports": {
+							"level": "error",
+							"options": {
+								"paths": {
+									"@ski-blazek/db": "Use `@ski-blazek/db/browser` from the web app — the root export pulls in Prisma runtime."
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		{
+			"includes": ["apps/web/**", "packages/ui/**"],
+			"linter": {
+				"rules": {
+					"correctness": { "noChildrenProp": "off" }
+				}
+			}
 		}
-	}
+	]
 }
