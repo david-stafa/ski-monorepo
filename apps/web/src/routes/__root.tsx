@@ -1,5 +1,5 @@
-import { Toaster } from '@ski-blazek/ui/components/sonner'
 import { ThemeProvider } from '@ski-blazek/ui/components/theme-provider'
+import { Toaster } from '@ski-blazek/ui/components/toast'
 import { TooltipProvider } from '@ski-blazek/ui/components/tooltip'
 import { createRootRoute, HeadContent, Outlet } from '@tanstack/react-router'
 import { authClient } from '~/lib/auth'
@@ -22,10 +22,9 @@ export const Route = createRootRoute({
 function RootLayout() {
 	return (
 		<Wrapper>
-			<div>
-				<Toaster />
+			<Toaster>
 				<Outlet />
-			</div>
+			</Toaster>
 		</Wrapper>
 	)
 }
