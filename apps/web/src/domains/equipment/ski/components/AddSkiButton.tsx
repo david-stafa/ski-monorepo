@@ -15,11 +15,9 @@ export const AddSkiButton = () => {
 
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
-			<DialogTrigger asChild>
-				<Button size="sm">
-					<PlusIcon />
-					Přidat lyže
-				</Button>
+			<DialogTrigger render={<Button size="sm" />}>
+				<PlusIcon />
+				Přidat lyže
 			</DialogTrigger>
 			<DialogContent>
 				<DialogHeader>

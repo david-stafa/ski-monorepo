@@ -15,11 +15,9 @@ export const AddHelmetButton = () => {
 
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
-			<DialogTrigger asChild>
-				<Button size="sm">
-					<PlusIcon />
-					Přidat helmu
-				</Button>
+			<DialogTrigger render={<Button size="sm" />}>
+				<PlusIcon />
+				Přidat helmu
 			</DialogTrigger>
 			<DialogContent>
 				<DialogHeader>

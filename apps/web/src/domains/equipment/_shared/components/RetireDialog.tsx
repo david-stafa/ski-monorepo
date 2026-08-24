@@ -43,9 +43,7 @@ export const RetireDialog = ({
 				</DialogHeader>
 				{children}
 				<DialogFooter>
-					<DialogClose asChild>
-						<Button variant="outline">Zrušit</Button>
-					</DialogClose>
+					<DialogClose render={<Button variant="outline" />}>Zrušit</DialogClose>
 					<Button variant="warning" onClick={handleRetire}>
 						<ArchiveIcon className="size-4" />
 						Archivovat

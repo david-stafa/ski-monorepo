@@ -43,16 +43,18 @@ export const DateRangeField = withFieldGroup({
 											}
 										}}
 									>
-										<PopoverTrigger asChild>
-											<Button
-												type="button"
-												variant="outline"
-												id={startField.name}
-												className="w-fit justify-start px-2.5 font-normal"
-											>
-												<CalendarIcon />
-												{formatDate(from)} – {formatDate(to)}
-											</Button>
+										<PopoverTrigger
+											render={
+												<Button
+													type="button"
+													variant="outline"
+													id={startField.name}
+													className="w-fit justify-start px-2.5 font-normal"
+												/>
+											}
+										>
+											<CalendarIcon />
+											{formatDate(from)} – {formatDate(to)}
 										</PopoverTrigger>
 										<PopoverContent className="w-auto p-0" align="start">
 											<Calendar

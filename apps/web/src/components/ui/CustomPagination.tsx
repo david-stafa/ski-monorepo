@@ -37,45 +37,50 @@ export const CustomPagination = ({
 			<PaginationContent>
 				{/* Previous page */}
 				<PaginationItem>
-					<PaginationPrevious asChild>
-						<Link
-							to="."
-							search={(prev) => ({
-								...prev,
-								page: currentPage - 1,
-								itemsPerPage,
-							})}
-							disabled={currentPage === 1}
-							className={cn(currentPage === 1 && 'invisible')}
-						/>
-					</PaginationPrevious>
+					<PaginationPrevious
+						render={
+							<Link
+								to="."
+								search={(prev) => ({
+									...prev,
+									page: currentPage - 1,
+									itemsPerPage,
+								})}
+								disabled={currentPage === 1}
+								className={cn(currentPage === 1 && 'invisible')}
+							/>
+						}
+					/>
 				</PaginationItem>
 
 				{/* Pages */}
 				{pages.map((page) => (
 					<PaginationItem key={page}>
-						<PaginationLink asChild isActive={currentPage === page}>
-							<Link to="." search={(prev) => ({ ...prev, page, itemsPerPage })}>
-								{page}
-							</Link>
+						<PaginationLink
+							isActive={currentPage === page}
+							render={<Link to="." search={(prev) => ({ ...prev, page, itemsPerPage })} />}
+						>
+							{page}
 						</PaginationLink>
 					</PaginationItem>
 				))}
 
 				{/* Next page */}
 				<PaginationItem>
-					<PaginationNext asChild>
-						<Link
-							to="."
-							search={(prev) => ({
-								...prev,
-								page: currentPage + 1,
-								itemsPerPage,
-							})}
-							disabled={currentPage === totalPages}
-							className={cn(currentPage === totalPages && 'invisible')}
-						/>
-					</PaginationNext>
+					<PaginationNext
+						render={
+							<Link
+								to="."
+								search={(prev) => ({
+									...prev,
+									page: currentPage + 1,
+									itemsPerPage,
+								})}
+								disabled={currentPage === totalPages}
+								className={cn(currentPage === totalPages && 'invisible')}
+							/>
+						}
+					/>
 				</PaginationItem>
 			</PaginationContent>
 		</Pagination>
@@ -90,7 +95,13 @@ export const CustomItemPerPageSelect = ({
 	itemsPerPage: number
 }) => {
 	return (
-		<Select value={String(itemsPerPage)} onValueChange={onValueChange}>
+		<Select
+			value={String(itemsPerPage)}
+			// Base UI widens the value to `string | null`; this Select is never cleared.
+			onValueChange={(value) => {
+				if (value !== null) onValueChange(value)
+			}}
+		>
 			<SelectTrigger className="ml-auto">
 				<SelectValue />
 			</SelectTrigger>

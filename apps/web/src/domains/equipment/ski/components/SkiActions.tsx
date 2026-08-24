@@ -34,10 +34,8 @@ export const SkiActions = ({ defaultValues }: SkiActionsProps) => {
 	return (
 		<>
 			<DropdownMenu>
-				<DropdownMenuTrigger asChild>
-					<Button variant="default" size="icon-sm">
-						<EllipsisVerticalIcon />
-					</Button>
+				<DropdownMenuTrigger render={<Button variant="default" size="icon-sm" />}>
+					<EllipsisVerticalIcon />
 				</DropdownMenuTrigger>
 				<DropdownMenuContent>
 					{/* EDIT */}

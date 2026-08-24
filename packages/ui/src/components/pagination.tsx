@@ -2,12 +2,11 @@ import { Button } from '@ski-blazek/ui/components/button'
 
 import { cn } from '@ski-blazek/ui/lib/utils'
 import { ChevronLeftIcon, ChevronRightIcon, MoreHorizontalIcon } from 'lucide-react'
-import type * as React from 'react'
+import * as React from 'react'
 
 function Pagination({ className, ...props }: React.ComponentProps<'nav'>) {
 	return (
 		<nav
-			role="navigation"
 			aria-label="pagination"
 			data-slot="pagination"
 			className={cn('mx-auto flex w-full justify-center', className)}
@@ -32,24 +31,37 @@ function PaginationItem({ ...props }: React.ComponentProps<'li'>) {
 
 type PaginationLinkProps = {
 	isActive?: boolean
+	/** Swap the rendered anchor for another element, e.g. a router `Link`. */
+	render?: React.ReactElement<Record<string, unknown>>
 } & Pick<React.ComponentProps<typeof Button>, 'size'> &
 	React.ComponentProps<'a'>
 
-function PaginationLink({ className, isActive, size = 'icon', ...props }: PaginationLinkProps) {
+function PaginationLink({
+	className,
+	isActive,
+	size = 'icon',
+	render,
+	...props
+}: PaginationLinkProps) {
+	const anchorProps = {
+		'aria-current': isActive ? ('page' as const) : undefined,
+		'data-slot': 'pagination-link',
+		'data-active': isActive,
+		...props,
+	}
+
+	// href and children arrive via anchorProps, which Biome cannot see.
+	// biome-ignore lint/a11y/useValidAnchor: href comes from anchorProps.
+	// biome-ignore lint/a11y/useAnchorContent: content comes from anchorProps.
+	const element = render ?? <a />
+
 	return (
 		<Button
 			variant={isActive ? 'outline' : 'ghost'}
 			size={size}
 			className={cn(className)}
 			nativeButton={false}
-			render={
-				<a
-					aria-current={isActive ? 'page' : undefined}
-					data-slot="pagination-link"
-					data-active={isActive}
-					{...props}
-				/>
-			}
+			render={React.cloneElement(element, anchorProps)}
 		/>
 	)
 }

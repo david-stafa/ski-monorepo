@@ -9,12 +9,12 @@ type ButtonLinkProps = LinkProps &
 
 /**
  * A link that looks like a shadcn Button. Uses TanStack Router's Link with
- * Button styles via asChild — valid HTML (anchor, not button inside anchor).
+ * Button styles via Base UI's render prop — valid HTML (anchor, not button inside anchor).
  */
 export function ButtonLink({ variant, size, className, children, ...linkProps }: ButtonLinkProps) {
 	return (
-		<Button asChild variant={variant} size={size} className={className}>
-			<Link {...linkProps}>{children}</Link>
+		<Button variant={variant} size={size} className={className} render={<Link {...linkProps} />}>
+			{children}
 		</Button>
 	)
 }

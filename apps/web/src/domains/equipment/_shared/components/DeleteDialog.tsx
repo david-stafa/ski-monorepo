@@ -43,9 +43,7 @@ export const DeleteDialog = ({
 				</DialogHeader>
 				{children}
 				<DialogFooter>
-					<DialogClose asChild>
-						<Button variant="outline">Zrušit</Button>
-					</DialogClose>
+					<DialogClose render={<Button variant="outline" />}>Zrušit</DialogClose>
 					<Button variant="destructive" onClick={handleDelete}>
 						<Trash2Icon className="size-4" />
 						Smazat

@@ -181,4 +181,5 @@ function CalendarDayButton({
 	)
 }
 
+export type { DateRange } from 'react-day-picker'
 export { Calendar, CalendarDayButton }

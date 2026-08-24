@@ -5,6 +5,7 @@ import type * as React from 'react'
 
 function Label({ className, ...props }: React.ComponentProps<'label'>) {
 	return (
+		// biome-ignore lint/a11y/noLabelWithoutControl: generic wrapper; consumers supply htmlFor or nest the control.
 		<label
 			data-slot="label"
 			className={cn(

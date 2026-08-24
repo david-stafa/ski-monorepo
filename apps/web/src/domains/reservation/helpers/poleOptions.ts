@@ -1,8 +1,4 @@
 export const poleOptions = [
-	{ value: 50, label: '50 cm' },
-	{ value: 55, label: '55 cm' },
-	{ value: 60, label: '60 cm' },
-	{ value: 65, label: '65 cm' },
 	{ value: 70, label: '70 cm' },
 	{ value: 75, label: '75 cm' },
 	{ value: 80, label: '80 cm' },
@@ -17,5 +13,4 @@ export const poleOptions = [
 	{ value: 125, label: '125 cm' },
 	{ value: 130, label: '130 cm' },
 	{ value: 135, label: '135 cm' },
-	{ value: 140, label: '140 cm' },
 ]

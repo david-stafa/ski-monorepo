@@ -53,9 +53,7 @@ export const CancelReservationDialog = ({
 				</div>
 
 				<DialogFooter>
-					<DialogClose asChild>
-						<Button variant="outline">Zpět</Button>
-					</DialogClose>
+					<DialogClose render={<Button variant="outline" />}>Zpět</DialogClose>
 					<Button variant="destructive" onClick={handleCancel}>
 						<BanIcon className="size-4" />
 						Zrušit rezervaci

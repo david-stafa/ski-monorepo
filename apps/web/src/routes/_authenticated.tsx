@@ -64,11 +64,9 @@ export function AppSidebar() {
 			<SidebarHeader>
 				<SidebarMenu>
 					<SidebarMenuItem>
-						<SidebarMenuButton tooltip="Ski Blazek" asChild>
-							<Link to="/dashboard">
-								<Mountain />
-								<span>Ski Blazek</span>
-							</Link>
+						<SidebarMenuButton tooltip="Ski Blazek" render={<Link to="/dashboard" />}>
+							<Mountain />
+							<span>Ski Blazek</span>
 						</SidebarMenuButton>
 					</SidebarMenuItem>
 				</SidebarMenu>
@@ -79,20 +77,24 @@ export function AppSidebar() {
 					<SidebarGroupContent>
 						<SidebarMenu>
 							<SidebarMenuSubItem>
-								<Button asChild className="w-full" variant="default" size="sm">
-									<Link to="/reservation/create">
-										<PlusCircleIcon />
-										<span>Vytvořit rezervaci</span>
-									</Link>
+								<Button
+									className="w-full mb-1"
+									variant="default"
+									size="default"
+									render={<Link to="/reservation/create" />}
+								>
+									<PlusCircleIcon />
+									<span>Vytvořit rezervaci</span>
 								</Button>
 							</SidebarMenuSubItem>
 							<Collapsible defaultOpen className="group/collapsible">
 								<SidebarMenuItem>
-									<SidebarMenuButton tooltip="Rezervace" asChild>
-										<Link to="/reservation" className="w-full">
-											<CalendarDays />
-											<span>Rezervace</span>
-										</Link>
+									<SidebarMenuButton
+										tooltip="Rezervace"
+										render={<Link to="/reservation" className="w-full" />}
+									>
+										<CalendarDays />
+										<span>Rezervace</span>
 									</SidebarMenuButton>
 									{/* <CollapsibleTrigger asChild>
                     <SidebarMenuAction className="transition-transform data-[state=open]:rotate-180">
@@ -103,19 +105,15 @@ export function AppSidebar() {
 									<CollapsibleContent>
 										<SidebarMenuSub>
 											<SidebarMenuSubItem>
-												<SidebarMenuSubButton asChild>
-													<Link to="/reservation">
-														<ListIcon />
-														<span>Přehled</span>
-													</Link>
+												<SidebarMenuSubButton render={<Link to="/reservation" />}>
+													<ListIcon />
+													<span>Přehled</span>
 												</SidebarMenuSubButton>
 											</SidebarMenuSubItem>
 											<SidebarMenuSubItem>
-												<SidebarMenuSubButton asChild>
-													<Link to="/reservation/pick-up">
-														<PackageOpenIcon />
-														<span>Výdej</span>
-													</Link>
+												<SidebarMenuSubButton render={<Link to="/reservation/pick-up" />}>
+													<PackageOpenIcon />
+													<span>Výdej</span>
 												</SidebarMenuSubButton>
 											</SidebarMenuSubItem>
 										</SidebarMenuSub>
@@ -125,11 +123,12 @@ export function AppSidebar() {
 
 							<Collapsible defaultOpen className="group/collapsible">
 								<SidebarMenuItem>
-									<SidebarMenuButton tooltip="Vybavení" asChild>
-										<Link to="/equipment" className="w-full">
-											<Package />
-											<span>Vybavení</span>
-										</Link>
+									<SidebarMenuButton
+										tooltip="Vybavení"
+										render={<Link to="/equipment" className="w-full" />}
+									>
+										<Package />
+										<span>Vybavení</span>
 									</SidebarMenuButton>
 									{/* <CollapsibleTrigger asChild>
                     <SidebarMenuAction className="transition-transform data-[state=open]:rotate-180">
@@ -140,43 +139,33 @@ export function AppSidebar() {
 									<CollapsibleContent>
 										<SidebarMenuSub>
 											<SidebarMenuSubItem>
-												<SidebarMenuSubButton asChild>
-													<Link to="/equipment/ski">
-														<MountainSnowIcon />
-														<span>Lyže</span>
-													</Link>
+												<SidebarMenuSubButton render={<Link to="/equipment/ski" />}>
+													<MountainSnowIcon />
+													<span>Lyže</span>
 												</SidebarMenuSubButton>
 											</SidebarMenuSubItem>
 											<SidebarMenuSubItem>
-												<SidebarMenuSubButton asChild>
-													<Link to="/equipment/ski-boot">
-														<Footprints />
-														<span>Lyžařské boty</span>
-													</Link>
+												<SidebarMenuSubButton render={<Link to="/equipment/ski-boot" />}>
+													<Footprints />
+													<span>Lyžařské boty</span>
 												</SidebarMenuSubButton>
 											</SidebarMenuSubItem>
 											<SidebarMenuSubItem>
-												<SidebarMenuSubButton asChild>
-													<Link to="/equipment/snowboard">
-														<Snowflake />
-														<span>Snowboardy</span>
-													</Link>
+												<SidebarMenuSubButton render={<Link to="/equipment/snowboard" />}>
+													<Snowflake />
+													<span>Snowboardy</span>
 												</SidebarMenuSubButton>
 											</SidebarMenuSubItem>
 											<SidebarMenuSubItem>
-												<SidebarMenuSubButton asChild>
-													<Link to="/equipment/snowboard-boot">
-														<FootprintsIcon />
-														<span>Snowboardové boty</span>
-													</Link>
+												<SidebarMenuSubButton render={<Link to="/equipment/snowboard-boot" />}>
+													<FootprintsIcon />
+													<span>Snowboardové boty</span>
 												</SidebarMenuSubButton>
 											</SidebarMenuSubItem>
 											<SidebarMenuSubItem>
-												<SidebarMenuSubButton asChild>
-													<Link to="/equipment/helmet">
-														<HardHat />
-														<span>Helmy</span>
-													</Link>
+												<SidebarMenuSubButton render={<Link to="/equipment/helmet" />}>
+													<HardHat />
+													<span>Helmy</span>
 												</SidebarMenuSubButton>
 											</SidebarMenuSubItem>
 										</SidebarMenuSub>
