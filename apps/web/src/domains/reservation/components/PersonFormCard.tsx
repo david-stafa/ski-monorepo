@@ -1,6 +1,7 @@
 import { Gender } from '@ski-blazek/db/browser'
 import { Button } from '@ski-blazek/ui/components/button'
 import { TypographyH4 } from '@ski-blazek/ui/components/typography'
+// import { useSelector } from '@tanstack/react-form'
 import { TrashIcon, UserIcon } from 'lucide-react'
 import { withForm } from '~/components/form/SharedFormFields'
 import { initialValues } from '../helpers/initialValues'
@@ -12,6 +13,8 @@ export const PersonFormCard = withForm({
 	defaultValues: initialValues,
 	props: { index: 0, onRemove: () => {} },
 	render: function PersonFormCard({ form, index, onRemove }) {
+		// const firstName =
+		// 	useSelector(form.store, (state) => state.values.people[index]?.name) || `Osoba ${index + 1}`
 		return (
 			<form.Subscribe
 				selector={(s) => ({
@@ -27,7 +30,12 @@ export const PersonFormCard = withForm({
 									className="bg-primary text-primary-foreground rounded-full p-1.5"
 									size={30}
 								/>
-								<TypographyH4>Osoba {index + 1}</TypographyH4>
+								<form.Subscribe
+									selector={(state) => state.values.people[index]?.name}
+									children={(firstName) => (
+										<TypographyH4>{firstName || `Osoba ${index + 1}`}</TypographyH4>
+									)}
+								/>
 							</div>
 							<Button
 								size={'icon-sm'}
