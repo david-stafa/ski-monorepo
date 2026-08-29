@@ -8,8 +8,8 @@ type PrismaClientOrTx = Prisma.TransactionClient
 /**
  * Which sticker pool a boot belongs to. Half-size boots are stickered into the
  * whole size below — a 26.5 shelves with the 26s — so the pool is the floor of
- * the length, not the length itself. Inert today, since `length` is an `Int`
- * and a half size can't be recorded yet, but it is what keeps the pool a
+ * the length, not the length itself. Live now that the boot `length` columns are
+ * `Float`: a 26.5 boot gets a `26.x` sticker, which is what keeps the pool a
  * labelling decision rather than a measurement.
  */
 export const articleGroupForBootLength = (length: number) => Math.floor(length)
