@@ -34,7 +34,10 @@ model Snowboard {
 
 model Helmet {
   id                    String        @id @default(cuid(2))
-  name                  String
+  brand                 String
+  /// Helmets are commonly stocked as a brand and a colour with no separate
+  /// model on the shell, so unlike the other four types this one is optional.
+  model                 String?
   size                  String
   color                 String
   description           String?

@@ -5,6 +5,7 @@ import {
 import { useAppForm } from '~/components/form/SharedFormFields'
 import { genderOptions } from '../../_shared/helpers/genderOptions'
 import type { SnowboardBootListItem } from '../snowboardBoot.types'
+import { snowboardBootBrandOptions, snowboardBootLengthOptions } from '../snowboardBootOptions'
 import { useCreateSnowboardBoot, useUpdateSnowboardBoot } from '../snowboardBootQueries'
 
 type FormType = CreateSnowboardBootInput
@@ -21,8 +22,8 @@ export const SnowboardBootForm = ({ close, defaultValues }: SnowboardBootFormPro
 		brand: defaultValues?.brand ?? '',
 		model: defaultValues?.model ?? '',
 		length: defaultValues?.length ?? 0,
-		gender: defaultValues?.gender ?? null,
 		isBoa: defaultValues?.isBoa ?? false,
+		gender: defaultValues?.gender ?? null,
 	}
 
 	const defaultMeta: FormMeta = {
@@ -69,11 +70,29 @@ export const SnowboardBootForm = ({ close, defaultValues }: SnowboardBootFormPro
 			}}
 			className="flex flex-col gap-2"
 		>
-			<form.AppField name="brand" children={(field) => <field.TextField label="Značka" />} />
+			<form.AppField
+				name="brand"
+				children={(field) => (
+					<field.CreatableComboboxField
+						label="Značka"
+						options={snowboardBootBrandOptions}
+						placeholder="Vyberte značku"
+					/>
+				)}
+			/>
 
 			<form.AppField name="model" children={(field) => <field.TextField label="Model" />} />
 
-			<form.AppField name="length" children={(field) => <field.NumberField label="Délka" />} />
+			<form.AppField
+				name="length"
+				children={(field) => (
+					<field.NumberComboboxField
+						label="Délka"
+						options={snowboardBootLengthOptions}
+						placeholder="Vyberte velikost"
+					/>
+				)}
+			/>
 
 			<form.AppField
 				name="gender"
@@ -103,7 +122,7 @@ export const SnowboardBootForm = ({ close, defaultValues }: SnowboardBootFormPro
 						/>
 					)}
 					<form.SubscribeButton
-						label={isEdit ? 'Uložit změny' : 'Vytvořit snowboardovou botu'}
+						label={isEdit ? 'Uložit změny' : 'Vytvoři botu'}
 						onClick={() => form.handleSubmit({ submitAction: 'close' })}
 					/>
 				</form.AppForm>

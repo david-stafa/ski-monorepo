@@ -2,6 +2,7 @@ import { type CreateSkiBootInput, createSkiBootInputSchema } from '@ski-blazek/a
 import { useAppForm } from '~/components/form/SharedFormFields'
 import { genderOptions } from '../../_shared/helpers/genderOptions'
 import type { SkiBootListItem } from '../skiBoot.types'
+import { skiBootBrandOptions, skiBootLengthOptions } from '../skiBootOptions'
 import { useCreateSkiBoot, useUpdateSkiBoot } from '../skiBootQueries'
 
 type FormType = CreateSkiBootInput
@@ -62,11 +63,29 @@ export const SkiBootForm = ({ close, defaultValues }: SkiBootFormProps) => {
 			}}
 			className="flex flex-col gap-2"
 		>
-			<form.AppField name="brand" children={(field) => <field.TextField label="Značka" />} />
+			<form.AppField
+				name="brand"
+				children={(field) => (
+					<field.CreatableComboboxField
+						label="Značka"
+						options={skiBootBrandOptions}
+						placeholder="Vyberte značku"
+					/>
+				)}
+			/>
 
 			<form.AppField name="model" children={(field) => <field.TextField label="Model" />} />
 
-			<form.AppField name="length" children={(field) => <field.NumberField label="Délka" />} />
+			<form.AppField
+				name="length"
+				children={(field) => (
+					<field.NumberComboboxField
+						label="Délka"
+						options={skiBootLengthOptions}
+						placeholder="Vyberte velikost"
+					/>
+				)}
+			/>
 
 			<form.AppField
 				name="gender"

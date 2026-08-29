@@ -4,7 +4,8 @@ import { paginationSchema } from './pagination'
 
 /** create = the editable fields. Single home for validation rules. */
 export const createHelmetInputSchema = z.object({
-	name: z.string().min(2),
+	brand: z.string().min(2),
+	model: z.string().nullable(),
 	size: z.string(),
 	color: z.string(),
 	description: z.string().nullable(),
@@ -23,8 +24,8 @@ export type UpdateHelmetInput = z.infer<typeof updateHelmetInputSchema>
 export const getHelmetInputSchema = paginationSchema.extend({
 	search: z.string().optional(),
 	orderBy: z
-		.enum(['articleNumber', 'name', 'size', 'color', 'withIntegratedGoggles', 'gender'])
-		.default('name'),
+		.enum(['articleNumber', 'brand', 'model', 'size', 'color', 'withIntegratedGoggles', 'gender'])
+		.default('brand'),
 	orderDirection: z.enum(['asc', 'desc']).default('asc'),
 })
 export type GetHelmetInput = z.infer<typeof getHelmetInputSchema>

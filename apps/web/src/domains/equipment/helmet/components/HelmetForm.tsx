@@ -2,6 +2,7 @@ import { type CreateHelmetInput, createHelmetInputSchema } from '@ski-blazek/api
 import { useAppForm } from '~/components/form/SharedFormFields'
 import { genderOptions } from '../../_shared/helpers/genderOptions'
 import type { HelmetListItem } from '../helmet.types'
+import { helmetBrandOptions, helmetColorOptions } from '../helmetOptions'
 import { useCreateHelmet, useUpdateHelmet } from '../helmetQueries'
 
 type FormType = CreateHelmetInput
@@ -15,7 +16,8 @@ type HelmetFormProps = {
 export const HelmetForm = ({ close, defaultValues }: HelmetFormProps) => {
 	const isEdit = !!defaultValues
 	const initialValues: FormType = {
-		name: defaultValues?.name ?? '',
+		brand: defaultValues?.brand ?? '',
+		model: defaultValues?.model ?? null,
 		size: defaultValues?.size ?? '',
 		color: defaultValues?.color ?? '',
 		description: defaultValues?.description ?? '',
@@ -64,11 +66,31 @@ export const HelmetForm = ({ close, defaultValues }: HelmetFormProps) => {
 			}}
 			className="flex flex-col gap-2"
 		>
-			<form.AppField name="name" children={(field) => <field.TextField label="Název" />} />
+			<form.AppField
+				name="brand"
+				children={(field) => (
+					<field.CreatableComboboxField
+						label="Značka"
+						options={helmetBrandOptions}
+						placeholder="Vyberte značku"
+					/>
+				)}
+			/>
+
+			<form.AppField name="model" children={(field) => <field.TextField label="Model" />} />
 
 			<form.AppField name="size" children={(field) => <field.TextField label="Velikost" />} />
 
-			<form.AppField name="color" children={(field) => <field.TextField label="Barva" />} />
+			<form.AppField
+				name="color"
+				children={(field) => (
+					<field.CreatableComboboxField
+						label="Barva"
+						options={helmetColorOptions}
+						placeholder="Vyberte barvu"
+					/>
+				)}
+			/>
 
 			<form.AppField name="description" children={(field) => <field.TextField label="Popis" />} />
 

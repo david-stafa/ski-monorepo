@@ -2,6 +2,7 @@ import { type CreateSnowboardInput, createSnowboardInputSchema } from '@ski-blaz
 import { useAppForm } from '~/components/form/SharedFormFields'
 import { genderOptions } from '../../_shared/helpers/genderOptions'
 import type { SnowboardListItem } from '../snowboard.types'
+import { snowboardBrandOptions, snowboardLengthOptions } from '../snowboardOptions'
 import { useCreateSnowboard, useUpdateSnowboard } from '../snowboardQueries'
 
 type FormType = CreateSnowboardInput
@@ -62,11 +63,30 @@ export const SnowboardForm = ({ close, defaultValues }: SnowboardFormProps) => {
 			}}
 			className="flex flex-col gap-2"
 		>
-			<form.AppField name="brand" children={(field) => <field.TextField label="Značka" />} />
+			<form.AppField
+				name="brand"
+				children={(field) => (
+					<field.CreatableComboboxField
+						label="Značka"
+						options={snowboardBrandOptions}
+						placeholder="Vyberte značku"
+					/>
+				)}
+			/>
 
 			<form.AppField name="model" children={(field) => <field.TextField label="Model" />} />
 
-			<form.AppField name="length" children={(field) => <field.NumberField label="Délka" />} />
+			<form.AppField
+				name="length"
+				children={(field) => (
+					<field.CreatableNumberComboboxField
+						label="Délka"
+						options={snowboardLengthOptions}
+						unit="cm"
+						placeholder="Vyberte délku"
+					/>
+				)}
+			/>
 
 			<form.AppField
 				name="gender"
