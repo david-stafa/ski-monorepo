@@ -18,10 +18,10 @@ export default defineConfig(({ mode }) => {
 		// need to resolve for ~ defined in tsconfig.app.json
 		resolve: {
 			alias: {
-				'~': path.resolve(__dirname, './src'),
+				'~': path.resolve(import.meta.dirname, './src'),
 			},
 		},
-		envDir: path.resolve(__dirname, '../..'),
+		envDir: path.resolve(import.meta.dirname, '../..'),
 		server: {
 			port: env.APP_PORT ? Number(env.APP_PORT) : 5174,
 		},
