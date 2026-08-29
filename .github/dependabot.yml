@@ -6,9 +6,13 @@
 version: 2
 updates:
   - package-ecosystem: 'npm'
+    # Root only. pnpm resolves every workspace member from pnpm-workspace.yaml,
+    # so '/' already covers apps/* and packages/* — listing those globs as well
+    # made Dependabot scan each package twice and open duplicate PRs per bump.
+    # Root is also the only entry that sees the `catalog:` block and the root
+    # devDependencies, so dropping it would leave those unmonitored.
     directories:
-      - '/apps/*'
-      - '/packages/*'
+      - '/'
     schedule:
       interval: 'weekly'
     # Tooling that has to move in lockstep across workspace packages is grouped
