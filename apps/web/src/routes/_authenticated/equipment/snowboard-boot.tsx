@@ -15,6 +15,7 @@ import { CustomItemPerPageSelect, CustomPagination } from '~/components/ui/Custo
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
 import { formatArticleNumber } from '~/domains/equipment/_shared/helpers/formatArticleNumber'
+import { genderLabel } from '~/domains/equipment/_shared/helpers/genderOptions'
 import { AddSnowboardBootButton } from '~/domains/equipment/snowboardBoot/components/AddSnowboardBootButton'
 import { SnowboardBootActions } from '~/domains/equipment/snowboardBoot/components/SnowboardBootActions'
 import { useFilters } from '~/hooks/useFilter'
@@ -125,12 +126,18 @@ function RouteComponent() {
 						>
 							BOA systém
 						</TableHeadSortable>
+						<TableHeadSortable
+							sorted={orderBy === 'gender' ? orderDirection : false}
+							onClick={() => handleFilterClick('gender')}
+						>
+							Pohlaví
+						</TableHeadSortable>
 					</TableRow>
 				</TableHeader>
 				<TableBody>
 					{data.snowboardBoots.length === 0 ? (
 						<TableRow>
-							<TableCell colSpan={6} className="h-50 text-center">
+							<TableCell colSpan={7} className="h-50 text-center">
 								Žádné snowboardové boty nebyly nalezeny.
 							</TableCell>
 						</TableRow>
@@ -145,6 +152,7 @@ function RouteComponent() {
 								<TableCell>{item.model}</TableCell>
 								<TableCell>{item.length}</TableCell>
 								<TableCell>{item.isBoa ? 'Ano' : 'Ne'}</TableCell>
+								<TableCell>{genderLabel(item.gender)}</TableCell>
 							</TableRow>
 						))
 					)}

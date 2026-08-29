@@ -15,6 +15,7 @@ import { CustomItemPerPageSelect, CustomPagination } from '~/components/ui/Custo
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
 import { formatArticleNumber } from '~/domains/equipment/_shared/helpers/formatArticleNumber'
+import { genderLabel } from '~/domains/equipment/_shared/helpers/genderOptions'
 import { AddSnowboardButton } from '~/domains/equipment/snowboard/components/AddSnowboardButton'
 import { SnowboardActions } from '~/domains/equipment/snowboard/components/SnowboardActions'
 import { useFilters } from '~/hooks/useFilter'
@@ -119,12 +120,18 @@ function RouteComponent() {
 						>
 							Délka
 						</TableHeadSortable>
+						<TableHeadSortable
+							sorted={orderBy === 'gender' ? orderDirection : false}
+							onClick={() => handleFilterClick('gender')}
+						>
+							Pohlaví
+						</TableHeadSortable>
 					</TableRow>
 				</TableHeader>
 				<TableBody>
 					{data.snowboards.length === 0 ? (
 						<TableRow>
-							<TableCell colSpan={5} className="h-50 text-center">
+							<TableCell colSpan={6} className="h-50 text-center">
 								Žádné snowboardy nebyly nalezeny.
 							</TableCell>
 						</TableRow>
@@ -138,6 +145,7 @@ function RouteComponent() {
 								<TableCell>{item.brand}</TableCell>
 								<TableCell>{item.model}</TableCell>
 								<TableCell>{item.length}</TableCell>
+								<TableCell>{genderLabel(item.gender)}</TableCell>
 							</TableRow>
 						))
 					)}

@@ -15,6 +15,7 @@ import { CustomItemPerPageSelect, CustomPagination } from '~/components/ui/Custo
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
 import { formatArticleNumber } from '~/domains/equipment/_shared/helpers/formatArticleNumber'
+import { genderLabel } from '~/domains/equipment/_shared/helpers/genderOptions'
 import { AddHelmetButton } from '~/domains/equipment/helmet/components/AddHelmetButton'
 import { HelmetActions } from '~/domains/equipment/helmet/components/HelmetActions'
 import { useFilters } from '~/hooks/useFilter'
@@ -120,6 +121,12 @@ function RouteComponent() {
 							Barva
 						</TableHeadSortable>
 						<TableHeadSortable
+							sorted={orderBy === 'gender' ? orderDirection : false}
+							onClick={() => handleFilterClick('gender')}
+						>
+							Pohlaví
+						</TableHeadSortable>
+						<TableHeadSortable
 							sorted={orderBy === 'withIntegratedGoggles' ? orderDirection : false}
 							onClick={() => handleFilterClick('withIntegratedGoggles')}
 						>
@@ -130,7 +137,7 @@ function RouteComponent() {
 				<TableBody>
 					{data.helmets.length === 0 ? (
 						<TableRow>
-							<TableCell colSpan={6} className="h-50 text-center">
+							<TableCell colSpan={7} className="h-50 text-center">
 								Žádné helmy nebyly nalezeny.
 							</TableCell>
 						</TableRow>
@@ -144,6 +151,7 @@ function RouteComponent() {
 								<TableCell>{item.name}</TableCell>
 								<TableCell>{item.size}</TableCell>
 								<TableCell>{item.color}</TableCell>
+								<TableCell>{genderLabel(item.gender)}</TableCell>
 								<TableCell>{item.withIntegratedGoggles ? 'Ano' : 'Ne'}</TableCell>
 							</TableRow>
 						))
