@@ -8,13 +8,23 @@
 type SortOrder = 'asc' | 'desc'
 
 /**
- * A length to match exactly, or `undefined` to skip the filter. Whole numbers
- * only: `Number('26.3')` is a perfectly good number, but the length columns are
- * `Int`, so Prisma truncates it to 26 and a search for the sticker `26.3` comes
- * back with the entire size-26 shelf.
+ * A length to match exactly, or `undefined` to skip the filter. For the `Int`
+ * length columns — skis and snowboards — so whole numbers only: handing Prisma
+ * a `165.5` for an `Int` field is a validation error, not an empty result.
  */
 export const wholeNumberSearch = (search: string) =>
 	/^\d+$/.test(search.trim()) ? Number(search.trim()) : undefined
+
+/**
+ * The same thing for the boots, whose `length` is a `Float`, so a half size is
+ * searchable as itself: `26.5` finds the 26.5s. A comma works too — that is
+ * what a Czech keyboard puts under the fingers.
+ */
+export const bootLengthSearch = (search: string) => {
+	const trimmed = search.trim().replace(',', '.')
+
+	return /^\d+(\.\d+)?$/.test(trimmed) ? Number(trimmed) : undefined
+}
 
 /**
  * A sticker as staff type it: `26.86` for a boot, or a bare `86`. A bare number

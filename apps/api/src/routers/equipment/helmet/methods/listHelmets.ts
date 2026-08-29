@@ -38,6 +38,7 @@ export const listHelmets = async ({
 				color: true,
 				description: true,
 				withIntegratedGoggles: true,
+				gender: true,
 				equipmentItemId: true,
 				equipmentItem: {
 					select: {

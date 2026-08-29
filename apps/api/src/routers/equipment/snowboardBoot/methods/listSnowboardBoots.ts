@@ -4,7 +4,7 @@ import type { GetSnowboardBootInput } from '../../../../schemas/snowboardBoot'
 import {
 	articleNumberOrderBy,
 	articleNumberSearchFilter,
-	wholeNumberSearch,
+	bootLengthSearch,
 } from '../../_shared/lib/equipmentListQuery'
 
 export const listSnowboardBoots = async ({
@@ -19,7 +19,7 @@ export const listSnowboardBoots = async ({
 				OR: [
 					{ brand: { contains: search, mode: 'insensitive' } },
 					{ model: { contains: search, mode: 'insensitive' } },
-					{ length: { equals: wholeNumberSearch(search) } },
+					{ length: { equals: bootLengthSearch(search) } },
 					...articleNumberSearchFilter(search),
 				],
 			}
@@ -39,6 +39,7 @@ export const listSnowboardBoots = async ({
 				model: true,
 				length: true,
 				isBoa: true,
+				gender: true,
 				equipmentItemId: true,
 				equipmentItem: {
 					select: {

@@ -15,6 +15,7 @@ import { CustomItemPerPageSelect, CustomPagination } from '~/components/ui/Custo
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
 import { formatArticleNumber } from '~/domains/equipment/_shared/helpers/formatArticleNumber'
+import { genderLabel } from '~/domains/equipment/_shared/helpers/genderOptions'
 import { AddSkiButton } from '~/domains/equipment/ski/components/AddSkiButton'
 import { SkiActions } from '~/domains/equipment/ski/components/SkiActions'
 import { useFilters } from '~/hooks/useFilter'
@@ -118,17 +119,29 @@ function RouteComponent() {
 							Délka
 						</TableHeadSortable>
 						<TableHeadSortable
+							sorted={orderBy === 'gender' ? orderDirection : false}
+							onClick={() => handleFilterClick('gender')}
+						>
+							Pohlaví
+						</TableHeadSortable>
+						<TableHeadSortable
 							sorted={orderBy === 'isVIP' ? orderDirection : false}
 							onClick={() => handleFilterClick('isVIP')}
 						>
 							VIP
+						</TableHeadSortable>
+						<TableHeadSortable
+							sorted={orderBy === 'isKids' ? orderDirection : false}
+							onClick={() => handleFilterClick('isKids')}
+						>
+							Dětské
 						</TableHeadSortable>
 					</TableRow>
 				</TableHeader>
 				<TableBody>
 					{data.skis.length === 0 ? (
 						<TableRow>
-							<TableCell colSpan={6} className="h-50 text-center">
+							<TableCell colSpan={8} className="h-50 text-center">
 								Žádné lyže nebyly nalezeny.
 							</TableCell>
 						</TableRow>
@@ -142,7 +155,9 @@ function RouteComponent() {
 								<TableCell>{item.brand}</TableCell>
 								<TableCell>{item.model}</TableCell>
 								<TableCell>{item.length}</TableCell>
+								<TableCell>{genderLabel(item.gender)}</TableCell>
 								<TableCell>{item.isVIP ? 'VIP' : 'Standart'}</TableCell>
+								<TableCell>{item.isKids ? 'Dětské' : 'Dospělé'}</TableCell>
 							</TableRow>
 						))
 					)}

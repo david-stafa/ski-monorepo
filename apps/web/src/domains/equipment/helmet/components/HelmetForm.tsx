@@ -1,5 +1,6 @@
 import { type CreateHelmetInput, createHelmetInputSchema } from '@ski-blazek/api/schemas'
 import { useAppForm } from '~/components/form/SharedFormFields'
+import { genderOptions } from '../../_shared/helpers/genderOptions'
 import type { HelmetListItem } from '../helmet.types'
 import { useCreateHelmet, useUpdateHelmet } from '../helmetQueries'
 
@@ -19,6 +20,7 @@ export const HelmetForm = ({ close, defaultValues }: HelmetFormProps) => {
 		color: defaultValues?.color ?? '',
 		description: defaultValues?.description ?? '',
 		withIntegratedGoggles: defaultValues?.withIntegratedGoggles ?? false,
+		gender: defaultValues?.gender ?? null,
 	}
 
 	const defaultMeta: FormMeta = {
@@ -69,6 +71,18 @@ export const HelmetForm = ({ close, defaultValues }: HelmetFormProps) => {
 			<form.AppField name="color" children={(field) => <field.TextField label="Barva" />} />
 
 			<form.AppField name="description" children={(field) => <field.TextField label="Popis" />} />
+
+			<form.AppField
+				name="gender"
+				children={(field) => (
+					<field.SelectField
+						label="Pohlaví"
+						options={genderOptions}
+						noneLabel="Unisex"
+						placeholder="Unisex"
+					/>
+				)}
+			/>
 
 			<form.AppField
 				name="withIntegratedGoggles"
