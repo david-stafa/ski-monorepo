@@ -14,7 +14,7 @@ catalog:
   react: ^19.2.0
   react-dom: ^19.2.0
   '@types/react': ^19.2.18
-  '@types/react-dom': ^19.2.4
+  '@types/react-dom': ^19.2.5
 
   # Type surfaces shared between api and web
   zod: ^4.3.6
