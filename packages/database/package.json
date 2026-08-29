@@ -12,7 +12,7 @@
 	},
 	"devDependencies": {
 		"@ski-blazek/typescript-config": "workspace:*",
-		"@types/pg": "^8.16.0",
+		"@types/pg": "^8.23.1",
 		"prisma": "^7.10.0",
 		"typescript": "catalog:"
 	},
@@ -20,7 +20,7 @@
 		"@prisma/adapter-pg": "catalog:",
 		"@prisma/client": "catalog:",
 		"dotenv": "^17.2.3",
-		"pg": "^8.16.3"
+		"pg": "^8.23.0"
 	},
 	"exports": {
 		".": "./src/index.ts",
