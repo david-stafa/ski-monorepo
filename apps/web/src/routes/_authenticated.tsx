@@ -96,12 +96,7 @@ export function AppSidebar() {
 										<CalendarDays />
 										<span>Rezervace</span>
 									</SidebarMenuButton>
-									{/* <CollapsibleTrigger asChild>
-                    <SidebarMenuAction className="transition-transform data-[state=open]:rotate-180">
-                      <ChevronDown />
-                      <span className="sr-only">Přepnout</span>
-                    </SidebarMenuAction>
-                  </CollapsibleTrigger> */}
+
 									<CollapsibleContent>
 										<SidebarMenuSub>
 											<SidebarMenuSubItem>
@@ -130,12 +125,7 @@ export function AppSidebar() {
 										<Package />
 										<span>Vybavení</span>
 									</SidebarMenuButton>
-									{/* <CollapsibleTrigger asChild>
-                    <SidebarMenuAction className="transition-transform data-[state=open]:rotate-180">
-                      <ChevronDown />
-                      <span className="sr-only">Přepnout</span>
-                    </SidebarMenuAction>
-                  </CollapsibleTrigger> */}
+
 									<CollapsibleContent>
 										<SidebarMenuSub>
 											<SidebarMenuSubItem>
