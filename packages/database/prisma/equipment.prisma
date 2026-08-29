@@ -1,9 +1,14 @@
 model Ski {
-  id              String        @id @default(cuid(2))
-  brand           String
-  model           String
-  length          Int
-  isVIP           Boolean       @default(false)
+  id     String @id @default(cuid(2))
+  brand  String
+  model  String
+  length Int
+
+  isVIP  Boolean @default(false)
+  isKids Boolean @default(false)
+  /// null = unisex, which is most of the stock. Only the gear actually styled
+  gender Gender?
+
   equipmentItemId String        @unique
   equipmentItem   EquipmentItem @relation(fields: [equipmentItemId], references: [id], onDelete: Cascade)
 
@@ -12,10 +17,14 @@ model Ski {
 }
 
 model Snowboard {
-  id              String        @id @default(cuid(2))
-  brand           String
-  model           String
-  length          Int
+  id     String @id @default(cuid(2))
+  brand  String
+  model  String
+  length Int
+
+  /// null = unisex. See `Ski.gender`.
+  gender Gender?
+
   equipmentItemId String        @unique
   equipmentItem   EquipmentItem @relation(fields: [equipmentItemId], references: [id], onDelete: Cascade)
 
@@ -30,6 +39,8 @@ model Helmet {
   color                 String
   description           String?
   withIntegratedGoggles Boolean       @default(false)
+  /// null = unisex.
+  gender                Gender?
   equipmentItemId       String        @unique
   equipmentItem         EquipmentItem @relation(fields: [equipmentItemId], references: [id], onDelete: Cascade)
 
@@ -38,10 +49,19 @@ model Helmet {
 }
 
 model SkiBoot {
-  id     String @id @default(cuid(2))
-  brand  String
-  model  String
-  length Int
+  id    String @id @default(cuid(2))
+  brand String
+  model String
+
+  /// Mondopoint, in half-size steps — a 26.5 is a real boot. `Float`, not
+  /// `Decimal`: halves are exact in binary floating point, so equality and
+  /// sorting are exact too, and the value reaches the client as a plain number
+  /// instead of a `Decimal` object superjson would have to be taught.
+  /// Which sticker pool it lands in is `articleGroup`, not this column.
+  length Float
+
+  /// null = unisex. See `Ski.gender`.
+  gender Gender?
 
   equipmentItemId String        @unique
   equipmentItem   EquipmentItem @relation(fields: [equipmentItemId], references: [id], onDelete: Cascade)
@@ -51,11 +71,16 @@ model SkiBoot {
 }
 
 model SnowboardBoot {
-  id     String  @id @default(cuid(2))
-  brand  String
-  model  String
-  length Int
+  id    String @id @default(cuid(2))
+  brand String
+  model String
+
+  /// Mondopoint in half-size steps. See `SkiBoot.length`.
+  length Float
+
   isBoa  Boolean @default(false)
+  /// null = unisex. See `Ski.gender`.
+  gender Gender?
 
   equipmentItemId String        @unique
   equipmentItem   EquipmentItem @relation(fields: [equipmentItemId], references: [id], onDelete: Cascade)

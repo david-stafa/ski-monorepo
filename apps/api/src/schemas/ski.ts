@@ -1,4 +1,4 @@
-import type { Ski } from '@ski-blazek/db/browser'
+import { Gender, type Ski } from '@ski-blazek/db/browser'
 import { z } from 'zod'
 import { paginationSchema } from './pagination'
 
@@ -13,6 +13,8 @@ export const createSkiInputSchema = z.object({
 	model: z.string().min(2),
 	length: z.number().int().min(50),
 	isVIP: z.boolean(),
+	isKids: z.boolean(),
+	gender: z.enum(Gender).nullable(),
 }) satisfies z.ZodType<Omit<Ski, 'id' | 'createdAt' | 'updatedAt' | 'equipmentItemId'>>
 export type CreateSkiInput = z.infer<typeof createSkiInputSchema>
 
@@ -25,7 +27,9 @@ export type UpdateSkiInput = z.infer<typeof updateSkiInputSchema>
 /** list query (search / sort / pagination) */
 export const getSkiInputSchema = paginationSchema.extend({
 	search: z.string().optional(),
-	orderBy: z.enum(['articleNumber', 'length', 'brand', 'model', 'isVIP']).default('length'),
+	orderBy: z
+		.enum(['articleNumber', 'length', 'brand', 'model', 'isVIP', 'isKids', 'gender'])
+		.default('length'),
 	orderDirection: z.enum(['asc', 'desc']).default('asc'),
 })
 export type GetSkiInput = z.infer<typeof getSkiInputSchema>

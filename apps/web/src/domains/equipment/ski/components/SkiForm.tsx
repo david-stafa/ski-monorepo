@@ -1,5 +1,6 @@
 import { type CreateSkiInput, createSkiInputSchema } from '@ski-blazek/api/schemas'
 import { useAppForm } from '~/components/form/SharedFormFields'
+import { genderOptions } from '../../_shared/helpers/genderOptions'
 import type { SkiListItem } from '../ski.types'
 import { useCreateSki, useUpdateSki } from '../skiQueries'
 
@@ -18,6 +19,8 @@ export const SkiForm = ({ close, defaultValues }: SkiFormProps) => {
 		model: defaultValues?.model ?? '',
 		length: defaultValues?.length ?? 0,
 		isVIP: defaultValues?.isVIP ?? false,
+		isKids: defaultValues?.isKids ?? false,
+		gender: defaultValues?.gender ?? null,
 	}
 
 	const defaultMeta: FormMeta = {
@@ -67,7 +70,24 @@ export const SkiForm = ({ close, defaultValues }: SkiFormProps) => {
 
 			<form.AppField name="length" children={(field) => <field.NumberField label="Délka" />} />
 
+			<form.AppField
+				name="gender"
+				children={(field) => (
+					<field.SelectField
+						label="Pohlaví"
+						options={genderOptions}
+						noneLabel="Unisex"
+						placeholder="Unisex"
+					/>
+				)}
+			/>
+
 			<form.AppField name="isVIP" children={(field) => <field.CheckboxField label="Jsou VIP:" />} />
+
+			<form.AppField
+				name="isKids"
+				children={(field) => <field.CheckboxField label="Jsou dětské:" />}
+			/>
 
 			<div className="ml-auto">
 				<form.AppForm>

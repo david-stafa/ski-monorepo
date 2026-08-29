@@ -144,6 +144,7 @@ export function SelectField<TValue extends string | number = string>({
 	placeholder,
 	isLoading = false,
 	withoutNoneOption = false,
+	noneLabel = 'Žádné',
 	className,
 	...props
 }: {
@@ -152,11 +153,12 @@ export function SelectField<TValue extends string | number = string>({
 	placeholder?: string
 	isLoading?: boolean
 	withoutNoneOption?: boolean
+	noneLabel?: string
 	className?: string
 } & React.ComponentProps<typeof Select>) {
 	const field = useFieldContext<TValue | null>()
 	const items: Record<string, React.ReactNode> = {
-		[NONE_VALUE]: 'Žádné',
+		[NONE_VALUE]: noneLabel,
 		...Object.fromEntries(options.map((option) => [String(option.value), option.label])),
 	}
 	return (
@@ -189,7 +191,7 @@ export function SelectField<TValue extends string | number = string>({
 				<SelectContent>
 					<SelectGroup>
 						<SelectLabel>{label}</SelectLabel>
-						{!withoutNoneOption && <SelectItem value={NONE_VALUE}>Žádné</SelectItem>}
+						{!withoutNoneOption && <SelectItem value={NONE_VALUE}>{noneLabel}</SelectItem>}
 						{options.map((option) => (
 							<SelectItem
 								value={String(option.value)}

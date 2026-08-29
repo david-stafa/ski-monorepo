@@ -1,5 +1,6 @@
 import { type CreateSkiBootInput, createSkiBootInputSchema } from '@ski-blazek/api/schemas'
 import { useAppForm } from '~/components/form/SharedFormFields'
+import { genderOptions } from '../../_shared/helpers/genderOptions'
 import type { SkiBootListItem } from '../skiBoot.types'
 import { useCreateSkiBoot, useUpdateSkiBoot } from '../skiBootQueries'
 
@@ -17,6 +18,7 @@ export const SkiBootForm = ({ close, defaultValues }: SkiBootFormProps) => {
 		brand: defaultValues?.brand ?? '',
 		model: defaultValues?.model ?? '',
 		length: defaultValues?.length ?? 0,
+		gender: defaultValues?.gender ?? null,
 	}
 
 	const defaultMeta: FormMeta = {
@@ -65,6 +67,18 @@ export const SkiBootForm = ({ close, defaultValues }: SkiBootFormProps) => {
 			<form.AppField name="model" children={(field) => <field.TextField label="Model" />} />
 
 			<form.AppField name="length" children={(field) => <field.NumberField label="Délka" />} />
+
+			<form.AppField
+				name="gender"
+				children={(field) => (
+					<field.SelectField
+						label="Pohlaví"
+						options={genderOptions}
+						noneLabel="Unisex"
+						placeholder="Unisex"
+					/>
+				)}
+			/>
 
 			<div className="ml-auto">
 				<form.AppForm>
