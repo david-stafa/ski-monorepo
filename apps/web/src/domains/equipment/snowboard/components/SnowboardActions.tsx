@@ -39,7 +39,7 @@ export const SnowboardActions = ({ defaultValues }: SnowboardActionsProps) => {
 				</DropdownMenuTrigger>
 				<DropdownMenuContent>
 					{/* EDIT */}
-					<DropdownMenuItem onSelect={() => setEditOpen(true)}>
+					<DropdownMenuItem onClick={() => setEditOpen(true)}>
 						<PencilIcon />
 						Upravit
 					</DropdownMenuItem>
@@ -47,7 +47,7 @@ export const SnowboardActions = ({ defaultValues }: SnowboardActionsProps) => {
 					{isRetired && (
 						<DropdownMenuItem
 							className={'text-primary focus:text-primary'}
-							onSelect={() => setActivateOpen(true)}
+							onClick={() => setActivateOpen(true)}
 						>
 							<CirclePlusIcon className="text-primary" />
 							Aktivovat
@@ -57,7 +57,7 @@ export const SnowboardActions = ({ defaultValues }: SnowboardActionsProps) => {
 					{!isRetired && (
 						<DropdownMenuItem
 							className={'text-warning focus:text-warning'}
-							onSelect={() => setRetireOpen(true)}
+							onClick={() => setRetireOpen(true)}
 						>
 							<ArchiveIcon className="text-warning" />
 							Archivovat
@@ -66,7 +66,7 @@ export const SnowboardActions = ({ defaultValues }: SnowboardActionsProps) => {
 					{/* DELETE */}
 					<DropdownMenuItem
 						className="text-destructive focus:text-destructive"
-						onSelect={() => setDeleteOpen(true)}
+						onClick={() => setDeleteOpen(true)}
 					>
 						<Trash2Icon className="text-destructive" />
 						Smazat

@@ -1,5 +1,9 @@
 import { Button } from '@ski-blazek/ui/components/button'
-import { Collapsible, CollapsibleContent } from '@ski-blazek/ui/components/collapsible'
+import {
+	Collapsible,
+	CollapsibleContent,
+	CollapsibleTrigger,
+} from '@ski-blazek/ui/components/collapsible'
 import {
 	Sidebar,
 	SidebarContent,
@@ -8,6 +12,7 @@ import {
 	SidebarGroupContent,
 	SidebarHeader,
 	SidebarMenu,
+	SidebarMenuAction,
 	SidebarMenuButton,
 	SidebarMenuItem,
 	SidebarMenuSub,
@@ -19,6 +24,7 @@ import {
 import { createFileRoute, Link, Outlet, redirect } from '@tanstack/react-router'
 import {
 	CalendarDays,
+	ChevronDown,
 	Footprints,
 	FootprintsIcon,
 	HardHat,
@@ -81,6 +87,7 @@ export function AppSidebar() {
 									className="w-full mb-1"
 									variant="default"
 									size="default"
+									nativeButton={false}
 									render={<Link to="/reservation/create" />}
 								>
 									<PlusCircleIcon />
@@ -96,6 +103,15 @@ export function AppSidebar() {
 										<CalendarDays />
 										<span>Rezervace</span>
 									</SidebarMenuButton>
+
+									<CollapsibleTrigger
+										render={
+											<SidebarMenuAction className="transition-transform aria-expanded:rotate-180" />
+										}
+									>
+										<ChevronDown />
+										<span className="sr-only">Přepnout</span>
+									</CollapsibleTrigger>
 
 									<CollapsibleContent>
 										<SidebarMenuSub>
@@ -125,6 +141,15 @@ export function AppSidebar() {
 										<Package />
 										<span>Vybavení</span>
 									</SidebarMenuButton>
+
+									<CollapsibleTrigger
+										render={
+											<SidebarMenuAction className="transition-transform aria-expanded:rotate-180" />
+										}
+									>
+										<ChevronDown />
+										<span className="sr-only">Přepnout</span>
+									</CollapsibleTrigger>
 
 									<CollapsibleContent>
 										<SidebarMenuSub>

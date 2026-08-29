@@ -31,7 +31,7 @@ export const ReservationActions = ({ reservation }: ReservationActionsProps) => 
 					<DropdownMenuItem
 						className="text-destructive focus:text-destructive"
 						disabled={isCancelled}
-						onSelect={() => setCancelOpen(true)}
+						onClick={() => setCancelOpen(true)}
 					>
 						<BanIcon className="text-destructive" />
 						Zrušit rezervaci

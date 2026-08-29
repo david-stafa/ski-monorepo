@@ -13,7 +13,13 @@ type ButtonLinkProps = LinkProps &
  */
 export function ButtonLink({ variant, size, className, children, ...linkProps }: ButtonLinkProps) {
 	return (
-		<Button variant={variant} size={size} className={className} render={<Link {...linkProps} />}>
+		<Button
+			variant={variant}
+			size={size}
+			className={className}
+			nativeButton={false}
+			render={<Link {...linkProps} />}
+		>
 			{children}
 		</Button>
 	)
