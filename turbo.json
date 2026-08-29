@@ -14,7 +14,7 @@
 			"env": ["DATABASE_URL", "PORT", "API_URL", "WEB_URL"]
 		},
 		"check-types": {
-			"dependsOn": ["^check-types"]
+			"dependsOn": ["^check-types", "^db:generate"]
 		},
 		"db:generate": {
 			"dependsOn": ["^db:generate"],

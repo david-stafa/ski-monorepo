@@ -20,20 +20,35 @@ export const helmetBrandOptions = toOptions([
 ])
 
 /**
- * The colours worth one keystroke. Czech, to match the rest of the form — and
- * still creatable, so a "matná antracitová" that only one shell has needs no
- * code change.
+ * Colours are stored in English and shown in Czech: the value is a stable key
+ * that does not move when the wording does, and it is what a swatch or an
+ * export would key off. `helmetColorLabel` turns it back into Czech for tables.
+ *
+ * A swatch cannot be built by interpolating the value into a class name —
+ * Tailwind only emits CSS for complete class strings it can find in the source,
+ * so `bg-${color}` compiles to nothing. Map the value to a literal class.
  */
-export const helmetColorOptions = toOptions([
-	'Bílá',
-	'Černá',
-	'Červená',
-	'Fialová',
-	'Modrá',
-	'Oranžová',
-	'Růžová',
-	'Stříbrná',
-	'Šedá',
-	'Zelená',
-	'Žlutá',
-])
+const helmetColorLabels: Record<string, string> = {
+	black: 'Černá',
+	white: 'Bílá',
+	grey: 'Šedá',
+	silver: 'Stříbrná',
+	blue: 'Modrá',
+	red: 'Červená',
+	green: 'Zelená',
+	yellow: 'Žlutá',
+	orange: 'Oranžová',
+	pink: 'Růžová',
+	purple: 'Fialová',
+}
+
+/** Still creatable, so a one-off shade needs no code change. */
+export const helmetColorOptions: SelectFieldOption<string>[] = Object.entries(
+	helmetColorLabels
+).map(([value, label]) => ({ value, label }))
+
+/**
+ * For table cells. A colour typed in by hand is not in the map, so it stands in
+ * for itself rather than rendering as blank.
+ */
+export const helmetColorLabel = (color: string) => helmetColorLabels[color] ?? color

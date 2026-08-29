@@ -18,6 +18,7 @@ import { formatArticleNumber } from '~/domains/equipment/_shared/helpers/formatA
 import { genderLabel } from '~/domains/equipment/_shared/helpers/genderOptions'
 import { AddHelmetButton } from '~/domains/equipment/helmet/components/AddHelmetButton'
 import { HelmetActions } from '~/domains/equipment/helmet/components/HelmetActions'
+import { helmetColorLabel } from '~/domains/equipment/helmet/helmetOptions'
 import { useFilters } from '~/hooks/useFilter'
 import { trpc } from '~/lib/trpc'
 
@@ -157,7 +158,7 @@ function RouteComponent() {
 								<TableCell>{item.brand}</TableCell>
 								<TableCell>{item.model}</TableCell>
 								<TableCell>{item.size}</TableCell>
-								<TableCell>{item.color}</TableCell>
+								<TableCell>{helmetColorLabel(item.color)}</TableCell>
 								<TableCell>{genderLabel(item.gender)}</TableCell>
 								<TableCell>{item.withIntegratedGoggles ? 'Ano' : 'Ne'}</TableCell>
 							</TableRow>
