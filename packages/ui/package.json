@@ -31,7 +31,7 @@
 		"@ski-blazek/typescript-config": "workspace:*",
 		"@tailwindcss/postcss": "^4.1.11",
 		"@turbo/gen": "^2.10.12",
-		"@types/node": "^26.1.2",
+		"@types/node": "^26.3.0",
 		"@types/react": "catalog:",
 		"@types/react-dom": "catalog:",
 		"tailwindcss": "catalog:",
