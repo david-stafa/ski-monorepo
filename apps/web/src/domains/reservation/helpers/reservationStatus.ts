@@ -14,7 +14,7 @@ export const RESERVATION_STATUS_META: Record<
 > = {
 	[ReservationStatus.BOOKED]: { label: 'Rezervováno', variant: 'secondary' },
 	[ReservationStatus.PICKED_UP]: { label: 'Vyzvednuto', variant: 'default' },
-	[ReservationStatus.RETURNED]: { label: 'Vráceno', variant: 'outline' },
+	[ReservationStatus.RETURNED]: { label: 'Vráceno', variant: 'success' },
 	[ReservationStatus.CANCELLED]: { label: 'Zrušeno', variant: 'destructive' },
 }
 
