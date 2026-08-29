@@ -32,6 +32,11 @@
 	},
 	"devDependencies": {
 		"@ski-blazek/typescript-config": "workspace:*",
+		"@tanstack/devtools-vite": "^0.8.5",
+		"@tanstack/react-devtools": "^0.10.12",
+		"@tanstack/react-form-devtools": "^0.2.34",
+		"@tanstack/react-query-devtools": "^5.102.8",
+		"@tanstack/react-router-devtools": "^1.167.1",
 		"@tanstack/router-plugin": "^1.168.23",
 		"@types/node": "^26.1.2",
 		"@types/react": "catalog:",
