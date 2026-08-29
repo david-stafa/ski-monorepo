@@ -22,8 +22,8 @@ catalog:
   better-auth: ^1.6.25
 
   # Prisma client and adapter must match the CLI in @ski-blazek/db
-  '@prisma/client': ^7.9.1
-  '@prisma/adapter-pg': ^7.9.1
+  '@prisma/client': ^7.10.0
+  '@prisma/adapter-pg': ^7.10.0
 
   # Tooling
   tailwindcss: ^4.1.18
