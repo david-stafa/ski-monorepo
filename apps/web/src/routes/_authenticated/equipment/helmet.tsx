@@ -103,10 +103,16 @@ function RouteComponent() {
 							Číslo
 						</TableHeadSortable>
 						<TableHeadSortable
-							sorted={orderBy === 'name' ? orderDirection : false}
-							onClick={() => handleFilterClick('name')}
+							sorted={orderBy === 'brand' ? orderDirection : false}
+							onClick={() => handleFilterClick('brand')}
 						>
-							Název
+							Značka
+						</TableHeadSortable>
+						<TableHeadSortable
+							sorted={orderBy === 'model' ? orderDirection : false}
+							onClick={() => handleFilterClick('model')}
+						>
+							Model
 						</TableHeadSortable>
 						<TableHeadSortable
 							sorted={orderBy === 'size' ? orderDirection : false}
@@ -137,7 +143,7 @@ function RouteComponent() {
 				<TableBody>
 					{data.helmets.length === 0 ? (
 						<TableRow>
-							<TableCell colSpan={7} className="h-50 text-center">
+							<TableCell colSpan={8} className="h-50 text-center">
 								Žádné helmy nebyly nalezeny.
 							</TableCell>
 						</TableRow>
@@ -148,7 +154,8 @@ function RouteComponent() {
 									<HelmetActions defaultValues={item} />
 								</TableCell>
 								<TableCell>{formatArticleNumber(item.equipmentItem)}</TableCell>
-								<TableCell>{item.name}</TableCell>
+								<TableCell>{item.brand}</TableCell>
+								<TableCell>{item.model}</TableCell>
 								<TableCell>{item.size}</TableCell>
 								<TableCell>{item.color}</TableCell>
 								<TableCell>{genderLabel(item.gender)}</TableCell>

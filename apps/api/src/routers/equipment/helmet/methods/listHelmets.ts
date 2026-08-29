@@ -16,7 +16,8 @@ export const listHelmets = async ({
 	const where: Prisma.HelmetWhereInput = search
 		? {
 				OR: [
-					{ name: { contains: search, mode: 'insensitive' } },
+					{ brand: { contains: search, mode: 'insensitive' } },
+					{ model: { contains: search, mode: 'insensitive' } },
 					{ color: { contains: search, mode: 'insensitive' } },
 					...articleNumberSearchFilter(search),
 				],
@@ -33,7 +34,8 @@ export const listHelmets = async ({
 			where,
 			select: {
 				id: true,
-				name: true,
+				brand: true,
+				model: true,
 				size: true,
 				color: true,
 				description: true,

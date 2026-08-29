@@ -11,7 +11,7 @@ export const HelmetDialogDescription = ({ defaultValues }: HelmetDialogDescripti
 		<>
 			<Separator />
 			<div className="flex flex-col gap-2">
-				<TypographySmall>Název: {defaultValues.name}</TypographySmall>
+				<TypographySmall>Značka: {defaultValues.brand}</TypographySmall>
 				<TypographySmall>Velikost: {defaultValues.size}</TypographySmall>
 				<TypographySmall>Barva: {defaultValues.color}</TypographySmall>
 				<TypographySmall>

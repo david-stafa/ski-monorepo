@@ -46,7 +46,10 @@ const describeEquipmentItem = (item: AvailableItem): string | null => {
 		case 'HELMET': {
 			const helmet = item.helmet
 			if (!helmet) return null
-			return `${helmet.name} ${helmet.size} ${helmet.color}`
+			// Unlike the other four, a helmet's model is optional — dropped rather
+			// than printed as a gap in the middle of the label.
+			const model = helmet.model ? `${helmet.model} ` : ''
+			return `${helmet.brand} ${model}${helmet.size} ${helmet.color}`
 		}
 	}
 }
