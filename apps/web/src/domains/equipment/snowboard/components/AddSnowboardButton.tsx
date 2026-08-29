@@ -15,11 +15,9 @@ export const AddSnowboardButton = () => {
 
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
-			<DialogTrigger asChild>
-				<Button size="sm">
-					<PlusIcon />
-					Přidat snowboard
-				</Button>
+			<DialogTrigger render={<Button size="sm" />}>
+				<PlusIcon />
+				Přidat snowboard
 			</DialogTrigger>
 			<DialogContent>
 				<DialogHeader>

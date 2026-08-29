@@ -1,10 +1,7 @@
-import { toast } from 'sonner'
-
-// guide for styling sonner toasts:
-// https://sonner.emilkowal.ski/styling
+import { toast } from '@ski-blazek/ui/components/toast'
 
 export const notifyError = (message: string, description: string) =>
-	toast.error(message, { description, position: 'top-right' })
+	toast.add({ title: message, description, type: 'error' })
 
 export const notifySuccess = (message: string, description: string) =>
-	toast.success(message, { description, position: 'top-right' })
+	toast.add({ title: message, description, type: 'success' })

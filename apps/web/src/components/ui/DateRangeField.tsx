@@ -51,11 +51,9 @@ export const DateRangeField = ({ from, to, onRangeChange }: DateRangeFieldProps)
 				setOpen(nextOpen)
 			}}
 		>
-			<PopoverTrigger asChild>
-				<Button variant="outline" size="sm">
-					<CalendarIcon className="size-4" />
-					{formatDate(parseISO(from))} – {formatDate(parseISO(to))}
-				</Button>
+			<PopoverTrigger render={<Button variant="outline" size="sm" />}>
+				<CalendarIcon className="size-4" />
+				{formatDate(parseISO(from))} – {formatDate(parseISO(to))}
 			</PopoverTrigger>
 			<PopoverContent className="w-auto p-0" align="start">
 				<div className="flex justify-between gap-1 border-b p-2">

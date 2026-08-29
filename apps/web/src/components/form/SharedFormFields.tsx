@@ -134,7 +134,7 @@ const NONE_VALUE = '__none__'
  * *fetch* its options composes this from its own domain folder rather than
  * pulling data-loading into the shared form kit.
  *
- * Radix's Select only speaks strings, so option values are stringified on the
+ * Base UI's Select only speaks strings, so option values are stringified on the
  * way in and mapped back to the original option on the way out — that keeps a
  * numeric field (pole length) numeric in form state.
  */
@@ -155,13 +155,20 @@ export function SelectField<TValue extends string | number = string>({
 	className?: string
 } & React.ComponentProps<typeof Select>) {
 	const field = useFieldContext<TValue | null>()
+	const items: Record<string, React.ReactNode> = {
+		[NONE_VALUE]: 'Žádné',
+		...Object.fromEntries(options.map((option) => [String(option.value), option.label])),
+	}
 	return (
 		<div className="flex flex-col gap-2">
 			<Label htmlFor={field.name}>{label}</Label>
 			<Select
-				// '' rather than null keeps the Select controlled while empty, so it
-				// doesn't flip between controlled and uncontrolled on first pick
-				value={field.state.value == null ? '' : String(field.state.value)}
+				// Base UI's `<SelectValue>` renders the raw value unless the root is
+				// given an `items` map — that map is what shows the option's label.
+				items={items}
+				// null is Base UI's "no value" — it keeps the Select controlled while
+				// empty and lets `<SelectValue>` fall back to the placeholder
+				value={field.state.value == null ? null : String(field.state.value)}
 				onValueChange={(value) => {
 					if (value === NONE_VALUE) return field.handleChange(null)
 					const option = options.find((o) => String(o.value) === value)

@@ -14,9 +14,15 @@ export const RESERVATION_STATUS_META: Record<
 > = {
 	[ReservationStatus.BOOKED]: { label: 'Rezervováno', variant: 'secondary' },
 	[ReservationStatus.PICKED_UP]: { label: 'Vyzvednuto', variant: 'default' },
-	[ReservationStatus.RETURNED]: { label: 'Vráceno', variant: 'outline' },
+	[ReservationStatus.RETURNED]: { label: 'Vráceno', variant: 'success' },
 	[ReservationStatus.CANCELLED]: { label: 'Zrušeno', variant: 'destructive' },
 }
 
-/** The statuses in the order they should appear in the filter dropdown. */
-export const RESERVATION_STATUS_OPTIONS = Object.values(ReservationStatus)
+/**
+ * The statuses in the order they should appear in the filter dropdown, in the
+ * `{ value, label }` shape Base UI's Select takes as its `items`.
+ */
+export const RESERVATION_STATUS_OPTIONS = Object.values(ReservationStatus).map((status) => ({
+	value: status,
+	label: RESERVATION_STATUS_META[status].label,
+}))

@@ -32,9 +32,7 @@ const router = createRouter({
 	defaultNotFoundComponent: () => (
 		<div className="text-foreground bg-background flex min-h-dvh flex-col items-center justify-center gap-4">
 			<TypographyP>Stránka nebyla nalezena...</TypographyP>
-			<Button asChild>
-				<Link to="/">Domů</Link>
-			</Button>
+			<Button render={<Link to="/" />}>Domů</Button>
 		</div>
 	),
 })
