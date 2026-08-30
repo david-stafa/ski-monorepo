@@ -14,6 +14,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { CustomItemPerPageSelect, CustomPagination } from '~/components/ui/CustomPagination'
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
+import { colorLabel } from '~/domains/equipment/_shared/helpers/colorOptions'
 import { formatArticleNumber } from '~/domains/equipment/_shared/helpers/formatArticleNumber'
 import { genderLabel } from '~/domains/equipment/_shared/helpers/genderOptions'
 import { AddSkiBootButton } from '~/domains/equipment/skiBoot/components/AddSkiBootButton'
@@ -121,6 +122,12 @@ function RouteComponent() {
 							Délka
 						</TableHeadSortable>
 						<TableHeadSortable
+							sorted={orderBy === 'color' ? orderDirection : false}
+							onClick={() => handleFilterClick('color')}
+						>
+							Barva
+						</TableHeadSortable>
+						<TableHeadSortable
 							sorted={orderBy === 'gender' ? orderDirection : false}
 							onClick={() => handleFilterClick('gender')}
 						>
@@ -131,7 +138,7 @@ function RouteComponent() {
 				<TableBody>
 					{data.skiBoots.length === 0 ? (
 						<TableRow>
-							<TableCell colSpan={6} className="h-50 text-center">
+							<TableCell colSpan={7} className="h-50 text-center">
 								Žádné lyžařské boty nebyly nalezeny.
 							</TableCell>
 						</TableRow>
@@ -145,6 +152,7 @@ function RouteComponent() {
 								<TableCell>{item.brand}</TableCell>
 								<TableCell>{item.model}</TableCell>
 								<TableCell>{item.length}</TableCell>
+								<TableCell>{colorLabel(item.color)}</TableCell>
 								<TableCell>{genderLabel(item.gender)}</TableCell>
 							</TableRow>
 						))

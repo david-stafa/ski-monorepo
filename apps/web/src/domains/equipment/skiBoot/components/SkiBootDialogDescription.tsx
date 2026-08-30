@@ -1,5 +1,6 @@
 import { Separator } from '@ski-blazek/ui/components/separator'
 import { TypographySmall } from '@ski-blazek/ui/components/typography'
+import { colorLabel } from '../../_shared/helpers/colorOptions'
 import type { SkiBootListItem } from '../skiBoot.types'
 
 type SkiBootDialogDescriptionProps = {
@@ -14,6 +15,7 @@ export const SkiBootDialogDescription = ({ defaultValues }: SkiBootDialogDescrip
 				<TypographySmall>Značka: {defaultValues.brand}</TypographySmall>
 				<TypographySmall>Model: {defaultValues.model}</TypographySmall>
 				<TypographySmall>Délka: {defaultValues.length} cm</TypographySmall>
+				<TypographySmall>Barva: {colorLabel(defaultValues.color)}</TypographySmall>
 				<TypographySmall>
 					Archivováno: {defaultValues.equipmentItem.retiredAt ? 'Ano' : 'Ne'}
 				</TypographySmall>

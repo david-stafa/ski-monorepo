@@ -240,14 +240,14 @@ function CreatableComboboxField({
 	React.ComponentProps<typeof CreatableCombobox>,
 	'value' | 'onValueChange' | 'options' | 'label'
 >) {
-	const field = useFieldContext<string>()
+	const field = useFieldContext<string | null>()
 	return (
 		<div className="flex flex-col gap-2">
 			<Label htmlFor={field.name}>{label}</Label>
 			<CreatableCombobox
 				id={field.name}
-				value={field.state.value}
-				onValueChange={field.handleChange}
+				value={field.state.value ?? ''}
+				onValueChange={(value) => field.handleChange(value === '' ? null : value)}
 				onBlur={field.handleBlur}
 				options={options}
 				// Deliberately not `Vyberte ${label}` — Czech would need the label in

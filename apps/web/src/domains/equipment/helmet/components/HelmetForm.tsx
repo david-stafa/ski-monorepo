@@ -1,8 +1,9 @@
 import { type CreateHelmetInput, createHelmetInputSchema } from '@ski-blazek/api/schemas'
 import { useAppForm } from '~/components/form/SharedFormFields'
+import { colorOptions } from '../../_shared/helpers/colorOptions'
 import { genderOptions } from '../../_shared/helpers/genderOptions'
 import type { HelmetListItem } from '../helmet.types'
-import { helmetBrandOptions, helmetColorOptions, helmetSizeOptions } from '../helmetOptions'
+import { helmetBrandOptions, helmetSizeOptions } from '../helmetOptions'
 import { useCreateHelmet, useUpdateHelmet } from '../helmetQueries'
 
 type FormType = CreateHelmetInput
@@ -135,7 +136,7 @@ export const HelmetForm = ({ close, defaultValues }: HelmetFormProps) => {
 				children={(field) => (
 					<field.CreatableComboboxField
 						label="Barva"
-						options={helmetColorOptions}
+						options={colorOptions}
 						placeholder="Vyberte barvu"
 					/>
 				)}

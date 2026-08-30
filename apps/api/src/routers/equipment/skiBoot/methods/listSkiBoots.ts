@@ -19,6 +19,7 @@ export const listSkiBoots = async ({
 				OR: [
 					{ brand: { contains: search, mode: 'insensitive' } },
 					{ model: { contains: search, mode: 'insensitive' } },
+					{ color: { contains: search, mode: 'insensitive' } },
 					{ length: { equals: bootLengthSearch(search) } },
 					...articleNumberSearchFilter(search),
 				],
@@ -38,6 +39,7 @@ export const listSkiBoots = async ({
 				brand: true,
 				model: true,
 				length: true,
+				color: true,
 				gender: true,
 				equipmentItemId: true,
 				equipmentItem: {

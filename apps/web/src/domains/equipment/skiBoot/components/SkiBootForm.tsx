@@ -1,5 +1,6 @@
 import { type CreateSkiBootInput, createSkiBootInputSchema } from '@ski-blazek/api/schemas'
 import { useAppForm } from '~/components/form/SharedFormFields'
+import { colorOptions } from '../../_shared/helpers/colorOptions'
 import { genderOptions } from '../../_shared/helpers/genderOptions'
 import type { SkiBootListItem } from '../skiBoot.types'
 import { skiBootBrandOptions, skiBootLengthOptions } from '../skiBootOptions'
@@ -19,6 +20,7 @@ export const SkiBootForm = ({ close, defaultValues }: SkiBootFormProps) => {
 		brand: defaultValues?.brand ?? '',
 		model: defaultValues?.model ?? null,
 		length: defaultValues?.length ?? 0,
+		color: defaultValues?.color ?? null,
 		gender: defaultValues?.gender ?? null,
 	}
 
@@ -75,6 +77,17 @@ export const SkiBootForm = ({ close, defaultValues }: SkiBootFormProps) => {
 			/>
 
 			<form.AppField name="model" children={(field) => <field.TextField label="Model" />} />
+
+			<form.AppField
+				name="color"
+				children={(field) => (
+					<field.CreatableComboboxField
+						label="Barva"
+						options={colorOptions}
+						placeholder="Vyberte barvu"
+					/>
+				)}
+			/>
 
 			<form.AppField
 				name="length"

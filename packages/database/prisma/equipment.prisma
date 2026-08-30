@@ -60,6 +60,7 @@ model SkiBoot {
   id    String @id @default(cuid(2))
   brand String
   model String?
+  color String?
 
   // Mondopoint, in half-size steps — a 26.5 is a real boot. `Float`, not
   // `Decimal`: halves are exact in binary floating point, so equality and

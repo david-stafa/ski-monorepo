@@ -14,15 +14,12 @@ import { createFileRoute } from '@tanstack/react-router'
 import { CustomItemPerPageSelect, CustomPagination } from '~/components/ui/CustomPagination'
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
+import { colorLabel } from '~/domains/equipment/_shared/helpers/colorOptions'
 import { formatArticleNumber } from '~/domains/equipment/_shared/helpers/formatArticleNumber'
 import { genderLabel } from '~/domains/equipment/_shared/helpers/genderOptions'
 import { AddHelmetButton } from '~/domains/equipment/helmet/components/AddHelmetButton'
 import { HelmetActions } from '~/domains/equipment/helmet/components/HelmetActions'
-import {
-	formatCircumference,
-	helmetColorLabel,
-	helmetSizeLabel,
-} from '~/domains/equipment/helmet/helmetOptions'
+import { formatCircumference, helmetSizeLabel } from '~/domains/equipment/helmet/helmetOptions'
 import { useFilters } from '~/hooks/useFilter'
 import { trpc } from '~/lib/trpc'
 
@@ -171,7 +168,7 @@ function RouteComponent() {
 								<TableCell>
 									{formatCircumference(item.circumferenceMin, item.circumferenceMax)}
 								</TableCell>
-								<TableCell>{helmetColorLabel(item.color)}</TableCell>
+								<TableCell>{colorLabel(item.color)}</TableCell>
 								<TableCell>{genderLabel(item.gender)}</TableCell>
 								<TableCell>{item.withIntegratedGoggles ? 'Ano' : 'Ne'}</TableCell>
 							</TableRow>
