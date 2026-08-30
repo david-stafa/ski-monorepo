@@ -37,6 +37,8 @@ export const listHelmets = async ({
 				brand: true,
 				model: true,
 				size: true,
+				circumferenceMin: true,
+				circumferenceMax: true,
 				color: true,
 				description: true,
 				withIntegratedGoggles: true,

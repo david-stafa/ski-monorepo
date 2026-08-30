@@ -18,7 +18,11 @@ import { formatArticleNumber } from '~/domains/equipment/_shared/helpers/formatA
 import { genderLabel } from '~/domains/equipment/_shared/helpers/genderOptions'
 import { AddHelmetButton } from '~/domains/equipment/helmet/components/AddHelmetButton'
 import { HelmetActions } from '~/domains/equipment/helmet/components/HelmetActions'
-import { helmetColorLabel } from '~/domains/equipment/helmet/helmetOptions'
+import {
+	formatCircumference,
+	helmetColorLabel,
+	helmetSizeLabel,
+} from '~/domains/equipment/helmet/helmetOptions'
 import { useFilters } from '~/hooks/useFilter'
 import { trpc } from '~/lib/trpc'
 
@@ -122,6 +126,12 @@ function RouteComponent() {
 							Velikost
 						</TableHeadSortable>
 						<TableHeadSortable
+							sorted={orderBy === 'circumferenceMin' ? orderDirection : false}
+							onClick={() => handleFilterClick('circumferenceMin')}
+						>
+							Obvod
+						</TableHeadSortable>
+						<TableHeadSortable
 							sorted={orderBy === 'color' ? orderDirection : false}
 							onClick={() => handleFilterClick('color')}
 						>
@@ -144,7 +154,7 @@ function RouteComponent() {
 				<TableBody>
 					{data.helmets.length === 0 ? (
 						<TableRow>
-							<TableCell colSpan={8} className="h-50 text-center">
+							<TableCell colSpan={9} className="h-50 text-center">
 								Žádné helmy nebyly nalezeny.
 							</TableCell>
 						</TableRow>
@@ -157,7 +167,10 @@ function RouteComponent() {
 								<TableCell>{formatArticleNumber(item.equipmentItem)}</TableCell>
 								<TableCell>{item.brand}</TableCell>
 								<TableCell>{item.model}</TableCell>
-								<TableCell>{item.size}</TableCell>
+								<TableCell>{helmetSizeLabel(item.size)}</TableCell>
+								<TableCell>
+									{formatCircumference(item.circumferenceMin, item.circumferenceMax)}
+								</TableCell>
 								<TableCell>{helmetColorLabel(item.color)}</TableCell>
 								<TableCell>{genderLabel(item.gender)}</TableCell>
 								<TableCell>{item.withIntegratedGoggles ? 'Ano' : 'Ne'}</TableCell>

@@ -6,7 +6,7 @@ model Ski {
 
   isVIP  Boolean @default(false)
   isKids Boolean @default(false)
-  /// null = unisex, which is most of the stock. Only the gear actually styled
+  // null = unisex, which is most of the stock. Only the gear actually styled
   gender Gender?
 
   equipmentItemId String        @unique
@@ -22,7 +22,7 @@ model Snowboard {
   model  String
   length Int
 
-  /// null = unisex. See `Ski.gender`.
+  // null = unisex. See `Ski.gender`.
   gender Gender?
 
   equipmentItemId String        @unique
@@ -35,14 +35,18 @@ model Snowboard {
 model Helmet {
   id                    String        @id @default(cuid(2))
   brand                 String
-  /// Helmets are commonly stocked as a brand and a colour with no separate
-  /// model on the shell, so unlike the other four types this one is optional.
   model                 String?
-  size                  String
+  size                  HelmetSize?
+
+  // Head circumference in whole cm
+  // Fixed size (XL): circumferenceMin === circumferenceMax
+  // ADJUSTABLE: circumferenceMin < circumferenceMax
+  circumferenceMin      Int?
+  circumferenceMax      Int?
   color                 String
   description           String?
   withIntegratedGoggles Boolean       @default(false)
-  /// null = unisex.
+  // null = unisex.
   gender                Gender?
   equipmentItemId       String        @unique
   equipmentItem         EquipmentItem @relation(fields: [equipmentItemId], references: [id], onDelete: Cascade)
@@ -56,14 +60,14 @@ model SkiBoot {
   brand String
   model String
 
-  /// Mondopoint, in half-size steps — a 26.5 is a real boot. `Float`, not
-  /// `Decimal`: halves are exact in binary floating point, so equality and
-  /// sorting are exact too, and the value reaches the client as a plain number
-  /// instead of a `Decimal` object superjson would have to be taught.
-  /// Which sticker pool it lands in is `articleGroup`, not this column.
+  // Mondopoint, in half-size steps — a 26.5 is a real boot. `Float`, not
+  // `Decimal`: halves are exact in binary floating point, so equality and
+  // sorting are exact too, and the value reaches the client as a plain number
+  // instead of a `Decimal` object superjson would have to be taught.
+  // Which sticker pool it lands in is `articleGroup`, not this column.
   length Float
 
-  /// null = unisex. See `Ski.gender`.
+  // null = unisex. See `Ski.gender`.
   gender Gender?
 
   equipmentItemId String        @unique
@@ -78,11 +82,11 @@ model SnowboardBoot {
   brand String
   model String
 
-  /// Mondopoint in half-size steps. See `SkiBoot.length`.
+  // Mondopoint in half-size steps. See `SkiBoot.length`.
   length Float
 
   isBoa  Boolean @default(false)
-  /// null = unisex. See `Ski.gender`.
+  // null = unisex. See `Ski.gender`.
   gender Gender?
 
   equipmentItemId String        @unique
@@ -90,4 +94,13 @@ model SnowboardBoot {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+enum HelmetSize {
+  XS
+  S
+  M
+  L
+  XL
+  ADJUSTABLE
 }

@@ -1,5 +1,6 @@
 import type { EquipmentItemType } from '@ski-blazek/db/browser'
 import { formatArticleNumber } from '~/domains/equipment/_shared/helpers/formatArticleNumber'
+import { helmetSizeLabel } from '~/domains/equipment/helmet/helmetOptions'
 import type { Outputs } from '~/lib/trpc'
 
 type AvailableItem = Outputs['equipment']['equipmentItem']['findAvailable'][number]
@@ -47,9 +48,12 @@ const describeEquipmentItem = (item: AvailableItem): string | null => {
 			const helmet = item.helmet
 			if (!helmet) return null
 			// Unlike the other four, a helmet's model is optional — dropped rather
-			// than printed as a gap in the middle of the label.
+			// than printed as a gap in the middle of the label. Size is optional
+			// too until stocktaking fills it in, so it drops the same way; the
+			// circumference is left out entirely, the picker is already long.
 			const model = helmet.model ? `${helmet.model} ` : ''
-			return `${helmet.brand} ${model}${helmet.size} ${helmet.color}`
+			const size = helmet.size ? `${helmetSizeLabel(helmet.size)} ` : ''
+			return `${helmet.brand} ${model}${size}${helmet.color}`
 		}
 	}
 }

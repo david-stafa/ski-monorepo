@@ -1,6 +1,7 @@
 import { Separator } from '@ski-blazek/ui/components/separator'
 import { TypographySmall } from '@ski-blazek/ui/components/typography'
 import type { HelmetListItem } from '../helmet.types'
+import { formatCircumference, helmetSizeLabel } from '../helmetOptions'
 
 type HelmetDialogDescriptionProps = {
 	defaultValues: HelmetListItem
@@ -12,7 +13,11 @@ export const HelmetDialogDescription = ({ defaultValues }: HelmetDialogDescripti
 			<Separator />
 			<div className="flex flex-col gap-2">
 				<TypographySmall>Značka: {defaultValues.brand}</TypographySmall>
-				<TypographySmall>Velikost: {defaultValues.size}</TypographySmall>
+				<TypographySmall>Velikost: {helmetSizeLabel(defaultValues.size)}</TypographySmall>
+				<TypographySmall>
+					Obvod:{' '}
+					{formatCircumference(defaultValues.circumferenceMin, defaultValues.circumferenceMax)}
+				</TypographySmall>
 				<TypographySmall>Barva: {defaultValues.color}</TypographySmall>
 				<TypographySmall>
 					Integrované brýle: {defaultValues.withIntegratedGoggles ? 'Ano' : 'Ne'}

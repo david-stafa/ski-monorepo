@@ -2,7 +2,7 @@ import { type CreateHelmetInput, createHelmetInputSchema } from '@ski-blazek/api
 import { useAppForm } from '~/components/form/SharedFormFields'
 import { genderOptions } from '../../_shared/helpers/genderOptions'
 import type { HelmetListItem } from '../helmet.types'
-import { helmetBrandOptions, helmetColorOptions } from '../helmetOptions'
+import { helmetBrandOptions, helmetColorOptions, helmetSizeOptions } from '../helmetOptions'
 import { useCreateHelmet, useUpdateHelmet } from '../helmetQueries'
 
 type FormType = CreateHelmetInput
@@ -18,7 +18,9 @@ export const HelmetForm = ({ close, defaultValues }: HelmetFormProps) => {
 	const initialValues: FormType = {
 		brand: defaultValues?.brand ?? '',
 		model: defaultValues?.model ?? null,
-		size: defaultValues?.size ?? '',
+		size: defaultValues?.size ?? null,
+		circumferenceMin: defaultValues?.circumferenceMin ?? null,
+		circumferenceMax: defaultValues?.circumferenceMax ?? null,
 		color: defaultValues?.color ?? '',
 		description: defaultValues?.description ?? '',
 		withIntegratedGoggles: defaultValues?.withIntegratedGoggles ?? false,
@@ -39,6 +41,18 @@ export const HelmetForm = ({ close, defaultValues }: HelmetFormProps) => {
 		defaultValues: initialValues,
 		validators: {
 			onChange: createHelmetInputSchema,
+		},
+		listeners: {
+			// A fixed-size helmet is stored as a range with equal ends, so the form
+			// only ever shows it one input and mirrors it into the other. Doing that
+			// here rather than on submit keeps form state identical to the payload,
+			// so the schema's min/max rules validate what will actually be saved.
+			onChange: ({ formApi, fieldApi }) => {
+				if (fieldApi.name !== 'size' && fieldApi.name !== 'circumferenceMin') return
+				if (formApi.state.values.size === 'ADJUSTABLE' || formApi.state.values.size === null) return
+
+				formApi.setFieldValue('circumferenceMax', formApi.state.values.circumferenceMin)
+			},
 		},
 		onSubmitMeta: defaultMeta,
 		onSubmit: async ({ value, meta }) => {
@@ -79,7 +93,42 @@ export const HelmetForm = ({ close, defaultValues }: HelmetFormProps) => {
 
 			<form.AppField name="model" children={(field) => <field.TextField label="Model" />} />
 
-			<form.AppField name="size" children={(field) => <field.TextField label="Velikost" />} />
+			<form.AppField
+				name="size"
+				children={(field) => (
+					<field.SelectField
+						label="Velikost"
+						options={helmetSizeOptions}
+						noneLabel="Neuvedena"
+						placeholder="Neuvedena"
+					/>
+				)}
+			/>
+
+			{/* Only an adjustable shell spans a range, so every other helmet gets a
+			    single "Obvod" input and never has to type the same number twice. */}
+			<form.Subscribe
+				selector={(state) => state.values.size}
+				children={(size) =>
+					size === null || size === 'ADJUSTABLE' ? (
+						<div className="flex gap-2">
+							<form.AppField
+								name="circumferenceMin"
+								children={(field) => <field.NumberField label="Obvod od (cm)" />}
+							/>
+							<form.AppField
+								name="circumferenceMax"
+								children={(field) => <field.NumberField label="Obvod do (cm)" />}
+							/>
+						</div>
+					) : (
+						<form.AppField
+							name="circumferenceMin"
+							children={(field) => <field.NumberField label="Obvod (cm)" />}
+						/>
+					)
+				}
+			/>
 
 			<form.AppField
 				name="color"
