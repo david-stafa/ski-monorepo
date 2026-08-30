@@ -1,9 +1,10 @@
 model Ski {
   id     String @id @default(cuid(2))
   brand  String
-  model  String
+  model  String?
   length Int
 
+  isOld  Boolean @default(false)
   isVIP  Boolean @default(false)
   isKids Boolean @default(false)
   // null = unisex, which is most of the stock. Only the gear actually styled
@@ -19,7 +20,7 @@ model Ski {
 model Snowboard {
   id     String @id @default(cuid(2))
   brand  String
-  model  String
+  model  String?
   length Int
 
   // null = unisex. See `Ski.gender`.
@@ -58,7 +59,7 @@ model Helmet {
 model SkiBoot {
   id    String @id @default(cuid(2))
   brand String
-  model String
+  model String?
 
   // Mondopoint, in half-size steps — a 26.5 is a real boot. `Float`, not
   // `Decimal`: halves are exact in binary floating point, so equality and
@@ -80,7 +81,7 @@ model SkiBoot {
 model SnowboardBoot {
   id    String @id @default(cuid(2))
   brand String
-  model String
+  model String?
 
   // Mondopoint in half-size steps. See `SkiBoot.length`.
   length Float

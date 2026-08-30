@@ -5,7 +5,7 @@ import { paginationSchema } from './pagination'
 /** create = the editable fields. Single home for validation rules. */
 export const createSkiBootInputSchema = z.object({
 	brand: z.string().min(2),
-	model: z.string().min(2),
+	model: z.string().min(2).nullable(),
 	/**
 	 * Mondopoint. Half sizes are real boots, thirds are not — `multipleOf(0.5)`
 	 * is what keeps a stray 26.3 from reaching the column now that it is a Float.

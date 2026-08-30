@@ -5,7 +5,7 @@ import { paginationSchema } from './pagination'
 /** create = the editable fields. Single home for validation rules. */
 export const createSnowboardInputSchema = z.object({
 	brand: z.string().min(2),
-	model: z.string().min(2),
+	model: z.string().min(2).nullable(),
 	length: z.number().int().min(50),
 	gender: z.enum(Gender).nullable(),
 }) satisfies z.ZodType<Omit<Snowboard, 'id' | 'createdAt' | 'updatedAt' | 'equipmentItemId'>>

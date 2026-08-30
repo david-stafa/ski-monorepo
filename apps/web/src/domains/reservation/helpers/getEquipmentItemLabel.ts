@@ -1,6 +1,6 @@
 import type { EquipmentItemType } from '@ski-blazek/db/browser'
 import { formatArticleNumber } from '~/domains/equipment/_shared/helpers/formatArticleNumber'
-import { helmetSizeLabel } from '~/domains/equipment/helmet/helmetOptions'
+import { formatCircumference, helmetSizeLabel } from '~/domains/equipment/helmet/helmetOptions'
 import type { Outputs } from '~/lib/trpc'
 
 type AvailableItem = Outputs['equipment']['equipmentItem']['findAvailable'][number]
@@ -17,6 +17,8 @@ const TYPE_ICONS: Record<EquipmentItemType, string> = {
 	HELMET: '⛑️:',
 }
 
+const model = (value: string | null) => (value ? `${value} ` : '')
+
 /**
  * EquipmentItem is common-table-inheritance: exactly one of the five relations
  * is non-null and which one is decided by `type`. Prisma still types them all
@@ -27,33 +29,36 @@ const describeEquipmentItem = (item: AvailableItem): string | null => {
 		case 'SKI': {
 			const ski = item.ski
 			if (!ski) return null
-			return `${ski.brand} ${ski.model} ${ski.length} cm${ski.isVIP ? ' ⭐' : ''}`
+			return `${ski.brand} ${model(ski.model)}${ski.length} cm${ski.isVIP ? ' ⭐' : ''}`
 		}
 		case 'SNOWBOARD': {
 			const snowboard = item.snowboard
 			if (!snowboard) return null
-			return `${snowboard.brand} ${snowboard.model} ${snowboard.length} cm`
+			return `${snowboard.brand} ${model(snowboard.model)}${snowboard.length} cm`
 		}
 		case 'SKI_BOOT': {
 			const boot = item.skiBoot
 			if (!boot) return null
-			return `${boot.brand} ${boot.model} ${boot.length} mp`
+			return `${boot.brand} ${model(boot.model)}${boot.length} mp`
 		}
 		case 'SNOWBOARD_BOOT': {
 			const boot = item.snowboardBoot
 			if (!boot) return null
-			return `${boot.brand} ${boot.model} ${boot.length} mp${boot.isBoa ? ' BOA' : ''}`
+			return `${boot.brand} ${model(boot.model)}${boot.length} mp${boot.isBoa ? ' BOA' : ''}`
 		}
 		case 'HELMET': {
 			const helmet = item.helmet
 			if (!helmet) return null
-			// Unlike the other four, a helmet's model is optional — dropped rather
-			// than printed as a gap in the middle of the label. Size is optional
-			// too until stocktaking fills it in, so it drops the same way; the
-			// circumference is left out entirely, the picker is already long.
-			const model = helmet.model ? `${helmet.model} ` : ''
+			// Size is optional until stocktaking fills it in, so it drops the same
+			// way a model does; the circumference is left out entirely, the picker
+			// is already long.
 			const size = helmet.size ? `${helmetSizeLabel(helmet.size)} ` : ''
-			return `${helmet.brand} ${model}${size}${helmet.color}`
+			const circumference =
+				helmet.circumferenceMax !== null || helmet.circumferenceMax !== null
+					? formatCircumference(helmet.circumferenceMin, helmet.circumferenceMax)
+					: ''
+
+			return `${helmet.brand} ${model(helmet.model)} ${circumference} ${size} ${helmet.color}`
 		}
 	}
 }

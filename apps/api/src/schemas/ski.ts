@@ -10,8 +10,9 @@ import { paginationSchema } from './pagination'
  */
 export const createSkiInputSchema = z.object({
 	brand: z.string().min(2),
-	model: z.string().min(2),
+	model: z.string().min(2).nullable(),
 	length: z.number().int().min(50),
+	isOld: z.boolean(),
 	isVIP: z.boolean(),
 	isKids: z.boolean(),
 	gender: z.enum(Gender).nullable(),
@@ -28,7 +29,7 @@ export type UpdateSkiInput = z.infer<typeof updateSkiInputSchema>
 export const getSkiInputSchema = paginationSchema.extend({
 	search: z.string().optional(),
 	orderBy: z
-		.enum(['articleNumber', 'length', 'brand', 'model', 'isVIP', 'isKids', 'gender'])
+		.enum(['articleNumber', 'length', 'brand', 'model', 'isOld', 'isVIP', 'isKids', 'gender'])
 		.default('length'),
 	orderDirection: z.enum(['asc', 'desc']).default('asc'),
 })

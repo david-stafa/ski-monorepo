@@ -30,15 +30,15 @@ export const { fieldContext, useFieldContext, formContext, useFormContext } =
 	createFormHookContexts()
 
 function TextField({ label, ...props }: { label: string } & React.ComponentProps<typeof Input>) {
-	const field = useFieldContext<string>()
+	const field = useFieldContext<string | null>()
 	return (
 		<div className="flex flex-col gap-2">
 			<Label htmlFor={field.name}>{label}</Label>
 			<Input
 				id={field.name}
-				value={field.state.value}
+				value={field.state.value ?? ''}
 				onBlur={field.handleBlur}
-				onChange={(e) => field.handleChange(e.target.value)}
+				onChange={(e) => field.handleChange(e.target.value === '' ? null : e.target.value)}
 				{...props}
 			/>
 			<FieldInfo field={field} />

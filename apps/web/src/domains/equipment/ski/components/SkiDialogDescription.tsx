@@ -14,6 +14,7 @@ export const SkiDialogDescription = ({ defaultValues }: SkiDialogDescriptionProp
 				<TypographySmall>Značka: {defaultValues.brand}</TypographySmall>
 				<TypographySmall>Model: {defaultValues.model}</TypographySmall>
 				<TypographySmall>Délka: {defaultValues.length} cm</TypographySmall>
+				<TypographySmall>Starší: {defaultValues.isOld ? 'Ano' : 'Ne'}</TypographySmall>
 				<TypographySmall>VIP: {defaultValues.isVIP ? 'Ano' : 'Ne'}</TypographySmall>
 				<TypographySmall>
 					Archivováno: {defaultValues.equipmentItem.retiredAt ? 'Ano' : 'Ne'}

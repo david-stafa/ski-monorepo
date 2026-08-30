@@ -17,8 +17,9 @@ export const SkiForm = ({ close, defaultValues }: SkiFormProps) => {
 	const isEdit = !!defaultValues
 	const initialValues: FormType = {
 		brand: defaultValues?.brand ?? '',
-		model: defaultValues?.model ?? '',
+		model: defaultValues?.model ?? null,
 		length: defaultValues?.length ?? 0,
+		isOld: defaultValues?.isOld ?? false,
 		isVIP: defaultValues?.isVIP ?? false,
 		isKids: defaultValues?.isKids ?? false,
 		gender: defaultValues?.gender ?? null,
@@ -100,6 +101,11 @@ export const SkiForm = ({ close, defaultValues }: SkiFormProps) => {
 						placeholder="Unisex"
 					/>
 				)}
+			/>
+
+			<form.AppField
+				name="isOld"
+				children={(field) => <field.CheckboxField label="Jsou starší:" />}
 			/>
 
 			<form.AppField name="isVIP" children={(field) => <field.CheckboxField label="Jsou VIP:" />} />

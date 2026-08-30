@@ -38,6 +38,7 @@ export const listSkis = async ({
 				brand: true,
 				model: true,
 				length: true,
+				isOld: true,
 				isVIP: true,
 				isKids: true,
 				gender: true,

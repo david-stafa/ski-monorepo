@@ -17,7 +17,7 @@ export const SnowboardForm = ({ close, defaultValues }: SnowboardFormProps) => {
 	const isEdit = !!defaultValues
 	const initialValues: FormType = {
 		brand: defaultValues?.brand ?? '',
-		model: defaultValues?.model ?? '',
+		model: defaultValues?.model ?? null,
 		length: defaultValues?.length ?? 0,
 		gender: defaultValues?.gender ?? null,
 	}

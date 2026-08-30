@@ -125,6 +125,12 @@ function RouteComponent() {
 							Pohlaví
 						</TableHeadSortable>
 						<TableHeadSortable
+							sorted={orderBy === 'isOld' ? orderDirection : false}
+							onClick={() => handleFilterClick('isOld')}
+						>
+							Starší
+						</TableHeadSortable>
+						<TableHeadSortable
 							sorted={orderBy === 'isVIP' ? orderDirection : false}
 							onClick={() => handleFilterClick('isVIP')}
 						>
@@ -141,7 +147,7 @@ function RouteComponent() {
 				<TableBody>
 					{data.skis.length === 0 ? (
 						<TableRow>
-							<TableCell colSpan={8} className="h-50 text-center">
+							<TableCell colSpan={9} className="h-50 text-center">
 								Žádné lyže nebyly nalezeny.
 							</TableCell>
 						</TableRow>
@@ -156,6 +162,7 @@ function RouteComponent() {
 								<TableCell>{item.model}</TableCell>
 								<TableCell>{item.length}</TableCell>
 								<TableCell>{genderLabel(item.gender)}</TableCell>
+								<TableCell>{item.isOld ? 'Starší' : 'Nové'}</TableCell>
 								<TableCell>{item.isVIP ? 'VIP' : 'Standart'}</TableCell>
 								<TableCell>{item.isKids ? 'Dětské' : 'Dospělé'}</TableCell>
 							</TableRow>
