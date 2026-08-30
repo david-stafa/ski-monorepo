@@ -192,13 +192,13 @@ export function SelectField<TValue extends string | number = string>({
 				<SelectTrigger
 					id={field.name}
 					onBlur={field.handleBlur}
-					className={className ?? 'w-full max-w-48'}
+					className={className ?? 'w-fit max-w-52'}
 				>
 					<SelectValue
 						placeholder={isLoading ? 'Načítání…' : (placeholder ?? `Vyberte ${label}`)}
 					/>
 				</SelectTrigger>
-				<SelectContent>
+				<SelectContent className="w-fit">
 					<SelectGroup>
 						<SelectLabel>{label}</SelectLabel>
 						{!withoutNoneOption && <SelectItem value={NONE_VALUE}>{noneLabel}</SelectItem>}
