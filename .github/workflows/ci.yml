@@ -1,0 +1,43 @@
+name: CI
+
+# Run on every PR, and on pushes to main (so the default branch always has
+# a known-good status even for direct commits).
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# If you push twice in quick succession, cancel the older run instead of
+# paying for both. Keyed per branch/PR.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    env:
+      # prisma generate reads this but never connects — the postinstall in
+      # packages/database fails outright if it is unset. Not a real database.
+      DATABASE_URL: postgresql://user:pass@localhost:5432/db
+    steps:
+      # checkout to the PR's merge commit
+      - uses: actions/checkout@v4
+
+      # pnpm must come BEFORE setup-node: the `cache: pnpm` line below needs
+      # pnpm on PATH to locate its store. Version is read from the
+      # "packageManager" field in package.json.
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      # --frozen-lockfile fails if pnpm-lock.yaml disagrees with the
+      # package.json files, which is exactly what you want in CI.
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm check-types
+      - run: pnpm build
+      - run: pnpm check
