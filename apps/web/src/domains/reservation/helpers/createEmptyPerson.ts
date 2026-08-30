@@ -9,7 +9,7 @@ export const createEmptyPerson = (): CreateReservationInput['people'][number] =>
 	gender: 'MALE',
 	backProtection: false,
 	bootCover: false,
-	goggles: false,
+	goggles: null,
 	poles: null,
 	skiCover: false,
 	equipment: createEmptyEquipment(),

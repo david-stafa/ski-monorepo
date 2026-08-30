@@ -31,7 +31,7 @@ model Person {
     backProtection Boolean @default(false)
     skiCover       Boolean @default(false)
     bootCover      Boolean @default(false)
-    goggles        Boolean @default(false)
+    goggles        Goggle?
 
     reservationId String
     reservation   Reservation @relation(fields: [reservationId], references: [id], onDelete: Cascade)
@@ -70,10 +70,7 @@ model EquipmentItem {
     type EquipmentItemType
 
     /// Sticker prefix — the whole mondopoint size for boots, null for the types
-    /// that carry a plain running number. Stored rather than derived from
-    /// `length` because half-size boots are stickered into a whole-size pool:
-    /// which pool a boot lands in is a labelling decision, not a measurement.
-    articleGroup Int?
+    articleGroup  Int?
     /// Sequence within (type, articleGroup). The `86` in the sticker `26.86`.
     articleNumber Int
 
@@ -139,4 +136,10 @@ enum Level {
     INTERMEDIATE
     INTERMEDIATE_EXPERT
     EXPERT
+}
+
+enum Goggle {
+    MALE
+    FEMALE
+    JUNIOR
 }

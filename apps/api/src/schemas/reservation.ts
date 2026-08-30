@@ -1,5 +1,5 @@
 import type { EquipmentItemType, Person } from '@ski-blazek/db'
-import { Gender, Level, ReservationStatus } from '@ski-blazek/db/browser'
+import { Gender, Goggle, Level, ReservationStatus } from '@ski-blazek/db/browser'
 import z from 'zod'
 import { paginationSchema } from './pagination'
 
@@ -10,7 +10,6 @@ const personFieldsSchema = z.object({
 	height: z.number().int().min(80, 'zadejte výšku větší než 80'),
 	age: z.number().int().min(1, 'Zadejte věk').max(120, 'Zadejte věk'),
 	gender: z.enum(Gender),
-	// length in cm, matching the range offered by `poleOptions` on the web side
 	poles: z
 		.number()
 		.int()
@@ -20,7 +19,7 @@ const personFieldsSchema = z.object({
 	backProtection: z.boolean(),
 	skiCover: z.boolean(),
 	bootCover: z.boolean(),
-	goggles: z.boolean(),
+	goggles: z.enum(Goggle).nullable(),
 	level: z.enum(Level).nullable(),
 	note: z.string().nullable(),
 }) satisfies z.ZodType<Omit<Person, 'id' | 'createdAt' | 'updatedAt' | 'status' | 'reservationId'>>

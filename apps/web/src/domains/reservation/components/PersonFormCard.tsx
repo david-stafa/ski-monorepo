@@ -3,6 +3,7 @@ import { Button } from '@ski-blazek/ui/components/button'
 import { TypographyH4 } from '@ski-blazek/ui/components/typography'
 import { TrashIcon, UserIcon } from 'lucide-react'
 import { withForm } from '~/components/form/SharedFormFields'
+import { goggleOptions } from '../helpers/goggleOptions'
 import { initialValues } from '../helpers/initialValues'
 import { LEVEL_OPTIONS } from '../helpers/levelMeta'
 import { poleOptions } from '../helpers/poleOptions'
@@ -153,7 +154,15 @@ export const PersonFormCard = withForm({
 								)}
 							</form.AppField>
 							<form.AppField name={`people[${index}].goggles`}>
-								{(subField) => <subField.CheckboxField label="Brýle" orientation="stacked" />}
+								{(subField) => (
+									<subField.SelectField
+										label="Brýle"
+										placeholder="Bez brýlí"
+										noneLabel="Bez brýlí"
+										className="max-w-45"
+										options={goggleOptions}
+									/>
+								)}
 							</form.AppField>
 						</section>
 
