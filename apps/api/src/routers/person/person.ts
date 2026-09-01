@@ -1,9 +1,9 @@
 import z from 'zod'
-import { publicProcedure, router } from '../_context'
+import { protectedProcedure, router } from '../_context'
 import { cancelPerson } from './methods/cancelPerson'
 
 export const personRouter = router({
-	cancel: publicProcedure
+	cancel: protectedProcedure
 		.input(z.object({ id: z.string() }))
 		.mutation(async ({ input }) => await cancelPerson(input)),
 })
