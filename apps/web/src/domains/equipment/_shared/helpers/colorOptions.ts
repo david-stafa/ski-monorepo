@@ -24,6 +24,10 @@ const colorLabels: Record<string, string> = {
 	orange: 'Oranžová',
 	pink: 'Růžová',
 	purple: 'Fialová',
+	brown: 'Hnědá',
+	beige: 'Béžová',
+	gold: 'Zlatá',
+	anthracite: 'Antracitová',
 }
 
 /** Still creatable, so a one-off shade needs no code change. */

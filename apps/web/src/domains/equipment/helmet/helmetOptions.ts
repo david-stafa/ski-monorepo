@@ -4,19 +4,22 @@ import type { SelectFieldOption } from '~/components/form/SharedFormFields'
 const toOptions = (values: string[]): SelectFieldOption<string>[] =>
 	values.map((value) => ({ value, label: value }))
 
-/** See `skiBrandOptions` — same deal, the combobox still takes free text. */
+/**
+ * See `skiBrandOptions` — same deal, the combobox still takes free text.
+ */
 export const helmetBrandOptions = toOptions([
-	'Alpina',
-	'Atomic',
-	'Brico',
-	'Giro',
-	'Head',
-	'K2',
-	'Marker',
-	'POC',
-	'Rossignol',
+	'Briko',
+	'Cébé',
+	'Etape',
+	'Etto',
+	'Lange',
+	'Mango',
+	'Midida',
+	'Razer',
+	'Relax',
 	'Salomon',
-	'Uvex',
+	'SH+',
+	'Wedze',
 ])
 
 const helmetSizeLabels: Record<HelmetSize, string> = {

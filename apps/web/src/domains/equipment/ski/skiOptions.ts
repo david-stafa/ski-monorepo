@@ -20,7 +20,9 @@ export const skiBrandOptions = toOptions([
 	'Nordica',
 	'Rossignol',
 	'Salomon',
-	'Völkl',
+	'Sporten',
+	'Tecnopro',
+	'Volkl',
 ])
 
 /** 70–190 cm in 5 cm steps: kids' skis at the bottom, adult at the top. */

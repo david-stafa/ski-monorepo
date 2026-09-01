@@ -8,7 +8,7 @@ const toOptions = (values: string[]): SelectFieldOption<string>[] =>
 export const snowboardBrandOptions = toOptions([
 	'Burton',
 	'Capita',
-	'Gnu',
+	'GNU',
 	'Gravity',
 	'Head',
 	'K2',

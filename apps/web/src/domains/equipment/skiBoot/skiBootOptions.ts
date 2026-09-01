@@ -4,19 +4,22 @@ import { numberRange } from '../_shared/helpers/numberRange'
 const toOptions = (values: string[]): SelectFieldOption<string>[] =>
 	values.map((value) => ({ value, label: value }))
 
-/** See `skiBrandOptions` — same deal, the combobox still takes free text. */
+/**
+ * See `skiBrandOptions` — same deal, the combobox still takes free text.
+ */
 export const skiBootBrandOptions = toOptions([
+	'Alpina',
 	'Atomic',
 	'Dalbello',
-	'Fischer',
 	'Head',
-	'K2',
 	'Lange',
 	'Nordica',
 	'Rossignol',
 	'Roxa',
 	'Salomon',
 	'Tecnica',
+	'Tecnopro',
+	'Wedze',
 ])
 
 /**
