@@ -5,8 +5,23 @@
 		"build": {
 			"dependsOn": ["^build", "^db:generate"],
 			"outputs": ["dist/**", "build/**"],
-			"inputs": ["src/**", "generated/**", "package.json", "tsconfig.json"],
-			"env": ["DATABASE_URL", "BETTER_AUTH_SECRET", "COOKIE_DOMAIN", "PORT", "API_URL", "WEB_URL"]
+			"inputs": [
+				"src/**",
+				"generated/**",
+				"package.json",
+				"tsconfig*.json",
+				"vite.config.ts",
+				"index.html"
+			],
+			"env": [
+				"DATABASE_URL",
+				"BETTER_AUTH_SECRET",
+				"COOKIE_DOMAIN",
+				"PORT",
+				"API_URL",
+				"WEB_URL",
+				"VITE_API_URL"
+			]
 		},
 		"dev": {
 			"cache": false,

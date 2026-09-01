@@ -20,6 +20,10 @@ jobs:
       # prisma generate reads this but never connects — the postinstall in
       # packages/database fails outright if it is unset. Not a real database.
       DATABASE_URL: postgresql://user:pass@localhost:5432/db
+      # vite.config.ts refuses to produce a production bundle without this, so a
+      # real deploy can't ship one pointing at localhost. CI only needs the build
+      # to compile — nothing built here is ever served or connected to.
+      VITE_API_URL: https://api.invalid
     steps:
       # checkout to the PR's merge commit
       - uses: actions/checkout@v4
