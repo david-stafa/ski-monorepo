@@ -1,0 +1,5686 @@
+[
+	{
+		"brand": "Dynastar",
+		"model": "Booster",
+		"length": 142,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 142,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "MX-R",
+		"length": 142,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 3
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "MX-R",
+		"length": 142,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 4
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Speed 70",
+		"length": 142,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 5
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 144,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 6
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 144,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 7
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 144,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 8
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 144,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 9
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 144,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 10
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 144,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 11
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Zone",
+		"length": 144,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 12
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 146,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 13
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Omedrive 8",
+		"length": 146,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 14
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "DStinct",
+		"length": 148,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 15
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "RL",
+		"length": 148,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 16
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "RL",
+		"length": 148,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 17
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "RL",
+		"length": 148,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 18
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "RL",
+		"length": 148,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 19
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "RL",
+		"length": 148,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 20
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": "SL",
+		"length": 148,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 21
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "063",
+		"length": 149,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 22
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "763",
+		"length": 149,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 23
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Speed 263",
+		"length": 149,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 24
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Exclusive",
+		"length": 149,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 25
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "MX-R",
+		"length": 149,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 26
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "MX-R",
+		"length": 149,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 27
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Booster",
+		"length": 152,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 28
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 152,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 29
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 152,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 30
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 152,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 31
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 152,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 32
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 152,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 33
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Booster 7",
+		"length": 153,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 34
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Exclusive Active",
+		"length": 153,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 35
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Exclusive Revcal",
+		"length": 153,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 36
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Driver 08L",
+		"length": 154,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 37
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "DStinct",
+		"length": 154,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 38
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "DStinct",
+		"length": 154,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 39
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "RL",
+		"length": 154,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 40
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "RL",
+		"length": 154,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 41
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Ski cross 07",
+		"length": 154,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 42
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Slalom",
+		"length": 155,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 43
+		}
+	},
+	{
+		"brand": "K2",
+		"model": null,
+		"length": 156,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 44
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "MX-R",
+		"length": 156,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 45
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "263",
+		"length": 157,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 46
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "063",
+		"length": 157,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 47
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "063",
+		"length": 157,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 48
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "763",
+		"length": 157,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 49
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "763",
+		"length": 157,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 50
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "763",
+		"length": 157,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 51
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Speed 263",
+		"length": 157,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 52
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Speed 263",
+		"length": 157,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 53
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Speed 263",
+		"length": 157,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 54
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 158,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 55
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Booster",
+		"length": 158,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 56
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Contact 09",
+		"length": 158,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 57
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Speed 71",
+		"length": 158,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 58
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Exclusive",
+		"length": 158,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 59
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Exclusive",
+		"length": 158,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 60
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "DStinct",
+		"length": 160,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 61
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Intense 10",
+		"length": 160,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 62
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Speed 60",
+		"length": 160,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 63
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 160,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 64
+		}
+	},
+	{
+		"brand": "K2",
+		"model": null,
+		"length": 160,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 65
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "RL",
+		"length": 160,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 66
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Booster",
+		"length": 162,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 67
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Booster RL",
+		"length": 162,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 68
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 162,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 69
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": "Skart",
+		"length": 162,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 70
+		}
+	},
+	{
+		"brand": "Volkl",
+		"model": null,
+		"length": 162,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 71
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "263",
+		"length": 164,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 72
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "063",
+		"length": 164,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 73
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "063",
+		"length": 164,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 74
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "263",
+		"length": 164,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 75
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "263",
+		"length": 164,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 76
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "763",
+		"length": 164,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 77
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "MX-R",
+		"length": 164,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 78
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "DStinct limited",
+		"length": 165,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 79
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "4x4",
+		"length": 165,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 80
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Booster 10",
+		"length": 165,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 81
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Booster 10",
+		"length": 165,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 82
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Booster 7",
+		"length": 165,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 83
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Contact 10",
+		"length": 165,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 84
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Omedrive 7",
+		"length": 165,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 85
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": "SX 10",
+		"length": 166,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 86
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "RL",
+		"length": 166,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 87
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "RL",
+		"length": 166,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 88
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "RL",
+		"length": 166,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 89
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "RL",
+		"length": 166,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 90
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 168,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 91
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": "React",
+		"length": 170,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 92
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": "M2 tron",
+		"length": 171,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 93
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "763",
+		"length": 171,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 94
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "763",
+		"length": 171,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 95
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "DStinct limited",
+		"length": 172,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 96
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Booster 12",
+		"length": 172,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 97
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Booster RL",
+		"length": 172,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 98
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Booster RL",
+		"length": 172,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 99
+		}
+	},
+	{
+		"brand": "K2",
+		"model": null,
+		"length": 174,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 100
+		}
+	},
+	{
+		"brand": "Blizzard",
+		"model": null,
+		"length": 178,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 101
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Booster 09",
+		"length": 178,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 102
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 70,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 103
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 70,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 104
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 70,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 105
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 70,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 106
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 70,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 107
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 70,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 108
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 70,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 109
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 70,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 110
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 70,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 111
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 70,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 112
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 70,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 113
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 70,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 114
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 70,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 115
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 70,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 116
+		}
+	},
+	{
+		"brand": "Skytti",
+		"model": null,
+		"length": 70,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 117
+		}
+	},
+	{
+		"brand": "Tecnopro",
+		"model": null,
+		"length": 70,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 118
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 80,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 119
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 80,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 120
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 80,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 121
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 80,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 122
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 80,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 123
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 80,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 124
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 80,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 125
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 80,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 126
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 80,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 127
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 80,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 128
+		}
+	},
+	{
+		"brand": "Sporten",
+		"model": null,
+		"length": 80,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 129
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 90,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 130
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 90,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 131
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 90,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 132
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 90,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 133
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 90,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 134
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 90,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 135
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 90,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 136
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 90,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 137
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 90,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 138
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 90,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 139
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 90,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 140
+		}
+	},
+	{
+		"brand": "Volkl",
+		"model": null,
+		"length": 90,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 141
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 92,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 142
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 92,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 143
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 92,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 144
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 92,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 145
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 92,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 146
+		}
+	},
+	{
+		"brand": "Sporten",
+		"model": null,
+		"length": 92,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 147
+		}
+	},
+	{
+		"brand": "Sporten",
+		"model": null,
+		"length": 92,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 148
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 93,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 149
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 93,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 150
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 100,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 151
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 100,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 152
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 100,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 153
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 100,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 154
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 100,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 155
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 100,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 156
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 100,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 157
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 100,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 158
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 100,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 159
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 100,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 160
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 100,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 161
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 100,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 162
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 100,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 163
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 100,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 164
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 100,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 165
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 100,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 166
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 100,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 167
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 100,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 168
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 100,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 169
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 100,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 170
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 100,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 171
+		}
+	},
+	{
+		"brand": "Sporten",
+		"model": null,
+		"length": 100,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 172
+		}
+	},
+	{
+		"brand": "Tecnopro",
+		"model": null,
+		"length": 100,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 173
+		}
+	},
+	{
+		"brand": "Volkl",
+		"model": null,
+		"length": 100,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 174
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 104,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 175
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 104,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 176
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 104,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 177
+		}
+	},
+	{
+		"brand": "Frozen",
+		"model": null,
+		"length": 104,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 178
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 179
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 180
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 181
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 182
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 183
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 184
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 110,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 185
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 186
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 187
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 188
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 189
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 190
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 191
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 192
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 193
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 110,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 194
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 195
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 110,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 196
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 197
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 198
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 199
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 200
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 201
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 202
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 203
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 204
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 205
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 206
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 207
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 208
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 209
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 210
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 211
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 212
+		}
+	},
+	{
+		"brand": "Volkl",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 213
+		}
+	},
+	{
+		"brand": "Volkl",
+		"model": null,
+		"length": 110,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 214
+		}
+	},
+	{
+		"brand": "K2",
+		"model": null,
+		"length": 112,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 215
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 216
+		}
+	},
+	{
+		"brand": "Blizzard",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 217
+		}
+	},
+	{
+		"brand": "Blizzard",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 218
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 120,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 219
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 120,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 220
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 221
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 222
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 223
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 224
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 120,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 225
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 226
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 227
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 228
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 120,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 229
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 230
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 231
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 232
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 233
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 120,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 234
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 235
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 236
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 237
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 238
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": "Axis",
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 239
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 240
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 241
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 242
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 243
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 244
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 245
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 246
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 247
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 248
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 249
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 250
+		}
+	},
+	{
+		"brand": "Volkl",
+		"model": null,
+		"length": 120,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 251
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 122,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 252
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 122,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 253
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 128,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 254
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 128,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 255
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 128,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 256
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 257
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 130,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 258
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 130,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 259
+		}
+	},
+	{
+		"brand": "Blizzard",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 260
+		}
+	},
+	{
+		"brand": "Blizzard",
+		"model": "RC",
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 261
+		}
+	},
+	{
+		"brand": "Dynamic",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 262
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 263
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 264
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 265
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 266
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 267
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 268
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 130,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 269
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 270
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 271
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 272
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 273
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 130,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 274
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 275
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 276
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 277
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 278
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 279
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 280
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 281
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 282
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 283
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 284
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 285
+		}
+	},
+	{
+		"brand": "Fischer",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 286
+		}
+	},
+	{
+		"brand": "Fischer",
+		"model": null,
+		"length": 130,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 287
+		}
+	},
+	{
+		"brand": "Fischer",
+		"model": null,
+		"length": 130,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 288
+		}
+	},
+	{
+		"brand": "Fischer",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 289
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 130,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 290
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 291
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 292
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 293
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 294
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 295
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 296
+		}
+	},
+	{
+		"brand": "Tecnopro",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 297
+		}
+	},
+	{
+		"brand": "Volkl",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 298
+		}
+	},
+	{
+		"brand": "Volkl",
+		"model": null,
+		"length": 130,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 299
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 300
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 301
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 302
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 303
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 140,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 304
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 305
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 140,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 306
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 307
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 308
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 140,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 309
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 140,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 310
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 311
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 312
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 313
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 314
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 315
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 316
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 317
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 318
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 319
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 320
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 321
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 322
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 323
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 324
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 325
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 326
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 327
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 328
+		}
+	},
+	{
+		"brand": "Fischer",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 329
+		}
+	},
+	{
+		"brand": "Fischer",
+		"model": null,
+		"length": 140,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 330
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 331
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 332
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 333
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 334
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 335
+		}
+	},
+	{
+		"brand": "Tecnopro",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 336
+		}
+	},
+	{
+		"brand": "Tecnopro",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 337
+		}
+	},
+	{
+		"brand": "Volkl",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 338
+		}
+	},
+	{
+		"brand": "Volkl",
+		"model": "Race tiger",
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 339
+		}
+	},
+	{
+		"brand": "XT team",
+		"model": null,
+		"length": 140,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 340
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 150,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 341
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 150,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 342
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 150,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 343
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": null,
+		"length": 150,
+		"isOld": true,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 344
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 150,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 345
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 150,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 346
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 150,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 347
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 150,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 348
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 150,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 349
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 150,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 350
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 150,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 351
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 150,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 352
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 150,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 353
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 150,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 354
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 150,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 355
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 150,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 356
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 150,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 357
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 150,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 358
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 150,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 359
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 150,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 360
+		}
+	},
+	{
+		"brand": "Fischer",
+		"model": null,
+		"length": 150,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 361
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 150,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 362
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 150,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 363
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 150,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 364
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 150,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 365
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 150,
+		"isOld": false,
+		"isVIP": false,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 366
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Speed zone 5",
+		"length": 144,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 367
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Zone 5",
+		"length": 144,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 368
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Zone 5",
+		"length": 144,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 369
+		}
+	},
+	{
+		"brand": "Blizzard",
+		"model": null,
+		"length": 146,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 370
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 148,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 371
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Exclusive",
+		"length": 148,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 372
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Exclusive",
+		"length": 148,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 373
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Zone 5",
+		"length": 151,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 374
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Zone 6",
+		"length": 151,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 375
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Active",
+		"length": 153,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 376
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Easy Active",
+		"length": 153,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 377
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Exclusive",
+		"length": 153,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 378
+		}
+	},
+	{
+		"brand": "Blizzard",
+		"model": "CRS",
+		"length": 155,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 379
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Elite Pro",
+		"length": 155,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 380
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Active",
+		"length": 158,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 381
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Contact 08",
+		"length": 158,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 382
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Exclusive",
+		"length": 158,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 383
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Speed zone",
+		"length": 158,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 384
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Zone 5",
+		"length": 158,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 385
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Zone 6",
+		"length": 158,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 386
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Neva",
+		"length": 159,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 387
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": "Clow",
+		"length": 163,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 388
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Omega glass",
+		"length": 163,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 389
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Slalom",
+		"length": 165,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 390
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Slalom",
+		"length": 165,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 391
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Groove",
+		"length": 165,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 392
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Groove",
+		"length": 165,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 393
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Speed zone",
+		"length": 165,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 394
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Speed zone 6",
+		"length": 165,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 395
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Zone 12ti",
+		"length": 166,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 396
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Groove",
+		"length": 167,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 397
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": "Hero",
+		"length": 167,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 398
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Zone 10ti",
+		"length": 167,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 399
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Zone 12ti",
+		"length": 167,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 400
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Zone Speed",
+		"length": 167,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 401
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": "GS",
+		"length": 170,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 402
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": "69",
+		"length": 171,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 403
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Course speed",
+		"length": 172,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 404
+		}
+	},
+	{
+		"brand": "Dynastar",
+		"model": "Course",
+		"length": 172,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 405
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": "LT",
+		"length": 172,
+		"isOld": false,
+		"isVIP": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI",
+			"articleGroup": null,
+			"articleNumber": 406
+		}
+	}
+]

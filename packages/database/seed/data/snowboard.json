@@ -1,0 +1,288 @@
+[
+	{
+		"brand": "Head",
+		"model": null,
+		"length": 110,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Rebel",
+		"model": null,
+		"length": 113,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Bílý",
+		"model": null,
+		"length": 120,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 3
+		}
+	},
+	{
+		"brand": "Sporten",
+		"model": null,
+		"length": 120,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 4
+		}
+	},
+	{
+		"brand": "Sims",
+		"model": null,
+		"length": 120,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 5
+		}
+	},
+	{
+		"brand": "Oxygen",
+		"model": null,
+		"length": 129,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 6
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 130,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 7
+		}
+	},
+	{
+		"brand": "Sporten",
+		"model": null,
+		"length": 132,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 8
+		}
+	},
+	{
+		"brand": "Forum",
+		"model": null,
+		"length": 132,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 9
+		}
+	},
+	{
+		"brand": "Factory",
+		"model": null,
+		"length": 135,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 10
+		}
+	},
+	{
+		"brand": "Wood core",
+		"model": null,
+		"length": 140,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 11
+		}
+	},
+	{
+		"brand": "Nidus",
+		"model": null,
+		"length": 141,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 12
+		}
+	},
+	{
+		"brand": "Gravity",
+		"model": "Adventure",
+		"length": 144,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 13
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 145,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 14
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 145,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 15
+		}
+	},
+	{
+		"brand": "Wood core",
+		"model": null,
+		"length": 145,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 16
+		}
+	},
+	{
+		"brand": "K2",
+		"model": null,
+		"length": 147,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 17
+		}
+	},
+	{
+		"brand": "GNU",
+		"model": null,
+		"length": 150,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 18
+		}
+	},
+	{
+		"brand": "Stuff surge",
+		"model": null,
+		"length": 152,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 19
+		}
+	},
+	{
+		"brand": "K2",
+		"model": "Wide",
+		"length": 153,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 20
+		}
+	},
+	{
+		"brand": "HP",
+		"model": null,
+		"length": 155,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 21
+		}
+	},
+	{
+		"brand": "Nitro",
+		"model": null,
+		"length": 157,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 22
+		}
+	},
+	{
+		"brand": "Mitic",
+		"model": null,
+		"length": 160,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 23
+		}
+	},
+	{
+		"brand": "Arbor",
+		"model": null,
+		"length": 160,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 24
+		}
+	},
+	{
+		"brand": "Palmer",
+		"model": null,
+		"length": 163,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 25
+		}
+	},
+	{
+		"brand": "GNU",
+		"model": null,
+		"length": 172,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD",
+			"articleGroup": null,
+			"articleNumber": 26
+		}
+	}
+]

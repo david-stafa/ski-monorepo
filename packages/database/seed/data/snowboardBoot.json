@@ -1,0 +1,418 @@
+[
+	{
+		"brand": "Elan",
+		"model": null,
+		"length": 21.0,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Gravity",
+		"model": null,
+		"length": 21.5,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Firefly",
+		"model": null,
+		"length": 22.0,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Gravity",
+		"model": null,
+		"length": 22.5,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Gravity",
+		"model": null,
+		"length": 22.5,
+		"isBoa": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 3
+		}
+	},
+	{
+		"brand": "Burton",
+		"model": null,
+		"length": 23.0,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Westige",
+		"model": null,
+		"length": 23.0,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Burton",
+		"model": null,
+		"length": 23.0,
+		"isBoa": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 3
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 23.5,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 4
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 23.5,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 5
+		}
+	},
+	{
+		"brand": "Shape",
+		"model": null,
+		"length": 24.0,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 24.0,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Boogay",
+		"model": null,
+		"length": 24.5,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 3
+		}
+	},
+	{
+		"brand": "Nitro",
+		"model": null,
+		"length": 25.0,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Westige",
+		"model": null,
+		"length": 25.0,
+		"isBoa": false,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 25.0,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 3
+		}
+	},
+	{
+		"brand": "Gravity",
+		"model": null,
+		"length": 25.5,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 4
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 25.5,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 5
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 26.0,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Gravity",
+		"model": null,
+		"length": 26.5,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 26.5,
+		"isBoa": true,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 3
+		}
+	},
+	{
+		"brand": "Generix",
+		"model": null,
+		"length": 26.5,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 4
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 27.0,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 27.0,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Wedze",
+		"model": null,
+		"length": 28.0,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 28.0,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 28.5,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 3
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 28.5,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 4
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 29.0,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 29,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Reaper",
+		"model": null,
+		"length": 29.5,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 29,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Gravity",
+		"model": null,
+		"length": 30.0,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 30,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 30.0,
+		"isBoa": false,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SNOWBOARD_BOOT",
+			"articleGroup": 30,
+			"articleNumber": 2
+		}
+	}
+]

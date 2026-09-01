@@ -1,0 +1,5774 @@
+[
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 15.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 15,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 16.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 16,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 16.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 16,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 16.0,
+		"color": "pink",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 16,
+			"articleNumber": 3
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 16.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 16,
+			"articleNumber": 4
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 16.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 16,
+			"articleNumber": 5
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 16.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 16,
+			"articleNumber": 6
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 16.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 16,
+			"articleNumber": 7
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 16.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 16,
+			"articleNumber": 8
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 17.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 17,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Tecnica",
+		"model": null,
+		"length": 17.0,
+		"color": "white",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 17,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 17.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 17,
+			"articleNumber": 3
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 17.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 17,
+			"articleNumber": 4
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 17.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 17,
+			"articleNumber": 5
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 17.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 17,
+			"articleNumber": 6
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 17.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 17,
+			"articleNumber": 7
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 17.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 17,
+			"articleNumber": 8
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 17.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 17,
+			"articleNumber": 9
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 17.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 17,
+			"articleNumber": 10
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 17.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 17,
+			"articleNumber": 11
+		}
+	},
+	{
+		"brand": "Wedze",
+		"model": null,
+		"length": 18.0,
+		"color": "white",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 18,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 18.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 18,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 18.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 18,
+			"articleNumber": 3
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 18.0,
+		"color": "yellow",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 18,
+			"articleNumber": 4
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 18.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 18,
+			"articleNumber": 5
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 18.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 18,
+			"articleNumber": 6
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 18.0,
+		"color": "yellow",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 18,
+			"articleNumber": 7
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 18.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 18,
+			"articleNumber": 8
+		}
+	},
+	{
+		"brand": "Sportisimo",
+		"model": null,
+		"length": 18.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 18,
+			"articleNumber": 9
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 18.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 18,
+			"articleNumber": 10
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 18.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 18,
+			"articleNumber": 11
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 18.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 18,
+			"articleNumber": 12
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 18.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 18,
+			"articleNumber": 13
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 18.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 18,
+			"articleNumber": 14
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 18.0,
+		"color": "yellow",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 18,
+			"articleNumber": 15
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 18.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 18,
+			"articleNumber": 16
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 18.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 18,
+			"articleNumber": 17
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 18.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 18,
+			"articleNumber": 18
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 18.0,
+		"color": "pink",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 18,
+			"articleNumber": 19
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 18.0,
+		"color": null,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 18,
+			"articleNumber": 20
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 18.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 18,
+			"articleNumber": 21
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 19.0,
+		"color": "pink",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 19,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Munari",
+		"model": null,
+		"length": 19.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 19,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 19.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 19,
+			"articleNumber": 3
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 19.0,
+		"color": "pink",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 19,
+			"articleNumber": 4
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 19.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 19,
+			"articleNumber": 5
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 19.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 19,
+			"articleNumber": 6
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 19.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 19,
+			"articleNumber": 7
+		}
+	},
+	{
+		"brand": "Dalbello",
+		"model": null,
+		"length": 19.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 19,
+			"articleNumber": 8
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 19.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 19,
+			"articleNumber": 9
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 19.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 19,
+			"articleNumber": 10
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 19.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 19,
+			"articleNumber": 11
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 19.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 19,
+			"articleNumber": 12
+		}
+	},
+	{
+		"brand": "Tecnica",
+		"model": null,
+		"length": 19.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 19,
+			"articleNumber": 13
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 19.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 19,
+			"articleNumber": 14
+		}
+	},
+	{
+		"brand": "Dalbello",
+		"model": null,
+		"length": 19.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 19,
+			"articleNumber": 15
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 19.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 19,
+			"articleNumber": 16
+		}
+	},
+	{
+		"brand": "Tecnica",
+		"model": null,
+		"length": 19.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 19,
+			"articleNumber": 17
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 19.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 19,
+			"articleNumber": 18
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 19.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 19,
+			"articleNumber": 19
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 19.0,
+		"color": null,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 19,
+			"articleNumber": 20
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 19.0,
+		"color": null,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 19,
+			"articleNumber": 21
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 19.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 19,
+			"articleNumber": 22
+		}
+	},
+	{
+		"brand": "Tecnica",
+		"model": null,
+		"length": 19.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 19,
+			"articleNumber": 23
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 20.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 20.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 20.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 3
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 20.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 4
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 20.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 5
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 20.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 6
+		}
+	},
+	{
+		"brand": "Dalbello",
+		"model": null,
+		"length": 20.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 7
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 20.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 8
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 20.0,
+		"color": "white",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 9
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 20.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 10
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 20.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 11
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 20.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 12
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 20.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 13
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 20.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 14
+		}
+	},
+	{
+		"brand": "Tecnica",
+		"model": null,
+		"length": 20.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 16
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 20.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 17
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 20.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 18
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 20.0,
+		"color": "white",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 19
+		}
+	},
+	{
+		"brand": "Munari",
+		"model": null,
+		"length": 20.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 20
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 20.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 21
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 20.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 22
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 20.0,
+		"color": "gold",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 24
+		}
+	},
+	{
+		"brand": "Tecnica",
+		"model": null,
+		"length": 20.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 25
+		}
+	},
+	{
+		"brand": "Tecnopro",
+		"model": null,
+		"length": 20.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 26
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 20.0,
+		"color": "white",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 27
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 20.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 28
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 20.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 29
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 20.0,
+		"color": null,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 30
+		}
+	},
+	{
+		"brand": "Head",
+		"model": null,
+		"length": 20.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 31
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 20.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 32
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 20.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 33
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 20.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 34
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 20.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 20,
+			"articleNumber": 35
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 21.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 21.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Tecnica",
+		"model": null,
+		"length": 21.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 3
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 21.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 4
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 21.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 5
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 21.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 6
+		}
+	},
+	{
+		"brand": "Sportisimo",
+		"model": null,
+		"length": 21.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 7
+		}
+	},
+	{
+		"brand": "Tecnica",
+		"model": null,
+		"length": 21.0,
+		"color": "orange",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 8
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 21.0,
+		"color": "yellow",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 9
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 21.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 10
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 21.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 11
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 21.0,
+		"color": null,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 12
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 21.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 13
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 21.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 14
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 21.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 15
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 21.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 16
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 21.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 17
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 21.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 18
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 21.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 19
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 21.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 20
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 21.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 21
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 21.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 22
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 21.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 23
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 21.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 24
+		}
+	},
+	{
+		"brand": "Sportisimo",
+		"model": null,
+		"length": 21.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 25
+		}
+	},
+	{
+		"brand": "Snoxx",
+		"model": null,
+		"length": 21.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 26
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 21.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 27
+		}
+	},
+	{
+		"brand": "Dalbello",
+		"model": null,
+		"length": 21.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 28
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 21.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 29
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 21.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 21,
+			"articleNumber": 30
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 22.0,
+		"color": "white",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 22.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 22.0,
+		"color": null,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 3
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 22.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 4
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 22.0,
+		"color": "white",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 5
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 22.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 6
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 22.0,
+		"color": null,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 7
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 22.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 8
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 22.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 9
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 22.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 10
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 22.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 11
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 22.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 12
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 22.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 13
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 22.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 14
+		}
+	},
+	{
+		"brand": "Tecnica",
+		"model": null,
+		"length": 22.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 15
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 22.0,
+		"color": "purple",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 16
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 22.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 17
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 22.0,
+		"color": "yellow",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 18
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 22.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 19
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 22.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 20
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 22.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 21
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 22.0,
+		"color": "pink",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 22
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 22.0,
+		"color": "white",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 23
+		}
+	},
+	{
+		"brand": "Tecnopro",
+		"model": null,
+		"length": 22.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 24
+		}
+	},
+	{
+		"brand": "Wedze",
+		"model": null,
+		"length": 22.0,
+		"color": "white",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 25
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 22.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 26
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 22.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 27
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 22.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 28
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 22.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 29
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 22.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 30
+		}
+	},
+	{
+		"brand": "Tecnica",
+		"model": null,
+		"length": 22.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 22,
+			"articleNumber": 31
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 23.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 23.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 23.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 3
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 23.0,
+		"color": "silver",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 4
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 23.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 5
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 23.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 6
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 23.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 7
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 23.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 8
+		}
+	},
+	{
+		"brand": "Tecnica",
+		"model": null,
+		"length": 23.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 9
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 23.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 10
+		}
+	},
+	{
+		"brand": "Dalbello",
+		"model": null,
+		"length": 23.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 11
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 23.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 12
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 23.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 13
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 23.0,
+		"color": "silver",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 14
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 23.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 15
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 23.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 16
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 23.0,
+		"color": "silver",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 17
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 23.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 18
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 23.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 19
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 23.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 20
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 23.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 21
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 23.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 22
+		}
+	},
+	{
+		"brand": "Head",
+		"model": null,
+		"length": 23.0,
+		"color": "white",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 23
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 23.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 24
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 23.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 25
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 23.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 26
+		}
+	},
+	{
+		"brand": "Tecnica",
+		"model": null,
+		"length": 23.0,
+		"color": "silver",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 27
+		}
+	},
+	{
+		"brand": "Tecnopro",
+		"model": null,
+		"length": 23.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 28
+		}
+	},
+	{
+		"brand": "Head",
+		"model": null,
+		"length": 23.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 29
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 23.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 30
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 23.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 31
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 23.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 32
+		}
+	},
+	{
+		"brand": "Dalbello",
+		"model": null,
+		"length": 23.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 33
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 23.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 34
+		}
+	},
+	{
+		"brand": "Tecnopro",
+		"model": null,
+		"length": 23.0,
+		"color": "white",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 35
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 23.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 36
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 23.0,
+		"color": null,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 37
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 23.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 38
+		}
+	},
+	{
+		"brand": "Fischer",
+		"model": null,
+		"length": 23.0,
+		"color": "green",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 39
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 23.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 40
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 23.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 41
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 23.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 42
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 23.0,
+		"color": null,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 43
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 23.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 44
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 23.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 23,
+			"articleNumber": 45
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 24.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 24.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Roxa",
+		"model": null,
+		"length": 24.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 3
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 24.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 4
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 24.0,
+		"color": "green",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 5
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 24.0,
+		"color": "white",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 6
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 24.0,
+		"color": "silver",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 7
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 24.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 8
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 24.0,
+		"color": "white",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 9
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 24.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 10
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 24.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 11
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 24.0,
+		"color": null,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 12
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 24.0,
+		"color": "white",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 13
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 24.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 14
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 24.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 15
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 24.0,
+		"color": "white",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 16
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 24.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 17
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 24.0,
+		"color": "beige",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 18
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 24.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 19
+		}
+	},
+	{
+		"brand": "Roxa",
+		"model": null,
+		"length": 24.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 20
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 24.0,
+		"color": "black",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 21
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 24.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 22
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 24.0,
+		"color": "orange",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 23
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 24.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 24
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 24.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 25
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 24.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 26
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 24.0,
+		"color": "white",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 27
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 24.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 28
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 24.0,
+		"color": "anthracite",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 29
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 24.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 30
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 24.0,
+		"color": "orange",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 31
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 24.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 32
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 24.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 33
+		}
+	},
+	{
+		"brand": "Roxa",
+		"model": null,
+		"length": 24.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 34
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 24.0,
+		"color": null,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 35
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 24.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 36
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 24.0,
+		"color": "purple",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 37
+		}
+	},
+	{
+		"brand": "Tecnica",
+		"model": null,
+		"length": 24.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 38
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 24.0,
+		"color": null,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 39
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 24.0,
+		"color": null,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 40
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 24.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 41
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 24.0,
+		"color": null,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 42
+		}
+	},
+	{
+		"brand": "Dalbello",
+		"model": null,
+		"length": 24.0,
+		"color": null,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 43
+		}
+	},
+	{
+		"brand": "Roxa",
+		"model": null,
+		"length": 24.0,
+		"color": null,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 44
+		}
+	},
+	{
+		"brand": "Dalbello",
+		"model": null,
+		"length": 24.0,
+		"color": null,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 45
+		}
+	},
+	{
+		"brand": "Fischer",
+		"model": null,
+		"length": 24.0,
+		"color": null,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 24,
+			"articleNumber": 46
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 25.0,
+		"color": "white",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 25.0,
+		"color": "white",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 25.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 3
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 25.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 4
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 25.0,
+		"color": null,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 5
+		}
+	},
+	{
+		"brand": "Dalbello",
+		"model": null,
+		"length": 25.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 6
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 25.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 7
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 25.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 8
+		}
+	},
+	{
+		"brand": "Tecnopro",
+		"model": null,
+		"length": 25.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 9
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 25.0,
+		"color": "blue",
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 10
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 25.0,
+		"color": "grey",
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 11
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 25.0,
+		"color": "blue",
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 12
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 25.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 13
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 25.0,
+		"color": "yellow",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 14
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 25.0,
+		"color": "blue",
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 15
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 25.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 16
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 25.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 17
+		}
+	},
+	{
+		"brand": "Roxa",
+		"model": null,
+		"length": 25.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 18
+		}
+	},
+	{
+		"brand": "Roxa",
+		"model": null,
+		"length": 25.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 19
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 25.0,
+		"color": "white",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 20
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 25.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 21
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 25.0,
+		"color": "white",
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 22
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 25.0,
+		"color": "red",
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 23
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 25.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 24
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 25.0,
+		"color": "blue",
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 25
+		}
+	},
+	{
+		"brand": "Head",
+		"model": null,
+		"length": 25.0,
+		"color": "black",
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 26
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 25.0,
+		"color": "black",
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 27
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 25.0,
+		"color": "blue",
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 28
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 25.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 29
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 25.0,
+		"color": "black",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 30
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 25.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 31
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 25.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 32
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 25.0,
+		"color": "black",
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 33
+		}
+	},
+	{
+		"brand": "Roxa",
+		"model": null,
+		"length": 25.0,
+		"color": null,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 34
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 25.0,
+		"color": "white",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 35
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 25.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 36
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 25.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 37
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 25.0,
+		"color": "white",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 38
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 25.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 39
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 25.0,
+		"color": null,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 40
+		}
+	},
+	{
+		"brand": "Dalbello",
+		"model": null,
+		"length": 25.0,
+		"color": "black",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 41
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 25.0,
+		"color": "white",
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 42
+		}
+	},
+	{
+		"brand": "Head",
+		"model": null,
+		"length": 25.0,
+		"color": "yellow",
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 43
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 25.0,
+		"color": null,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 44
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 25.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 45
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 25.0,
+		"color": null,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 46
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 25.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 47
+		}
+	},
+	{
+		"brand": "Roxa",
+		"model": null,
+		"length": 25.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 48
+		}
+	},
+	{
+		"brand": "Roxa",
+		"model": null,
+		"length": 25.0,
+		"color": null,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 49
+		}
+	},
+	{
+		"brand": "Roxa",
+		"model": null,
+		"length": 25.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 50
+		}
+	},
+	{
+		"brand": "Roxa",
+		"model": null,
+		"length": 25.0,
+		"color": null,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 25,
+			"articleNumber": 51
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 26.0,
+		"color": null,
+		"isKids": true,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 26.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 26.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 3
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 26.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 4
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 26.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 5
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 26.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 6
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 26.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 7
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 26.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 8
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 26.0,
+		"color": "white",
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 9
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 26.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 10
+		}
+	},
+	{
+		"brand": "Head",
+		"model": null,
+		"length": 26.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 11
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 26.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 12
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 26.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 13
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 26.0,
+		"color": "white",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 14
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 26.0,
+		"color": "green",
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 15
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 26.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 16
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 26.0,
+		"color": null,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 17
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 26.0,
+		"color": "blue",
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 19
+		}
+	},
+	{
+		"brand": "Tecnica",
+		"model": null,
+		"length": 26.0,
+		"color": "white",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 21
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 26.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 22
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 26.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 23
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 26.0,
+		"color": "black",
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 24
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 26.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 25
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 26.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 26
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 26.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 27
+		}
+	},
+	{
+		"brand": "Roxa",
+		"model": null,
+		"length": 26.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 28
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 26.0,
+		"color": "white",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 29
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 26.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 30
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 26.0,
+		"color": "black",
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 31
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 26.0,
+		"color": "black",
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 32
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 26.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 33
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 26.0,
+		"color": "white",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 34
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 26.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 35
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 26.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 36
+		}
+	},
+	{
+		"brand": "Tecnica",
+		"model": null,
+		"length": 26.0,
+		"color": "yellow",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 37
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 26.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 38
+		}
+	},
+	{
+		"brand": "Dalbello",
+		"model": null,
+		"length": 26.0,
+		"color": "white",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 39
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 26.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 40
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 26.0,
+		"color": "blue",
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 41
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 26.0,
+		"color": "black",
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 42
+		}
+	},
+	{
+		"brand": "Tecnopro",
+		"model": null,
+		"length": 26.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 43
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 26.0,
+		"color": null,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 44
+		}
+	},
+	{
+		"brand": "Roxa",
+		"model": null,
+		"length": 26.0,
+		"color": null,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 45
+		}
+	},
+	{
+		"brand": "Dalbello",
+		"model": null,
+		"length": 26.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 46
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 26.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 47
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 26.0,
+		"color": null,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 48
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 26.0,
+		"color": null,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 49
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 26.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 50
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 26.0,
+		"color": null,
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 51
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 26.0,
+		"color": null,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 52
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 26.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 53
+		}
+	},
+	{
+		"brand": "Roxa",
+		"model": null,
+		"length": 26.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 26,
+			"articleNumber": 54
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 27.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 27.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 27.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 3
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 27.0,
+		"color": "black",
+		"isKids": true,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 4
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 27.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 5
+		}
+	},
+	{
+		"brand": "Dalbello",
+		"model": null,
+		"length": 27.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 6
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 27.0,
+		"color": "black",
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 7
+		}
+	},
+	{
+		"brand": "Wedze",
+		"model": null,
+		"length": 27.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 8
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 27.0,
+		"color": "blue",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 9
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 27.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 10
+		}
+	},
+	{
+		"brand": "Munari",
+		"model": null,
+		"length": 27.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 11
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 27.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 12
+		}
+	},
+	{
+		"brand": "Tecnica",
+		"model": null,
+		"length": 27.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 13
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 27.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 14
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 27.0,
+		"color": "orange",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 15
+		}
+	},
+	{
+		"brand": "Head",
+		"model": null,
+		"length": 27.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 16
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 27.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 17
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 27.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 18
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 27.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 19
+		}
+	},
+	{
+		"brand": "Dalbello",
+		"model": null,
+		"length": 27.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 20
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 27.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 21
+		}
+	},
+	{
+		"brand": "Tecnica",
+		"model": null,
+		"length": 27.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 22
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 27.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 23
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 27.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 24
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 27.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 25
+		}
+	},
+	{
+		"brand": "Dalbello",
+		"model": null,
+		"length": 27.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 26
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 27.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 27
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 27.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 28
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 27.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 29
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 27.0,
+		"color": null,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 30
+		}
+	},
+	{
+		"brand": "Roxa",
+		"model": null,
+		"length": 27.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 31
+		}
+	},
+	{
+		"brand": "Roxa",
+		"model": null,
+		"length": 27.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 32
+		}
+	},
+	{
+		"brand": "Roxa",
+		"model": null,
+		"length": 27.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 33
+		}
+	},
+	{
+		"brand": "Tecnica",
+		"model": null,
+		"length": 27.0,
+		"color": null,
+		"isKids": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 27,
+			"articleNumber": 34
+		}
+	},
+	{
+		"brand": "Head",
+		"model": null,
+		"length": 28.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 28.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Roxa",
+		"model": null,
+		"length": 28.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 3
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 28.0,
+		"color": "orange",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 4
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 28.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 5
+		}
+	},
+	{
+		"brand": "Roxa",
+		"model": null,
+		"length": 28.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 6
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 28.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 7
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 28.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 8
+		}
+	},
+	{
+		"brand": "Head",
+		"model": null,
+		"length": 28.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 9
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 28.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 10
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 28.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 11
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 28.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 12
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 28.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 13
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 28.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 14
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 28.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 15
+		}
+	},
+	{
+		"brand": "Dalbello",
+		"model": null,
+		"length": 28.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 16
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 28.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 17
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 28.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 18
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 28.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 19
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 28.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 20
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 28.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 21
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 28.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 22
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 28.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 23
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 28.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 24
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 28.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 25
+		}
+	},
+	{
+		"brand": "Head",
+		"model": null,
+		"length": 28.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 28,
+			"articleNumber": 26
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"length": 29.0,
+		"color": "yellow",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 29,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 29.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 29,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Wedze",
+		"model": null,
+		"length": 29.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 29,
+			"articleNumber": 3
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 29.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 29,
+			"articleNumber": 4
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 29.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 29,
+			"articleNumber": 5
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 29.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 29,
+			"articleNumber": 6
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 29.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 29,
+			"articleNumber": 7
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 29.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 29,
+			"articleNumber": 8
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 29.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 29,
+			"articleNumber": 9
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 29.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 29,
+			"articleNumber": 10
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 29.0,
+		"color": "orange",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 29,
+			"articleNumber": 11
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 29.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 29,
+			"articleNumber": 12
+		}
+	},
+	{
+		"brand": "Roxa",
+		"model": null,
+		"length": 29.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 29,
+			"articleNumber": 13
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 29.0,
+		"color": "red",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 29,
+			"articleNumber": 14
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 29.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 29,
+			"articleNumber": 15
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"length": 29.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 29,
+			"articleNumber": 16
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 29.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 29,
+			"articleNumber": 17
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 30.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 30,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 30.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 30,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Roxa",
+		"model": null,
+		"length": 30.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 30,
+			"articleNumber": 3
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 30.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 30,
+			"articleNumber": 4
+		}
+	},
+	{
+		"brand": "Nordica",
+		"model": null,
+		"length": 30.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 30,
+			"articleNumber": 5
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"length": 30.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 30,
+			"articleNumber": 6
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 30.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 30,
+			"articleNumber": 7
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 30.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 30,
+			"articleNumber": 8
+		}
+	},
+	{
+		"brand": "Roxa",
+		"model": null,
+		"length": 30.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 30,
+			"articleNumber": 9
+		}
+	},
+	{
+		"brand": "Dalbello",
+		"model": null,
+		"length": 30.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 30,
+			"articleNumber": 10
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 31.0,
+		"color": "black",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 31,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 31.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 31,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 31.0,
+		"color": "grey",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 31,
+			"articleNumber": 3
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"length": 31.0,
+		"color": null,
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 31,
+			"articleNumber": 4
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"length": 32.0,
+		"color": "orange",
+		"isKids": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "SKI_BOOT",
+			"articleGroup": 32,
+			"articleNumber": 1
+		}
+	}
+]

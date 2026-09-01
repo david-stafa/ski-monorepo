@@ -1,0 +1,2210 @@
+[
+	{
+		"brand": "Razer",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "red",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 1
+		}
+	},
+	{
+		"brand": "Razer",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "white",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 2
+		}
+	},
+	{
+		"brand": "Briko",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "pink",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 3
+		}
+	},
+	{
+		"brand": "Briko",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "blue",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 4
+		}
+	},
+	{
+		"brand": "Razer",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "white",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 5
+		}
+	},
+	{
+		"brand": "Mango",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "white",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 6
+		}
+	},
+	{
+		"brand": "Midida",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 7
+		}
+	},
+	{
+		"brand": "SH+",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 8
+		}
+	},
+	{
+		"brand": "Deneriaz",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "blue",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 9
+		}
+	},
+	{
+		"brand": "Cébé",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 10
+		}
+	},
+	{
+		"brand": "Briko",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "orange",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 11
+		}
+	},
+	{
+		"brand": "Cébé",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "blue",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 12
+		}
+	},
+	{
+		"brand": "Briko",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 13
+		}
+	},
+	{
+		"brand": "Etto",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "blue",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 14
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "red",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 15
+		}
+	},
+	{
+		"brand": "Mango",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 16
+		}
+	},
+	{
+		"brand": "IQ",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "white",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 17
+		}
+	},
+	{
+		"brand": "Relax",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 54,
+		"circumferenceMax": 56,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 18
+		}
+	},
+	{
+		"brand": "Relax",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 53,
+		"circumferenceMax": 56,
+		"color": "pink",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 19
+		}
+	},
+	{
+		"brand": "Relax",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 53,
+		"circumferenceMax": 56,
+		"color": "yellow",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 20
+		}
+	},
+	{
+		"brand": "SH+",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "blue",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 21
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "blue",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 22
+		}
+	},
+	{
+		"brand": "Etape",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 53,
+		"circumferenceMax": 55,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 23
+		}
+	},
+	{
+		"brand": "Briko",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "pink",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 24
+		}
+	},
+	{
+		"brand": "Etape",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 55,
+		"circumferenceMax": 58,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 25
+		}
+	},
+	{
+		"brand": "SH+",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 26
+		}
+	},
+	{
+		"brand": "Relax",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 54,
+		"circumferenceMax": 56,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 27
+		}
+	},
+	{
+		"brand": "Mango",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "white",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 28
+		}
+	},
+	{
+		"brand": "Midida",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 29
+		}
+	},
+	{
+		"brand": "Etto",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 30
+		}
+	},
+	{
+		"brand": "Relax",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 58,
+		"circumferenceMax": 60,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 31
+		}
+	},
+	{
+		"brand": "Relax",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 54,
+		"circumferenceMax": 56,
+		"color": "white",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 32
+		}
+	},
+	{
+		"brand": "Etape",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 55,
+		"circumferenceMax": 58,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 33
+		}
+	},
+	{
+		"brand": "Razer",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "silver",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 34
+		}
+	},
+	{
+		"brand": "Etto",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "blue",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 35
+		}
+	},
+	{
+		"brand": "Etto",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "yellow",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 36
+		}
+	},
+	{
+		"brand": "Etape",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 55,
+		"circumferenceMax": 58,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 37
+		}
+	},
+	{
+		"brand": "Pale",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "blue",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 38
+		}
+	},
+	{
+		"brand": "Relax",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 58,
+		"circumferenceMax": 60,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 39
+		}
+	},
+	{
+		"brand": "Razer",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "green",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 40
+		}
+	},
+	{
+		"brand": "Etape",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 55,
+		"circumferenceMax": 58,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 41
+		}
+	},
+	{
+		"brand": "Midida",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "red",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 42
+		}
+	},
+	{
+		"brand": "Reaper",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "yellow",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 43
+		}
+	},
+	{
+		"brand": "Wedze",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "blue",
+		"description": "ulomený kšilt",
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 44
+		}
+	},
+	{
+		"brand": "Etape",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 48,
+		"circumferenceMax": 52,
+		"color": "yellow",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 45
+		}
+	},
+	{
+		"brand": "Relax",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "purple",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 46
+		}
+	},
+	{
+		"brand": "Midida",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "blue",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 47
+		}
+	},
+	{
+		"brand": "Cébé",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "yellow",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 48
+		}
+	},
+	{
+		"brand": "Elan",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 49
+		}
+	},
+	{
+		"brand": "Razer",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "red",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 50
+		}
+	},
+	{
+		"brand": "SH+",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "blue",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 51
+		}
+	},
+	{
+		"brand": "Etape",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "yellow",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 52
+		}
+	},
+	{
+		"brand": "Cébé",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "silver",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 53
+		}
+	},
+	{
+		"brand": "Cébé",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "brown",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 54
+		}
+	},
+	{
+		"brand": "Etape",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 53,
+		"circumferenceMax": 55,
+		"color": "yellow",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 55
+		}
+	},
+	{
+		"brand": "Relax",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 56,
+		"circumferenceMax": 58,
+		"color": "white",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 56
+		}
+	},
+	{
+		"brand": "Haven",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 57
+		}
+	},
+	{
+		"brand": "Cébé",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "blue",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 58
+		}
+	},
+	{
+		"brand": "Razer",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "white",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 59
+		}
+	},
+	{
+		"brand": "Relax",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 56,
+		"circumferenceMax": 58,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 60
+		}
+	},
+	{
+		"brand": "Cébé",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "pink",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 61
+		}
+	},
+	{
+		"brand": "Relax",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "yellow",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 62
+		}
+	},
+	{
+		"brand": "Etto",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "yellow",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 63
+		}
+	},
+	{
+		"brand": "Cébé",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "silver",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 64
+		}
+	},
+	{
+		"brand": "Keen",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 65
+		}
+	},
+	{
+		"brand": "Briko",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "yellow",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 66
+		}
+	},
+	{
+		"brand": "Relax",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 54,
+		"circumferenceMax": 56,
+		"color": "white",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 67
+		}
+	},
+	{
+		"brand": "Alpina",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "white",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 68
+		}
+	},
+	{
+		"brand": "Rossignol",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "silver",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 69
+		}
+	},
+	{
+		"brand": "Tecnopro",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "white",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 70
+		}
+	},
+	{
+		"brand": "Cébé",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "silver",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 71
+		}
+	},
+	{
+		"brand": "Etto",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "orange",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 72
+		}
+	},
+	{
+		"brand": "Razer",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "white",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 73
+		}
+	},
+	{
+		"brand": "Briko",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "yellow",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 74
+		}
+	},
+	{
+		"brand": "Relax",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 56,
+		"circumferenceMax": 58,
+		"color": "white",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 75
+		}
+	},
+	{
+		"brand": "Etape",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 53,
+		"circumferenceMax": 55,
+		"color": "yellow",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 76
+		}
+	},
+	{
+		"brand": "Razer",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "white",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 77
+		}
+	},
+	{
+		"brand": "Relax",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 56,
+		"circumferenceMax": 58,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 78
+		}
+	},
+	{
+		"brand": "Mango",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 53,
+		"circumferenceMax": 55,
+		"color": "yellow",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 79
+		}
+	},
+	{
+		"brand": "Etto",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "orange",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 80
+		}
+	},
+	{
+		"brand": "Blizzard",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "pink",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 81
+		}
+	},
+	{
+		"brand": "Etto",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "orange",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 82
+		}
+	},
+	{
+		"brand": "Mango",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "yellow",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 83
+		}
+	},
+	{
+		"brand": "Cébé",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "yellow",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 84
+		}
+	},
+	{
+		"brand": "Wedze",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "blue",
+		"description": "kšilt",
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 85
+		}
+	},
+	{
+		"brand": "Razer",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "red",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 86
+		}
+	},
+	{
+		"brand": "SH+",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "white",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 87
+		}
+	},
+	{
+		"brand": "Husky",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "red",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 88
+		}
+	},
+	{
+		"brand": "K2",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "silver",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 89
+		}
+	},
+	{
+		"brand": "Atomic",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "grey",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 90
+		}
+	},
+	{
+		"brand": "Etape",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 53,
+		"circumferenceMax": 55,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 91
+		}
+	},
+	{
+		"brand": "Razer",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "silver",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 92
+		}
+	},
+	{
+		"brand": "SH+",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "white",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 93
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "blue",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 94
+		}
+	},
+	{
+		"brand": "Worker",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "silver",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 95
+		}
+	},
+	{
+		"brand": "Uvex",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "blue",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 96
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "blue",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 97
+		}
+	},
+	{
+		"brand": "Crivit",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "white",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 98
+		}
+	},
+	{
+		"brand": "Cébé",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "yellow",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 99
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "blue",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 100
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 101
+		}
+	},
+	{
+		"brand": "SH+",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "white",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 102
+		}
+	},
+	{
+		"brand": "Etape",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "blue",
+		"description": "kšilt",
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 103
+		}
+	},
+	{
+		"brand": "Etape",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "white",
+		"description": "kšilt",
+		"withIntegratedGoggles": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 104
+		}
+	},
+	{
+		"brand": "Briko",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "yellow",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 105
+		}
+	},
+	{
+		"brand": "Giro",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 106
+		}
+	},
+	{
+		"brand": "Relax",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "pink",
+		"description": "kšilt",
+		"withIntegratedGoggles": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 107
+		}
+	},
+	{
+		"brand": "Wedze",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "blue",
+		"description": "kšilt",
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 108
+		}
+	},
+	{
+		"brand": "Roxy",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "white",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 109
+		}
+	},
+	{
+		"brand": "Etape",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 48,
+		"circumferenceMax": 52,
+		"color": "yellow",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 110
+		}
+	},
+	{
+		"brand": "Salomon",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 111
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "blue",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 112
+		}
+	},
+	{
+		"brand": "Head",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 113
+		}
+	},
+	{
+		"brand": "Mango",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "pink",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 114
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "white",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 115
+		}
+	},
+	{
+		"brand": "Midida",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 116
+		}
+	},
+	{
+		"brand": "Midida",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 117
+		}
+	},
+	{
+		"brand": "Midida",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 118
+		}
+	},
+	{
+		"brand": "Midida",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 119
+		}
+	},
+	{
+		"brand": "Midida",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 120
+		}
+	},
+	{
+		"brand": "Midida",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 121
+		}
+	},
+	{
+		"brand": "Midida",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 122
+		}
+	},
+	{
+		"brand": "Relax",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 56,
+		"circumferenceMax": 58,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 123
+		}
+	},
+	{
+		"brand": "Relax",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 56,
+		"circumferenceMax": 58,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 124
+		}
+	},
+	{
+		"brand": "Relax",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 56,
+		"circumferenceMax": 58,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 125
+		}
+	},
+	{
+		"brand": "Relax",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 56,
+		"circumferenceMax": 58,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 126
+		}
+	},
+	{
+		"brand": "Etape",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 53,
+		"circumferenceMax": 55,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 127
+		}
+	},
+	{
+		"brand": "Relax",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 56,
+		"circumferenceMax": 58,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 128
+		}
+	},
+	{
+		"brand": "Relax",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 60,
+		"circumferenceMax": 62,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 129
+		}
+	},
+	{
+		"brand": "Relax",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 60,
+		"circumferenceMax": 62,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 130
+		}
+	},
+	{
+		"brand": "Giro",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "grey",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 131
+		}
+	},
+	{
+		"brand": "Relax",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "black",
+		"description": "OPRAVA",
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 132
+		}
+	},
+	{
+		"brand": "Briko",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "pink",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 133
+		}
+	},
+	{
+		"brand": "Lange",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "red",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 134
+		}
+	},
+	{
+		"brand": "Relax",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 54,
+		"circumferenceMax": 56,
+		"color": "white",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 135
+		}
+	},
+	{
+		"brand": "Relax",
+		"model": null,
+		"size": null,
+		"circumferenceMin": null,
+		"circumferenceMax": null,
+		"color": "pink",
+		"description": "kšilt",
+		"withIntegratedGoggles": false,
+		"gender": "FEMALE",
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 136
+		}
+	},
+	{
+		"brand": "Etape",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 53,
+		"circumferenceMax": 55,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 137
+		}
+	},
+	{
+		"brand": "Etape",
+		"model": null,
+		"size": null,
+		"circumferenceMin": 55,
+		"circumferenceMax": 58,
+		"color": "black",
+		"description": null,
+		"withIntegratedGoggles": false,
+		"gender": null,
+		"equipmentItem": {
+			"type": "HELMET",
+			"articleGroup": null,
+			"articleNumber": 138
+		}
+	}
+]
