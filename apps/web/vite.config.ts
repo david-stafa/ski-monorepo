@@ -5,8 +5,21 @@ import { tanstackRouter } from '@tanstack/router-plugin/vite'
 import react from '@vitejs/plugin-react'
 import { defineConfig, loadEnv } from 'vite'
 
+// The repo keeps a single .env at the root, so both `loadEnv` here and Vite's own `envDir` below must point at it
+const envDir = path.resolve(import.meta.dirname, '../..')
+
 export default defineConfig(({ mode }) => {
-	const env = loadEnv(mode, process.cwd(), '')
+	const env = loadEnv(mode, envDir, '')
+
+	// VITE_* values are inlined at build time, so a missing VITE_API_URL does not
+	// fail at boot — it ships a bundle pointing at localhost that looks fine until
+	// someone opens it. Fail the build instead, while it can still be fixed.
+	if (mode === 'production' && !env.VITE_API_URL) {
+		throw new Error(
+			'VITE_API_URL must be set for a production build, otherwise the bundle points at localhost.'
+		)
+	}
+
 	return {
 		plugins: [
 			devtools(),
@@ -23,7 +36,7 @@ export default defineConfig(({ mode }) => {
 				'~': path.resolve(import.meta.dirname, './src'),
 			},
 		},
-		envDir: path.resolve(import.meta.dirname, '../..'),
+		envDir,
 		server: {
 			port: env.APP_PORT ? Number(env.APP_PORT) : 5174,
 		},
