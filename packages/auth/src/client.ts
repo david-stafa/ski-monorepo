@@ -5,6 +5,7 @@
  * by both the web and mobile clients.
  */
 
+import { adminClient } from 'better-auth/client/plugins'
 import { createAuthClient } from 'better-auth/react'
 
 interface AuthClientOptions {
@@ -17,6 +18,7 @@ export const createAuth = ({ apiBaseUrl }: AuthClientOptions) =>
 		emailAndPassword: {
 			enabled: true,
 		},
+		plugins: [adminClient()],
 	})
 
 // Re-export types from the server instance

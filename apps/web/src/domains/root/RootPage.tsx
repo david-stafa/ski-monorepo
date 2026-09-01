@@ -8,11 +8,8 @@ export const RootPage = () => {
 			<nav className="flex justify-between gap-2 p-2">
 				<ModeToggle />
 				<div>
-					<ButtonLink to="/login" variant="secondary" className="mr-2">
+					<ButtonLink to="/login" variant="default">
 						Log in
-					</ButtonLink>
-					<ButtonLink to="/register" variant="default">
-						Register
 					</ButtonLink>
 				</div>
 			</nav>

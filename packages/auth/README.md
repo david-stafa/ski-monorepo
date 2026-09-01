@@ -51,3 +51,11 @@ Then apply the migration:
 ```bash
 pnpm --filter @ski-blazek/db db:migrate
 ```
+
+## User Setup
+
+Generate an admin user:
+
+```bash
+pnpx auth create-admin --config apps/api/src/auth.ts --email <client-email> --force
+```

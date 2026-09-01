@@ -1,6 +1,7 @@
 import { prisma } from '@ski-blazek/db'
 import { betterAuth } from 'better-auth'
 import { prismaAdapter } from 'better-auth/adapters/prisma'
+import { admin } from 'better-auth/plugins'
 
 interface AuthOptions {
 	trustedOrigins: string[]
@@ -16,6 +17,8 @@ export const createAuth = ({ trustedOrigins, apiURL }: AuthOptions) =>
 		}),
 		emailAndPassword: {
 			enabled: true,
+			disableSignUp: true,
 		},
 		trustedOrigins,
+		plugins: [admin()],
 	})
