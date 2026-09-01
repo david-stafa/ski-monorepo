@@ -31,6 +31,16 @@ export const WEB_URL = z
 	.default('http://localhost:5174')
 	.parse(process.env.WEB_URL)
 
+// Shared parent of the api/web subdomains in production, e.g. `.railtest-app.fun`.
+// Unset locally — both dev servers are on localhost and already share cookies.
+// `|| undefined` so an empty Railway variable is treated as absent rather than
+// enabling cross-subdomain cookies with a blank domain.
+export const COOKIE_DOMAIN = z
+	.string()
+	.min(1, 'COOKIE_DOMAIN must not be empty — unset the variable instead')
+	.optional()
+	.parse(process.env.COOKIE_DOMAIN || undefined)
+
 const secret = process.env.BETTER_AUTH_SECRET
 if (IS_PRODUCTION && (!secret || secret.length < 32)) {
 	throw new Error(
