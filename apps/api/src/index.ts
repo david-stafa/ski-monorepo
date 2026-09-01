@@ -34,6 +34,14 @@ app.use(
 	})
 )
 
+app.get('/health', (_req, res) => {
+	res.status(200).json({
+		status: 'ok',
+		uptime: process.uptime(),
+		timestamp: Date.now(),
+	})
+})
+
 app.listen(PORT, () => {
 	console.log(`Example app listening on port ${PORT}`)
 })
