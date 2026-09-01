@@ -13,6 +13,7 @@ export const createSkiBootInputSchema = z.object({
 	length: z.number().multipleOf(0.5).min(10),
 	/** Stored as an English key, shown in Czech — see `colorOptions` on the web side. */
 	color: z.string().nullable(),
+	isKids: z.boolean(),
 	gender: z.enum(Gender).nullable(),
 }) satisfies z.ZodType<Omit<SkiBoot, 'id' | 'createdAt' | 'updatedAt' | 'equipmentItemId'>>
 export type CreateSkiBootInput = z.infer<typeof createSkiBootInputSchema>

@@ -23,6 +23,7 @@ export const SnowboardBootForm = ({ close, defaultValues }: SnowboardBootFormPro
 		model: defaultValues?.model ?? null,
 		length: defaultValues?.length ?? 0,
 		isBoa: defaultValues?.isBoa ?? false,
+		isKids: defaultValues?.isKids ?? false,
 		gender: defaultValues?.gender ?? null,
 	}
 
@@ -109,6 +110,11 @@ export const SnowboardBootForm = ({ close, defaultValues }: SnowboardBootFormPro
 			<form.AppField
 				name="isBoa"
 				children={(field) => <field.CheckboxField label="BOA systém:" />}
+			/>
+
+			<form.AppField
+				name="isKids"
+				children={(field) => <field.CheckboxField label="Jsou dětské:" />}
 			/>
 
 			<div className="ml-auto">

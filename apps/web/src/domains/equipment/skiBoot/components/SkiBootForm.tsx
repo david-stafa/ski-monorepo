@@ -21,6 +21,7 @@ export const SkiBootForm = ({ close, defaultValues }: SkiBootFormProps) => {
 		model: defaultValues?.model ?? null,
 		length: defaultValues?.length ?? 0,
 		color: defaultValues?.color ?? null,
+		isKids: defaultValues?.isKids ?? false,
 		gender: defaultValues?.gender ?? null,
 	}
 
@@ -110,6 +111,11 @@ export const SkiBootForm = ({ close, defaultValues }: SkiBootFormProps) => {
 						placeholder="Unisex"
 					/>
 				)}
+			/>
+
+			<form.AppField
+				name="isKids"
+				children={(field) => <field.CheckboxField label="Jsou dětské:" />}
 			/>
 
 			<div className="ml-auto">

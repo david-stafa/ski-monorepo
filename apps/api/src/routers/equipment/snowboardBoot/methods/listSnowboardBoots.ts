@@ -39,6 +39,7 @@ export const listSnowboardBoots = async ({
 				model: true,
 				length: true,
 				isBoa: true,
+				isKids: true,
 				gender: true,
 				equipmentItemId: true,
 				equipmentItem: {

@@ -69,6 +69,7 @@ model SkiBoot {
   // Which sticker pool it lands in is `articleGroup`, not this column.
   length Float
 
+  isKids Boolean @default(false)
   // null = unisex. See `Ski.gender`.
   gender Gender?
 
@@ -88,6 +89,7 @@ model SnowboardBoot {
   length Float
 
   isBoa  Boolean @default(false)
+  isKids Boolean @default(false)
   // null = unisex. See `Ski.gender`.
   gender Gender?
 

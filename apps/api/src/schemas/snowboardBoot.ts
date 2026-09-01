@@ -9,6 +9,7 @@ export const createSnowboardBootInputSchema = z.object({
 	/** Mondopoint in half-size steps. See `createSkiBootInputSchema`. */
 	length: z.number().multipleOf(0.5).min(10),
 	isBoa: z.boolean(),
+	isKids: z.boolean(),
 	gender: z.enum(Gender).nullable(),
 }) satisfies z.ZodType<Omit<SnowboardBoot, 'id' | 'createdAt' | 'updatedAt' | 'equipmentItemId'>>
 export type CreateSnowboardBootInput = z.infer<typeof createSnowboardBootInputSchema>
