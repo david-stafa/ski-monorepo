@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc -b && vite build",
-		"start": "pnpx serve -s dist",
+		"start": "serve -s dist",
 		"check-types": "tsc -b"
 	},
 	"dependencies": {
@@ -42,6 +42,7 @@
 		"@types/react": "catalog:",
 		"@types/react-dom": "catalog:",
 		"@vitejs/plugin-react": "^6.1.0",
+		"serve": "^14.2.6",
 		"typescript": "catalog:",
 		"vite": "^8.2.2"
 	}
