@@ -1,5 +1,5 @@
-import { toNodeHandler } from '@ski-blazek/auth'
 import * as trpcExpress from '@trpc/server/adapters/express'
+import { toNodeHandler } from 'better-auth/node'
 import cors from 'cors'
 import express from 'express'
 import { auth } from './auth'
@@ -9,9 +9,9 @@ import { createContext } from './routers/_context'
 
 const app = express()
 
-// Railway/Caddy terminate TLS; Express must trust X-Forwarded-* so cookies stay Secure
-// and auth libraries see the public https:// origin.
-app.set('trust proxy', true)
+// Railway terminates TLS at its edge and forwards HTTP with X-Forwarded-*.
+// `1` = trust exactly that one hop; `true` would trust a spoofed chain.
+app.set('trust proxy', 1)
 
 // Configure CORS middleware
 app.use(

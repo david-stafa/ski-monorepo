@@ -10,7 +10,7 @@ interface AuthOptions {
 
 export const createAuth = ({ trustedOrigins, apiURL }: AuthOptions) =>
 	betterAuth({
-		apiURL,
+		baseURL: apiURL,
 		database: prismaAdapter(prisma, {
 			provider: 'postgresql',
 		}),
@@ -19,9 +19,3 @@ export const createAuth = ({ trustedOrigins, apiURL }: AuthOptions) =>
 		},
 		trustedOrigins,
 	})
-
-// Export types for use in client and server
-// export type Session = typeof auth.$Infer.Session
-
-// TODO: Check with Béďos if this is the correct way to export the helper
-export { fromNodeHeaders, toNodeHandler } from 'better-auth/node'
