@@ -20,6 +20,7 @@ import {
 	SidebarMenuSubItem,
 	SidebarProvider,
 	SidebarRail,
+	SidebarTrigger,
 } from '@ski-blazek/ui/components/sidebar'
 import { createFileRoute, Link, Outlet, redirect } from '@tanstack/react-router'
 import {
@@ -37,6 +38,7 @@ import {
 	Snowflake,
 	User,
 } from 'lucide-react'
+import { UserMenu } from '~/components/ui/UserMenu'
 
 export const Route = createFileRoute('/_authenticated')({
 	beforeLoad: async ({ location, context }) => {
@@ -57,7 +59,10 @@ function AuthenticatedLayout() {
 		<SidebarProvider>
 			<AppSidebar />
 			<main className="flex-1">
-				{/* <SidebarTrigger /> */}
+				<header className="flex h-12 items-center justify-between gap-2 border-b px-2 md:hidden">
+					<SidebarTrigger />
+					<UserMenu />
+				</header>
 				<Outlet />
 			</main>
 		</SidebarProvider>

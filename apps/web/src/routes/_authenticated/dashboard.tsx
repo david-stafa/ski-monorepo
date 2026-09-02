@@ -2,9 +2,8 @@ import { Button } from '@ski-blazek/ui/components/button'
 import { ModeToggle } from '@ski-blazek/ui/components/mode-toggle'
 import { TypographyH2 } from '@ski-blazek/ui/components/typography'
 import { createFileRoute, useNavigate, useRouteContext } from '@tanstack/react-router'
+import { LogOut } from 'lucide-react'
 import { useState } from 'react'
-
-// import { HabitsOverview } from '~/domains/dashboard/components/HabitsOverview'
 import { authClient } from '~/lib/auth'
 
 export const Route = createFileRoute('/_authenticated/dashboard')({
@@ -33,15 +32,14 @@ function Dashboard() {
 	}
 
 	return (
-		<div className="p-4 md:p-8">
-			<div className="mb-4 flex items-center justify-end gap-1">
+		<div className="p-4 md:p-8 flex justify-between">
+			<TypographyH2 className="mb-4">Welcome, {user?.name}.</TypographyH2>
+			<div className="mb-4 items-center justify-end gap-1 hidden md:flex">
 				<ModeToggle />
 				<Button onClick={handleSignOut} variant="secondary" disabled={isLoading}>
+					<LogOut className="size-4" />
 					{isLoading ? 'Odhlašuji se…' : 'Odhlásit se'}
 				</Button>
-			</div>
-			<div className="mb-4 flex h-fit flex-col items-start justify-between md:flex-row">
-				<TypographyH2>Welcome, {user?.name}.</TypographyH2>
 			</div>
 		</div>
 	)
