@@ -11,6 +11,13 @@ export const Route = createFileRoute('/')({
 					redirect: location.href,
 				},
 			})
+		} else {
+			throw redirect({
+				to: '/login',
+				search: {
+					redirect: location.href,
+				},
+			})
 		}
 	},
 	component: RootPage,

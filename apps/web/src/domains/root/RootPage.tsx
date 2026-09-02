@@ -9,7 +9,7 @@ export const RootPage = () => {
 				<ModeToggle />
 				<div>
 					<ButtonLink to="/login" variant="default">
-						Log in
+						Přihlásit se
 					</ButtonLink>
 				</div>
 			</nav>

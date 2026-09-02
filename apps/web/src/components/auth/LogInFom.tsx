@@ -9,23 +9,27 @@ import { authClient } from '~/lib/auth'
 import { FieldInfo } from '../form/FieldInfo'
 
 const userSchema = z.object({
-	email: z.email(),
+	email: z.email('Prosím, zadejte platnou emailovou adresu.'),
 	password: z.string(),
 })
 
-type User = z.infer<typeof userSchema>
+// type User = z.infer<typeof userSchema>
 
-const defaultUser: User = {
-	email: 'john.doe@example.com',
-	password: 'password1234',
-}
+// const defaultUser: User = {
+// 	email: 'john.doe@example.com',
+// 	password: 'password1234',
+// }
 
 export const LogInForm = () => {
 	const navigate = useNavigate()
 	const [formError, setFormError] = useState<string | null>(null)
 
 	const form = useForm({
-		defaultValues: defaultUser,
+		// defaultValues: defaultUser,
+		defaultValues: {
+			email: '',
+			password: '',
+		},
 		validators: {
 			onBlur: userSchema,
 			onSubmit: userSchema,
@@ -79,7 +83,7 @@ export const LogInForm = () => {
 				children={(field) => (
 					<div>
 						<Label htmlFor="login-password" className="mb-1">
-							Password
+							Heslo
 						</Label>
 						<Input
 							id="login-password"
@@ -97,7 +101,7 @@ export const LogInForm = () => {
 				children={([canSubmit, isSubmitting]) => (
 					<>
 						<Button type="submit" disabled={!canSubmit}>
-							{isSubmitting ? '...' : 'Log In'}
+							{isSubmitting ? 'Přihlašuji se...' : 'Přihlásit se'}
 						</Button>
 					</>
 				)}

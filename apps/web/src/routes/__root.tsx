@@ -34,8 +34,6 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => (
 		<HeadContent />
 		<ThemeProvider>
 			<TooltipProvider>{children}</TooltipProvider>
-			{/* <TanStackRouterDevtools />
-      <ReactQueryDevtools /> */}
 		</ThemeProvider>
 	</>
 )

@@ -37,7 +37,7 @@ function Dashboard() {
 			<div className="mb-4 flex items-center justify-end gap-1">
 				<ModeToggle />
 				<Button onClick={handleSignOut} variant="secondary" disabled={isLoading}>
-					{isLoading ? 'Signing out…' : 'Sign Out'}
+					{isLoading ? 'Odhlašuji se…' : 'Odhlásit se'}
 				</Button>
 			</div>
 			<div className="mb-4 flex h-fit flex-col items-start justify-between md:flex-row">
