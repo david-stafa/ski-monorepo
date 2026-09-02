@@ -1,4 +1,5 @@
-import { type GetSnowboardInput, getSnowboardInputSchema } from '@ski-blazek/api/schemas'
+import { type GetSnowboardInput, getSnowboardInputSchema, isChecked } from '@ski-blazek/api/schemas'
+import { EquipmentItemType } from '@ski-blazek/db/browser'
 import {
 	Table,
 	TableBody,
@@ -9,11 +10,17 @@ import {
 	TableRow,
 } from '@ski-blazek/ui/components/table'
 import { TypographyH1 } from '@ski-blazek/ui/components/typography'
+import { cn } from '@ski-blazek/ui/lib/utils'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
+import { z } from 'zod'
 import { CustomItemPerPageSelect, CustomPagination } from '~/components/ui/CustomPagination'
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
+import { CheckedFilterSelect } from '~/domains/equipment/_shared/components/CheckedFilterSelect'
+import { InventoryToggleButton } from '~/domains/equipment/_shared/components/InventoryToggleButton'
+import { StockCheckCheckbox } from '~/domains/equipment/_shared/components/StockCheckCheckbox'
+import { StockSweepButton } from '~/domains/equipment/_shared/components/StockSweepButton'
 import { formatArticleNumber } from '~/domains/equipment/_shared/helpers/formatArticleNumber'
 import { genderLabel } from '~/domains/equipment/_shared/helpers/genderOptions'
 import { AddSnowboardButton } from '~/domains/equipment/snowboard/components/AddSnowboardButton'
@@ -22,13 +29,18 @@ import { useFilters } from '~/hooks/useFilter'
 import { trpc } from '~/lib/trpc'
 
 export const Route = createFileRoute('/_authenticated/equipment/snowboard')({
-	validateSearch: getSnowboardInputSchema,
-	loaderDeps: ({ search: { page, itemsPerPage, orderBy, orderDirection, search } }) => ({
+	// `inventory` is client-only — it toggles the stock-check UI and is
+	// deliberately left out of `loaderDeps`, so it never reaches the API.
+	validateSearch: getSnowboardInputSchema.extend({ inventory: z.boolean().optional() }),
+	loaderDeps: ({
+		search: { page, itemsPerPage, orderBy, orderDirection, search, checkedFilter },
+	}) => ({
 		page,
 		itemsPerPage,
 		orderBy,
 		orderDirection,
 		search,
+		checkedFilter,
 	}),
 	loader: async ({ context, deps }) => {
 		return context.queryClient.ensureQueryData(
@@ -40,10 +52,13 @@ export const Route = createFileRoute('/_authenticated/equipment/snowboard')({
 
 function RouteComponent() {
 	const {
-		filters: { page, itemsPerPage, orderBy, orderDirection, search },
+		filters: { page, itemsPerPage, orderBy, orderDirection, search, checkedFilter, inventory },
 		setFilters,
 		resetFilters,
 	} = useFilters(Route.id)
+
+	const isInventory = Boolean(inventory)
+	const defaultSearch = getSnowboardInputSchema.parse({})
 
 	const handleFilterClick = (nextOrderBy: GetSnowboardInput['orderBy']) => {
 		setFilters({
@@ -61,16 +76,32 @@ function RouteComponent() {
 			orderBy,
 			orderDirection,
 			search,
+			checkedFilter,
 		})
 	)
 
 	return (
 		<div className="p-2 md:p-4">
 			{/*  Title  with total count */}
-			<TypographyH1 className="mb-6">
-				Snowboardy
-				<span className="ml-1 align-super text-sm text-gray-500">({data.totalCount})</span>
-			</TypographyH1>
+			<div className="mb-6 flex justify-between gap-2">
+				<TypographyH1>
+					Snowboardy
+					<span className="ml-1 align-super text-sm text-gray-500">({data.totalCount})</span>
+				</TypographyH1>
+				<div>
+					{isInventory && <StockSweepButton type={EquipmentItemType.SNOWBOARD} />}
+					<InventoryToggleButton
+						inventory={isInventory}
+						onToggle={(next) =>
+							setFilters({
+								inventory: next || undefined,
+								checkedFilter: 'all',
+								page: 1,
+							})
+						}
+					/>
+				</div>
+			</div>
 
 			{/*  Add snowboard and reset filters button  */}
 			<div className="mb-4 flex items-center justify-between gap-2">
@@ -78,15 +109,28 @@ function RouteComponent() {
 
 				<SearchField searchValue={search} onSearch={(search) => setFilters({ search, page: 1 })} />
 
+				{isInventory && (
+					<CheckedFilterSelect
+						value={checkedFilter}
+						onValueChange={(value) => setFilters({ checkedFilter: value, page: 1 })}
+					/>
+				)}
+
 				<ResetFiltersButton
-					resetFilters={resetFilters}
-					defaultSearch={getSnowboardInputSchema.parse({})}
+					/*  In inventory mode reset the filters through `setFilters`, which
+					    merges into the current search — inventura is a mode, not a
+					    filter, and resetting shouldn't drop you out of it.  */
+					resetFilters={
+						isInventory ? () => setFilters({ ...defaultSearch, search: undefined }) : resetFilters
+					}
+					defaultSearch={defaultSearch}
 					currentSearch={{
 						page,
 						itemsPerPage,
 						orderBy,
 						orderDirection,
 						search,
+						checkedFilter,
 					}}
 				/>
 			</div>
@@ -95,6 +139,15 @@ function RouteComponent() {
 			<Table>
 				<TableHeader>
 					<TableRow>
+						{isInventory && (
+							<TableHeadSortable
+								sorted={orderBy === 'lastCheckedAt' ? orderDirection : false}
+								onClick={() => handleFilterClick('lastCheckedAt')}
+								className="max-w-5"
+							>
+								Inventura
+							</TableHeadSortable>
+						)}
 						<TableHead>Akce</TableHead>
 						<TableHeadSortable
 							sorted={orderBy === 'articleNumber' ? orderDirection : false}
@@ -131,13 +184,29 @@ function RouteComponent() {
 				<TableBody>
 					{data.snowboards.length === 0 ? (
 						<TableRow>
-							<TableCell colSpan={6} className="h-50 text-center">
+							<TableCell colSpan={isInventory ? 7 : 6} className="h-50 text-center">
 								Žádné snowboardy nebyly nalezeny.
 							</TableCell>
 						</TableRow>
 					) : (
 						data.snowboards.map((item) => (
-							<TableRow key={item.id}>
+							<TableRow
+								key={item.id}
+								className={cn(
+									isInventory &&
+										isChecked(item.equipmentItem.lastCheckedAt) &&
+										'bg-success/10 hover:bg-success/15'
+								)}
+							>
+								{isInventory && (
+									<TableCell>
+										<StockCheckCheckbox
+											equipmentItemId={item.equipmentItemId}
+											lastCheckedAt={item.equipmentItem.lastCheckedAt}
+											type={EquipmentItemType.SNOWBOARD}
+										/>
+									</TableCell>
+								)}
 								<TableCell className="flex items-center gap-2">
 									<SnowboardActions defaultValues={item} />
 								</TableCell>

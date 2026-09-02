@@ -1,3 +1,6 @@
+import type { Prisma } from '@ski-blazek/db/browser'
+import { type CheckedFilter, seasonStart } from '../../../../schemas/stockCheck'
+
 /**
  * Search and sort helpers shared by the equipment lists. Article numbers live
  * on `EquipmentItem`, so every list reaches them through the same relation
@@ -65,4 +68,37 @@ export const articleNumberSearchFilter = (search: string) => {
 export const articleNumberOrderBy = (orderDirection: SortOrder) => [
 	{ equipmentItem: { articleGroup: orderDirection } },
 	{ equipmentItem: { articleNumber: orderDirection } },
+]
+
+/**
+ * Relation filter for the inventory list, so "nezkontrolováno" means the same
+ * thing in all five lists. `all` yields an empty object, which Prisma ignores —
+ * callers can spread it unconditionally.
+ */
+export const checkedWhere = (filter: CheckedFilter): Prisma.EquipmentItemWhereInput => {
+	if (filter === 'checked') return { lastCheckedAt: { gte: seasonStart() } }
+
+	if (filter === 'unchecked')
+		return { OR: [{ lastCheckedAt: null }, { lastCheckedAt: { lt: seasonStart() } }] }
+
+	return {}
+}
+
+/**
+ * Sort by the stock-check date. Like `articleNumber` it lives on the parent, so
+ * it can't go through the plain `[{ [orderBy]: orderDirection }]` path.
+ *
+ * `nulls` is set explicitly rather than left to Postgres, whose default flips
+ * with the direction. Never-checked items are the oldest thing there is, so
+ * ascending puts them first — the ones still to find — and descending last.
+ */
+export const lastCheckedOrderBy = (orderDirection: SortOrder) => [
+	{
+		equipmentItem: {
+			lastCheckedAt: {
+				sort: orderDirection,
+				nulls: orderDirection === 'asc' ? ('first' as const) : ('last' as const),
+			},
+		},
+	},
 ]

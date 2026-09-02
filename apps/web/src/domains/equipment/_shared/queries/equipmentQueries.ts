@@ -4,12 +4,18 @@ import type { TRPCQueryKeyWithoutPrefix } from '@trpc/tanstack-react-query'
 import { notifyError, notifySuccess } from '~/lib/notify'
 import { queryClient, trpc } from '~/lib/trpc'
 
-type EquipmentAction = 'delete' | 'retire' | 'unretire'
+type EquipmentAction = 'delete' | 'retire' | 'unretire' | 'archiveUnchecked'
 
 interface EquipmentMeta {
 	/** List query to invalidate after a mutation for this equipment type. */
 	invalidate: TRPCQueryKeyWithoutPrefix
 	messages: Record<EquipmentAction, { success: string; error: string }>
+	/**
+	 * Ticking a row during the stock check saves in the background and has no
+	 * success toast — a toast per row would bury the screen — so only the
+	 * failure message is needed.
+	 */
+	checkError: string
 }
 
 /**
@@ -33,7 +39,12 @@ const EQUIPMENT_META: Record<EquipmentItemType, EquipmentMeta> = {
 				success: 'Lyže byly úspěšně aktivovány.',
 				error: 'Nepodařilo se aktivovat lyže.',
 			},
+			archiveUnchecked: {
+				success: 'Nezkontrolované lyže byly archivovány.',
+				error: 'Nepodařilo se archivovat nezkontrolované lyže.',
+			},
 		},
+		checkError: 'Nepodařilo se změnit stav kontroly lyží.',
 	},
 	[EquipmentItemType.SKI_BOOT]: {
 		invalidate: trpc.equipment.skiBoot.list.pathKey(),
@@ -50,7 +61,12 @@ const EQUIPMENT_META: Record<EquipmentItemType, EquipmentMeta> = {
 				success: 'Lyžařské boty byly úspěšně aktivovány.',
 				error: 'Nepodařilo se aktivovat lyžařské boty.',
 			},
+			archiveUnchecked: {
+				success: 'Nezkontrolované lyžařské boty byly archivovány.',
+				error: 'Nepodařilo se archivovat nezkontrolované lyžařské boty.',
+			},
 		},
+		checkError: 'Nepodařilo se změnit stav kontroly lyžařských bot.',
 	},
 	[EquipmentItemType.SNOWBOARD]: {
 		invalidate: trpc.equipment.snowboard.list.pathKey(),
@@ -67,7 +83,12 @@ const EQUIPMENT_META: Record<EquipmentItemType, EquipmentMeta> = {
 				success: 'Snowboard byl úspěšně aktivován.',
 				error: 'Nepodařilo se aktivovat snowboard.',
 			},
+			archiveUnchecked: {
+				success: 'Nezkontrolované snowboardy byly archivovány.',
+				error: 'Nepodařilo se archivovat nezkontrolované snowboardy.',
+			},
 		},
+		checkError: 'Nepodařilo se změnit stav kontroly snowboardu.',
 	},
 	[EquipmentItemType.SNOWBOARD_BOOT]: {
 		invalidate: trpc.equipment.snowboardBoot.list.pathKey(),
@@ -84,7 +105,12 @@ const EQUIPMENT_META: Record<EquipmentItemType, EquipmentMeta> = {
 				success: 'Snowboardové boty byly úspěšně aktivovány.',
 				error: 'Nepodařilo se aktivovat snowboardové boty.',
 			},
+			archiveUnchecked: {
+				success: 'Nezkontrolované snowboardové boty byly archivovány.',
+				error: 'Nepodařilo se archivovat nezkontrolované snowboardové boty.',
+			},
 		},
+		checkError: 'Nepodařilo se změnit stav kontroly snowboardových bot.',
 	},
 	[EquipmentItemType.HELMET]: {
 		invalidate: trpc.equipment.helmet.list.pathKey(),
@@ -101,7 +127,12 @@ const EQUIPMENT_META: Record<EquipmentItemType, EquipmentMeta> = {
 				success: 'Helma byla úspěšně aktivována.',
 				error: 'Nepodařilo se aktivovat helmu.',
 			},
+			archiveUnchecked: {
+				success: 'Nezkontrolované helmy byly archivovány.',
+				error: 'Nepodařilo se archivovat nezkontrolované helmy.',
+			},
 		},
+		checkError: 'Nepodařilo se změnit stav kontroly helmy.',
 	},
 }
 
@@ -143,6 +174,40 @@ export const useUnretireItem = (type: EquipmentItemType) => {
 				notifySuccess('Aktivováno', messages.unretire.success)
 			},
 			onError: (error) => notifyError(error.message, messages.unretire.error),
+		})
+	)
+}
+
+/**
+ * Ticking one item off during the stock check. No success toast — a toast per
+ * row would bury the screen during an inventura — so the list invalidation is
+ * the only feedback, plus the row turning green.
+ */
+export const useSetChecked = (type: EquipmentItemType) => {
+	const { invalidate, checkError } = EQUIPMENT_META[type]
+
+	return useMutation(
+		trpc.equipment.equipmentItem.setChecked.mutationOptions({
+			onSuccess: () => queryClient.invalidateQueries({ queryKey: invalidate }),
+			onError: (error) => notifyError(error.message, checkError),
+		})
+	)
+}
+
+/** Closing the stock check: archive everything of this type that never turned up. */
+export const useArchiveUnchecked = (type: EquipmentItemType) => {
+	const { invalidate, messages } = EQUIPMENT_META[type]
+
+	return useMutation(
+		trpc.equipment.equipmentItem.archiveUnchecked.mutationOptions({
+			onSuccess: ({ count }) => {
+				queryClient.invalidateQueries({ queryKey: invalidate })
+				queryClient.invalidateQueries({
+					queryKey: trpc.equipment.equipmentItem.previewStockSweep.pathKey(),
+				})
+				notifySuccess(`Archivováno: ${count}`, messages.archiveUnchecked.success)
+			},
+			onError: (error) => notifyError(error.message, messages.archiveUnchecked.error),
 		})
 	)
 }

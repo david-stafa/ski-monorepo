@@ -1,6 +1,7 @@
 import { Gender, type Helmet, HelmetSize } from '@ski-blazek/db/browser'
 import { z } from 'zod'
 import { paginationSchema } from './pagination'
+import { stockCheckFilterSchema } from './stockCheck'
 
 /** The editable fields, before the cross-field rules below. */
 const helmetFieldsSchema = z.object({
@@ -91,23 +92,26 @@ export const updateHelmetInputSchema = helmetFieldsSchema
 export type UpdateHelmetInput = z.infer<typeof updateHelmetInputSchema>
 
 /** list query (search / sort / pagination) */
-export const getHelmetInputSchema = paginationSchema.extend({
-	search: z.string().optional(),
-	// Sorting by `size` sorts by the enum's declaration order, not
-	// alphabetically — XS, S, M, L, XL, ADJUSTABLE, which is the order a person
-	// would put them in anyway. That is why the enum is declared small-to-large.
-	orderBy: z
-		.enum([
-			'articleNumber',
-			'brand',
-			'model',
-			'size',
-			'circumferenceMin',
-			'color',
-			'withIntegratedGoggles',
-			'gender',
-		])
-		.default('brand'),
-	orderDirection: z.enum(['asc', 'desc']).default('asc'),
-})
+export const getHelmetInputSchema = paginationSchema
+	.extend({
+		search: z.string().optional(),
+		// Sorting by `size` sorts by the enum's declaration order, not
+		// alphabetically — XS, S, M, L, XL, ADJUSTABLE, which is the order a person
+		// would put them in anyway. That is why the enum is declared small-to-large.
+		orderBy: z
+			.enum([
+				'articleNumber',
+				'brand',
+				'model',
+				'size',
+				'circumferenceMin',
+				'color',
+				'withIntegratedGoggles',
+				'gender',
+				'lastCheckedAt',
+			])
+			.default('articleNumber'),
+		orderDirection: z.enum(['asc', 'desc']).default('asc'),
+	})
+	.extend(stockCheckFilterSchema.shape)
 export type GetHelmetInput = z.infer<typeof getHelmetInputSchema>

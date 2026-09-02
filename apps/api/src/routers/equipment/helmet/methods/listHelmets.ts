@@ -4,6 +4,8 @@ import type { GetHelmetInput } from '../../../../schemas/helmet'
 import {
 	articleNumberOrderBy,
 	articleNumberSearchFilter,
+	checkedWhere,
+	lastCheckedOrderBy,
 } from '../../_shared/lib/equipmentListQuery'
 
 export const listHelmets = async ({
@@ -12,8 +14,9 @@ export const listHelmets = async ({
 	orderBy,
 	orderDirection,
 	search,
+	checkedFilter,
 }: GetHelmetInput) => {
-	const where: Prisma.HelmetWhereInput = search
+	const searchWhere: Prisma.HelmetWhereInput = search
 		? {
 				OR: [
 					{ brand: { contains: search, mode: 'insensitive' } },
@@ -24,10 +27,18 @@ export const listHelmets = async ({
 			}
 		: {}
 
+	/*  Inventura filter, AND-ed on top of the search.  */
+	const where: Prisma.HelmetWhereInput = {
+		...searchWhere,
+		equipmentItem: checkedWhere(checkedFilter),
+	}
+
 	const orderByClause: Prisma.HelmetOrderByWithRelationInput[] =
 		orderBy === 'articleNumber'
 			? articleNumberOrderBy(orderDirection)
-			: [{ [orderBy]: orderDirection }]
+			: orderBy === 'lastCheckedAt'
+				? lastCheckedOrderBy(orderDirection)
+				: [{ [orderBy]: orderDirection }]
 
 	const [helmets, totalCount] = await prisma.$transaction([
 		prisma.helmet.findMany({
@@ -46,6 +57,7 @@ export const listHelmets = async ({
 				equipmentItemId: true,
 				equipmentItem: {
 					select: {
+						lastCheckedAt: true,
 						retiredAt: true,
 						articleGroup: true,
 						articleNumber: true,

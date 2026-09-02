@@ -1,6 +1,7 @@
 import { Gender, type SnowboardBoot } from '@ski-blazek/db/browser'
 import { z } from 'zod'
 import { paginationSchema } from './pagination'
+import { stockCheckFilterSchema } from './stockCheck'
 
 /** create = the editable fields. Single home for validation rules. */
 export const createSnowboardBootInputSchema = z.object({
@@ -21,11 +22,13 @@ export const updateSnowboardBootInputSchema = createSnowboardBootInputSchema.ext
 export type UpdateSnowboardBootInput = z.infer<typeof updateSnowboardBootInputSchema>
 
 /** list query (search / sort / pagination) */
-export const getSnowboardBootInputSchema = paginationSchema.extend({
-	search: z.string().optional(),
-	orderBy: z
-		.enum(['articleNumber', 'length', 'brand', 'model', 'isBoa', 'gender'])
-		.default('length'),
-	orderDirection: z.enum(['asc', 'desc']).default('asc'),
-})
+export const getSnowboardBootInputSchema = paginationSchema
+	.extend({
+		search: z.string().optional(),
+		orderBy: z
+			.enum(['articleNumber', 'length', 'brand', 'model', 'isBoa', 'gender', 'lastCheckedAt'])
+			.default('articleNumber'),
+		orderDirection: z.enum(['asc', 'desc']).default('asc'),
+	})
+	.extend(stockCheckFilterSchema.shape)
 export type GetSnowboardBootInput = z.infer<typeof getSnowboardBootInputSchema>

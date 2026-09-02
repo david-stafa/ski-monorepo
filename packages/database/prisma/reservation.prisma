@@ -76,6 +76,11 @@ model EquipmentItem {
 
     retiredAt DateTime?
 
+    /// When this item was last physically seen during a stock check (inventura).
+    /// Null = never checked. Compared against the current season start, not a
+    /// rolling 12 months — see `seasonStart()` in apps/api/src/schemas/stockCheck.ts.
+    lastCheckedAt DateTime?
+
     ski           Ski?
     snowboard     Snowboard?
     helmet        Helmet?

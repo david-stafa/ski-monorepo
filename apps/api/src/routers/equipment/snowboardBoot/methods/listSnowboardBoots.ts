@@ -5,6 +5,8 @@ import {
 	articleNumberOrderBy,
 	articleNumberSearchFilter,
 	bootLengthSearch,
+	checkedWhere,
+	lastCheckedOrderBy,
 } from '../../_shared/lib/equipmentListQuery'
 
 export const listSnowboardBoots = async ({
@@ -13,8 +15,9 @@ export const listSnowboardBoots = async ({
 	orderBy,
 	orderDirection,
 	search,
+	checkedFilter,
 }: GetSnowboardBootInput) => {
-	const where: Prisma.SnowboardBootWhereInput = search
+	const searchWhere: Prisma.SnowboardBootWhereInput = search
 		? {
 				OR: [
 					{ brand: { contains: search, mode: 'insensitive' } },
@@ -25,10 +28,18 @@ export const listSnowboardBoots = async ({
 			}
 		: {}
 
+	/*  Inventura filter, AND-ed on top of the search.  */
+	const where: Prisma.SnowboardBootWhereInput = {
+		...searchWhere,
+		equipmentItem: checkedWhere(checkedFilter),
+	}
+
 	const orderByClause: Prisma.SnowboardBootOrderByWithRelationInput[] =
 		orderBy === 'articleNumber'
 			? articleNumberOrderBy(orderDirection)
-			: [{ [orderBy]: orderDirection }]
+			: orderBy === 'lastCheckedAt'
+				? lastCheckedOrderBy(orderDirection)
+				: [{ [orderBy]: orderDirection }]
 
 	const [snowboardBoots, totalCount] = await prisma.$transaction([
 		prisma.snowboardBoot.findMany({
@@ -44,6 +55,7 @@ export const listSnowboardBoots = async ({
 				equipmentItemId: true,
 				equipmentItem: {
 					select: {
+						lastCheckedAt: true,
 						retiredAt: true,
 						articleGroup: true,
 						articleNumber: true,
