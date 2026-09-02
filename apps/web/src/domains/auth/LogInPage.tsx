@@ -36,7 +36,7 @@ export const LogInPage = () => {
 				{/*  Wordmark  */}
 				<div className="relative flex items-center gap-2.5">
 					<MountainSnowIcon className="size-7" />
-					<span className="text-xl font-semibold tracking-tight">Ski Blazek</span>
+					<span className="text-xl font-semibold tracking-tight">Ski Blažek</span>
 				</div>
 
 				{/*  Claim  */}

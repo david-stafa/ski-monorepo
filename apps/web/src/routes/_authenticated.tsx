@@ -22,7 +22,7 @@ import {
 	SidebarRail,
 	SidebarTrigger,
 } from '@ski-blazek/ui/components/sidebar'
-import { createFileRoute, Link, Outlet, redirect } from '@tanstack/react-router'
+import { createFileRoute, Link, Outlet, redirect, useRouteContext } from '@tanstack/react-router'
 import {
 	CalendarDays,
 	ChevronDown,
@@ -36,7 +36,6 @@ import {
 	PackageOpenIcon,
 	PlusCircleIcon,
 	Snowflake,
-	User,
 } from 'lucide-react'
 import { UserMenu } from '~/components/ui/UserMenu'
 
@@ -70,14 +69,15 @@ function AuthenticatedLayout() {
 }
 
 export function AppSidebar() {
+	const { user } = useRouteContext({ from: '__root__' })
 	return (
 		<Sidebar collapsible="icon">
 			<SidebarHeader>
 				<SidebarMenu>
 					<SidebarMenuItem>
-						<SidebarMenuButton tooltip="Ski Blazek" render={<Link to="/dashboard" />}>
+						<SidebarMenuButton tooltip="Ski Blažek" render={<Link to="/dashboard" />}>
 							<Mountain />
-							<span>Ski Blazek</span>
+							<span>Ski Blažek</span>
 						</SidebarMenuButton>
 					</SidebarMenuItem>
 				</SidebarMenu>
@@ -199,10 +199,11 @@ export function AppSidebar() {
 
 			<SidebarFooter>
 				<SidebarMenu>
-					<SidebarMenuItem>
-						<SidebarMenuButton>
-							<User /> Username
-						</SidebarMenuButton>
+					<SidebarMenuItem className="flex items-center gap-2 overflow-hidden p-1 group-data-[collapsible=icon]:p-0">
+						<UserMenu />
+						<span className="truncate text-sm group-data-[collapsible=icon]:hidden">
+							{user?.name || user?.email || 'Uživatel'}
+						</span>
 					</SidebarMenuItem>
 				</SidebarMenu>
 			</SidebarFooter>
