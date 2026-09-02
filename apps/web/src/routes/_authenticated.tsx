@@ -11,6 +11,7 @@ import {
 	SidebarGroup,
 	SidebarGroupContent,
 	SidebarHeader,
+	SidebarInset,
 	SidebarMenu,
 	SidebarMenuAction,
 	SidebarMenuButton,
@@ -57,13 +58,15 @@ function AuthenticatedLayout() {
 	return (
 		<SidebarProvider>
 			<AppSidebar />
-			<main className="flex-1">
+			<SidebarInset>
 				<header className="flex h-12 items-center justify-between gap-2 border-b px-2 md:hidden">
 					<SidebarTrigger />
 					<UserMenu />
 				</header>
-				<Outlet />
-			</main>
+				<div className="flex flex-1 flex-col gap-4 p-2 md:p-4">
+					<Outlet />
+				</div>
+			</SidebarInset>
 		</SidebarProvider>
 	)
 }
@@ -71,7 +74,7 @@ function AuthenticatedLayout() {
 export function AppSidebar() {
 	const { user } = useRouteContext({ from: '__root__' })
 	return (
-		<Sidebar collapsible="icon">
+		<Sidebar collapsible="offcanvas" variant="inset">
 			<SidebarHeader>
 				<SidebarMenu>
 					<SidebarMenuItem>

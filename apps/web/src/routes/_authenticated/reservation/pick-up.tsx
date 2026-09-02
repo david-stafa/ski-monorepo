@@ -45,7 +45,7 @@ function RouteComponent() {
 	const { data } = useSuspenseQuery(trpc.reservation.list.queryOptions(toListInput(filters)))
 
 	return (
-		<div className="p-2 md:p-4">
+		<div>
 			{/*  Title with total count  */}
 			<TypographyH1 className="mb-6">
 				Výdej

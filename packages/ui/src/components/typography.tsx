@@ -13,10 +13,7 @@ export function TypographyH1({ children, className, ...props }: React.ComponentP
 
 export function TypographyH2({ children, className, ...props }: React.ComponentProps<'h2'>) {
 	return (
-		<h2
-			className={cn('scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0', className)}
-			{...props}
-		>
+		<h2 className={cn('scroll-m-20 text-3xl font-semibold tracking-tight', className)} {...props}>
 			{children}
 		</h2>
 	)
@@ -52,7 +49,7 @@ export function TypographyBlockquote({
 	...props
 }: React.ComponentProps<'blockquote'>) {
 	return (
-		<blockquote className={cn('mt-6 border-l-2 pl-6 italic', className)} {...props}>
+		<blockquote className={cn('border-l-2 pl-6 italic', className)} {...props}>
 			{children}
 		</blockquote>
 	)
@@ -68,7 +65,7 @@ export function TypographyLarge({ children, className, ...props }: React.Compone
 
 export function TypographySmall({ children, className, ...props }: React.ComponentProps<'small'>) {
 	return (
-		<small className={cn('text-sm leading-none font-medium', className)} {...props}>
+		<small className={cn('text-sm leading-tight font-medium', className)} {...props}>
 			{children}
 		</small>
 	)

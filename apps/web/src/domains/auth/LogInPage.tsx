@@ -63,7 +63,7 @@ export const LogInPage = () => {
 						<span className="text-lg font-semibold tracking-tight">Ski Blažek</span>
 					</div>
 
-					<TypographyH2 className="pb-0">Přihlášení</TypographyH2>
+					<TypographyH2>Přihlášení</TypographyH2>
 					<TypographyP className="text-muted-foreground mt-2 mb-8">
 						Vyplňte formulář níže a přihlaste se do svého účtu.
 					</TypographyP>

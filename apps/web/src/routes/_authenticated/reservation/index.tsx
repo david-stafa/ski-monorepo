@@ -67,7 +67,7 @@ function RouteComponent() {
 	)
 
 	return (
-		<div className="p-2 md:p-4">
+		<div>
 			{/*  Title with total count  */}
 			<TypographyH1 className="mb-6">
 				Rezervace

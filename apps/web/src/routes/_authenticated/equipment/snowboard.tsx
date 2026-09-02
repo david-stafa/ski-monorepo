@@ -81,7 +81,7 @@ function RouteComponent() {
 	)
 
 	return (
-		<div className="p-2 md:p-4">
+		<div>
 			{/*  Title  with total count */}
 			<div className="mb-6 flex justify-between gap-2">
 				<TypographyH1>

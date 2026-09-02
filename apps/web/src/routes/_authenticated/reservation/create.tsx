@@ -7,7 +7,7 @@ export const Route = createFileRoute('/_authenticated/reservation/create')({
 
 function RouteComponent() {
 	return (
-		<div className="m-2 rounded-xl p-2 md:m-4 md:p-4">
+		<div>
 			<ReservationForm />
 		</div>
 	)

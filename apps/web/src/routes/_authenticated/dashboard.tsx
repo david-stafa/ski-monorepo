@@ -32,7 +32,7 @@ function Dashboard() {
 	}
 
 	return (
-		<div className="p-4 md:p-8 flex justify-between">
+		<div className="flex justify-between">
 			<TypographyH2 className="mb-4">Welcome, {user?.name}.</TypographyH2>
 			<div className="mb-4 items-center justify-end gap-1 hidden md:flex">
 				<ModeToggle />

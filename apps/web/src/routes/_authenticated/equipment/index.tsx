@@ -9,7 +9,7 @@ export const Route = createFileRoute('/_authenticated/equipment/')({
 
 function RouteComponent() {
 	return (
-		<div className="p-2 md:p-4">
+		<div>
 			<div className="mb-4 flex items-center justify-between">
 				<TypographyH1>Vybavení</TypographyH1>
 				<Button>
