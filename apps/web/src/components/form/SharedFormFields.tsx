@@ -398,7 +398,9 @@ function SubscribeButton({
 	return (
 		<form.Subscribe selector={(state) => state.isSubmitting}>
 			{(isSubmitting) => (
-				<Button disabled={isSubmitting} {...props}>
+				// Base UI's Button defaults to type="button", so a submit button has
+				// to say so explicitly or the form never submits
+				<Button type="submit" disabled={isSubmitting} {...props}>
 					{label}
 				</Button>
 			)}
