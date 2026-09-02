@@ -227,12 +227,12 @@ function RouteComponent() {
 								</TableCell>
 								<TableCell>{formatArticleNumber(item.equipmentItem)}</TableCell>
 								<TableCell>{item.brand}</TableCell>
-								<TableCell>{item.model}</TableCell>
+								<TableCell>{item.model ? item.model : '—'}</TableCell>
 								<TableCell>{item.length}</TableCell>
 								<TableCell>{genderLabel(item.gender)}</TableCell>
-								<TableCell>{item.isOld ? 'Starší' : 'Nové'}</TableCell>
-								<TableCell>{item.isVIP ? 'VIP' : 'Standart'}</TableCell>
-								<TableCell>{item.isKids ? 'Dětské' : 'Dospělé'}</TableCell>
+								<TableCell>{item.isOld ? 'Starší' : '—'}</TableCell>
+								<TableCell>{item.isVIP ? 'VIP' : '—'}</TableCell>
+								<TableCell>{item.isKids ? 'Dětské' : '—'}</TableCell>
 							</TableRow>
 						))
 					)}

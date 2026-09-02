@@ -221,9 +221,9 @@ function RouteComponent() {
 								</TableCell>
 								<TableCell>{formatArticleNumber(item.equipmentItem)}</TableCell>
 								<TableCell>{item.brand}</TableCell>
-								<TableCell>{item.model}</TableCell>
+								<TableCell>{item.model ? item.model : '—'}</TableCell>
 								<TableCell>{item.length}</TableCell>
-								<TableCell>{item.isBoa ? 'Ano' : 'Ne'}</TableCell>
+								<TableCell>{item.isBoa ? 'Ano' : '—'}</TableCell>
 								<TableCell>{genderLabel(item.gender)}</TableCell>
 							</TableRow>
 						))

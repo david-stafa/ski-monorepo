@@ -231,14 +231,14 @@ function RouteComponent() {
 								</TableCell>
 								<TableCell>{formatArticleNumber(item.equipmentItem)}</TableCell>
 								<TableCell>{item.brand}</TableCell>
-								<TableCell>{item.model}</TableCell>
+								<TableCell>{item.model ? item.model : '—'}</TableCell>
 								<TableCell>{helmetSizeLabel(item.size)}</TableCell>
 								<TableCell>
 									{formatCircumference(item.circumferenceMin, item.circumferenceMax)}
 								</TableCell>
 								<TableCell>{colorLabel(item.color)}</TableCell>
 								<TableCell>{genderLabel(item.gender)}</TableCell>
-								<TableCell>{item.withIntegratedGoggles ? 'Ano' : 'Ne'}</TableCell>
+								<TableCell>{item.withIntegratedGoggles ? 'Ano' : '—'}</TableCell>
 							</TableRow>
 						))
 					)}
