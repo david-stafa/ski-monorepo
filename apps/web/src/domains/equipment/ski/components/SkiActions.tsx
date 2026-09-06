@@ -46,29 +46,26 @@ export const SkiActions = ({ defaultValues }: SkiActionsProps) => {
 					{/* ACTIVATE */}
 					{isRetired && (
 						<DropdownMenuItem
-							className={'text-primary focus:text-primary'}
+							className="text-primary focus:text-primary focus:**:text-primary!"
 							onClick={() => setActivateOpen(true)}
 						>
-							<CirclePlusIcon className="text-primary" />
+							<CirclePlusIcon />
 							Aktivovat
 						</DropdownMenuItem>
 					)}
 					{/* RETIRE */}
 					{!isRetired && (
 						<DropdownMenuItem
-							className={'text-warning focus:text-warning'}
+							className="text-warning focus:text-warning focus:**:text-warning!"
 							onClick={() => setRetireOpen(true)}
 						>
-							<ArchiveIcon className="text-warning" />
+							<ArchiveIcon />
 							Archivovat
 						</DropdownMenuItem>
 					)}
 					{/* DELETE */}
-					<DropdownMenuItem
-						className="text-destructive focus:text-destructive"
-						onClick={() => setDeleteOpen(true)}
-					>
-						<Trash2Icon className="text-destructive" />
+					<DropdownMenuItem variant="destructive" onClick={() => setDeleteOpen(true)}>
+						<Trash2Icon />
 						Smazat
 					</DropdownMenuItem>
 				</DropdownMenuContent>
