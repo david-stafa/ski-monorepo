@@ -15,13 +15,17 @@ export {
 } from './helmet'
 export { type PaginationInput, paginationSchema } from './pagination'
 export {
-	type CreateReservationInput,
-	createReservationInputSchema,
+	createEmptyEquipment,
 	type GetReservationsInput,
 	getReservationsInputSchema,
+	type PersonEquipment,
 	personInputSchema,
+	type ReservationDetail,
 	type ReservationIdInput,
+	type ReservationInput,
+	reservationDetailSchema,
 	reservationIdInputSchema,
+	reservationInputSchema,
 } from './reservation'
 export {
 	type CreateSkiInput,

@@ -16,8 +16,8 @@ import { withFieldGroup } from './SharedFormFields'
  */
 export const DateRangeField = withFieldGroup({
 	defaultValues: { startDate: new Date(), endDate: new Date() },
-	props: { label: '' },
-	render: function DateRangeFieldGroup({ group, label }) {
+	props: { label: '', disabled: false } as { label: string; disabled?: boolean },
+	render: function DateRangeFieldGroup({ group, label, disabled }) {
 		const [open, setOpen] = useState(false)
 
 		return (
@@ -30,7 +30,12 @@ export const DateRangeField = withFieldGroup({
 
 							return (
 								<div className="flex flex-col gap-2">
-									<Label htmlFor={startField.name}>{label}</Label>
+									<Label htmlFor={startField.name}>
+										{label}{' '}
+										<span className="text-muted-foreground italic">
+											{disabled && '(změna termínu zatím není možná)'}
+										</span>
+									</Label>
 									<Popover
 										open={open}
 										onOpenChange={(nextOpen) => {
@@ -50,6 +55,7 @@ export const DateRangeField = withFieldGroup({
 													variant="outline"
 													id={startField.name}
 													className="w-fit justify-start px-2.5 font-normal"
+													disabled={disabled}
 												/>
 											}
 										>

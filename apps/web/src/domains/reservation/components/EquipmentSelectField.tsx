@@ -9,18 +9,23 @@ export const EquipmentSelectField = ({
 	type,
 	startDate,
 	endDate,
+	excludeReservationId,
 	...props
 }: {
 	label: string
 	type: EquipmentItemType
 	startDate: Date
 	endDate: Date
+	/** Set when editing — keeps the gear this reservation already holds in the
+	 * list, which it would otherwise filter out as booked. */
+	excludeReservationId?: string
 } & Omit<React.ComponentProps<typeof SelectField>, 'options' | 'isLoading'>) => {
 	const { data, isLoading } = useQuery(
 		trpc.equipment.equipmentItem.findAvailable.queryOptions({
 			type,
 			startDate,
 			endDate,
+			excludeReservationId,
 		})
 	)
 

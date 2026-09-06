@@ -1,30 +1,47 @@
-import { createReservationInputSchema } from '@ski-blazek/api/schemas'
+import {
+	createEmptyEquipment,
+	type ReservationDetail,
+	type ReservationInput,
+	reservationInputSchema,
+} from '@ski-blazek/api/schemas'
 import { Button } from '@ski-blazek/ui/components/button'
 import { TypographyH1, TypographyH4 } from '@ski-blazek/ui/components/typography'
+import { useNavigate } from '@tanstack/react-router'
 import { FileTextIcon } from 'lucide-react'
 import { useState } from 'react'
 import { DateRangeField } from '~/components/form/DateRangeField'
 import { useAppForm } from '~/components/form/SharedFormFields'
-import { createEmptyEquipment } from '../helpers/createEmptyEquipment'
 import { createEmptyPerson } from '../helpers/createEmptyPerson'
 import { initialValues } from '../helpers/initialValues'
-import { useCreateReservation } from '../reservationQueries'
+import { useCreateReservation, useUpdateReservation } from '../reservationQueries'
 import { PersonFormCard } from './PersonFormCard'
 
-export const ReservationForm = () => {
+type ReservationFormProps = {
+	reservation?: ReservationDetail
+}
+
+export const ReservationForm = ({ reservation }: ReservationFormProps) => {
+	const isEdit = Boolean(reservation?.id)
+	const navigate = useNavigate()
 	const createReservation = useCreateReservation()
+	const updateReservation = useUpdateReservation()
+
+	const defaultValues: ReservationInput = reservation ?? initialValues
 
 	// TanStack Form's array API has no row ids, and the array index is not a
 	// stable React key — once a row can be removed, index keys hand a row's
 	// mounted state (including each EquipmentSelectField's query) to its
 	// neighbour. Form values stay identical to the API payload, so identity
-	// lives beside them and is mutated in lockstep with the array.
-	const [personKeys, setPersonKeys] = useState<string[]>(() => [crypto.randomUUID()])
+	// lives beside them and is mutated in lockstep with the array. An existing
+	// person already carries a stable id; only new rows need one made up.
+	const [personKeys, setPersonKeys] = useState<string[]>(() =>
+		defaultValues.people.map((person) => person.id ?? crypto.randomUUID())
+	)
 
 	const form = useAppForm({
-		defaultValues: initialValues,
+		defaultValues,
 		validators: {
-			onChange: createReservationInputSchema,
+			onChange: reservationInputSchema,
 		},
 		listeners: {
 			// availability is date-dependent, so a range change can silently
@@ -33,6 +50,8 @@ export const ReservationForm = () => {
 			onChange: ({ formApi, fieldApi }) => {
 				if (fieldApi.name !== 'startDate' && fieldApi.name !== 'endDate') return
 
+				// TODO: Clear only the gear that is no longer available, rather than all of it
+				// This is the reasong why date range is disabled in edit mode
 				formApi.state.values.people.forEach((person, i) => {
 					const hasSelection = Object.values(person.equipment).some(Boolean)
 					if (!hasSelection) return
@@ -41,18 +60,27 @@ export const ReservationForm = () => {
 			},
 		},
 		onSubmit: async ({ value }) => {
-			const reservation = await createReservation.mutateAsync(value)
-
+			// An edit writes back to the row it was loaded from and leaves the
+			// edit screen, so there is nothing to reset.
 			if (reservation) {
-				form.reset()
-				setPersonKeys([crypto.randomUUID()])
+				await updateReservation.mutateAsync({ ...value, id: reservation.id })
+				await navigate({ to: '/reservation' })
+			} else {
+				const created = await createReservation.mutateAsync(value)
+
+				if (created) {
+					form.reset()
+					setPersonKeys([crypto.randomUUID()])
+				}
 			}
 		},
 	})
 
 	return (
 		<div>
-			<TypographyH1 className="mb-6">Vytvořit rezervaci</TypographyH1>
+			<TypographyH1 className="mb-6">
+				{isEdit ? 'Upravit rezervaci' : 'Vytvořit rezervaci'}
+			</TypographyH1>
 			<form
 				onSubmit={(e) => {
 					e.preventDefault()
@@ -69,6 +97,7 @@ export const ReservationForm = () => {
 						<TypographyH4>Základní údaje</TypographyH4>
 					</div>
 					<DateRangeField
+						disabled={isEdit}
 						form={form}
 						fields={{ startDate: 'startDate', endDate: 'endDate' }}
 						label="Termín rezervace"
@@ -117,6 +146,7 @@ export const ReservationForm = () => {
 										form={form}
 										index={i}
 										onRemove={() => removePerson(i)}
+										excludeReservationId={reservation?.id}
 									/>
 								))}
 								<Button
@@ -134,7 +164,11 @@ export const ReservationForm = () => {
 				</form.AppField>
 
 				<form.AppForm>
-					<form.SubscribeButton label="Vytvořit rezervaci" className="w-full" size={'lg'} />
+					<form.SubscribeButton
+						label={isEdit ? 'Uložit změny' : 'Vytvořit rezervaci'}
+						className="w-full"
+						size={'lg'}
+					/>
 				</form.AppForm>
 			</form>
 		</div>

@@ -6,7 +6,8 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from '@ski-blazek/ui/components/dropdown-menu'
-import { BanIcon, EllipsisVerticalIcon } from 'lucide-react'
+import { Link } from '@tanstack/react-router'
+import { BanIcon, EllipsisVerticalIcon, PencilIcon } from 'lucide-react'
 import { useState } from 'react'
 import type { ReservationListItem } from '../reservation.types'
 import { CancelReservationDialog } from './CancelReservationDialog'
@@ -27,13 +28,25 @@ export const ReservationActions = ({ reservation }: ReservationActionsProps) => 
 					<EllipsisVerticalIcon />
 				</DropdownMenuTrigger>
 				<DropdownMenuContent>
+					{/* EDIT */}
+					<DropdownMenuItem
+						render={
+							<Link
+								to="/reservation/$reservationId/edit"
+								params={{ reservationId: reservation.id }}
+							/>
+						}
+					>
+						<PencilIcon />
+						Upravit rezervaci
+					</DropdownMenuItem>
 					{/* CANCEL */}
 					<DropdownMenuItem
-						className="text-destructive focus:text-destructive"
+						variant="destructive"
 						disabled={isCancelled}
 						onClick={() => setCancelOpen(true)}
 					>
-						<BanIcon className="text-destructive" />
+						<BanIcon />
 						Zrušit rezervaci
 					</DropdownMenuItem>
 				</DropdownMenuContent>

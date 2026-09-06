@@ -1,7 +1,6 @@
-import type { CreateReservationInput } from '@ski-blazek/api/schemas'
-import { createEmptyEquipment } from './createEmptyEquipment'
+import { createEmptyEquipment, type ReservationInput } from '@ski-blazek/api/schemas'
 
-export const createEmptyPerson = (): CreateReservationInput['people'][number] => ({
+export const createEmptyPerson = (): ReservationInput['people'][number] => ({
 	name: '',
 	age: 0,
 	weight: 0,

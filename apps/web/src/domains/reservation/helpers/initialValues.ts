@@ -1,13 +1,11 @@
-import type { CreateReservationInput } from '@ski-blazek/api/schemas'
+import type { ReservationInput } from '@ski-blazek/api/schemas'
 import { addDays, endOfDay, startOfDay } from 'date-fns'
 import { createEmptyPerson } from './createEmptyPerson'
-
-type FormType = CreateReservationInput
 
 const today = startOfDay(new Date())
 const tomorrow = endOfDay(addDays(today, 1))
 
-export const initialValues: FormType = {
+export const initialValues: ReservationInput = {
 	name: '',
 	phoneNumber: '',
 	startDate: today,

@@ -1,9 +1,10 @@
 import { prisma } from '@ski-blazek/db'
 import { TRPCError } from '@trpc/server'
 import { isItemAvailable } from '../../../routers/equipment/_shared/methods/findAvailable'
-import type { CreateReservationInput } from '../../../schemas/reservation'
+import type { ReservationInput } from '../../../schemas/reservation'
+import { personColumns } from './personColumns'
 
-export const createReservation = async (data: CreateReservationInput) => {
+export const createReservation = async (data: ReservationInput) => {
 	return await prisma.$transaction(async (tx) => {
 		for (const { equipment } of data.people) {
 			for (const equipmentItemId of Object.values(equipment)) {
@@ -36,23 +37,21 @@ export const createReservation = async (data: CreateReservationInput) => {
 			},
 		})
 
-		for (const { equipment, ...person } of data.people) {
+		for (const person of data.people) {
+			const assignedItemIds = Object.values(person.equipment).filter((id) => id !== null)
+
 			await tx.person.create({
 				data: {
-					...person,
+					...personColumns(person),
 					reservation: { connect: { id: reservation.id } },
 					reservationItems: {
-						// TypeSafety does not work during development - during runtime prisma fails if there is wrong value passed
-						// TODO: Find a way to add type safety in this snippet
-						create: Object.values(equipment)
-							.filter((equipmentItemId) => equipmentItemId !== null)
-							.map((equipmentItemId) => ({
-								startDate: reservation.startDate,
-								endDate: reservation.endDate,
-								status: 'ACTIVE',
-								reservation: { connect: { id: reservation.id } },
-								equipmentItem: { connect: { id: equipmentItemId } },
-							})),
+						create: assignedItemIds.map((equipmentItemId) => ({
+							startDate: reservation.startDate,
+							endDate: reservation.endDate,
+							status: 'ACTIVE',
+							reservation: { connect: { id: reservation.id } },
+							equipmentItem: { connect: { id: equipmentItemId } },
+						})),
 					},
 				},
 			})

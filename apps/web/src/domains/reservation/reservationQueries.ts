@@ -21,6 +21,25 @@ export const useCreateReservation = () =>
 		})
 	)
 
+export const useUpdateReservation = () =>
+	useMutation(
+		trpc.reservation.update.mutationOptions({
+			onSuccess: (_result, variables) => {
+				invalidateReservationList()
+				// the edit form reads getForEdit and the pick-up sheet reads get —
+				// both are stale the moment an update lands
+				queryClient.invalidateQueries({
+					queryKey: trpc.reservation.getForEdit.queryKey({ id: variables.id }),
+				})
+				queryClient.invalidateQueries({
+					queryKey: trpc.reservation.get.queryKey({ id: variables.id }),
+				})
+				notifySuccess('Rezervace upravena', 'Rezervace byla úspěšně upravena.')
+			},
+			onError: (error) => notifyError(error.message, 'Nepodařilo se upravit rezervaci.'),
+		})
+	)
+
 export const useCancelReservation = () =>
 	useMutation(
 		trpc.reservation.cancel.mutationOptions({

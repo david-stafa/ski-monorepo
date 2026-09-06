@@ -24,6 +24,7 @@ import { Route as AuthenticatedEquipmentSnowboardBootRouteImport } from './route
 import { Route as AuthenticatedReservationIndexRouteImport } from './routes/_authenticated/reservation/index'
 import { Route as AuthenticatedReservationCreateRouteImport } from './routes/_authenticated/reservation/create'
 import { Route as AuthenticatedReservationPickUpRouteImport } from './routes/_authenticated/reservation/pick-up'
+import { Route as AuthenticatedReservationReservationIdEditRouteImport } from './routes/_authenticated/reservation_/$reservationId/edit'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -108,6 +109,12 @@ const AuthenticatedReservationPickUpRoute =
     path: '/reservation/pick-up',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedReservationReservationIdEditRoute =
+  AuthenticatedReservationReservationIdEditRouteImport.update({
+    id: '/reservation_/$reservationId/edit',
+    path: '/reservation/$reservationId/edit',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -124,6 +131,7 @@ export interface FileRoutesByFullPath {
   '/reservation/pick-up': typeof AuthenticatedReservationPickUpRoute
   '/equipment/': typeof AuthenticatedEquipmentIndexRoute
   '/reservation/': typeof AuthenticatedReservationIndexRoute
+  '/reservation/$reservationId/edit': typeof AuthenticatedReservationReservationIdEditRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -140,6 +148,7 @@ export interface FileRoutesByTo {
   '/reservation/pick-up': typeof AuthenticatedReservationPickUpRoute
   '/equipment': typeof AuthenticatedEquipmentIndexRoute
   '/reservation': typeof AuthenticatedReservationIndexRoute
+  '/reservation/$reservationId/edit': typeof AuthenticatedReservationReservationIdEditRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -158,6 +167,7 @@ export interface FileRoutesById {
   '/_authenticated/reservation/pick-up': typeof AuthenticatedReservationPickUpRoute
   '/_authenticated/equipment/': typeof AuthenticatedEquipmentIndexRoute
   '/_authenticated/reservation/': typeof AuthenticatedReservationIndexRoute
+  '/_authenticated/reservation_/$reservationId/edit': typeof AuthenticatedReservationReservationIdEditRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -176,6 +186,7 @@ export interface FileRouteTypes {
     | '/reservation/pick-up'
     | '/equipment/'
     | '/reservation/'
+    | '/reservation/$reservationId/edit'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -192,6 +203,7 @@ export interface FileRouteTypes {
     | '/reservation/pick-up'
     | '/equipment'
     | '/reservation'
+    | '/reservation/$reservationId/edit'
   id:
     | '__root__'
     | '/'
@@ -209,6 +221,7 @@ export interface FileRouteTypes {
     | '/_authenticated/reservation/pick-up'
     | '/_authenticated/equipment/'
     | '/_authenticated/reservation/'
+    | '/_authenticated/reservation_/$reservationId/edit'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -326,6 +339,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedReservationPickUpRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/reservation_/$reservationId/edit': {
+      id: '/_authenticated/reservation_/$reservationId/edit'
+      path: '/reservation/$reservationId/edit'
+      fullPath: '/reservation/$reservationId/edit'
+      preLoaderRoute: typeof AuthenticatedReservationReservationIdEditRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
   }
 }
 
@@ -340,6 +360,7 @@ interface AuthenticatedRouteChildren {
   AuthenticatedReservationPickUpRoute: typeof AuthenticatedReservationPickUpRoute
   AuthenticatedEquipmentIndexRoute: typeof AuthenticatedEquipmentIndexRoute
   AuthenticatedReservationIndexRoute: typeof AuthenticatedReservationIndexRoute
+  AuthenticatedReservationReservationIdEditRoute: typeof AuthenticatedReservationReservationIdEditRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
@@ -354,6 +375,8 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedReservationPickUpRoute: AuthenticatedReservationPickUpRoute,
   AuthenticatedEquipmentIndexRoute: AuthenticatedEquipmentIndexRoute,
   AuthenticatedReservationIndexRoute: AuthenticatedReservationIndexRoute,
+  AuthenticatedReservationReservationIdEditRoute:
+    AuthenticatedReservationReservationIdEditRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(

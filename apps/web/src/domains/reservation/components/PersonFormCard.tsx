@@ -11,8 +11,8 @@ import { EquipmentSelectField } from './EquipmentSelectField'
 
 export const PersonFormCard = withForm({
 	defaultValues: initialValues,
-	props: { index: 0, onRemove: () => {} },
-	render: function PersonFormCard({ form, index, onRemove }) {
+	props: { index: 0, onRemove: () => {}, excludeReservationId: undefined as string | undefined },
+	render: function PersonFormCard({ form, index, onRemove, excludeReservationId }) {
 		return (
 			<form.Subscribe
 				selector={(s) => ({
@@ -96,6 +96,7 @@ export const PersonFormCard = withForm({
 										type="SKI"
 										startDate={startDate}
 										endDate={endDate}
+										excludeReservationId={excludeReservationId}
 									/>
 								)}
 							</form.AppField>
@@ -106,6 +107,7 @@ export const PersonFormCard = withForm({
 										type="SKI_BOOT"
 										startDate={startDate}
 										endDate={endDate}
+										excludeReservationId={excludeReservationId}
 									/>
 								)}
 							</form.AppField>
@@ -128,6 +130,7 @@ export const PersonFormCard = withForm({
 										type="SNOWBOARD"
 										startDate={startDate}
 										endDate={endDate}
+										excludeReservationId={excludeReservationId}
 									/>
 								)}
 							</form.AppField>
@@ -138,6 +141,7 @@ export const PersonFormCard = withForm({
 										type="SNOWBOARD_BOOT"
 										startDate={startDate}
 										endDate={endDate}
+										excludeReservationId={excludeReservationId}
 									/>
 								)}
 							</form.AppField>
@@ -150,6 +154,7 @@ export const PersonFormCard = withForm({
 										type="HELMET"
 										startDate={startDate}
 										endDate={endDate}
+										excludeReservationId={excludeReservationId}
 									/>
 								)}
 							</form.AppField>
