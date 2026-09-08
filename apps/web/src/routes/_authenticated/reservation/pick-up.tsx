@@ -66,16 +66,18 @@ function RouteComponent() {
 					onSearch={(search) => setFilters({ search, page: 1 })}
 				/>
 
-				<ReservationStatusFilter
-					status={status ?? undefined}
-					onStatusChange={(status) => setFilters({ status: status ?? null, page: 1 })}
-				/>
+				<div className="flex items-center gap-2">
+					<ResetFiltersButton
+						resetFilters={resetFilters}
+						defaultSearch={pickUpSearchSchema.parse({})}
+						currentSearch={filters}
+					/>
 
-				<ResetFiltersButton
-					resetFilters={resetFilters}
-					defaultSearch={pickUpSearchSchema.parse({})}
-					currentSearch={filters}
-				/>
+					<ReservationStatusFilter
+						status={status ?? undefined}
+						onStatusChange={(status) => setFilters({ status: status ?? null, page: 1 })}
+					/>
+				</div>
 			</div>
 
 			{/*  Table — each row expands to the gear that has to leave the rack  */}

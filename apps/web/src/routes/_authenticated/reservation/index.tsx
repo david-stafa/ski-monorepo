@@ -82,29 +82,32 @@ function RouteComponent() {
 
 			{/*  Create reservation, filters and reset  */}
 			<div className="mb-4 flex items-center justify-between gap-2">
-				<ReservationStatusFilter
-					status={status}
-					onStatusChange={(status) => setFilters({ status, page: 1 })}
-				/>
-
+				<div></div>
 				<SearchField
 					searchValue={search}
 					placeholder="Hledat jméno nebo telefon..."
 					onSearch={(search) => setFilters({ search, page: 1 })}
 				/>
 
-				<ResetFiltersButton
-					resetFilters={resetFilters}
-					defaultSearch={getReservationsInputSchema.parse({})}
-					currentSearch={{
-						page,
-						itemsPerPage,
-						orderBy,
-						orderDirection,
-						search,
-						status,
-					}}
-				/>
+				<div className="flex items-center gap-2">
+					<ResetFiltersButton
+						resetFilters={resetFilters}
+						defaultSearch={getReservationsInputSchema.parse({})}
+						currentSearch={{
+							page,
+							itemsPerPage,
+							orderBy,
+							orderDirection,
+							search,
+							status,
+						}}
+					/>
+
+					<ReservationStatusFilter
+						status={status}
+						onStatusChange={(status) => setFilters({ status, page: 1 })}
+					/>
+				</div>
 			</div>
 
 			{/*  Table  */}

@@ -5,6 +5,7 @@
     `@ski-blazek/api/schemas`).
  */
 
+export { type ArchivedFilter, archivedFilterSchema } from './equipmentItem'
 export {
 	type CreateHelmetInput,
 	createHelmetInputSchema,

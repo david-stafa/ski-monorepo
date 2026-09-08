@@ -1,5 +1,6 @@
 import { Gender, type SkiBoot } from '@ski-blazek/db/browser'
 import { z } from 'zod'
+import { archivedFilterSchema } from './equipmentItem'
 import { paginationSchema } from './pagination'
 import { stockCheckFilterSchema } from './stockCheck'
 
@@ -35,4 +36,5 @@ export const getSkiBootInputSchema = paginationSchema
 		orderDirection: z.enum(['asc', 'desc']).default('asc'),
 	})
 	.extend(stockCheckFilterSchema.shape)
+	.extend(archivedFilterSchema.shape)
 export type GetSkiBootInput = z.infer<typeof getSkiBootInputSchema>

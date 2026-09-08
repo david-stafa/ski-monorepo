@@ -1,4 +1,5 @@
 import type { Prisma } from '@ski-blazek/db/browser'
+import type { ArchivedFilter } from '../../../../schemas/equipmentItem'
 import { type CheckedFilter, seasonStart } from '../../../../schemas/stockCheck'
 
 /**
@@ -102,3 +103,16 @@ export const lastCheckedOrderBy = (orderDirection: SortOrder) => [
 		},
 	},
 ]
+
+/**
+ * Relation filter for the archive. Retired stock stays in the database for its
+ * history, so the lists hide it unless asked — `all` yields an empty object,
+ * which Prisma ignores, and merges cleanly with `checkedWhere`.
+ */
+export const archivedWhere = (filter: ArchivedFilter): Prisma.EquipmentItemWhereInput => {
+	if (filter === 'active') return { retiredAt: null }
+
+	if (filter === 'archived') return { retiredAt: { not: null } }
+
+	return {}
+}

@@ -18,6 +18,7 @@ import { CustomItemPerPageSelect, CustomPagination } from '~/components/ui/Custo
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
 import { CheckedFilterSelect } from '~/domains/equipment/_shared/components/CheckedFilterSelect'
+import { EquipmentFilterButton } from '~/domains/equipment/_shared/components/EquipmentFilterButton'
 import { InventoryToggleButton } from '~/domains/equipment/_shared/components/InventoryToggleButton'
 import { StockCheckCheckbox } from '~/domains/equipment/_shared/components/StockCheckCheckbox'
 import { StockSweepButton } from '~/domains/equipment/_shared/components/StockSweepButton'
@@ -33,7 +34,7 @@ export const Route = createFileRoute('/_authenticated/equipment/ski')({
 	// deliberately left out of `loaderDeps`, so it never reaches the API.
 	validateSearch: getSkiInputSchema.extend({ inventory: z.boolean().optional() }),
 	loaderDeps: ({
-		search: { page, itemsPerPage, orderBy, orderDirection, search, checkedFilter },
+		search: { page, itemsPerPage, orderBy, orderDirection, search, checkedFilter, archivedFilter },
 	}) => ({
 		page,
 		itemsPerPage,
@@ -41,6 +42,7 @@ export const Route = createFileRoute('/_authenticated/equipment/ski')({
 		orderDirection,
 		search,
 		checkedFilter,
+		archivedFilter,
 	}),
 	loader: async ({ context, deps }) => {
 		return context.queryClient.ensureQueryData(context.trpc.equipment.ski.list.queryOptions(deps))
@@ -50,7 +52,16 @@ export const Route = createFileRoute('/_authenticated/equipment/ski')({
 
 function RouteComponent() {
 	const {
-		filters: { page, itemsPerPage, orderBy, orderDirection, search, checkedFilter, inventory },
+		filters: {
+			page,
+			itemsPerPage,
+			orderBy,
+			orderDirection,
+			search,
+			checkedFilter,
+			archivedFilter,
+			inventory,
+		},
 		setFilters,
 		resetFilters,
 	} = useFilters(Route.id)
@@ -75,6 +86,7 @@ function RouteComponent() {
 			orderDirection,
 			search,
 			checkedFilter,
+			archivedFilter,
 		})
 	)
 
@@ -114,23 +126,31 @@ function RouteComponent() {
 					/>
 				)}
 
-				<ResetFiltersButton
-					/*  In inventory mode reset the filters through `setFilters`, which
-					    merges into the current search — inventura is a mode, not a
-					    filter, and resetting shouldn't drop you out of it.  */
-					resetFilters={
-						isInventory ? () => setFilters({ ...defaultSearch, search: undefined }) : resetFilters
-					}
-					defaultSearch={defaultSearch}
-					currentSearch={{
-						page,
-						itemsPerPage,
-						orderBy,
-						orderDirection,
-						search,
-						checkedFilter,
-					}}
-				/>
+				<div className="flex items-center gap-2">
+					<ResetFiltersButton
+						/*  In inventory mode reset the filters through `setFilters`, which
+						    merges into the current search — inventura is a mode, not a
+						    filter, and resetting shouldn't drop you out of it.  */
+						resetFilters={
+							isInventory ? () => setFilters({ ...defaultSearch, search: undefined }) : resetFilters
+						}
+						defaultSearch={defaultSearch}
+						currentSearch={{
+							page,
+							itemsPerPage,
+							orderBy,
+							orderDirection,
+							search,
+							checkedFilter,
+							archivedFilter,
+						}}
+					/>
+
+					<EquipmentFilterButton
+						archivedFilter={archivedFilter}
+						onArchivedFilterChange={(archivedFilter) => setFilters({ archivedFilter, page: 1 })}
+					/>
+				</div>
 			</div>
 
 			{/*  Table  */}

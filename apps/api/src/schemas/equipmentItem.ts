@@ -26,3 +26,13 @@ export const isItemAvailableInputSchema = z.object({
 })
 
 export type IsItemAvailableInput = z.infer<typeof isItemAvailableInputSchema>
+
+/**
+ * Archive filter. Retiring keeps a piece of equipment (and its history) around
+ * without it cluttering the everyday list, so `active` is the default every
+ * list starts from — archived stock is something you go looking for.
+ */
+export const archivedFilterSchema = z.object({
+	archivedFilter: z.enum(['active', 'archived', 'all']).default('active'),
+})
+export type ArchivedFilter = z.infer<typeof archivedFilterSchema>['archivedFilter']

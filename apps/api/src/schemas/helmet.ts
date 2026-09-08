@@ -1,5 +1,6 @@
 import { Gender, type Helmet, HelmetSize } from '@ski-blazek/db/browser'
 import { z } from 'zod'
+import { archivedFilterSchema } from './equipmentItem'
 import { paginationSchema } from './pagination'
 import { stockCheckFilterSchema } from './stockCheck'
 
@@ -114,4 +115,5 @@ export const getHelmetInputSchema = paginationSchema
 		orderDirection: z.enum(['asc', 'desc']).default('asc'),
 	})
 	.extend(stockCheckFilterSchema.shape)
+	.extend(archivedFilterSchema.shape)
 export type GetHelmetInput = z.infer<typeof getHelmetInputSchema>

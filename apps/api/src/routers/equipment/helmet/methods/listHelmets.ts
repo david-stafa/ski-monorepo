@@ -2,6 +2,7 @@ import { prisma } from '@ski-blazek/db'
 import type { Prisma } from '@ski-blazek/db/browser'
 import type { GetHelmetInput } from '../../../../schemas/helmet'
 import {
+	archivedWhere,
 	articleNumberOrderBy,
 	articleNumberSearchFilter,
 	checkedWhere,
@@ -15,6 +16,7 @@ export const listHelmets = async ({
 	orderDirection,
 	search,
 	checkedFilter,
+	archivedFilter,
 }: GetHelmetInput) => {
 	const searchWhere: Prisma.HelmetWhereInput = search
 		? {
@@ -30,7 +32,7 @@ export const listHelmets = async ({
 	/*  Inventura filter, AND-ed on top of the search.  */
 	const where: Prisma.HelmetWhereInput = {
 		...searchWhere,
-		equipmentItem: checkedWhere(checkedFilter),
+		equipmentItem: { ...checkedWhere(checkedFilter), ...archivedWhere(archivedFilter) },
 	}
 
 	const orderByClause: Prisma.HelmetOrderByWithRelationInput[] =
