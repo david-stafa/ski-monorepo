@@ -90,7 +90,7 @@ function RouteComponent() {
 					Helmy
 					<span className="ml-1 align-super text-sm text-gray-500">({data.totalCount})</span>
 				</TypographyH1>
-				<div>
+				<div className="flex items-center gap-2">
 					{isInventory && <StockSweepButton type={EquipmentItemType.HELMET} />}
 					<InventoryToggleButton
 						inventory={isInventory}
@@ -145,8 +145,9 @@ function RouteComponent() {
 							<TableHeadSortable
 								sorted={orderBy === 'lastCheckedAt' ? orderDirection : false}
 								onClick={() => handleFilterClick('lastCheckedAt')}
+								className="w-28"
 							>
-								Zkontrolováno
+								Inventura
 							</TableHeadSortable>
 						)}
 						<TableHead>Akce</TableHead>

@@ -88,7 +88,7 @@ function RouteComponent() {
 					Snowboardy
 					<span className="ml-1 align-super text-sm text-gray-500">({data.totalCount})</span>
 				</TypographyH1>
-				<div>
+				<div className="flex items-center gap-2">
 					{isInventory && <StockSweepButton type={EquipmentItemType.SNOWBOARD} />}
 					<InventoryToggleButton
 						inventory={isInventory}
@@ -143,7 +143,7 @@ function RouteComponent() {
 							<TableHeadSortable
 								sorted={orderBy === 'lastCheckedAt' ? orderDirection : false}
 								onClick={() => handleFilterClick('lastCheckedAt')}
-								className="max-w-5"
+								className="w-28"
 							>
 								Inventura
 							</TableHeadSortable>
