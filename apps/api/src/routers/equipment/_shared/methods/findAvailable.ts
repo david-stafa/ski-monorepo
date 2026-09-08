@@ -44,7 +44,10 @@ export const findAvailable = async ({
 		},
 		// Sticker order: pool first, then sequence, so the boot picker lists
 		// 26.1, 26.2 … before the 27s instead of interleaving the two sizes.
-		orderBy: [{ articleGroup: 'asc' }, { articleNumber: 'asc' }],
+		orderBy:
+			type === 'SKI'
+				? [{ ski: { length: 'asc' } }, { articleGroup: 'asc' }, { articleNumber: 'asc' }]
+				: [{ articleGroup: 'asc' }, { articleNumber: 'asc' }],
 	})
 
 	return availableItems

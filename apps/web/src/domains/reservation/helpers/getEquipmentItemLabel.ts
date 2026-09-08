@@ -10,11 +10,11 @@ type AvailableItem = Outputs['equipment']['equipmentItem']['findAvailable'][numb
  * select options in the shared form kit take `label: string`, not a node.
  */
 const TYPE_ICONS: Record<EquipmentItemType, string> = {
-	SKI: '🎿:',
-	SKI_BOOT: '🥾:',
-	SNOWBOARD: '🏂:',
-	SNOWBOARD_BOOT: '👢:',
-	HELMET: '⛑️:',
+	SKI: '🎿',
+	SKI_BOOT: '🥾',
+	SNOWBOARD: '🏂',
+	SNOWBOARD_BOOT: '👢',
+	HELMET: '⛑️',
 }
 
 const model = (value: string | null) => (value ? `${value} ` : '')
@@ -25,26 +25,29 @@ const model = (value: string | null) => (value ? `${value} ` : '')
  * as nullable, so `describe` returns null if the detail row is somehow missing.
  */
 const describeEquipmentItem = (item: AvailableItem): string | null => {
+	const icon = TYPE_ICONS[item.type]
+	const prefix = `${icon} ${formatArticleNumber(item)}. - `
+
 	switch (item.type) {
 		case 'SKI': {
 			const ski = item.ski
 			if (!ski) return null
-			return `${ski.brand} ${model(ski.model)}${ski.length} cm${ski.isVIP ? ' ⭐' : ''}`
+			return `${icon} ${ski.length} cm  ${ski.brand} ${model(ski.model)} ${ski.isVIP ? ' ⭐' : ''}`
 		}
 		case 'SNOWBOARD': {
 			const snowboard = item.snowboard
 			if (!snowboard) return null
-			return `${snowboard.brand} ${model(snowboard.model)}${snowboard.length} cm`
+			return `${prefix} ${snowboard.brand} ${model(snowboard.model)}${snowboard.length} cm`
 		}
 		case 'SKI_BOOT': {
 			const boot = item.skiBoot
 			if (!boot) return null
-			return `${boot.brand} ${model(boot.model)}${boot.length} mp`
+			return `${prefix} ${boot.brand} ${model(boot.model)}${boot.length} mp`
 		}
 		case 'SNOWBOARD_BOOT': {
 			const boot = item.snowboardBoot
 			if (!boot) return null
-			return `${boot.brand} ${model(boot.model)}${boot.length} mp${boot.isBoa ? ' BOA' : ''}`
+			return `${prefix} ${boot.brand} ${model(boot.model)}${boot.length} mp${boot.isBoa ? ' BOA' : ''}`
 		}
 		case 'HELMET': {
 			const helmet = item.helmet
@@ -54,11 +57,11 @@ const describeEquipmentItem = (item: AvailableItem): string | null => {
 			// is already long.
 			const size = helmet.size ? `${helmetSizeLabel(helmet.size)} ` : ''
 			const circumference =
-				helmet.circumferenceMax !== null || helmet.circumferenceMax !== null
+				helmet.circumferenceMin !== null || helmet.circumferenceMax !== null
 					? formatCircumference(helmet.circumferenceMin, helmet.circumferenceMax)
 					: ''
 
-			return `${helmet.brand} ${model(helmet.model)} ${circumference} ${size} ${helmet.color}`
+			return `${prefix} ${helmet.brand} ${model(helmet.model)} ${circumference} ${size} ${helmet.color}`
 		}
 	}
 }
@@ -67,10 +70,5 @@ const describeEquipmentItem = (item: AvailableItem): string | null => {
  * The whole option label, icon and article number included — owning the full
  * string here is what stops a caller prefixing either one a second time.
  */
-export const getEquipmentItemLabel = (item: AvailableItem): string => {
-	const description = describeEquipmentItem(item)
-	const articleNumber = formatArticleNumber(item)
-	const icon = TYPE_ICONS[item.type]
-
-	return description ? `${icon} ${articleNumber}. ${description}` : `${icon} ${articleNumber}`
-}
+export const getEquipmentItemLabel = (item: AvailableItem): string =>
+	describeEquipmentItem(item) ?? `${TYPE_ICONS[item.type]} ${formatArticleNumber(item)}`
