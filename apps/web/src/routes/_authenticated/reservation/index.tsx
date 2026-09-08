@@ -16,11 +16,9 @@ import { ButtonLink } from '~/components/ui/button-link'
 import { CustomItemPerPageSelect, CustomPagination } from '~/components/ui/CustomPagination'
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
-import { ReservationActions } from '~/domains/reservation/components/ReservationActions'
-import { ReservationStatusBadge } from '~/domains/reservation/components/ReservationStatusBadge'
+import { ReservationListRow } from '~/domains/reservation/components/ReservationListRow'
 import { ReservationStatusFilter } from '~/domains/reservation/components/ReservationStatusFilter'
 import { useFilters } from '~/hooks/useFilter'
-import { formatDate } from '~/lib/format'
 import { trpc } from '~/lib/trpc'
 
 export const Route = createFileRoute('/_authenticated/reservation/')({
@@ -68,31 +66,31 @@ function RouteComponent() {
 
 	return (
 		<div>
-			{/*  Title with total count  */}
-			<TypographyH1 className="mb-6">
-				Rezervace
-				<span className="ml-1 align-super text-sm text-gray-500">({data.totalCount})</span>
-			</TypographyH1>
-
 			{/*  TODO: stats  */}
-			<section className="mb-6" />
+			<section className="flex justify-between items-center mb-6">
+				{/*  Title with total count  */}
+				<TypographyH1 className="mb-6">
+					Rezervace
+					<span className="ml-1 align-super text-sm text-gray-500">({data.totalCount})</span>
+				</TypographyH1>
 
-			{/*  Create reservation, filters and reset  */}
-			<div className="mb-4 flex items-center justify-between gap-2">
 				<ButtonLink to="/reservation/create" size="sm">
 					<PlusIcon className="size-4" />
 					Vytvořit rezervaci
 				</ButtonLink>
+			</section>
+
+			{/*  Create reservation, filters and reset  */}
+			<div className="mb-4 flex items-center justify-between gap-2">
+				<ReservationStatusFilter
+					status={status}
+					onStatusChange={(status) => setFilters({ status, page: 1 })}
+				/>
 
 				<SearchField
 					searchValue={search}
 					placeholder="Hledat jméno nebo telefon..."
 					onSearch={(search) => setFilters({ search, page: 1 })}
-				/>
-
-				<ReservationStatusFilter
-					status={status}
-					onStatusChange={(status) => setFilters({ status, page: 1 })}
 				/>
 
 				<ResetFiltersButton
@@ -110,7 +108,7 @@ function RouteComponent() {
 			</div>
 
 			{/*  Table  */}
-			<Table>
+			<Table className="mb-2 md:mb-4">
 				<TableHeader>
 					<TableRow>
 						<TableHead>Akce</TableHead>
@@ -146,27 +144,12 @@ function RouteComponent() {
 							</TableCell>
 						</TableRow>
 					) : (
-						data.reservations.map((item) => (
-							<TableRow key={item.id}>
-								<TableCell className="flex items-center gap-2">
-									<ReservationActions reservation={item} />
-								</TableCell>
-								<TableCell>{item.name}</TableCell>
-								<TableCell>{item.phoneNumber}</TableCell>
-								<TableCell>{formatDate(item.startDate)}</TableCell>
-								<TableCell>{formatDate(item.endDate)}</TableCell>
-								<TableCell>{item._count.people}</TableCell>
-								<TableCell>{item._count.reservationItems}</TableCell>
-								<TableCell>
-									<ReservationStatusBadge status={item.status} />
-								</TableCell>
-							</TableRow>
-						))
+						data.reservations.map((item) => <ReservationListRow reservation={item} key={item.id} />)
 					)}
 				</TableBody>
 			</Table>
 
-			<div className="flex items-center justify-between">
+			<div className="flex items-center justify-between ">
 				{/*  Pagination  */}
 				<CustomPagination
 					currentPage={page}

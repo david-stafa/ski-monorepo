@@ -1,10 +1,10 @@
 import type { EquipmentItemType } from '@ski-blazek/db/browser'
 import { Badge } from '@ski-blazek/ui/components/badge'
-import { UserIcon } from 'lucide-react'
 import type { Outputs } from '~/lib/trpc'
 import { getEquipmentItemLabel } from '../helpers/getEquipmentItemLabel'
 import { getPersonAccessories } from '../helpers/getPersonAccessories'
 import { LEVEL_LABELS } from '../helpers/levelMeta'
+import { GenderIcon } from './GenderIcon'
 
 type ReservationPerson = Outputs['reservation']['get']['people'][number]
 
@@ -31,7 +31,7 @@ export const PickUpPersonCard = ({ person }: PickUpPersonCardProps) => {
 	return (
 		<div className="bg-background rounded-lg border p-3">
 			<div className="mb-2 flex flex-wrap items-center gap-2">
-				<UserIcon className="bg-primary text-primary-foreground rounded-full p-1" size={22} />
+				<GenderIcon gender={person.gender} />
 				<span className="font-medium">{person.name}</span>
 				<span className="text-muted-foreground text-sm">
 					{person.age} let · {person.height} cm · {person.weight} kg
