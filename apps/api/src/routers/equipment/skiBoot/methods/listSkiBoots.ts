@@ -37,12 +37,17 @@ export const listSkiBoots = async ({
 		equipmentItem: { ...checkedWhere(checkedFilter), ...archivedWhere(archivedFilter) },
 	}
 
-	const orderByClause: Prisma.SkiBootOrderByWithRelationInput[] =
-		orderBy === 'articleNumber'
+	const orderByClause: Prisma.SkiBootOrderByWithRelationInput[] = [
+		...(orderBy === 'articleNumber'
 			? articleNumberOrderBy(orderDirection)
 			: orderBy === 'lastCheckedAt'
 				? lastCheckedOrderBy(orderDirection)
-				: [{ [orderBy]: orderDirection }]
+				: [{ [orderBy]: orderDirection }]),
+		/*  Last key, always unique: without it Postgres is free to reorder rows that
+		    tie on the sort column, so writing to one (ticking it off during an
+		    inventura) makes it jump within its group — and across pages.  */
+		{ id: 'asc' },
+	]
 
 	const [skiBoots, totalCount] = await prisma.$transaction([
 		prisma.skiBoot.findMany({
