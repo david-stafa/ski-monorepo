@@ -9,9 +9,9 @@ import { Level } from '@ski-blazek/db/browser'
  */
 export const LEVEL_LABELS: Record<Level, string> = {
 	[Level.BEGINNER]: 'Začátečník - L',
-	[Level.BEGINNER_INTERMEDIATE]: 'Lepší začátečník - L/A',
-	[Level.INTERMEDIATE]: 'Pokročilý - L',
-	[Level.INTERMEDIATE_EXPERT]: 'Středně pokročilý - A/S',
+	[Level.BEGINNER_INTERMEDIATE]: 'Mírně pokročilý - L/A',
+	[Level.INTERMEDIATE]: 'Rekreační - A',
+	[Level.INTERMEDIATE_EXPERT]: 'Sportovní - A/S',
 	[Level.EXPERT]: 'Expert - S',
 }
 
