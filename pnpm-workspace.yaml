@@ -17,7 +17,7 @@ catalog:
   '@types/react-dom': ^19.2.5
 
   # Type surfaces shared between api and web
-  zod: ^4.3.6
+  zod: ^4.5.4
   '@trpc/server': ^11.15.1
   better-auth: ^1.7.2
 
