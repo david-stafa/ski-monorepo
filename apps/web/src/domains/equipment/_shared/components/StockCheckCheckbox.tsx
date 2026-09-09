@@ -1,6 +1,7 @@
 import { isChecked } from '@ski-blazek/api/schemas'
 import type { EquipmentItemType } from '@ski-blazek/db/browser'
 import { Checkbox } from '@ski-blazek/ui/components/checkbox'
+import { format } from 'date-fns'
 import { useSetChecked } from '../queries/equipmentQueries'
 
 type StockCheckCheckboxProps = {
@@ -22,12 +23,19 @@ export const StockCheckCheckbox = ({
 	const setChecked = useSetChecked(type)
 
 	return (
-		<Checkbox
-			checked={isChecked(lastCheckedAt)}
-			disabled={setChecked.isPending}
-			onCheckedChange={(checked) => setChecked.mutate({ id: equipmentItemId, checked })}
-			aria-label="Zkontrolováno"
-			className="h-5 w-5"
-		/>
+		<div className="flex flex-row items-center gap-2">
+			<Checkbox
+				checked={isChecked(lastCheckedAt)}
+				disabled={setChecked.isPending}
+				onCheckedChange={(checked) => setChecked.mutate({ id: equipmentItemId, checked })}
+				aria-label="Zkontrolováno"
+				className="h-5 w-5"
+			/>
+			{lastCheckedAt && (
+				<div className="text-xs text-muted-foreground">
+					{format(lastCheckedAt, 'H:mm, d.M.yy')}
+				</div>
+			)}
+		</div>
 	)
 }
