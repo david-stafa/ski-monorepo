@@ -26,4 +26,3 @@ export const createSki = async (input: CreateSkiInput) => {
 		throw asArticleNumberConflict(error)
 	}
 }
-	
