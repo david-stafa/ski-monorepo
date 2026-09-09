@@ -18,6 +18,7 @@ export const createSkiBoot = async (input: CreateSkiBootInput) => {
 						type: 'SKI_BOOT',
 						articleGroup,
 						articleNumber: await assignLowestFreeNumber(prisma, 'SKI_BOOT', articleGroup),
+						lastCheckedAt: new Date(),
 					},
 				},
 			},

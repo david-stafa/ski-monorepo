@@ -18,6 +18,7 @@ export const createSnowboardBoot = async (input: CreateSnowboardBootInput) => {
 						type: 'SNOWBOARD_BOOT',
 						articleGroup,
 						articleNumber: await assignLowestFreeNumber(prisma, 'SNOWBOARD_BOOT', articleGroup),
+						lastCheckedAt: new Date(),
 					},
 				},
 			},

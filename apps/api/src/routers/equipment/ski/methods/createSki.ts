@@ -16,6 +16,7 @@ export const createSki = async (input: CreateSkiInput) => {
 						// Skis carry a plain running number, so they sit in the null pool.
 						articleGroup: null,
 						articleNumber: await assignLowestFreeNumber(prisma, 'SKI', null),
+						lastCheckedAt: new Date(),
 					},
 				},
 			},
@@ -25,3 +26,4 @@ export const createSki = async (input: CreateSkiInput) => {
 		throw asArticleNumberConflict(error)
 	}
 }
+	

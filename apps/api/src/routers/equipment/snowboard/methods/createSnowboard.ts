@@ -15,6 +15,7 @@ export const createSnowboard = async (input: CreateSnowboardInput) => {
 						type: 'SNOWBOARD',
 						articleGroup: null,
 						articleNumber: await assignLowestFreeNumber(prisma, 'SNOWBOARD', null),
+						lastCheckedAt: new Date(),
 					},
 				},
 			},

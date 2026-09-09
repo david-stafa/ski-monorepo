@@ -9,10 +9,10 @@ import { z } from 'zod'
  */
 
 /**
- * The season rolls over on 1 October (zero-based month). Change this one
+ * The season rolls over on 1 May (zero-based month). Change this one
  * constant and both the "checked this year" highlight and the sweep follow.
  */
-const SEASON_START_MONTH = 9
+const SEASON_START_MONTH = 4
 
 /**
  * Start of the season `at` falls in. A check recorded on or after this counts

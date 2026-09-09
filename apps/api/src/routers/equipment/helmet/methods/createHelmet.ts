@@ -15,6 +15,7 @@ export const createHelmet = async (input: CreateHelmetInput) => {
 						type: 'HELMET',
 						articleGroup: null,
 						articleNumber: await assignLowestFreeNumber(prisma, 'HELMET', null),
+						lastCheckedAt: new Date(),
 					},
 				},
 			},
