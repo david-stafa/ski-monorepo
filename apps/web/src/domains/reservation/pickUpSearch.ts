@@ -28,11 +28,30 @@ export const pickUpSearchSchema = getReservationsInputSchema.extend({
 export type PickUpSearch = z.infer<typeof pickUpSearchSchema>
 
 /**
- * The `reservation.list` input for a given search. Built in one place so the
- * route loader and the component produce the identical query key — otherwise
- * the prefetched data is missed and the page suspends on every navigation.
+ * The `reservation.list` input for a given search. Fields are listed by hand so
+ * a non-query param can't leak into `loaderDeps`, and so the loader and the
+ * component build the same query key.
+ * @see https://tanstack.com/router/latest/docs/guide/data-loading#using-loaderdeps-to-access-search-params
  */
-export const toListInput = ({ status, ...rest }: PickUpSearch): GetReservationsInput => ({
-	...rest,
+export const toListInput = ({
+	page,
+	itemsPerPage,
+	search,
+	status,
+	from,
+	to,
+	dateMode,
+	orderBy,
+	orderDirection,
+}: PickUpSearch): GetReservationsInput => ({
+	page,
+	itemsPerPage,
+	search,
+	// `null` means "all statuses"; the API takes undefined for that
 	status: status ?? undefined,
+	from,
+	to,
+	dateMode,
+	orderBy,
+	orderDirection,
 })

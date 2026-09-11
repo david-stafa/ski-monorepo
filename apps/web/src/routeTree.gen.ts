@@ -24,6 +24,8 @@ import { Route as AuthenticatedEquipmentSnowboardBootRouteImport } from './route
 import { Route as AuthenticatedReservationIndexRouteImport } from './routes/_authenticated/reservation/index'
 import { Route as AuthenticatedReservationCreateRouteImport } from './routes/_authenticated/reservation/create'
 import { Route as AuthenticatedReservationPickUpRouteImport } from './routes/_authenticated/reservation/pick-up'
+import { Route as AuthenticatedReservationPrepRouteImport } from './routes/_authenticated/reservation/prep'
+import { Route as AuthenticatedReservationReturnRouteImport } from './routes/_authenticated/reservation/return'
 import { Route as AuthenticatedReservationReservationIdEditRouteImport } from './routes/_authenticated/reservation_/$reservationId/edit'
 
 const IndexRoute = IndexRouteImport.update({
@@ -109,6 +111,18 @@ const AuthenticatedReservationPickUpRoute =
     path: '/reservation/pick-up',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedReservationPrepRoute =
+  AuthenticatedReservationPrepRouteImport.update({
+    id: '/reservation/prep',
+    path: '/reservation/prep',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedReservationReturnRoute =
+  AuthenticatedReservationReturnRouteImport.update({
+    id: '/reservation/return',
+    path: '/reservation/return',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedReservationReservationIdEditRoute =
   AuthenticatedReservationReservationIdEditRouteImport.update({
     id: '/reservation_/$reservationId/edit',
@@ -129,6 +143,8 @@ export interface FileRoutesByFullPath {
   '/equipment/snowboard-boot': typeof AuthenticatedEquipmentSnowboardBootRoute
   '/reservation/create': typeof AuthenticatedReservationCreateRoute
   '/reservation/pick-up': typeof AuthenticatedReservationPickUpRoute
+  '/reservation/prep': typeof AuthenticatedReservationPrepRoute
+  '/reservation/return': typeof AuthenticatedReservationReturnRoute
   '/equipment/': typeof AuthenticatedEquipmentIndexRoute
   '/reservation/': typeof AuthenticatedReservationIndexRoute
   '/reservation/$reservationId/edit': typeof AuthenticatedReservationReservationIdEditRoute
@@ -146,6 +162,8 @@ export interface FileRoutesByTo {
   '/equipment/snowboard-boot': typeof AuthenticatedEquipmentSnowboardBootRoute
   '/reservation/create': typeof AuthenticatedReservationCreateRoute
   '/reservation/pick-up': typeof AuthenticatedReservationPickUpRoute
+  '/reservation/prep': typeof AuthenticatedReservationPrepRoute
+  '/reservation/return': typeof AuthenticatedReservationReturnRoute
   '/equipment': typeof AuthenticatedEquipmentIndexRoute
   '/reservation': typeof AuthenticatedReservationIndexRoute
   '/reservation/$reservationId/edit': typeof AuthenticatedReservationReservationIdEditRoute
@@ -165,6 +183,8 @@ export interface FileRoutesById {
   '/_authenticated/equipment/snowboard-boot': typeof AuthenticatedEquipmentSnowboardBootRoute
   '/_authenticated/reservation/create': typeof AuthenticatedReservationCreateRoute
   '/_authenticated/reservation/pick-up': typeof AuthenticatedReservationPickUpRoute
+  '/_authenticated/reservation/prep': typeof AuthenticatedReservationPrepRoute
+  '/_authenticated/reservation/return': typeof AuthenticatedReservationReturnRoute
   '/_authenticated/equipment/': typeof AuthenticatedEquipmentIndexRoute
   '/_authenticated/reservation/': typeof AuthenticatedReservationIndexRoute
   '/_authenticated/reservation_/$reservationId/edit': typeof AuthenticatedReservationReservationIdEditRoute
@@ -184,6 +204,8 @@ export interface FileRouteTypes {
     | '/equipment/snowboard-boot'
     | '/reservation/create'
     | '/reservation/pick-up'
+    | '/reservation/prep'
+    | '/reservation/return'
     | '/equipment/'
     | '/reservation/'
     | '/reservation/$reservationId/edit'
@@ -201,6 +223,8 @@ export interface FileRouteTypes {
     | '/equipment/snowboard-boot'
     | '/reservation/create'
     | '/reservation/pick-up'
+    | '/reservation/prep'
+    | '/reservation/return'
     | '/equipment'
     | '/reservation'
     | '/reservation/$reservationId/edit'
@@ -219,6 +243,8 @@ export interface FileRouteTypes {
     | '/_authenticated/equipment/snowboard-boot'
     | '/_authenticated/reservation/create'
     | '/_authenticated/reservation/pick-up'
+    | '/_authenticated/reservation/prep'
+    | '/_authenticated/reservation/return'
     | '/_authenticated/equipment/'
     | '/_authenticated/reservation/'
     | '/_authenticated/reservation_/$reservationId/edit'
@@ -339,6 +365,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedReservationPickUpRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/reservation/prep': {
+      id: '/_authenticated/reservation/prep'
+      path: '/reservation/prep'
+      fullPath: '/reservation/prep'
+      preLoaderRoute: typeof AuthenticatedReservationPrepRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/reservation/return': {
+      id: '/_authenticated/reservation/return'
+      path: '/reservation/return'
+      fullPath: '/reservation/return'
+      preLoaderRoute: typeof AuthenticatedReservationReturnRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/reservation_/$reservationId/edit': {
       id: '/_authenticated/reservation_/$reservationId/edit'
       path: '/reservation/$reservationId/edit'
@@ -358,6 +398,8 @@ interface AuthenticatedRouteChildren {
   AuthenticatedEquipmentSnowboardBootRoute: typeof AuthenticatedEquipmentSnowboardBootRoute
   AuthenticatedReservationCreateRoute: typeof AuthenticatedReservationCreateRoute
   AuthenticatedReservationPickUpRoute: typeof AuthenticatedReservationPickUpRoute
+  AuthenticatedReservationPrepRoute: typeof AuthenticatedReservationPrepRoute
+  AuthenticatedReservationReturnRoute: typeof AuthenticatedReservationReturnRoute
   AuthenticatedEquipmentIndexRoute: typeof AuthenticatedEquipmentIndexRoute
   AuthenticatedReservationIndexRoute: typeof AuthenticatedReservationIndexRoute
   AuthenticatedReservationReservationIdEditRoute: typeof AuthenticatedReservationReservationIdEditRoute
@@ -373,6 +415,8 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
     AuthenticatedEquipmentSnowboardBootRoute,
   AuthenticatedReservationCreateRoute: AuthenticatedReservationCreateRoute,
   AuthenticatedReservationPickUpRoute: AuthenticatedReservationPickUpRoute,
+  AuthenticatedReservationPrepRoute: AuthenticatedReservationPrepRoute,
+  AuthenticatedReservationReturnRoute: AuthenticatedReservationReturnRoute,
   AuthenticatedEquipmentIndexRoute: AuthenticatedEquipmentIndexRoute,
   AuthenticatedReservationIndexRoute: AuthenticatedReservationIndexRoute,
   AuthenticatedReservationReservationIdEditRoute:

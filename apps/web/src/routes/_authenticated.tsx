@@ -27,6 +27,7 @@ import { createFileRoute, Link, Outlet, redirect, useRouteContext } from '@tanst
 import {
 	CalendarDays,
 	ChevronDown,
+	ClipboardCheckIcon,
 	Footprints,
 	FootprintsIcon,
 	HardHat,
@@ -34,6 +35,7 @@ import {
 	Mountain,
 	MountainSnowIcon,
 	Package,
+	PackageCheckIcon,
 	PackageOpenIcon,
 	PlusCircleIcon,
 	Snowflake,
@@ -130,9 +132,21 @@ export function AppSidebar() {
 												</SidebarMenuSubButton>
 											</SidebarMenuSubItem>
 											<SidebarMenuSubItem>
+												<SidebarMenuSubButton render={<Link to="/reservation/prep" />}>
+													<ClipboardCheckIcon />
+													<span>Příprava</span>
+												</SidebarMenuSubButton>
+											</SidebarMenuSubItem>
+											<SidebarMenuSubItem>
 												<SidebarMenuSubButton render={<Link to="/reservation/pick-up" />}>
-													<PackageOpenIcon />
+													<PackageCheckIcon />
 													<span>Výdej</span>
+												</SidebarMenuSubButton>
+											</SidebarMenuSubItem>
+											<SidebarMenuSubItem>
+												<SidebarMenuSubButton render={<Link to="/reservation/return" />}>
+													<PackageOpenIcon />
+													<span>Vrácení</span>
 												</SidebarMenuSubButton>
 											</SidebarMenuSubItem>
 										</SidebarMenuSub>

@@ -7,18 +7,18 @@ import { useState } from 'react'
 import { formatDate } from '~/lib/format'
 import { trpc } from '~/lib/trpc'
 import type { ReservationListItem } from '../reservation.types'
-import { PickUpPersonCard } from './PickUpPersonCard'
 import { ReservationActions } from './ReservationActions'
+import { ReservationPersonCard } from './ReservationPersonCard'
 import { ReservationStatusBadge } from './ReservationStatusBadge'
 
 /** Kept next to the header definition in the route — the detail cell spans all of them. */
 const COLUMN_COUNT = 8
 
-type ReservationListRowProps = {
+type ReservationRowProps = {
 	reservation: ReservationListItem
 }
 
-export const ReservationListRow = ({ reservation }: ReservationListRowProps) => {
+export const ReservationRow = ({ reservation }: ReservationRowProps) => {
 	const [isOpen, setIsOpen] = useState(false)
 
 	// The full person + gear tree is only worth fetching for the rows an admin
@@ -32,10 +32,10 @@ export const ReservationListRow = ({ reservation }: ReservationListRowProps) => 
 
 	return (
 		<>
-			<TableRow key={reservation.id}>
+			<TableRow>
 				<TableCell className="flex items-center gap-2">
 					<Button
-						variant="secondary"
+						variant="ghost"
 						size="icon-sm"
 						aria-expanded={isOpen}
 						aria-label={isOpen ? 'Skrýt vybavení' : 'Zobrazit vybavení'}
@@ -75,8 +75,7 @@ export const ReservationListRow = ({ reservation }: ReservationListRowProps) => 
 										K této rezervaci nejsou přiřazeny žádné osoby.
 									</p>
 								) : (
-									// TODO: Refactor to use a ReservationListPersonCard
-									people.map((person) => <PickUpPersonCard key={person.id} person={person} />)
+									people.map((person) => <ReservationPersonCard key={person.id} person={person} />)
 								)}
 							</div>
 						)}

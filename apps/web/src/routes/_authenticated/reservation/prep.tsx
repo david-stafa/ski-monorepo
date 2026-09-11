@@ -16,13 +16,12 @@ import { DateRangeFilter } from '~/components/ui/DateRangeFilter'
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
 import { ReservationRow } from '~/domains/reservation/components/ReservationRow'
-import { ReservationStatusFilter } from '~/domains/reservation/components/ReservationStatusFilter'
-import { pickUpSearchSchema, toListInput } from '~/domains/reservation/pickUpSearch'
+import { prepSearchSchema, toListInput } from '~/domains/reservation/prepSearch'
 import { useFilters } from '~/hooks/useFilter'
 import { trpc } from '~/lib/trpc'
 
-export const Route = createFileRoute('/_authenticated/reservation/pick-up')({
-	validateSearch: pickUpSearchSchema,
+export const Route = createFileRoute('/_authenticated/reservation/prep')({
+	validateSearch: prepSearchSchema,
 	loaderDeps: ({ search }) => toListInput(search),
 	loader: async ({ context, deps }) =>
 		context.queryClient.ensureQueryData(context.trpc.reservation.list.queryOptions(deps)),
@@ -31,7 +30,7 @@ export const Route = createFileRoute('/_authenticated/reservation/pick-up')({
 
 function RouteComponent() {
 	const { filters, setFilters, resetFilters } = useFilters(Route.id)
-	const { page, itemsPerPage, orderBy, orderDirection, search, status, from, to } = filters
+	const { page, itemsPerPage, orderBy, orderDirection, search, from, to } = filters
 
 	const handleFilterClick = (nextOrderBy: GetReservationsInput['orderBy']) => {
 		setFilters({
@@ -40,15 +39,13 @@ function RouteComponent() {
 			page: 1,
 		})
 	}
-
 	/*  Reservations starting inside the selected window  */
 	const { data } = useSuspenseQuery(trpc.reservation.list.queryOptions(toListInput(filters)))
-
 	return (
 		<div>
 			{/*  Title with total count  */}
 			<TypographyH1 className="mb-6">
-				Výdej
+				Příprava
 				<span className="ml-1 align-super text-sm text-gray-500">({data.totalCount})</span>
 			</TypographyH1>
 
@@ -69,13 +66,8 @@ function RouteComponent() {
 				<div className="flex items-center gap-2">
 					<ResetFiltersButton
 						resetFilters={resetFilters}
-						defaultSearch={pickUpSearchSchema.parse({})}
+						defaultSearch={prepSearchSchema.parse({})}
 						currentSearch={filters}
-					/>
-
-					<ReservationStatusFilter
-						status={status ?? undefined}
-						onStatusChange={(status) => setFilters({ status: status ?? null, page: 1 })}
 					/>
 				</div>
 			</div>

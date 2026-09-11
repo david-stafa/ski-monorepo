@@ -15,11 +15,11 @@ type ReservationPerson = Outputs['reservation']['get']['people'][number]
  */
 const TYPE_ORDER: EquipmentItemType[] = ['SKI', 'SKI_BOOT', 'SNOWBOARD', 'SNOWBOARD_BOOT', 'HELMET']
 
-type PickUpPersonCardProps = {
+type ReservationPersonCardProps = {
 	person: ReservationPerson
 }
 
-export const PickUpPersonCard = ({ person }: PickUpPersonCardProps) => {
+export const ReservationPersonCard = ({ person }: ReservationPersonCardProps) => {
 	// Cancelled items stay on the record but are not handed over.
 	const items = person.reservationItems
 		.filter((item) => item.status === 'ACTIVE')

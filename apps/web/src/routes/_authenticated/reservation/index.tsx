@@ -16,7 +16,7 @@ import { ButtonLink } from '~/components/ui/button-link'
 import { CustomItemPerPageSelect, CustomPagination } from '~/components/ui/CustomPagination'
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
-import { ReservationListRow } from '~/domains/reservation/components/ReservationListRow'
+import { ReservationRow } from '~/domains/reservation/components/ReservationRow'
 import { ReservationStatusFilter } from '~/domains/reservation/components/ReservationStatusFilter'
 import { useFilters } from '~/hooks/useFilter'
 import { trpc } from '~/lib/trpc'
@@ -147,7 +147,7 @@ function RouteComponent() {
 							</TableCell>
 						</TableRow>
 					) : (
-						data.reservations.map((item) => <ReservationListRow reservation={item} key={item.id} />)
+						data.reservations.map((item) => <ReservationRow reservation={item} key={item.id} />)
 					)}
 				</TableBody>
 			</Table>

@@ -114,6 +114,7 @@ export const getReservationsInputSchema = paginationSchema.extend({
 	// params, so keep them readable; listReservations widens them to a day range
 	from: z.iso.date().optional(),
 	to: z.iso.date().optional(),
+	// TODO: Create shared dateMode enum - maybe use unum from Prisma
 	dateMode: z.enum(['PICKUP', 'RETURN', 'ACTIVE']).optional(),
 	orderBy: z.enum(['name', 'startDate', 'endDate']).default('startDate'),
 	orderDirection: z.enum(['asc', 'desc']).default('asc'),

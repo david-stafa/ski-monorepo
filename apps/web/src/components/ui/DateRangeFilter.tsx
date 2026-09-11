@@ -13,13 +13,13 @@ const presets = [
 	{ label: 'Příští týden', getRange: () => getWeekRange(1) },
 ]
 
-type DateRangeFieldProps = {
+type DateRangeFilterProps = {
 	from: string
 	to: string
 	onRangeChange: (range: DateRangeStrings) => void
 }
 
-export const DateRangeField = ({ from, to, onRangeChange }: DateRangeFieldProps) => {
+export const DateRangeFilter = ({ from, to, onRangeChange }: DateRangeFilterProps) => {
 	const [open, setOpen] = useState(false)
 	// Picking a range takes two clicks. The half-picked state is held here
 	// rather than pushed to the URL, so the list never refetches against a
