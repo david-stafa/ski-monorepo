@@ -5,6 +5,7 @@ import { cn } from '@ski-blazek/ui/lib/utils'
 import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 import * as React from 'react'
 import { type DayButton, DayPicker, getDefaultClassNames, type Locale } from 'react-day-picker'
+import { cs } from 'react-day-picker/locale'
 
 function Calendar({
 	className,
@@ -12,7 +13,7 @@ function Calendar({
 	showOutsideDays = true,
 	captionLayout = 'label',
 	buttonVariant = 'ghost',
-	locale,
+	locale = cs,
 	formatters,
 	components,
 	...props
