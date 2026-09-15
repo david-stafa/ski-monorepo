@@ -14,6 +14,7 @@ import { cn } from '@ski-blazek/ui/lib/utils'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 import { z } from 'zod'
+import { GenderBadge } from '~/components/ui/badges/GenderBadge'
 import { CustomItemPerPageSelect, CustomPagination } from '~/components/ui/CustomPagination'
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
@@ -24,7 +25,6 @@ import { StockCheckCheckbox } from '~/domains/equipment/_shared/components/Stock
 import { StockSweepButton } from '~/domains/equipment/_shared/components/StockSweepButton'
 import { colorLabel } from '~/domains/equipment/_shared/helpers/colorOptions'
 import { formatArticleNumber } from '~/domains/equipment/_shared/helpers/formatArticleNumber'
-import { genderLabel } from '~/domains/equipment/_shared/helpers/genderOptions'
 import { AddHelmetButton } from '~/domains/equipment/helmet/components/AddHelmetButton'
 import { HelmetActions } from '~/domains/equipment/helmet/components/HelmetActions'
 import { formatCircumference, helmetSizeLabel } from '~/domains/equipment/helmet/helmetOptions'
@@ -258,7 +258,9 @@ function RouteComponent() {
 									{formatCircumference(item.circumferenceMin, item.circumferenceMax)}
 								</TableCell>
 								<TableCell>{colorLabel(item.color)}</TableCell>
-								<TableCell>{genderLabel(item.gender)}</TableCell>
+								<TableCell>
+									<GenderBadge gender={item.gender} />
+								</TableCell>
 								<TableCell>{item.withIntegratedGoggles ? 'Ano' : '—'}</TableCell>
 							</TableRow>
 						))

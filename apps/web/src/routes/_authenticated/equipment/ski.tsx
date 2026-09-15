@@ -14,6 +14,10 @@ import { cn } from '@ski-blazek/ui/lib/utils'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 import { z } from 'zod'
+import { GenderBadge } from '~/components/ui/badges/GenderBadge'
+import { KidsBadge } from '~/components/ui/badges/KidsBadge'
+import { OldBadge } from '~/components/ui/badges/OldBadge'
+import { VipBadge } from '~/components/ui/badges/VipBadge'
 import { CustomItemPerPageSelect, CustomPagination } from '~/components/ui/CustomPagination'
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
@@ -23,7 +27,6 @@ import { InventoryToggleButton } from '~/domains/equipment/_shared/components/In
 import { StockCheckCheckbox } from '~/domains/equipment/_shared/components/StockCheckCheckbox'
 import { StockSweepButton } from '~/domains/equipment/_shared/components/StockSweepButton'
 import { formatArticleNumber } from '~/domains/equipment/_shared/helpers/formatArticleNumber'
-import { genderLabel } from '~/domains/equipment/_shared/helpers/genderOptions'
 import { AddSkiButton } from '~/domains/equipment/ski/components/AddSkiButton'
 import { SkiActions } from '~/domains/equipment/ski/components/SkiActions'
 import { useFilters } from '~/hooks/useFilter'
@@ -250,10 +253,12 @@ function RouteComponent() {
 								<TableCell>{item.brand}</TableCell>
 								<TableCell>{item.model ? item.model : '—'}</TableCell>
 								<TableCell>{item.length}</TableCell>
-								<TableCell>{genderLabel(item.gender)}</TableCell>
-								<TableCell>{item.isOld ? 'Starší' : '—'}</TableCell>
-								<TableCell>{item.isVIP ? 'VIP' : '—'}</TableCell>
-								<TableCell>{item.isKids ? 'Dětské' : '—'}</TableCell>
+								<TableCell>
+									<GenderBadge gender={item.gender} isKid={item.isKids} />
+								</TableCell>
+								<TableCell>{item.isOld ? <OldBadge /> : '—'}</TableCell>
+								<TableCell>{item.isVIP ? <VipBadge /> : '—'}</TableCell>
+								<TableCell>{item.isKids ? <KidsBadge /> : '—'}</TableCell>
 							</TableRow>
 						))
 					)}

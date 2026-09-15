@@ -18,6 +18,8 @@ import { cn } from '@ski-blazek/ui/lib/utils'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 import { z } from 'zod'
+import { GenderBadge } from '~/components/ui/badges/GenderBadge'
+import { KidsBadge } from '~/components/ui/badges/KidsBadge'
 import { CustomItemPerPageSelect, CustomPagination } from '~/components/ui/CustomPagination'
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
@@ -27,7 +29,6 @@ import { InventoryToggleButton } from '~/domains/equipment/_shared/components/In
 import { StockCheckCheckbox } from '~/domains/equipment/_shared/components/StockCheckCheckbox'
 import { StockSweepButton } from '~/domains/equipment/_shared/components/StockSweepButton'
 import { formatArticleNumber } from '~/domains/equipment/_shared/helpers/formatArticleNumber'
-import { genderLabel } from '~/domains/equipment/_shared/helpers/genderOptions'
 import { AddSnowboardBootButton } from '~/domains/equipment/snowboardBoot/components/AddSnowboardBootButton'
 import { SnowboardBootActions } from '~/domains/equipment/snowboardBoot/components/SnowboardBootActions'
 import { useFilters } from '~/hooks/useFilter'
@@ -209,12 +210,18 @@ function RouteComponent() {
 						>
 							Pohlaví
 						</TableHeadSortable>
+						<TableHeadSortable
+							sorted={orderBy === 'isKids' ? orderDirection : false}
+							onClick={() => handleFilterClick('isKids')}
+						>
+							Dětské
+						</TableHeadSortable>
 					</TableRow>
 				</TableHeader>
 				<TableBody>
 					{data.snowboardBoots.length === 0 ? (
 						<TableRow>
-							<TableCell colSpan={isInventory ? 8 : 7} className="h-50 text-center">
+							<TableCell colSpan={isInventory ? 9 : 8} className="h-50 text-center">
 								Žádné snowboardové boty nebyly nalezeny.
 							</TableCell>
 						</TableRow>
@@ -245,7 +252,10 @@ function RouteComponent() {
 								<TableCell>{item.model ? item.model : '—'}</TableCell>
 								<TableCell>{item.length}</TableCell>
 								<TableCell>{item.isBoa ? 'Ano' : '—'}</TableCell>
-								<TableCell>{genderLabel(item.gender)}</TableCell>
+								<TableCell>
+									<GenderBadge gender={item.gender} isKid={item.isKids} />
+								</TableCell>
+								<TableCell>{item.isKids ? <KidsBadge /> : '—'}</TableCell>
 							</TableRow>
 						))
 					)}

@@ -15,7 +15,3 @@ export const genderOptions: SelectFieldOption<Gender>[] = [
 	{ value: 'MALE', label: genderLabels.MALE },
 	{ value: 'FEMALE', label: genderLabels.FEMALE },
 ]
-
-/** For table cells, where `null` has to render as something. */
-export const genderLabel = (gender: Gender | null) =>
-	gender === null ? 'Unisex' : genderLabels[gender]

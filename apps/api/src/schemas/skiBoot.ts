@@ -31,7 +31,16 @@ export const getSkiBootInputSchema = paginationSchema
 	.extend({
 		search: z.string().optional(),
 		orderBy: z
-			.enum(['articleNumber', 'length', 'brand', 'model', 'color', 'gender', 'lastCheckedAt'])
+			.enum([
+				'articleNumber',
+				'length',
+				'brand',
+				'model',
+				'color',
+				'gender',
+				'isKids',
+				'lastCheckedAt',
+			])
 			.default('articleNumber'),
 		orderDirection: z.enum(['asc', 'desc']).default('asc'),
 	})

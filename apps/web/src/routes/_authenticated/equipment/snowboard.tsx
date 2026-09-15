@@ -14,6 +14,7 @@ import { cn } from '@ski-blazek/ui/lib/utils'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 import { z } from 'zod'
+import { GenderBadge } from '~/components/ui/badges/GenderBadge'
 import { CustomItemPerPageSelect, CustomPagination } from '~/components/ui/CustomPagination'
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
@@ -23,7 +24,6 @@ import { InventoryToggleButton } from '~/domains/equipment/_shared/components/In
 import { StockCheckCheckbox } from '~/domains/equipment/_shared/components/StockCheckCheckbox'
 import { StockSweepButton } from '~/domains/equipment/_shared/components/StockSweepButton'
 import { formatArticleNumber } from '~/domains/equipment/_shared/helpers/formatArticleNumber'
-import { genderLabel } from '~/domains/equipment/_shared/helpers/genderOptions'
 import { AddSnowboardButton } from '~/domains/equipment/snowboard/components/AddSnowboardButton'
 import { SnowboardActions } from '~/domains/equipment/snowboard/components/SnowboardActions'
 import { useFilters } from '~/hooks/useFilter'
@@ -234,7 +234,9 @@ function RouteComponent() {
 								<TableCell>{item.brand}</TableCell>
 								<TableCell>{item.model ? item.model : '—'}</TableCell>
 								<TableCell>{item.length}</TableCell>
-								<TableCell>{genderLabel(item.gender)}</TableCell>
+								<TableCell>
+									<GenderBadge gender={item.gender} />
+								</TableCell>
 							</TableRow>
 						))
 					)}

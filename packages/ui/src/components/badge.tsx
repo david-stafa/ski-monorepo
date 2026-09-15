@@ -30,7 +30,8 @@ const badgeVariants = cva(
 					'bg-violet-50 text-violet-700 dark:bg-violet-950 dark:text-violet-300 [a]:hover:bg-violet-100 dark:[a]:hover:bg-violet-900',
 				pink: 'bg-pink-50 text-pink-700 dark:bg-pink-950 dark:text-pink-300 [a]:hover:bg-pink-100 dark:[a]:hover:bg-pink-900',
 				slate:
-					'bg-slate-50 text-slate-700 dark:bg-slate-950 dark:text-slate-300 [a]:hover:bg-slate-100 dark:[a]:hover:bg-slate-900',
+					'border-slate-200 bg-slate-100 text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 [a]:hover:bg-slate-200 dark:[a]:hover:bg-slate-700',
+				gold: 'border-amber-200 bg-amber-50 text-amber-800 dark:border-amber-800/60 dark:bg-amber-950 dark:text-amber-200 [a]:hover:bg-amber-100 dark:[a]:hover:bg-amber-900',
 			},
 		},
 		defaultVariants: {
