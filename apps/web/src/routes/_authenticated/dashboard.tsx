@@ -4,6 +4,7 @@ import { TypographyH2 } from '@ski-blazek/ui/components/typography'
 import { createFileRoute, useNavigate, useRouteContext } from '@tanstack/react-router'
 import { LogOut } from 'lucide-react'
 import { useState } from 'react'
+import { FittingWeekCard } from '~/domains/fitting/components/FittingWeekCard'
 import { authClient } from '~/lib/auth'
 
 export const Route = createFileRoute('/_authenticated/dashboard')({
@@ -32,15 +33,19 @@ function Dashboard() {
 	}
 
 	return (
-		<div className="flex justify-between">
-			<TypographyH2 className="mb-4">Welcome, {user?.name}.</TypographyH2>
-			<div className="mb-4 items-center justify-end gap-1 hidden md:flex">
-				<ModeToggle />
-				<Button onClick={handleSignOut} variant="secondary" disabled={isLoading}>
-					<LogOut className="size-4" />
-					{isLoading ? 'Odhlašuji se…' : 'Odhlásit se'}
-				</Button>
+		<div>
+			<div className="flex justify-between">
+				<TypographyH2 className="mb-4">Welcome, {user?.name}.</TypographyH2>
+				<div className="mb-4 items-center justify-end gap-1 hidden md:flex">
+					<ModeToggle />
+					<Button onClick={handleSignOut} variant="secondary" disabled={isLoading}>
+						<LogOut className="size-4" />
+						{isLoading ? 'Odhlašuji se…' : 'Odhlásit se'}
+					</Button>
+				</div>
 			</div>
+
+			<FittingWeekCard />
 		</div>
 	)
 }

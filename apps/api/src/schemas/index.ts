@@ -7,6 +7,13 @@
 
 export { type ArchivedFilter, archivedFilterSchema } from './equipmentItem'
 export {
+	type Fitting,
+	type FittingWeek,
+	fittingWeekSchema,
+	type GetFittingsInput,
+	getFittingsInputSchema,
+} from './fitting'
+export {
 	type CreateHelmetInput,
 	createHelmetInputSchema,
 	type GetHelmetInput,

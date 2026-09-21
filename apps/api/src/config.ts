@@ -1,9 +1,15 @@
+import { existsSync } from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import dotenv from 'dotenv'
 import { z } from 'zod'
 
 // Local dev reads the repo-root .env. On Railway the variables are injected
 // into the process directly, so there is no file to find and this no-ops.
-dotenv.config()
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+const rootEnvFile = path.resolve(__dirname, '../../../.env')
+if (existsSync(rootEnvFile)) dotenv.config({ path: rootEnvFile })
 
 export const NODE_ENV = z
 	.enum(['development', 'test', 'production'], {
@@ -19,8 +25,6 @@ export const PORT = z.coerce
 	.default(3001)
 	.parse(process.env.PORT)
 
-// Parsed as URLs so a malformed Railway variable fails at boot rather than
-// producing broken auth callbacks and CORS rejections at request time.
 export const API_URL = z
 	.url({ error: 'API_URL must be a valid URL, e.g. https://api.example.com' })
 	.default('http://localhost:3001')
@@ -30,6 +34,17 @@ export const WEB_URL = z
 	.url({ error: 'WEB_URL must be a valid URL, e.g. https://rent.example.com' })
 	.default('http://localhost:5174')
 	.parse(process.env.WEB_URL)
+
+export const FITTING_API_URL = z
+	.url({ error: 'FITTING_API_URL must be a valid URL, e.g. https://rezervace.skiblazek.cz' })
+	.default('http://localhost:3000')
+	.parse(process.env.FITTING_API_URL)
+
+export const FITTING_API_KEY = z
+	.string()
+	.min(1, 'FITTING_API_KEY must not be empty — unset the variable instead')
+	.optional()
+	.parse(process.env.FITTING_API_KEY || undefined)
 
 // Shared parent of the api/web subdomains in production, e.g. `.railtest-app.fun`.
 // Unset locally — both dev servers are on localhost and already share cookies.
