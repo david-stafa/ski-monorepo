@@ -30,7 +30,7 @@ export const ReservationForm = ({ reservation }: ReservationFormProps) => {
 
 	// TanStack Form's array API has no row ids, and the array index is not a
 	// stable React key — once a row can be removed, index keys hand a row's
-	// mounted state (including each EquipmentSelectField's query) to its
+	// mounted state (including each EquipmentComboboxField's query) to its
 	// neighbour. Form values stay identical to the API payload, so identity
 	// lives beside them and is mutated in lockstep with the array. An existing
 	// person already carries a stable id; only new rows need one made up.
@@ -110,9 +110,7 @@ export const ReservationForm = ({ reservation }: ReservationFormProps) => {
 
 						<form.AppField
 							name="phoneNumber"
-							children={(field) => (
-								<field.TextField label="Telefon" placeholder="Zadejte telefonní číslo" />
-							)}
+							children={(field) => <field.TextField label="Telefon" placeholder="123 456 789" />}
 						/>
 					</div>
 

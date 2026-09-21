@@ -1,74 +1,78 @@
-import type { EquipmentItemType } from '@ski-blazek/db/browser'
+import { colorLabel } from '~/domains/equipment/_shared/helpers/colorOptions'
 import { formatArticleNumber } from '~/domains/equipment/_shared/helpers/formatArticleNumber'
 import { formatCircumference, helmetSizeLabel } from '~/domains/equipment/helmet/helmetOptions'
 import type { Outputs } from '~/lib/trpc'
 
 type AvailableItem = Outputs['equipment']['equipmentItem']['findAvailable'][number]
 
-/**
- * Emoji rather than lucide icons because the label is a plain string — the
- * select options in the shared form kit take `label: string`, not a node.
- */
-const TYPE_ICONS: Record<EquipmentItemType, string> = {
-	SKI: '🎿',
-	SKI_BOOT: '🥾',
-	SNOWBOARD: '🏂',
-	SNOWBOARD_BOOT: '👢',
-	HELMET: '⛑️',
-}
-
-const model = (value: string | null) => (value ? `${value} ` : '')
-
-/**
- * EquipmentItem is common-table-inheritance: exactly one of the five relations
- * is non-null and which one is decided by `type`. Prisma still types them all
- * as nullable, so `describe` returns null if the detail row is somehow missing.
- */
+/** Drops the parts a piece of gear does not have and spaces out the rest. */
+const line = (...parts: (string | false | null | undefined)[]) => parts.filter(Boolean).join(' ')
 const describeEquipmentItem = (item: AvailableItem): string | null => {
-	const icon = TYPE_ICONS[item.type]
-	const prefix = `${icon} ${formatArticleNumber(item)}. - `
-
 	switch (item.type) {
 		case 'SKI': {
 			const ski = item.ski
 			if (!ski) return null
-			return `${icon} ${ski.length} cm  ${ski.brand} ${model(ski.model)} ${ski.isVIP ? ' ⭐' : ''}`
+			return line(
+				`${ski.length} cm`,
+				ski.brand,
+				ski.model,
+				// The row hides this badge below 140 cm, where kids skis are obvious
+				// anyway; the label keeps it so typing "dětské" finds all of them.
+				ski.isKids && 'Dětské',
+				ski.isOld && 'Starší',
+				ski.isVIP && 'VIP'
+			)
 		}
 		case 'SNOWBOARD': {
 			const snowboard = item.snowboard
 			if (!snowboard) return null
-			return `${prefix} ${snowboard.brand} ${model(snowboard.model)}${snowboard.length} cm`
+			return line(`${snowboard.length} cm`, snowboard.brand, snowboard.model)
 		}
 		case 'SKI_BOOT': {
 			const boot = item.skiBoot
 			if (!boot) return null
-			return `${prefix} ${boot.brand} ${model(boot.model)}${boot.length} mp`
+			return line(
+				`${boot.length} mp`,
+				boot.brand,
+				boot.model,
+				boot.color && colorLabel(boot.color),
+				boot.isKids && 'Dětské'
+			)
 		}
 		case 'SNOWBOARD_BOOT': {
 			const boot = item.snowboardBoot
 			if (!boot) return null
-			return `${prefix} ${boot.brand} ${model(boot.model)}${boot.length} mp${boot.isBoa ? ' BOA' : ''}`
+			return line(
+				`${boot.length} mp`,
+				boot.brand,
+				boot.model,
+				boot.isBoa && 'BOA',
+				boot.isKids && 'Dětské'
+			)
 		}
 		case 'HELMET': {
 			const helmet = item.helmet
 			if (!helmet) return null
-			// Size is optional until stocktaking fills it in, so it drops the same
-			// way a model does; the circumference is left out entirely, the picker
-			// is already long.
-			const size = helmet.size ? `${helmetSizeLabel(helmet.size)} ` : ''
-			const circumference =
-				helmet.circumferenceMin !== null || helmet.circumferenceMax !== null
-					? formatCircumference(helmet.circumferenceMin, helmet.circumferenceMax)
-					: ''
-
-			return `${prefix} ${helmet.brand} ${model(helmet.model)} ${circumference} ${size} ${helmet.color}`
+			// Size and circumference are both optional until stocktaking fills them
+			// in, so each drops out on its own — the same way the row treats them.
+			const hasCircumference = helmet.circumferenceMin !== null && helmet.circumferenceMax !== null
+			return line(
+				helmet.size && helmetSizeLabel(helmet.size),
+				helmet.brand,
+				helmet.model,
+				colorLabel(helmet.color),
+				hasCircumference && formatCircumference(helmet.circumferenceMin, helmet.circumferenceMax),
+				helmet.withIntegratedGoggles && 'S brýlemi'
+			)
 		}
 	}
 }
 
-/**
- * The whole option label, icon and article number included — owning the full
- * string here is what stops a caller prefixing either one a second time.
- */
-export const getEquipmentItemLabel = (item: AvailableItem): string =>
-	describeEquipmentItem(item) ?? `${TYPE_ICONS[item.type]} ${formatArticleNumber(item)}`
+export const getEquipmentItemLabel = (item: AvailableItem): string => {
+	const article = formatArticleNumber(item)
+	const description = describeEquipmentItem(item)
+
+	// The separator keeps the article number from running into the measurement
+	// that follows it — "26.86 26.5 mp" reads as one mangled number otherwise.
+	return description ? `${article} · ${description}` : article
+}

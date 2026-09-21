@@ -23,6 +23,7 @@ import {
 import { Textarea } from '@ski-blazek/ui/components/textarea'
 import { cn } from '@ski-blazek/ui/lib/utils'
 import { createFormHook, createFormHookContexts } from '@tanstack/react-form'
+import { LoaderIcon } from 'lucide-react'
 import * as React from 'react'
 import { FieldInfo } from './FieldInfo'
 
@@ -135,6 +136,9 @@ export type SelectFieldOption<TValue extends string | number = string> = {
 	value: TValue
 	label: string
 	disabled?: boolean
+	/** Optional rich rendering for the dropdown row. `label` is still what the
+	 * input shows and what typing filters on, so it stays a plain string. */
+	content?: React.ReactNode
 }
 
 const NONE_VALUE = '__none__'
@@ -192,7 +196,7 @@ export function SelectField<TValue extends string | number = string>({
 				<SelectTrigger
 					id={field.name}
 					onBlur={field.handleBlur}
-					className={className ?? 'w-fit max-w-52'}
+					className={className ?? 'w-fit max-w-52 min-w-40'}
 				>
 					<SelectValue
 						placeholder={isLoading ? 'Načítání…' : (placeholder ?? `Vyberte ${label}`)}
@@ -390,6 +394,71 @@ function NumberComboboxField({
 	)
 }
 
+export function ComboboxField({
+	options,
+	label,
+	isLoading,
+	placeholder,
+}: {
+	options: SelectFieldOption[]
+	label: string
+	isLoading: boolean
+	placeholder?: string
+}) {
+	const field = useFieldContext<string | null>()
+
+	const selected = options.find((option) => option.value === field.state.value) ?? null
+
+	return (
+		<div className="flex flex-col gap-2">
+			<Label htmlFor={field.name}>{label}</Label>
+			<Combobox
+				items={options}
+				value={selected}
+				onValueChange={(item: SelectFieldOption | null) =>
+					field.handleChange(item ? item.value : null)
+				}
+				autoHighlight
+				onOpenChange={(open: boolean) => {
+					// Picking an item with the mouse leaves focus in the input, so the
+					// input's own blur never fires — and `FieldInfo` only shows errors
+					// once the field is touched.
+					if (!open) {
+						field.handleBlur()
+					}
+				}}
+			>
+				<ComboboxInput
+					placeholder={placeholder || 'Vyberte'}
+					id={field.name}
+					className="w-auto min-w-50 self-start [&_input]:field-sizing-content"
+					showClear
+					onBlur={field.handleBlur}
+				/>
+				<ComboboxContent className="w-fit">
+					{isLoading ? (
+						<div className="text-muted-foreground flex items-center justify-center p-3">
+							<LoaderIcon className="animate-spin" />
+						</div>
+					) : (
+						// Only once the options are in — while the query is in flight the
+						// list is empty for a reason other than "nothing matches".
+						<ComboboxEmpty>Nic nenalezeno</ComboboxEmpty>
+					)}
+					<ComboboxList>
+						{(item) => (
+							<ComboboxItem key={item.value} value={item} disabled={item.disabled}>
+								{item.content ?? item.label}
+							</ComboboxItem>
+						)}
+					</ComboboxList>
+				</ComboboxContent>
+			</Combobox>
+			<FieldInfo field={field} />
+		</div>
+	)
+}
+
 function SubscribeButton({
 	label,
 	...props
@@ -418,6 +487,7 @@ export const { useAppForm, withForm, withFieldGroup } = createFormHook({
 		CreatableComboboxField,
 		CreatableNumberComboboxField,
 		NumberComboboxField,
+		ComboboxField,
 	},
 	formComponents: {
 		SubscribeButton,

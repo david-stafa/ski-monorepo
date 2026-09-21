@@ -7,7 +7,7 @@ import { goggleOptions } from '../helpers/goggleOptions'
 import { initialValues } from '../helpers/initialValues'
 import { LEVEL_OPTIONS } from '../helpers/levelMeta'
 import { poleOptions } from '../helpers/poleOptions'
-import { EquipmentSelectField } from './EquipmentSelectField'
+import { EquipmentComboboxField } from './EquipmentComboboxField'
 
 export const PersonFormCard = withForm({
 	defaultValues: initialValues,
@@ -37,31 +37,31 @@ export const PersonFormCard = withForm({
 								/>
 							</div>
 							<Button
-								size={'icon-sm'}
 								type="button"
 								disabled={index === 0}
 								hidden={index === 0}
 								onClick={() => onRemove()}
 							>
 								<TrashIcon />
+								Smazat osobu
 							</Button>
 						</div>
 
 						<section className="flex gap-4">
 							<form.AppField name={`people[${index}].name`}>
-								{(subField) => <subField.TextField label="Jméno" placeholder="Jméno osoby" />}
+								{(subField) => <subField.TextField label="Jméno" placeholder="Jméno" />}
 							</form.AppField>
 
 							<form.AppField name={`people[${index}].age`}>
-								{(subField) => <subField.NumberField label="Věk" placeholder="Věk osoby" />}
+								{(subField) => <subField.NumberField label="Věk" placeholder="Věk" />}
 							</form.AppField>
 
 							<form.AppField name={`people[${index}].weight`}>
-								{(subField) => <subField.NumberField label="Váha" placeholder="Váha osoby" />}
+								{(subField) => <subField.NumberField label="Váha" placeholder="Váha" />}
 							</form.AppField>
 
 							<form.AppField name={`people[${index}].height`}>
-								{(subField) => <subField.NumberField label="Výška" placeholder="Výška osoby" />}
+								{(subField) => <subField.NumberField label="Výška" placeholder="Výška" />}
 							</form.AppField>
 
 							<form.AppField name={`people[${index}].gender`}>
@@ -82,7 +82,7 @@ export const PersonFormCard = withForm({
 								{(subField) => (
 									<subField.SelectField
 										label="Zdatnost"
-										placeholder="Vyberte zdatnost"
+										placeholder="Vyberte..."
 										options={LEVEL_OPTIONS}
 									/>
 								)}
@@ -92,7 +92,7 @@ export const PersonFormCard = withForm({
 						<section className="flex gap-4">
 							<form.AppField name={`people[${index}].equipment.SKI`}>
 								{() => (
-									<EquipmentSelectField
+									<EquipmentComboboxField
 										label="Lyže"
 										type="SKI"
 										startDate={startDate}
@@ -103,7 +103,7 @@ export const PersonFormCard = withForm({
 							</form.AppField>
 							<form.AppField name={`people[${index}].equipment.SKI_BOOT`}>
 								{() => (
-									<EquipmentSelectField
+									<EquipmentComboboxField
 										label="Lyžařské boty"
 										type="SKI_BOOT"
 										startDate={startDate}
@@ -116,7 +116,7 @@ export const PersonFormCard = withForm({
 								{(subField) => (
 									<subField.SelectField
 										label="Hole"
-										placeholder="Zadejte délku holí"
+										placeholder="100 cm"
 										className="max-w-45"
 										options={poleOptions}
 									/>
@@ -126,7 +126,7 @@ export const PersonFormCard = withForm({
 						<section className="flex gap-4">
 							<form.AppField name={`people[${index}].equipment.SNOWBOARD`}>
 								{() => (
-									<EquipmentSelectField
+									<EquipmentComboboxField
 										label="Snowboard"
 										type="SNOWBOARD"
 										startDate={startDate}
@@ -137,7 +137,7 @@ export const PersonFormCard = withForm({
 							</form.AppField>
 							<form.AppField name={`people[${index}].equipment.SNOWBOARD_BOOT`}>
 								{() => (
-									<EquipmentSelectField
+									<EquipmentComboboxField
 										label="Snowboardové boty"
 										type="SNOWBOARD_BOOT"
 										startDate={startDate}
@@ -150,7 +150,7 @@ export const PersonFormCard = withForm({
 						<section className="flex gap-4">
 							<form.AppField name={`people[${index}].equipment.HELMET`}>
 								{() => (
-									<EquipmentSelectField
+									<EquipmentComboboxField
 										label="Helma"
 										type="HELMET"
 										startDate={startDate}
