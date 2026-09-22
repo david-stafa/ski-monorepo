@@ -17,7 +17,7 @@ import {
 	TableRow,
 } from '@ski-blazek/ui/components/table'
 import { useQuery } from '@tanstack/react-query'
-import { addWeeks, parseISO } from 'date-fns'
+import { addWeeks, isAfter, parseISO } from 'date-fns'
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 import { useState } from 'react'
 import { formatDate, toDateString } from '~/lib/format'
@@ -67,6 +67,10 @@ export const FittingWeekCard = () => {
 	const shiftWeek = (weeks: number) =>
 		setWeek(toDateString(addWeeks(data ? parseISO(data.week.from) : new Date(), weeks)))
 
+	// The feed only serves the current week onwards, so stepping back is allowed
+	// only while a future week is shown — one whose first day is still ahead.
+	const canGoBack = !!data && isAfter(parseISO(data.week.from), new Date())
+
 	return (
 		<Card>
 			<CardHeader>
@@ -83,6 +87,7 @@ export const FittingWeekCard = () => {
 						size="icon-sm"
 						aria-label="Předchozí týden"
 						onClick={() => shiftWeek(-1)}
+						disabled={!canGoBack}
 					>
 						<ChevronLeftIcon className="size-4" />
 					</Button>
