@@ -1,6 +1,6 @@
 import { Button } from '@ski-blazek/ui/components/button'
 import { ModeToggle } from '@ski-blazek/ui/components/mode-toggle'
-import { TypographyH2 } from '@ski-blazek/ui/components/typography'
+import { TypographyH1 } from '@ski-blazek/ui/components/typography'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { LogOut } from 'lucide-react'
 import { useState } from 'react'
@@ -34,7 +34,7 @@ function Dashboard() {
 	return (
 		<div>
 			<div className="flex justify-between">
-				<TypographyH2 className="mb-4">Týdenní přehled</TypographyH2>
+				<TypographyH1 className="mb-4">Týdenní přehled</TypographyH1>
 				<div className="mb-4 items-center justify-end gap-1 hidden md:flex">
 					<ModeToggle />
 					<Button onClick={handleSignOut} variant="secondary" disabled={isLoading}>
