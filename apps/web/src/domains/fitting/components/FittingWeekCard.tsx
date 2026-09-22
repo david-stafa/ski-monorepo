@@ -25,7 +25,7 @@ import { trpc } from '~/lib/trpc'
 import type { Fitting } from '../fitting.types'
 import { FittingDayGroup } from './FittingDayGroup'
 
-const COLUMN_COUNT = 4
+const COLUMN_COUNT = 5
 
 /** Named rather than index-keyed, so the loading rows need no array-index keys. */
 const PLACEHOLDER_ROWS = ['first', 'second', 'third']
@@ -113,6 +113,7 @@ export const FittingWeekCard = () => {
 								<TableHead>Jméno</TableHead>
 								<TableHead>Osoby</TableHead>
 								<TableHead>Telefon</TableHead>
+								<TableHead className="w-5">Akce</TableHead>
 							</TableRow>
 						</TableHeader>
 						<TableBody>
@@ -132,7 +133,12 @@ export const FittingWeekCard = () => {
 								</TableRow>
 							) : (
 								groupByDate(data.reservations).map(([date, fittings]) => (
-									<FittingDayGroup key={date} date={date} fittings={fittings} />
+									<FittingDayGroup
+										key={date}
+										date={date}
+										fittings={fittings}
+										columnCount={COLUMN_COUNT}
+									/>
 								))
 							)}
 						</TableBody>

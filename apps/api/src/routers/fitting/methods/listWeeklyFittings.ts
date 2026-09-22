@@ -1,10 +1,11 @@
 import { TRPCError } from '@trpc/server'
-import { FITTING_API_KEY, FITTING_API_URL } from '../../../config'
+import { FITTING_API_KEY, FITTING_API_URL, IS_PRODUCTION } from '../../../config'
 import {
 	type FittingWeek,
 	fittingWeekSchema,
 	type GetFittingsInput,
 } from '../../../schemas/fitting'
+import { mockFittingWeek } from './mockFittingWeek'
 
 /** The ski-reservation app is a separate deployment, so a slow or hung response
  * must not hold an Express worker open indefinitely. */
@@ -19,6 +20,8 @@ const cache = new Map<string, { expiresAt: number; value: FittingWeek }>()
 
 export const listWeeklyFittings = async ({ week }: GetFittingsInput) => {
 	if (!FITTING_API_KEY) {
+		if (!IS_PRODUCTION) return mockFittingWeek(week)
+
 		throw new TRPCError({
 			code: 'PRECONDITION_FAILED',
 			message: 'FITTING_API_KEY is not configured.',

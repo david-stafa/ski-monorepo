@@ -10,7 +10,8 @@ import { poleOptions } from '../helpers/poleOptions'
 import { EquipmentComboboxField } from './EquipmentComboboxField'
 
 export const PersonFormCard = withForm({
-	defaultValues: initialValues,
+	// only read for type inference — the real values come from the parent form
+	defaultValues: initialValues(),
 	props: { index: 0, onRemove: () => {}, excludeReservationId: undefined as string | undefined },
 	render: function PersonFormCard({ form, index, onRemove, excludeReservationId }) {
 		return (

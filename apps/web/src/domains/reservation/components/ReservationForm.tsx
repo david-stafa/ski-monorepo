@@ -12,21 +12,22 @@ import { useState } from 'react'
 import { DateRangeField } from '~/components/form/DateRangeField'
 import { useAppForm } from '~/components/form/SharedFormFields'
 import { createEmptyPerson } from '../helpers/createEmptyPerson'
-import { initialValues } from '../helpers/initialValues'
+import { type InitialValuesProps, initialValues } from '../helpers/initialValues'
 import { useCreateReservation, useUpdateReservation } from '../reservationQueries'
 import { PersonFormCard } from './PersonFormCard'
 
 type ReservationFormProps = {
 	reservation?: ReservationDetail
+	searchParams?: InitialValuesProps
 }
 
-export const ReservationForm = ({ reservation }: ReservationFormProps) => {
+export const ReservationForm = ({ reservation, searchParams }: ReservationFormProps) => {
 	const isEdit = Boolean(reservation?.id)
 	const navigate = useNavigate()
 	const createReservation = useCreateReservation()
 	const updateReservation = useUpdateReservation()
 
-	const defaultValues: ReservationInput = reservation ?? initialValues
+	const defaultValues: ReservationInput = reservation ?? initialValues(searchParams)
 
 	// TanStack Form's array API has no row ids, and the array index is not a
 	// stable React key — once a row can be removed, index keys hand a row's
@@ -69,8 +70,11 @@ export const ReservationForm = ({ reservation }: ReservationFormProps) => {
 				const created = await createReservation.mutateAsync(value)
 
 				if (created) {
-					form.reset()
+					// reset to a blank form, not the defaults — a form prefilled from a
+					// fitting would otherwise come back with the same customer in it
+					form.reset(initialValues())
 					setPersonKeys([crypto.randomUUID()])
+					await navigate({ to: '/reservation/create' })
 				}
 			}
 		},
