@@ -5,6 +5,7 @@ import { ReservationForm } from '~/domains/reservation/components/ReservationFor
 const createReservationSearch = z.object({
 	name: z.string().optional(),
 	phoneNumber: z.string().optional(),
+	seasonal: z.boolean().optional(),
 })
 
 export const Route = createFileRoute('/_authenticated/reservation/create')({

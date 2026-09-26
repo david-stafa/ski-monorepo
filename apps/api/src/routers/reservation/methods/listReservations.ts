@@ -12,6 +12,7 @@ export const listReservations = async ({
 	from,
 	to,
 	dateMode,
+	kind,
 }: GetReservationsInput) => {
 	// The input carries date-only strings, so widen them to cover the whole day
 	// on both ends — otherwise a `to` of '2026-08-06' would cut off at midnight.
@@ -43,6 +44,7 @@ export const listReservations = async ({
 			],
 		}),
 		...(status && { status }),
+		...(kind !== 'all' && { seasonal: kind === 'seasonal' }),
 		...dateWhere,
 	}
 
@@ -57,6 +59,7 @@ export const listReservations = async ({
 				status: true,
 				startDate: true,
 				endDate: true,
+				seasonal: true,
 				createdAt: true,
 				_count: { select: { people: true, reservationItems: true } },
 			},

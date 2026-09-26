@@ -41,6 +41,7 @@ export const toListInput = ({
 	from,
 	to,
 	dateMode,
+	kind,
 	orderBy,
 	orderDirection,
 }: PickUpSearch): GetReservationsInput => ({
@@ -52,6 +53,7 @@ export const toListInput = ({
 	from,
 	to,
 	dateMode,
+	kind,
 	orderBy,
 	orderDirection,
 })

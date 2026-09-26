@@ -1,6 +1,7 @@
 import type { Prisma } from '@ski-blazek/db/browser'
 import type { ArchivedFilter } from '../../../../schemas/equipmentItem'
-import { type CheckedFilter, seasonStart } from '../../../../schemas/stockCheck'
+import { seasonStart } from '../../../../schemas/season'
+import type { CheckedFilter } from '../../../../schemas/stockCheck'
 
 /**
  * Search and sort helpers shared by the equipment lists. Article numbers live

@@ -15,6 +15,7 @@ import { CustomItemPerPageSelect, CustomPagination } from '~/components/ui/Custo
 import { DateRangeFilter } from '~/components/ui/DateRangeFilter'
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
+import { ReservationFilters } from '~/domains/reservation/components/ReservationFilters'
 import { ReservationRow } from '~/domains/reservation/components/ReservationRow'
 import { prepSearchSchema, toListInput } from '~/domains/reservation/prepSearch'
 import { useFilters } from '~/hooks/useFilter'
@@ -30,7 +31,7 @@ export const Route = createFileRoute('/_authenticated/reservation/prep')({
 
 function RouteComponent() {
 	const { filters, setFilters, resetFilters } = useFilters(Route.id)
-	const { page, itemsPerPage, orderBy, orderDirection, search, from, to } = filters
+	const { page, itemsPerPage, orderBy, orderDirection, search, kind, from, to } = filters
 
 	const handleFilterClick = (nextOrderBy: GetReservationsInput['orderBy']) => {
 		setFilters({
@@ -69,6 +70,8 @@ function RouteComponent() {
 						defaultSearch={prepSearchSchema.parse({})}
 						currentSearch={filters}
 					/>
+
+					<ReservationFilters kind={kind} onKindChange={(kind) => setFilters({ kind, page: 1 })} />
 				</div>
 			</div>
 

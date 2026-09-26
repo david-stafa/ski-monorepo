@@ -16,20 +16,23 @@ import { ButtonLink } from '~/components/ui/button-link'
 import { CustomItemPerPageSelect, CustomPagination } from '~/components/ui/CustomPagination'
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
+import { ReservationFilters } from '~/domains/reservation/components/ReservationFilters'
 import { ReservationRow } from '~/domains/reservation/components/ReservationRow'
-import { ReservationStatusFilter } from '~/domains/reservation/components/ReservationStatusFilter'
 import { useFilters } from '~/hooks/useFilter'
 import { trpc } from '~/lib/trpc'
 
 export const Route = createFileRoute('/_authenticated/reservation/')({
 	validateSearch: getReservationsInputSchema,
-	loaderDeps: ({ search: { page, itemsPerPage, orderBy, orderDirection, search, status } }) => ({
+	loaderDeps: ({
+		search: { page, itemsPerPage, orderBy, orderDirection, search, status, kind },
+	}) => ({
 		page,
 		itemsPerPage,
 		orderBy,
 		orderDirection,
 		search,
 		status,
+		kind,
 	}),
 	loader: async ({ context, deps }) => {
 		return context.queryClient.ensureQueryData(context.trpc.reservation.list.queryOptions(deps))
@@ -39,7 +42,7 @@ export const Route = createFileRoute('/_authenticated/reservation/')({
 
 function RouteComponent() {
 	const {
-		filters: { page, itemsPerPage, orderBy, orderDirection, search, status },
+		filters: { page, itemsPerPage, orderBy, orderDirection, search, status, kind },
 		setFilters,
 		resetFilters,
 	} = useFilters(Route.id)
@@ -61,6 +64,7 @@ function RouteComponent() {
 			orderDirection,
 			search,
 			status,
+			kind,
 		})
 	)
 
@@ -100,10 +104,13 @@ function RouteComponent() {
 							orderDirection,
 							search,
 							status,
+							kind,
 						}}
 					/>
 
-					<ReservationStatusFilter
+					<ReservationFilters
+						kind={kind}
+						onKindChange={(kind) => setFilters({ kind, page: 1 })}
 						status={status}
 						onStatusChange={(status) => setFilters({ status, page: 1 })}
 					/>

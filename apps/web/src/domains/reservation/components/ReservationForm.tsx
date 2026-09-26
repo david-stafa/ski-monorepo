@@ -3,6 +3,7 @@ import {
 	type ReservationDetail,
 	type ReservationInput,
 	reservationInputSchema,
+	seasonReturnDeadline,
 } from '@ski-blazek/api/schemas'
 import { Button } from '@ski-blazek/ui/components/button'
 import { TypographyH1, TypographyH4 } from '@ski-blazek/ui/components/typography'
@@ -49,15 +50,33 @@ export const ReservationForm = ({ reservation, searchParams }: ReservationFormPr
 			// invalidate gear already picked — drop every selection and make the
 			// user re-pick from the new availability list
 			onChange: ({ formApi, fieldApi }) => {
-				if (fieldApi.name !== 'startDate' && fieldApi.name !== 'endDate') return
-
 				// TODO: Clear only the gear that is no longer available, rather than all of it
 				// This is the reasong why date range is disabled in edit mode
-				formApi.state.values.people.forEach((person, i) => {
-					const hasSelection = Object.values(person.equipment).some(Boolean)
-					if (!hasSelection) return
-					formApi.setFieldValue(`people[${i}].equipment`, createEmptyEquipment())
-				})
+				const clearPickedGear = () => {
+					formApi.state.values.people.forEach((person, i) => {
+						const hasSelection = Object.values(person.equipment).some(Boolean)
+						if (!hasSelection) return
+						formApi.setFieldValue(`people[${i}].equipment`, createEmptyEquipment())
+					})
+				}
+
+				// Ticking Seasonal fills in the season return deadline as the end date.
+				// Unticking leaves the dates alone.
+				if (fieldApi.name === 'seasonal') {
+					if (!fieldApi.state.value) return
+
+					const deadline = seasonReturnDeadline(formApi.state.values.startDate)
+					// e.g. prefilled from a fitting — the end date is already right
+					if (deadline.getTime() === formApi.state.values.endDate.getTime()) return
+
+					formApi.setFieldValue('endDate', deadline)
+					clearPickedGear()
+					return
+				}
+
+				if (fieldApi.name === 'startDate' || fieldApi.name === 'endDate') {
+					clearPickedGear()
+				}
 			},
 		},
 		onSubmit: async ({ value }) => {
@@ -100,12 +119,25 @@ export const ReservationForm = ({ reservation, searchParams }: ReservationFormPr
 						/>
 						<TypographyH4>Základní údaje</TypographyH4>
 					</div>
-					<DateRangeField
-						disabled={isEdit}
-						form={form}
-						fields={{ startDate: 'startDate', endDate: 'endDate' }}
-						label="Termín rezervace"
-					/>
+					<div className="flex gap-4 items-center">
+						<DateRangeField
+							disabled={isEdit}
+							form={form}
+							fields={{ startDate: 'startDate', endDate: 'endDate' }}
+							label="Termín rezervace"
+						/>
+						{/* create-only, like the dates: shown on edit so staff can see it */}
+						<form.AppField
+							name="seasonal"
+							children={(field) => (
+								<field.CheckboxField
+									label="Sezónní rezervace"
+									disabled={isEdit}
+									orientation="stacked"
+								/>
+							)}
+						/>
+					</div>
 					<div className="flex gap-2">
 						<form.AppField
 							name="name"

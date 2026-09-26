@@ -31,10 +31,12 @@ export {
 	type ReservationDetail,
 	type ReservationIdInput,
 	type ReservationInput,
+	type ReservationKindFilter,
 	reservationDetailSchema,
 	reservationIdInputSchema,
 	reservationInputSchema,
 } from './reservation'
+export { seasonReturnDeadline, seasonStart } from './season'
 export {
 	type CreateSkiInput,
 	createSkiInputSchema,
@@ -72,7 +74,6 @@ export {
 	isChecked,
 	type SetCheckedInput,
 	type StockSweepInput,
-	seasonStart,
 	setCheckedInputSchema,
 	stockCheckFilterSchema,
 	stockSweepInputSchema,

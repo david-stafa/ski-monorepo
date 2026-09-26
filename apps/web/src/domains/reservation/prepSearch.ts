@@ -27,6 +27,7 @@ export const toListInput = ({
 	from,
 	to,
 	dateMode,
+	kind,
 	orderBy,
 	orderDirection,
 }: PrepSearch): GetReservationsInput => ({
@@ -37,6 +38,7 @@ export const toListInput = ({
 	from,
 	to,
 	dateMode,
+	kind,
 	orderBy,
 	orderDirection,
 })

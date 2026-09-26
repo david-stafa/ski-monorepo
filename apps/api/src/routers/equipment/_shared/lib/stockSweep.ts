@@ -1,5 +1,5 @@
 import type { EquipmentItemType, Prisma } from '@ski-blazek/db/browser'
-import { seasonStart } from '../../../../schemas/stockCheck'
+import { seasonStart } from '../../../../schemas/season'
 
 /*
     The annual sweep: everything of one type that this season's stock check

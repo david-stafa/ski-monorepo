@@ -9,9 +9,27 @@
 # Usage:  ./scripts/smoke.sh            (defaults to http://localhost:3001/api/trpc)
 #         BASE=http://host/api/trpc ./scripts/smoke.sh
 #
+# Every route is behind login, so the script signs in first. Put an existing
+# account in the root .env (sign-up is disabled, so it can't make one):
+#   SMOKE_EMAIL=you@example.com
+#   SMOKE_PASSWORD=...
+#
 set -uo pipefail
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+# only the SMOKE_* credentials are read from .env, so nothing else in it
+# (APP_PORT is set twice there) leaks into this shell
+if [ -f "$ROOT/.env" ]; then
+  eval "$(grep -E '^SMOKE_(EMAIL|PASSWORD)=' "$ROOT/.env")"
+fi
 BASE="${BASE:-http://localhost:3001/api/trpc}"
+AUTH_BASE="${BASE%/trpc}/auth"
+# better-auth rejects a sign-in whose Origin isn't a trusted origin
+ORIGIN="${ORIGIN:-http://localhost:5174}"
 PASS=0 FAIL=0
+
+# session cookie from the sign-in, sent with every request below
+JAR="$(mktemp)"
+trap 'rm -f "$JAR"' EXIT
 
 grn(){ printf '\033[32m%s\033[0m' "$*"; }
 red(){ printf '\033[31m%s\033[0m' "$*"; }
@@ -38,8 +56,8 @@ out={"json":d}
 if vals: out["meta"]={"values":vals}
 print(json.dumps(out))'; }
 
-qy(){ curl -s "$BASE/$1?input=$(enc "$(sj "$2")")"; }                                     # query (GET)
-mu(){ curl -s -X POST "$BASE/$1" -H 'content-type: application/json' -d "$(sj "$2")"; }   # mutation (POST)
+qy(){ curl -s -b "$JAR" "$BASE/$1?input=$(enc "$(sj "$2")")"; }                                     # query (GET)
+mu(){ curl -s -b "$JAR" -X POST "$BASE/$1" -H 'content-type: application/json' -d "$(sj "$2")"; }   # mutation (POST)
 
 # outcome <resp> -> "OK" | "ERR:<CODE>" | "PARSE_ERR"
 outcome(){ printf '%s' "$1" | python3 -c 'import sys,json
@@ -84,9 +102,9 @@ equipment(){ printf '{"SKI":%s,"SKI_BOOT":%s,"SNOWBOARD":%s,"SNOWBOARD_BOOT":%s,
 
 # person <name> <equipmentItemId> [type=SKI]   — name must be >= 2 chars.
 # `level` and `note` are nullable but still REQUIRED keys, so they must be sent.
-person(){ printf '{"name":"%s","weight":75,"height":180,"age":30,"gender":"MALE","poles":null,"level":"INTERMEDIATE","note":null,"backProtection":false,"skiCover":false,"bootCover":false,"goggles":false,"equipment":%s}' "$1" "$(equipment "${3:-SKI}" "$2")"; }
-resv(){ printf '{"name":"%s","phoneNumber":"+420123456789","note":null,"startDate":"%s","endDate":"%s","people":[%s]}' "$1" "$2" "$3" "$4"; }
-ski_update(){ printf '{"id":"%s","brand":"SmokeTest","model":"%s","length":%s,"isVIP":false}' "$1" "$2" "$3"; }
+person(){ printf '{"name":"%s","weight":75,"height":180,"age":30,"gender":"MALE","poles":null,"level":"INTERMEDIATE","note":null,"backProtection":false,"skiCover":false,"bootCover":false,"goggles":null,"equipment":%s}' "$1" "$(equipment "${3:-SKI}" "$2")"; }
+resv(){ printf '{"name":"%s","phoneNumber":"+420123456789","note":null,"startDate":"%s","endDate":"%s","seasonal":%s,"people":[%s]}' "$1" "$2" "$3" "${5:-false}" "$4"; }   # resv <name> <start> <end> <people> [seasonal=false]
+ski_update(){ printf '{"id":"%s","brand":"SmokeTest","model":"%s","length":%s,"isVIP":false,"isOld":false,"isKids":false,"gender":null}' "$1" "$2" "$3"; }
 fa(){ printf '{"type":"%s","startDate":"%s","endDate":"%s"}' "$1" "$2" "$3"; }         # findAvailable input
 avail(){ qy equipment.equipmentItem.findAvailable "$(fa "$1" "$2" "$3")"; }            # avail <type> <start> <end>
 
@@ -105,20 +123,36 @@ S(){ printf '%sT00:00:00.000Z' "$1"; }   # startOfDay — pickup day
 E(){ printf '%sT23:59:59.999Z' "$1"; }   # endOfDay   — return day
 
 printf '\033[1mSmoke test → %s\033[0m\n' "$BASE"
-if ! curl -sf -o /dev/null "$BASE/equipment.ski.list?input=$(enc "$(sj '{}')")"; then
+if [ -z "${SMOKE_EMAIL:-}" ] || [ -z "${SMOKE_PASSWORD:-}" ]; then
+  printf '%s SMOKE_EMAIL / SMOKE_PASSWORD not set — add them to .env\n' "$(red ✗)"; exit 1
+fi
+
+# the unauthenticated request doubles as the "is the API up?" check
+NOAUTH=$(curl -s "$BASE/equipment.ski.list?input=$(enc "$(sj '{}')")")
+if [ -z "$NOAUTH" ]; then
   printf '%s API not reachable at %s — is the dev server up?\n' "$(red ✗)" "$BASE"; exit 1
 fi
 
+SIGNIN=$(curl -s -c "$JAR" -o /dev/null -w '%{http_code}' -X POST "$AUTH_BASE/sign-in/email" \
+  -H 'content-type: application/json' -H "Origin: $ORIGIN" \
+  -d "$(python3 -c 'import json,sys;print(json.dumps({"email":sys.argv[1],"password":sys.argv[2]}))' "$SMOKE_EMAIL" "$SMOKE_PASSWORD")")
+if [ "$SIGNIN" != 200 ]; then
+  printf '%s sign-in as %s failed (HTTP %s) — check SMOKE_EMAIL / SMOKE_PASSWORD\n' "$(red ✗)" "$SMOKE_EMAIL" "$SIGNIN"; exit 1
+fi
+
+section "Auth"
+check "no session → UNAUTHORIZED" "$NOAUTH" UNAUTHORIZED
+
 # ------------------------------------------------------------------ equipment
 section "Equipment · create (all 5 types + edge cases)"
-SKI=$(mu equipment.ski.create '{"brand":"SmokeTest","model":"Ski-01","length":170,"isVIP":false}');            check "create ski"           "$SKI" OK
-SKI2=$(mu equipment.ski.create '{"brand":"SmokeTest","model":"Ski-02","length":175,"isVIP":true}');            check "create ski #2"        "$SKI2" OK
-BOOT=$(mu equipment.skiBoot.create '{"brand":"SmokeTest","model":"Boot-01","length":28}');                     check "create skiBoot"       "$BOOT" OK
-BOARD=$(mu equipment.snowboard.create '{"brand":"SmokeTest","model":"Board-01","length":155}');                check "create snowboard"     "$BOARD" OK
-SBOOT=$(mu equipment.snowboardBoot.create '{"brand":"SmokeTest","model":"SBoot-01","length":27,"isBoa":true}');check "create snowboardBoot" "$SBOOT" OK
-HELM=$(mu equipment.helmet.create '{"name":"SmokeTest Helmet","size":"M","color":"black","description":null,"withIntegratedGoggles":false}'); check "create helmet" "$HELM" OK
-check "create ski w/ 1-char model → BAD_REQUEST" "$(mu equipment.ski.create '{"brand":"X","model":"A","length":170,"isVIP":false}')" BAD_REQUEST
-check "create ski w/ length<50 → BAD_REQUEST"    "$(mu equipment.ski.create '{"brand":"SmokeTest","model":"Tiny","length":10,"isVIP":false}')" BAD_REQUEST
+SKI=$(mu equipment.ski.create '{"brand":"SmokeTest","model":"Ski-01","length":170,"isVIP":false,"isOld":false,"isKids":false,"gender":null}');            check "create ski"           "$SKI" OK
+SKI2=$(mu equipment.ski.create '{"brand":"SmokeTest","model":"Ski-02","length":175,"isVIP":true,"isOld":false,"isKids":false,"gender":null}');            check "create ski #2"        "$SKI2" OK
+BOOT=$(mu equipment.skiBoot.create '{"brand":"SmokeTest","model":"Boot-01","length":28,"color":null,"isKids":false,"gender":null}');                     check "create skiBoot"       "$BOOT" OK
+BOARD=$(mu equipment.snowboard.create '{"brand":"SmokeTest","model":"Board-01","length":155,"gender":null}');                check "create snowboard"     "$BOARD" OK
+SBOOT=$(mu equipment.snowboardBoot.create '{"brand":"SmokeTest","model":"SBoot-01","length":27,"isBoa":true,"isKids":false,"gender":null}');check "create snowboardBoot" "$SBOOT" OK
+HELM=$(mu equipment.helmet.create '{"brand":"SmokeTest","model":"Helmet-01","size":"M","circumferenceMin":null,"circumferenceMax":null,"color":"black","description":null,"withIntegratedGoggles":false,"gender":null}'); check "create helmet" "$HELM" OK
+check "create ski w/ 1-char model → BAD_REQUEST" "$(mu equipment.ski.create '{"brand":"X","model":"A","length":170,"isVIP":false,"isOld":false,"isKids":false,"gender":null}')" BAD_REQUEST
+check "create ski w/ length<50 → BAD_REQUEST"    "$(mu equipment.ski.create '{"brand":"SmokeTest","model":"Tiny","length":10,"isVIP":false,"isOld":false,"isKids":false,"gender":null}')" BAD_REQUEST
 
 SKI_ID=$(field "$SKI" id)
 SKI_EQ=$(field "$SKI" equipmentItem id)
@@ -130,7 +164,7 @@ for t in ski skiBoot snowboard snowboardBoot helmet; do check "list $t" "$(qy eq
 
 section "Equipment · update"
 check "update ski"                 "$(mu equipment.ski.update "$(ski_update "$SKI_ID" Ski-01-edit 171)")" OK
-check "update missing → NOT_FOUND" "$(mu equipment.ski.update '{"id":"nope","brand":"SmokeTest","model":"Nope","length":170,"isVIP":false}')" NOT_FOUND
+check "update missing → NOT_FOUND" "$(mu equipment.ski.update '{"id":"nope","brand":"SmokeTest","model":"Nope","length":170,"isVIP":false,"isOld":false,"isKids":false,"gender":null}')" NOT_FOUND
 
 section "Availability"
 check "findAvailable ski"                    "$(avail SKI "$W1S" "$W1E")" OK
@@ -151,7 +185,7 @@ check "list reservations"           "$(qy reservation.list '{}')" OK
 
 section "Equipment · delete rules"
 check "delete BOOKED ski → CONFLICT" "$(mu equipment.equipmentItem.delete "{\"id\":\"$SKI_EQ\"}")" CONFLICT
-FREE=$(mu equipment.helmet.create '{"name":"DeleteMe","size":"L","color":"red","description":null,"withIntegratedGoggles":true}')
+FREE=$(mu equipment.helmet.create '{"brand":"SmokeTest","model":"DeleteMe","size":"L","circumferenceMin":null,"circumferenceMax":null,"color":"red","description":null,"withIntegratedGoggles":true,"gender":null}')
 check "delete UNBOOKED helmet → OK"  "$(mu equipment.equipmentItem.delete "{\"id\":\"$(field "$FREE" equipmentItem id)\"}")" OK
 
 section "Equipment · retire / unretire"
@@ -167,8 +201,8 @@ check "cancel reservation"                "$(mu reservation.cancel "{\"id\":\"$(
 check "rebook ski#2 after cancel → OK"     "$(mu reservation.create "$(resv "Refreed" "$W1S" "$W1E" "$(person Finn "$SKI2_EQ")")")" OK
 
 section "Person · cancel frees only that person's gear"
-SA=$(field "$(mu equipment.ski.create '{"brand":"SmokeTest","model":"Ski-03","length":170,"isVIP":false}')" equipmentItem id)
-SB=$(field "$(mu equipment.ski.create '{"brand":"SmokeTest","model":"Ski-04","length":170,"isVIP":false}')" equipmentItem id)
+SA=$(field "$(mu equipment.ski.create '{"brand":"SmokeTest","model":"Ski-03","length":170,"isVIP":false,"isOld":false,"isKids":false,"gender":null}')" equipmentItem id)
+SB=$(field "$(mu equipment.ski.create '{"brand":"SmokeTest","model":"Ski-04","length":170,"isVIP":false,"isOld":false,"isKids":false,"gender":null}')" equipmentItem id)
 R3=$(mu reservation.create "$(resv "TwoPeople" "$W1S" "$W1E" "$(person Gina "$SA"),$(person Hank "$SB")")"); check "book 2-person reservation" "$R3" OK
 GINA=$(qy reservation.get "{\"id\":\"$(field "$R3" reservation id)\"}" | python3 -c 'import sys,json
 d=json.load(sys.stdin)["result"]["data"]; d=d.get("json",d)
@@ -182,15 +216,23 @@ section "Reservation · whole-day convention (what the form sends)"
 # can only start on D3. This is what makes endOfDay the safe choice — regressing
 # it to startOfDay frees the item a day early and these checks go red.
 D1=2027-10-01; D2=2027-10-02; D3=2027-10-03; D5=2027-10-10
-DAY=$(field "$(mu equipment.ski.create '{"brand":"SmokeTest","model":"Ski-06","length":170,"isVIP":false}')" equipmentItem id)
+DAY=$(field "$(mu equipment.ski.create '{"brand":"SmokeTest","model":"Ski-06","length":170,"isVIP":false,"isOld":false,"isKids":false,"gender":null}')" equipmentItem id)
 check "book pickup $D1 → return $D2"            "$(mu reservation.create "$(resv "DayConv" "$(S $D1)" "$(E $D2)" "$(person Nina "$DAY")")")" OK
 check "next booking on the RETURN day → CONFLICT" "$(mu reservation.create "$(resv "OnReturn" "$(S $D2)" "$(E $D3)" "$(person Otto "$DAY")")")" CONFLICT
 assert "gear hidden from findAvailable on return day" "$(contains_id "$(avail SKI "$(S $D2)" "$(E $D2)")" "$DAY")" no
 check "next booking the DAY AFTER → OK"          "$(mu reservation.create "$(resv "DayAfter" "$(S $D3)" "$(E $D3)" "$(person Pavel "$DAY")")")" OK
 check "single-day rental ($D5 → $D5) → OK"       "$(mu reservation.create "$(resv "OneDay" "$(S $D5)" "$(E $D5)" "$(person Rita "$DAY")")")" OK
 
+section "Reservation · seasonal flag + kind filter"
+SEAS=$(field "$(mu equipment.ski.create '{"brand":"SmokeTest","model":"Ski-07","length":170,"isVIP":false,"isOld":false,"isKids":false,"gender":null}')" equipmentItem id)
+RS=$(mu reservation.create "$(resv "SmokeSeasonal" "$(S 2027-11-15)" "$(E 2028-03-31)" "$(person Sara "$SEAS")" true)"); check "book seasonal reservation" "$RS" OK
+assert "get → seasonal is stored"            "$(field "$(qy reservation.get "{\"id\":\"$(field "$RS" reservation id)\"}")" seasonal)" True
+assert "list kind=seasonal finds it"          "$(field "$(qy reservation.list '{"search":"SmokeSeasonal","kind":"seasonal"}')" totalCount)" 1
+assert "list kind=regular hides it"           "$(field "$(qy reservation.list '{"search":"SmokeSeasonal","kind":"regular"}')" totalCount)" 0
+assert "list kind=regular still finds Smoke A" "$(field "$(qy reservation.list '{"search":"Smoke A","kind":"regular"}')" totalCount)" 1
+
 section "Reservation · input validation"
-SV=$(field "$(mu equipment.ski.create '{"brand":"SmokeTest","model":"Ski-05","length":170,"isVIP":false}')" equipmentItem id)
+SV=$(field "$(mu equipment.ski.create '{"brand":"SmokeTest","model":"Ski-05","length":170,"isVIP":false,"isOld":false,"isKids":false,"gender":null}')" equipmentItem id)
 check "endDate == startDate → BAD_REQUEST"  "$(mu reservation.create "$(resv "ZeroLen" "$W1S" "$W1S" "$(person Zoe "$SV")")")" BAD_REQUEST
 check "endDate < startDate → BAD_REQUEST"   "$(mu reservation.create "$(resv "Backwards" "$W1E" "$W1S" "$(person Zoe "$SV")")")" BAD_REQUEST
 check "1-char person name → BAD_REQUEST"    "$(mu reservation.create "$(resv "ShortName" "$W1S" "$W1E" "$(person Z "$SV")")")" BAD_REQUEST

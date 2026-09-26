@@ -61,6 +61,7 @@ const reservationFieldsSchema = z.object({
 	note: z.string().nullable(),
 	startDate: z.date(),
 	endDate: z.date(),
+	seasonal: z.boolean(),
 })
 
 // unrefined so the update payload can extend it; the refinement is applied to
@@ -84,8 +85,10 @@ export const reservationInputSchema = reservationBodySchema.refine(
 
 export type ReservationInput = z.infer<typeof reservationInputSchema>
 
-/** The same body plus which reservation to write it to. */
+/** The same body plus which reservation to write it to. Minus `seasonal`, which
+ * is set at create only. */
 export const updateReservationInputSchema = reservationBodySchema
+	.omit({ seasonal: true })
 	.extend({ id: z.string() })
 	.refine(datesOrdered.check, datesOrdered.error)
 
@@ -116,11 +119,14 @@ export const getReservationsInputSchema = paginationSchema.extend({
 	to: z.iso.date().optional(),
 	// TODO: Create shared dateMode enum - maybe use unum from Prisma
 	dateMode: z.enum(['PICKUP', 'RETURN', 'ACTIVE']).optional(),
+	// seasonal vs regular reservations; 'all' keeps both
+	kind: z.enum(['all', 'seasonal', 'regular']).default('all'),
 	orderBy: z.enum(['name', 'startDate', 'endDate']).default('startDate'),
 	orderDirection: z.enum(['asc', 'desc']).default('asc'),
 })
 
 export type GetReservationsInput = z.infer<typeof getReservationsInputSchema>
+export type ReservationKindFilter = GetReservationsInput['kind']
 
 export const reservationIdInputSchema = z.object({
 	id: z.string(),

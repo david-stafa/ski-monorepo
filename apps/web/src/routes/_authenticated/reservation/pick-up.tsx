@@ -15,8 +15,8 @@ import { CustomItemPerPageSelect, CustomPagination } from '~/components/ui/Custo
 import { DateRangeFilter } from '~/components/ui/DateRangeFilter'
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
+import { ReservationFilters } from '~/domains/reservation/components/ReservationFilters'
 import { ReservationRow } from '~/domains/reservation/components/ReservationRow'
-import { ReservationStatusFilter } from '~/domains/reservation/components/ReservationStatusFilter'
 import { pickUpSearchSchema, toListInput } from '~/domains/reservation/pickUpSearch'
 import { useFilters } from '~/hooks/useFilter'
 import { trpc } from '~/lib/trpc'
@@ -31,7 +31,7 @@ export const Route = createFileRoute('/_authenticated/reservation/pick-up')({
 
 function RouteComponent() {
 	const { filters, setFilters, resetFilters } = useFilters(Route.id)
-	const { page, itemsPerPage, orderBy, orderDirection, search, status, from, to } = filters
+	const { page, itemsPerPage, orderBy, orderDirection, search, status, kind, from, to } = filters
 
 	const handleFilterClick = (nextOrderBy: GetReservationsInput['orderBy']) => {
 		setFilters({
@@ -73,7 +73,9 @@ function RouteComponent() {
 						currentSearch={filters}
 					/>
 
-					<ReservationStatusFilter
+					<ReservationFilters
+						kind={kind}
+						onKindChange={(kind) => setFilters({ kind, page: 1 })}
 						status={status ?? undefined}
 						onStatusChange={(status) => setFilters({ status: status ?? null, page: 1 })}
 					/>

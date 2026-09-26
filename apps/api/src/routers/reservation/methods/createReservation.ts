@@ -34,6 +34,7 @@ export const createReservation = async (data: ReservationInput) => {
 				note: data.note,
 				startDate: data.startDate,
 				endDate: data.endDate,
+				seasonal: data.seasonal,
 			},
 		})
 

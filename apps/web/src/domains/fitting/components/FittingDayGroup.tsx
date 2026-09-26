@@ -38,6 +38,7 @@ export const FittingDayGroup = ({ date, fittings, columnCount }: FittingDayGroup
 						search={{
 							phoneNumber: fitting.phone,
 							name: `${fitting.firstName} ${fitting.lastName}`,
+							seasonal: fitting.isSeasonal,
 						}}
 					>
 						<PlusCircleIcon />

@@ -4,6 +4,9 @@ model Reservation {
     phoneNumber String
     note        String?
     status      ReservationStatus @default(BOOKED)
+    /// Seasonal reservation: kept until the season return deadline. Chosen by
+    /// staff at create time, never derived from the dates — see CONTEXT.md.
+    seasonal    Boolean           @default(false)
 
     people           Person[]
     reservationItems ReservationItem[]
@@ -78,7 +81,7 @@ model EquipmentItem {
 
     /// When this item was last physically seen during a stock check (inventura).
     /// Null = never checked. Compared against the current season start, not a
-    /// rolling 12 months — see `seasonStart()` in apps/api/src/schemas/stockCheck.ts.
+    /// rolling 12 months — see `seasonStart()` in apps/api/src/schemas/season.ts.
     lastCheckedAt DateTime?
 
     ski           Ski?

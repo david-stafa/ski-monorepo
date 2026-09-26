@@ -53,6 +53,7 @@ export const getReservationForEdit = async ({
 		note: reservation.note,
 		startDate: reservation.startDate,
 		endDate: reservation.endDate,
+		seasonal: reservation.seasonal,
 		people: reservation.people.map((person) => {
 			const equipment = createEmptyEquipment()
 			for (const item of person.reservationItems) {

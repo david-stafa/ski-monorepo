@@ -1,3 +1,4 @@
+import { Badge } from '@ski-blazek/ui/components/badge'
 import { Button } from '@ski-blazek/ui/components/button'
 import { Skeleton } from '@ski-blazek/ui/components/skeleton'
 import { TableCell, TableRow } from '@ski-blazek/ui/components/table'
@@ -45,7 +46,14 @@ export const ReservationRow = ({ reservation }: ReservationRowProps) => {
 					</Button>
 					<ReservationActions reservation={reservation} />
 				</TableCell>
-				<TableCell>{reservation.name}</TableCell>
+				<TableCell>
+					{reservation.name}
+					{reservation.seasonal && (
+						<Badge variant="outline" className="ml-2">
+							Sezónní
+						</Badge>
+					)}
+				</TableCell>
 				<TableCell>{reservation.phoneNumber}</TableCell>
 				<TableCell>{formatDate(reservation.startDate)}</TableCell>
 				<TableCell>{formatDate(reservation.endDate)}</TableCell>
