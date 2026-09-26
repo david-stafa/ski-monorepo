@@ -117,3 +117,17 @@ Uses Tailwind v4 (configured via `@tailwindcss/vite` plugin, not PostCSS config 
 ### Build pipeline
 
 Turbo ensures `db:generate` runs before any `build`. The API is bundled with `tsup` (ESM output to `dist/`). The web is bundled with Vite.
+
+## Agent skills
+
+### Issue tracker
+
+Issues live in Linear (team "My workspace", project "Ski Blažek", `MY-xx` IDs), accessed via the Linear MCP tools. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Default five-role vocabulary (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`). See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: one `CONTEXT.md` + `docs/adr/` at the repo root. See `docs/agents/domain.md`.
