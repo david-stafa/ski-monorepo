@@ -6,7 +6,7 @@ import {
 	createTestSkiBoot,
 	createTestSnowboard,
 } from '../../../test/helpers'
-import type { PersonEquipment } from '../../schemas/reservation'
+import type { GetReservationsInput, PersonEquipment } from '../../schemas/reservation'
 
 /** Is the ski free to book for these dates, per the picker's own query? */
 const isSkiAvailable = async (equipmentItemId: string, startDate: string, endDate: string) => {
@@ -207,6 +207,43 @@ describe('cancel', () => {
 			[pickedUpId]: false,
 			[cancelledId]: false,
 		})
+	})
+})
+
+describe('list', () => {
+	/** One reservation in each of Booked, Prepared, Picked up and Cancelled. */
+	const createOnePerStatus = async () => {
+		const ids = {
+			booked: await createTestReservation([{}]),
+			prepared: await createTestReservation([{}]),
+			pickedUp: await createTestReservation([{}]),
+			cancelled: await createTestReservation([{}]),
+		}
+		await caller.reservation.advance({ id: ids.prepared, from: 'BOOKED' })
+		await caller.reservation.advance({ id: ids.pickedUp, from: 'BOOKED' })
+		await caller.reservation.advance({ id: ids.pickedUp, from: 'PREPARED' })
+		await caller.reservation.cancel({ id: ids.cancelled })
+		return ids
+	}
+
+	const listedIds = async (statuses?: GetReservationsInput['statuses']) => {
+		const { reservations, totalCount } = await caller.reservation.list({ statuses })
+		expect(totalCount).toBe(reservations.length)
+		return reservations.map((reservation) => reservation.id).sort()
+	}
+
+	it('filters by several statuses at once', async () => {
+		const ids = await createOnePerStatus()
+
+		expect(await listedIds(['BOOKED', 'PREPARED'])).toEqual([ids.booked, ids.prepared].sort())
+	})
+
+	it('an empty or absent list of statuses does not filter', async () => {
+		const ids = await createOnePerStatus()
+		const all = Object.values(ids).sort()
+
+		expect(await listedIds([])).toEqual(all)
+		expect(await listedIds()).toEqual(all)
 	})
 })
 

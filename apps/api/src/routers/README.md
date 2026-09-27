@@ -74,7 +74,7 @@ Build `where` **once** and pass it to both queries, or the count drifts from the
 ```ts
 const where: Prisma.ReservationWhereInput = {
   ...(search && { OR: [{ name: { contains: search, mode: 'insensitive' } }] }),
-  ...(status && { status }),
+  ...(statuses && statuses.length > 0 && { status: { in: statuses } }),
 }
 
 const [reservations, totalCount] = await prisma.$transaction([

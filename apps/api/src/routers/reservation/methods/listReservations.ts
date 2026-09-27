@@ -9,7 +9,7 @@ export const listReservations = async ({
 	page,
 	itemsPerPage,
 	search,
-	status,
+	statuses,
 	from,
 	to,
 	dateMode,
@@ -44,7 +44,7 @@ export const listReservations = async ({
 				},
 			],
 		}),
-		...(status && { status }),
+		...(statuses && statuses.length > 0 && { status: { in: statuses } }),
 		...(kind !== 'all' && { seasonal: kind === 'seasonal' }),
 		...dateWhere,
 	}

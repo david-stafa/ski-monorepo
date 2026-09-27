@@ -3,12 +3,13 @@ import { ReservationStatus } from '@ski-blazek/db/browser'
 import { z } from 'zod'
 import { getWeekRange } from '~/lib/dateRange'
 
-export const prepSearchSchema = getReservationsInputSchema.extend({
+// No status in the URL: the prep view is a to-do list, so it is fixed to Booked
+// (see toListInput). A fully prepared reservation drops off it; a partly
+// prepared one stays, because it still rolls up to Booked.
+export const prepSearchSchema = getReservationsInputSchema.omit({ statuses: true }).extend({
 	from: z.iso.date().default(() => getWeekRange().from),
 	to: z.iso.date().default(() => getWeekRange().to),
 	dateMode: z.literal('PICKUP').default('PICKUP'),
-	// only booked - do now want to change statuses in this view
-	status: z.literal(ReservationStatus.BOOKED).default(ReservationStatus.BOOKED),
 })
 
 export type PrepSearch = z.infer<typeof prepSearchSchema>
@@ -23,7 +24,6 @@ export const toListInput = ({
 	page,
 	itemsPerPage,
 	search,
-	status,
 	from,
 	to,
 	dateMode,
@@ -34,7 +34,7 @@ export const toListInput = ({
 	page,
 	itemsPerPage,
 	search,
-	status,
+	statuses: [ReservationStatus.BOOKED],
 	from,
 	to,
 	dateMode,

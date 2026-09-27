@@ -1,4 +1,4 @@
-import { type GetReservationsInput, getReservationsInputSchema } from '@ski-blazek/api/schemas'
+import type { GetReservationsInput } from '@ski-blazek/api/schemas'
 import {
 	Table,
 	TableBody,
@@ -18,20 +18,21 @@ import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
 import { ReservationFilters } from '~/domains/reservation/components/ReservationFilters'
 import { ReservationRow } from '~/domains/reservation/components/ReservationRow'
+import { listSearchSchema } from '~/domains/reservation/listSearch'
 import { useFilters } from '~/hooks/useFilter'
 import { trpc } from '~/lib/trpc'
 
 export const Route = createFileRoute('/_authenticated/reservation/')({
-	validateSearch: getReservationsInputSchema,
+	validateSearch: listSearchSchema,
 	loaderDeps: ({
-		search: { page, itemsPerPage, orderBy, orderDirection, search, status, kind },
+		search: { page, itemsPerPage, orderBy, orderDirection, search, statuses, kind },
 	}) => ({
 		page,
 		itemsPerPage,
 		orderBy,
 		orderDirection,
 		search,
-		status,
+		statuses,
 		kind,
 	}),
 	loader: async ({ context, deps }) => {
@@ -42,7 +43,7 @@ export const Route = createFileRoute('/_authenticated/reservation/')({
 
 function RouteComponent() {
 	const {
-		filters: { page, itemsPerPage, orderBy, orderDirection, search, status, kind },
+		filters: { page, itemsPerPage, orderBy, orderDirection, search, statuses, kind },
 		setFilters,
 		resetFilters,
 	} = useFilters(Route.id)
@@ -63,7 +64,7 @@ function RouteComponent() {
 			orderBy,
 			orderDirection,
 			search,
-			status,
+			statuses,
 			kind,
 		})
 	)
@@ -96,14 +97,14 @@ function RouteComponent() {
 				<div className="flex items-center gap-2">
 					<ResetFiltersButton
 						resetFilters={resetFilters}
-						defaultSearch={getReservationsInputSchema.parse({})}
+						defaultSearch={listSearchSchema.parse({})}
 						currentSearch={{
 							page,
 							itemsPerPage,
 							orderBy,
 							orderDirection,
 							search,
-							status,
+							statuses,
 							kind,
 						}}
 					/>
@@ -111,8 +112,11 @@ function RouteComponent() {
 					<ReservationFilters
 						kind={kind}
 						onKindChange={(kind) => setFilters({ kind, page: 1 })}
-						status={status}
-						onStatusChange={(status) => setFilters({ status, page: 1 })}
+						statuses={statuses}
+						// no statuses means no filter; undefined keeps it out of the URL
+						onStatusesChange={(statuses) =>
+							setFilters({ statuses: statuses.length > 0 ? statuses : undefined, page: 1 })
+						}
 					/>
 				</div>
 			</div>
