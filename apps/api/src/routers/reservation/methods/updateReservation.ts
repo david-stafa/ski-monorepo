@@ -1,4 +1,4 @@
-import { prisma, ReservationItemStatus } from '@ski-blazek/db'
+import { prisma, ReservationStatus } from '@ski-blazek/db'
 import { TRPCError } from '@trpc/server'
 import { isItemAvailable } from '../../../routers/equipment/_shared/methods/findAvailable'
 import type { UpdateReservationInput } from '../../../schemas/reservation'
@@ -7,10 +7,11 @@ import { personColumns } from './personColumns'
 /**
  * Removal is a soft delete throughout, matching cancelReservation: a dropped
  * person or item keeps its row and moves to CANCELLED. That is not only for
- * history — availability is defined as "no overlapping ACTIVE booking", so
- * flipping the status is exactly what releases the gear back into the pool.
+ * history — availability only counts items that are not Returned or Cancelled,
+ * so flipping the status is exactly what releases the gear back into the pool.
  */
-const CANCELLED = ReservationItemStatus.CANCELLED
+const CANCELLED = ReservationStatus.CANCELLED
+const NOT_CANCELLED = { not: CANCELLED }
 
 export const updateReservation = async (data: UpdateReservationInput) => {
 	return await prisma.$transaction(async (tx) => {
@@ -18,10 +19,10 @@ export const updateReservation = async (data: UpdateReservationInput) => {
 			where: { id: data.id },
 			include: {
 				people: {
-					where: { status: 'ACTIVE' },
+					where: { status: NOT_CANCELLED },
 					include: {
 						reservationItems: {
-							where: { status: 'ACTIVE' },
+							where: { status: NOT_CANCELLED },
 							include: { equipmentItem: { select: { type: true } } },
 						},
 					},
@@ -98,8 +99,12 @@ export const updateReservation = async (data: UpdateReservationInput) => {
 				where: { id: person.id },
 				data: {
 					status: CANCELLED,
+					cancelledAt: new Date(),
 					reservationItems: {
-						updateMany: { where: { status: 'ACTIVE' }, data: { status: CANCELLED } },
+						updateMany: {
+							where: { status: NOT_CANCELLED },
+							data: { status: CANCELLED, cancelledAt: new Date() },
+						},
 					},
 				},
 			})
@@ -116,7 +121,7 @@ export const updateReservation = async (data: UpdateReservationInput) => {
 						reservationItems: {
 							create: assignedItemIds.map((equipmentItemId) => ({
 								...itemDates,
-								status: 'ACTIVE',
+								status: 'BOOKED',
 								reservation: { connect: { id: data.id } },
 								equipmentItem: { connect: { id: equipmentItemId } },
 							})),
@@ -152,7 +157,7 @@ export const updateReservation = async (data: UpdateReservationInput) => {
 				if (held) {
 					await tx.reservationItem.update({
 						where: { id: held.id },
-						data: { status: CANCELLED },
+						data: { status: CANCELLED, cancelledAt: new Date() },
 					})
 				}
 
@@ -160,7 +165,7 @@ export const updateReservation = async (data: UpdateReservationInput) => {
 					await tx.reservationItem.create({
 						data: {
 							...itemDates,
-							status: 'ACTIVE',
+							status: 'BOOKED',
 							reservation: { connect: { id: data.id } },
 							person: { connect: { id: person.id } },
 							equipmentItem: { connect: { id: desiredItemId } },

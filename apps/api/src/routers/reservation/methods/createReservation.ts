@@ -49,7 +49,7 @@ export const createReservation = async (data: ReservationInput) => {
 						create: assignedItemIds.map((equipmentItemId) => ({
 							startDate: reservation.startDate,
 							endDate: reservation.endDate,
-							status: 'ACTIVE',
+							status: 'BOOKED',
 							reservation: { connect: { id: reservation.id } },
 							equipmentItem: { connect: { id: equipmentItemId } },
 						})),

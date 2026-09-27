@@ -24,13 +24,13 @@ export const getReservationForEdit = async ({
 			people: {
 				// a cancelled person is off the reservation and must not come back
 				// as an editable row
-				where: { status: 'ACTIVE' },
+				where: { status: { not: 'CANCELLED' } },
 				include: {
 					// likewise a cancelled item must not come back as a filled slot.
 					// The form needs the item's id and which slot it belongs in,
 					// nothing else — so skip the gear itself.
 					reservationItems: {
-						where: { status: 'ACTIVE' },
+						where: { status: { not: 'CANCELLED' } },
 						include: { equipmentItem: { select: { type: true } } },
 					},
 				},

@@ -13,6 +13,7 @@ export const RESERVATION_STATUS_META: Record<
 	{ label: string; variant: BadgeVariant }
 > = {
 	[ReservationStatus.BOOKED]: { label: 'Rezervováno', variant: 'secondary' },
+	[ReservationStatus.PREPARED]: { label: 'Připraveno', variant: 'cyan' },
 	[ReservationStatus.PICKED_UP]: { label: 'Vyzvednuto', variant: 'default' },
 	[ReservationStatus.RETURNED]: { label: 'Vráceno', variant: 'success' },
 	[ReservationStatus.CANCELLED]: { label: 'Zrušeno', variant: 'destructive' },

@@ -1,5 +1,5 @@
 import type { EquipmentItemType, Person } from '@ski-blazek/db'
-import { Gender, Goggle, Level, PersonStatus, ReservationStatus } from '@ski-blazek/db/browser'
+import { Gender, Goggle, Level, ReservationStatus } from '@ski-blazek/db/browser'
 import z from 'zod'
 import { paginationSchema } from './pagination'
 
@@ -22,7 +22,9 @@ const personFieldsSchema = z.object({
 	goggles: z.enum(Goggle).nullable(),
 	level: z.enum(Level).nullable(),
 	note: z.string().nullable(),
-}) satisfies z.ZodType<Omit<Person, 'id' | 'createdAt' | 'updatedAt' | 'status' | 'reservationId'>>
+}) satisfies z.ZodType<
+	Omit<Person, 'id' | 'createdAt' | 'updatedAt' | 'status' | 'cancelledAt' | 'reservationId'>
+>
 
 // one item per equipment type per person
 const personEquipmentSchema = z.object({
@@ -103,7 +105,7 @@ export const reservationDetailSchema = reservationFieldsSchema.extend({
 	people: z.array(
 		personInputSchema.extend({
 			id: z.string(),
-			status: z.enum(PersonStatus),
+			status: z.enum(ReservationStatus),
 		})
 	),
 })

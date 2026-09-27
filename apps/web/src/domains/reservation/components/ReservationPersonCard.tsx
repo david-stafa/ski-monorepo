@@ -22,7 +22,7 @@ type ReservationPersonCardProps = {
 export const ReservationPersonCard = ({ person }: ReservationPersonCardProps) => {
 	// Cancelled items stay on the record but are not handed over.
 	const items = person.reservationItems
-		.filter((item) => item.status === 'ACTIVE')
+		.filter((item) => item.status !== 'CANCELLED')
 		.sort(
 			(a, b) => TYPE_ORDER.indexOf(a.equipmentItem.type) - TYPE_ORDER.indexOf(b.equipmentItem.type)
 		)

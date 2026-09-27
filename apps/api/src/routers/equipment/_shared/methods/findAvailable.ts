@@ -1,9 +1,11 @@
 import { type Prisma, prisma } from '@ski-blazek/db'
+import { OCCUPYING_STATUSES } from '../../../../lib/statusFlow'
 import type { FindAvailableInput, IsItemAvailableInput } from '../../../../schemas/equipmentItem'
 
 /**
  * A booking that occupies an item for the requested window: overlapping dates
- * (half-open — start < reqEnd AND end > reqStart) AND still active. Shared by
+ * (half-open — start < reqEnd AND end > reqStart) AND in a status that holds
+ * the gear (Booked, Prepared, Picked up — see statusFlow). Shared by
  * findAvailable + isItemAvailable so the "what counts as booked" rule lives in
  * one place and the two can't drift.
  *
@@ -18,7 +20,7 @@ const overlappingActiveBooking = (
 ): Prisma.ReservationItemWhereInput => ({
 	startDate: { lt: reqEnd },
 	endDate: { gt: reqStart },
-	status: 'ACTIVE',
+	status: { in: [...OCCUPYING_STATUSES] },
 	...(excludeReservationId && { reservationId: { not: excludeReservationId } }),
 })
 

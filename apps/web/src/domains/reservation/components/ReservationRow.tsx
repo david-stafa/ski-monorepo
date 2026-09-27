@@ -29,7 +29,7 @@ export const ReservationRow = ({ reservation }: ReservationRowProps) => {
 	)
 
 	// Cancelled people stay on the record but collect nothing.
-	const people = data?.people.filter((person) => person.status === 'ACTIVE')
+	const people = data?.people.filter((person) => person.status !== 'CANCELLED')
 
 	return (
 		<>
