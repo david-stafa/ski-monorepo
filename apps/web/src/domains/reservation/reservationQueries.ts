@@ -47,7 +47,12 @@ export const useCancelReservation = () =>
 				invalidateReservationList()
 				notifySuccess('Rezervace zrušena', 'Rezervace byla úspěšně zrušena.')
 			},
-			onError: (error) => notifyError(error.message, 'Nepodařilo se zrušit rezervaci.'),
+			// a CONFLICT means gear was handed out meanwhile; refetch so the list
+			// stops offering the cancel
+			onError: (error) => {
+				invalidateReservationList()
+				notifyError(error.message, 'Nepodařilo se zrušit rezervaci.')
+			},
 		})
 	)
 
@@ -115,6 +120,23 @@ export const useAdvanceReservation = () =>
 			onError: (error) => {
 				invalidateAfterStep()
 				notifyError(error.message, 'Rezervaci se nepodařilo posunout.')
+			},
+		})
+	)
+
+/** Refreshes the same as a step: the person drops off the open detail, and
+ * the reservation's rolled-up status may move on without them. */
+export const useCancelPerson = () =>
+	useMutation(
+		trpc.person.cancel.mutationOptions({
+			onSuccess: () => {
+				invalidateAfterStep()
+				notifySuccess('Osoba zrušena', 'Osoba byla úspěšně zrušena.')
+			},
+			// a CONFLICT means gear was handed out meanwhile; refetch so it shows
+			onError: (error) => {
+				invalidateAfterStep()
+				notifyError(error.message, 'Osobu se nepodařilo zrušit.')
 			},
 		})
 	)

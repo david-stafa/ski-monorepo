@@ -1,4 +1,3 @@
-import { ReservationStatus } from '@ski-blazek/db/browser'
 import { Button } from '@ski-blazek/ui/components/button'
 import {
 	DropdownMenu,
@@ -19,8 +18,6 @@ type ReservationActionsProps = {
 export const ReservationActions = ({ reservation }: ReservationActionsProps) => {
 	const [cancelOpen, setCancelOpen] = useState(false)
 
-	const isCancelled = reservation.status === ReservationStatus.CANCELLED
-
 	return (
 		<>
 			<DropdownMenu>
@@ -40,15 +37,13 @@ export const ReservationActions = ({ reservation }: ReservationActionsProps) => 
 						<PencilIcon />
 						Upravit rezervaci
 					</DropdownMenuItem>
-					{/* CANCEL */}
-					<DropdownMenuItem
-						variant="destructive"
-						disabled={isCancelled}
-						onClick={() => setCancelOpen(true)}
-					>
-						<BanIcon />
-						Zrušit rezervaci
-					</DropdownMenuItem>
+					{/* CANCEL — only while nothing has been picked up, and not twice */}
+					{reservation.canCancel && (
+						<DropdownMenuItem variant="destructive" onClick={() => setCancelOpen(true)}>
+							<BanIcon />
+							Zrušit rezervaci
+						</DropdownMenuItem>
+					)}
 				</DropdownMenuContent>
 			</DropdownMenu>
 

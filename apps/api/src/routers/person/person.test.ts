@@ -245,3 +245,72 @@ describe('a person with accessories only', () => {
 		expect((await getPerson(reservationId)).status).toBe('PREPARED')
 	})
 })
+
+describe('person.cancel', () => {
+	it('cancels a Prepared person and their items', async () => {
+		const { reservationId, skiId } = await createMixedPerson()
+		const { id } = await getPerson(reservationId)
+		await caller.person.advance({ id, from: 'BOOKED' })
+
+		const cancelled = await caller.person.cancel({ id })
+
+		expect(cancelled.status).toBe('CANCELLED')
+		expect(cancelled.cancelledAt).not.toBeNull()
+		const item = (await getPerson(reservationId)).itemFor(skiId)
+		expect(item.status).toBe('CANCELLED')
+		expect(item.cancelledAt).not.toBeNull()
+	})
+
+	it('is refused once one of their items is Picked up, changing nothing', async () => {
+		const { reservationId, skiId, bootId } = await createMixedPerson()
+		const ski = (await getPerson(reservationId)).itemFor(skiId)
+		await caller.reservationItem.advance({ id: ski.id, from: 'BOOKED' })
+		await caller.reservationItem.advance({ id: ski.id, from: 'PREPARED' })
+		const { id } = await getPerson(reservationId)
+
+		await expect(caller.person.cancel({ id })).rejects.toMatchObject({
+			code: 'CONFLICT',
+			message: 'Vybavení už bylo vydáno, osobu nelze zrušit',
+		})
+		const person = await getPerson(reservationId)
+		expect(person.status).toBe('BOOKED')
+		expect(person.cancelledAt).toBeNull()
+		expect(person.itemFor(bootId).status).toBe('BOOKED')
+	})
+
+	it('is refused for an accessories-only person who has picked up', async () => {
+		const reservationId = await createTestReservation([{}])
+		const { id } = await getPerson(reservationId)
+		await caller.person.advance({ id, from: 'BOOKED' })
+		await caller.person.advance({ id, from: 'PREPARED' })
+
+		await expect(caller.person.cancel({ id })).rejects.toMatchObject({ code: 'CONFLICT' })
+		expect((await getPerson(reservationId)).status).toBe('PICKED_UP')
+	})
+
+	it('rolls the reservation up from the people who remain', async () => {
+		const id = await createTestReservation([{}, {}])
+		const [ready, waiting] = (await caller.reservation.get({ id })).people.sort((a, b) =>
+			a.name.localeCompare(b.name)
+		)
+		if (!ready || !waiting) throw new Error('the family is incomplete')
+		await caller.person.advance({ id: ready.id, from: 'BOOKED' })
+		expect((await caller.reservation.get({ id })).status).toBe('BOOKED')
+
+		await caller.person.cancel({ id: waiting.id })
+
+		expect((await caller.reservation.get({ id })).status).toBe('PREPARED')
+	})
+
+	it('cancelling everyone one by one leaves the reservation itself as it was', async () => {
+		const id = await createTestReservation([{}, {}])
+		for (const person of (await caller.reservation.get({ id })).people) {
+			await caller.person.cancel({ id: person.id })
+		}
+
+		// Cancelled only ever comes from cancelling the reservation itself
+		const reservation = await caller.reservation.get({ id })
+		expect(reservation.status).toBe('BOOKED')
+		expect(reservation.cancelledAt).toBeNull()
+	})
+})

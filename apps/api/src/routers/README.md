@@ -84,7 +84,9 @@ const [reservations, totalCount] = await prisma.$transaction([
 ```
 
 **Lists stay lean, detail goes deep.** Use `_count` in `list`; save the nested
-`include` tree for `get`.
+`include` tree for `get`. The one exception is a flat `select: { status: true }` on
+children when a row needs a flag worked out from them (`canCancel` in
+`reservation.list`) — never the deep tree.
 
 ## Transactions
 
