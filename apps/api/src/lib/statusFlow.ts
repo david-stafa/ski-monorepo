@@ -56,6 +56,22 @@ export const CANCELLABLE_STATUSES: readonly ReservationStatus[] = [
 	ReservationStatus.PREPARED,
 ]
 
+/**
+ * Whether a person or a reservation can still be cancelled: it isn't already,
+ * and nothing under it has been picked up or returned. `statuses` are those of
+ * everything under it — items, and for a reservation its people too, since an
+ * accessories-only person has no items to show they've picked up. Cancelled
+ * children don't count: they never left the shop.
+ */
+export const canCancel = (status: ReservationStatus, statuses: ReservationStatus[]): boolean => {
+	if (!CANCELLABLE_STATUSES.includes(status)) return false
+	for (const child of statuses) {
+		if (child === ReservationStatus.CANCELLED) continue
+		if (!CANCELLABLE_STATUSES.includes(child)) return false
+	}
+	return true
+}
+
 /** An item in one of these holds its equipment for its dates. Returned and
  * Cancelled free it immediately, even before the reservation's end date. */
 export const OCCUPYING_STATUSES: readonly ReservationStatus[] = [

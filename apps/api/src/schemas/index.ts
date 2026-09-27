@@ -6,7 +6,7 @@
  */
 
 // The status flow's step rules, so the web shows only the buttons the API allows.
-export { nextStatus, previousStatus } from '../lib/statusFlow'
+export { canCancel, nextStatus, previousStatus } from '../lib/statusFlow'
 export { type ArchivedFilter, archivedFilterSchema } from './equipmentItem'
 export {
 	type Fitting,

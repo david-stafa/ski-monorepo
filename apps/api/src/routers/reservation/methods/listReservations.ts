@@ -1,5 +1,6 @@
 import { prisma } from '@ski-blazek/db'
 import type { Prisma } from '@ski-blazek/db/browser'
+import { canCancel } from '../../../lib/statusFlow'
 import type { GetReservationsInput } from '../../../schemas/reservation'
 
 export const listReservations = async ({
@@ -48,7 +49,7 @@ export const listReservations = async ({
 		...dateWhere,
 	}
 
-	const [reservations, totalCount] = await prisma.$transaction([
+	const [rows, totalCount] = await prisma.$transaction([
 		prisma.reservation.findMany({
 			where,
 			select: {
@@ -62,6 +63,9 @@ export const listReservations = async ({
 				seasonal: true,
 				createdAt: true,
 				_count: { select: { people: true, reservationItems: true } },
+				// only to work out `canCancel` below
+				people: { select: { status: true } },
+				reservationItems: { select: { status: true } },
 			},
 			skip: (page - 1) * itemsPerPage,
 			take: itemsPerPage,
@@ -72,6 +76,16 @@ export const listReservations = async ({
 
 		prisma.reservation.count({ where }),
 	])
+
+	// The rolled-up status alone can't tell: a family is still Booked while one
+	// of them has already picked up, and then it can't be cancelled.
+	const reservations = rows.map(({ people, reservationItems, ...reservation }) => ({
+		...reservation,
+		canCancel: canCancel(
+			reservation.status,
+			[...people, ...reservationItems].map((child) => child.status)
+		),
+	}))
 
 	return { reservations, totalCount }
 }

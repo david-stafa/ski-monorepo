@@ -1,14 +1,16 @@
-import { previousStatus } from '@ski-blazek/api/schemas'
+import { canCancel, previousStatus } from '@ski-blazek/api/schemas'
 import type { EquipmentItemType } from '@ski-blazek/db/browser'
 import { Badge } from '@ski-blazek/ui/components/badge'
 import { Button } from '@ski-blazek/ui/components/button'
-import { Undo2Icon } from 'lucide-react'
+import { BanIcon, Undo2Icon } from 'lucide-react'
+import { useState } from 'react'
 import type { Outputs } from '~/lib/trpc'
 import { getPersonAccessories } from '../helpers/getPersonAccessories'
 import { getPersonStepStatuses } from '../helpers/getPersonStepStatuses'
 import { LEVEL_LABELS } from '../helpers/levelMeta'
 import { RESERVATION_STATUS_META } from '../helpers/reservationStatus'
 import { useAdvancePerson, useUndoPerson } from '../reservationQueries'
+import { CancelPersonDialog } from './CancelPersonDialog'
 import { GenderIcon } from './GenderIcon'
 import { NextStepButton } from './NextStepButton'
 import { ReservationItemRow } from './ReservationItemRow'
@@ -41,6 +43,12 @@ export const ReservationPersonCard = ({ person }: ReservationPersonCardProps) =>
 	// With no items to undo one by one (accessories only), staff undo the
 	// person itself.
 	const previous = items.length === 0 ? previousStatus(person.status) : undefined
+	const [cancelOpen, setCancelOpen] = useState(false)
+	// only while nothing of theirs has been picked up
+	const cancellable = canCancel(
+		person.status,
+		person.reservationItems.map((item) => item.status)
+	)
 
 	return (
 		<div className="bg-background rounded-lg border p-3">
@@ -74,8 +82,21 @@ export const ReservationPersonCard = ({ person }: ReservationPersonCardProps) =>
 						onAdvance={() => advance.mutate({ id: person.id, from: person.status })}
 					/>
 					<ReservationStatusBadge status={person.status} />
+					{cancellable && (
+						<Button
+							variant="ghost"
+							size="icon-xs"
+							title="Zrušit osobu"
+							aria-label="Zrušit osobu"
+							onClick={() => setCancelOpen(true)}
+						>
+							<BanIcon />
+						</Button>
+					)}
 				</span>
 			</div>
+
+			<CancelPersonDialog open={cancelOpen} onOpenChange={setCancelOpen} person={person} />
 
 			{items.length === 0 ? (
 				<p className="text-muted-foreground text-sm">Této osobě není přiřazeno žádné vybavení.</p>

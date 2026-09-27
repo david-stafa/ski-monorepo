@@ -89,6 +89,82 @@ describe('cancel', () => {
 		expect(first.cancelledAt).not.toBeNull()
 		expect(again.cancelledAt).toEqual(first.cancelledAt)
 	})
+
+	it('cancels a Prepared reservation with everything on it, and frees its gear', async () => {
+		const skiId = await createTestSki()
+		const id = await createTestReservation([{ SKI: skiId }, {}])
+		await caller.reservation.advance({ id, from: 'BOOKED' })
+
+		const cancelled = await caller.reservation.cancel({ id })
+
+		expect(cancelled.status).toBe('CANCELLED')
+		expect(cancelled.cancelledAt).not.toBeNull()
+		const reservation = await caller.reservation.get({ id })
+		for (const person of reservation.people) {
+			expect(person.status).toBe('CANCELLED')
+			expect(person.cancelledAt).not.toBeNull()
+		}
+		const item = reservation.people.flatMap((person) => person.reservationItems)[0]
+		expect(item?.status).toBe('CANCELLED')
+		expect(item?.cancelledAt).not.toBeNull()
+		expect(await isSkiAvailable(skiId, '2027-01-10', '2027-01-15')).toBe(true)
+	})
+
+	it('is refused once one item is Picked up, changing nothing', async () => {
+		const firstSkiId = await createTestSki()
+		const secondSkiId = await createTestSki()
+		const id = await createTestReservation([{ SKI: firstSkiId }, { SKI: secondSkiId }])
+		const reservation = await caller.reservation.get({ id })
+		const item = reservation.people
+			.flatMap((person) => person.reservationItems)
+			.find((item) => item.equipmentItemId === firstSkiId)
+		await caller.reservationItem.advance({ id: item?.id ?? '', from: 'BOOKED' })
+		await caller.reservationItem.advance({ id: item?.id ?? '', from: 'PREPARED' })
+		// the other person still holds the reservation at Booked
+		expect((await caller.reservation.get({ id })).status).toBe('BOOKED')
+
+		await expect(caller.reservation.cancel({ id })).rejects.toMatchObject({
+			code: 'CONFLICT',
+			message: 'Vybavení už bylo vydáno, rezervaci nelze zrušit',
+		})
+		const after = await caller.reservation.get({ id })
+		expect(after.status).toBe('BOOKED')
+		expect(after.cancelledAt).toBeNull()
+		expect(after.people.map((person) => person.status).sort()).toEqual(['BOOKED', 'PICKED_UP'])
+		expect(await isSkiAvailable(secondSkiId, '2027-01-10', '2027-01-15')).toBe(false)
+	})
+
+	it('is refused once an accessories-only person has picked up', async () => {
+		const id = await createTestReservation([{}, {}])
+		const [first] = (await caller.reservation.get({ id })).people
+		await caller.person.advance({ id: first?.id ?? '', from: 'BOOKED' })
+		await caller.person.advance({ id: first?.id ?? '', from: 'PREPARED' })
+
+		await expect(caller.reservation.cancel({ id })).rejects.toMatchObject({ code: 'CONFLICT' })
+		expect((await caller.reservation.get({ id })).status).toBe('BOOKED')
+	})
+
+	it('the list says which reservations can still be cancelled', async () => {
+		const bookedId = await createTestReservation([{}])
+		const pickedUpId = await createTestReservation([{}, {}])
+		const cancelledId = await createTestReservation([{}])
+		const [first] = (await caller.reservation.get({ id: pickedUpId })).people
+		await caller.person.advance({ id: first?.id ?? '', from: 'BOOKED' })
+		await caller.person.advance({ id: first?.id ?? '', from: 'PREPARED' })
+		await caller.reservation.cancel({ id: cancelledId })
+
+		const { reservations } = await caller.reservation.list({})
+		const canCancelById = Object.fromEntries(
+			reservations.map((reservation) => [reservation.id, reservation.canCancel])
+		)
+
+		// the second one still reads Booked, from the person who hasn't picked up
+		expect(canCancelById).toEqual({
+			[bookedId]: true,
+			[pickedUpId]: false,
+			[cancelledId]: false,
+		})
+	})
 })
 
 describe('advance', () => {
