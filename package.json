@@ -8,6 +8,7 @@
 		"build": "turbo run build",
 		"dev": "turbo run dev --ui tui",
 		"check-types": "turbo run check-types",
+		"test": "turbo run test",
 		"format": "biome check --write .",
 		"check": "biome ci .",
 		"db:studio": "turbo run db:studio"

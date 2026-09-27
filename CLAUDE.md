@@ -26,6 +26,7 @@ pnpm build        # build everything
 pnpm check        # biome ci — format + lint + import sort, no writes
 pnpm format       # biome check --write — autofix
 pnpm check-types  # typecheck all packages
+pnpm test         # API integration tests (needs docker Postgres up)
 pnpm format       # format all packages
 
 # Database (run from root or packages/database)
@@ -44,6 +45,8 @@ pnpm --filter @ski-blazek/web dev
 2. Start Postgres: `docker-compose up -d` (runs on port **5433**)
 3. Run migrations: `pnpm turbo db:migrate`
 4. Start dev: `pnpm dev`
+
+Tests: with Postgres up, `pnpm test`. They run against a separate `ski_blazek_test` database on the same container — created and migrated automatically, truncated before every test, never the dev database. Override with `TEST_DATABASE_URL` (its name must end in `_test`).
 
 The `.env` file is read by all packages (the DB client and Prisma config walk up the directory tree to find it).
 
@@ -113,6 +116,10 @@ import { cn } from '@ski-blazek/ui/lib/utils'
 ```
 
 Uses Tailwind v4 (configured via `@tailwindcss/vite` plugin, not PostCSS config file). Shared styles are in `packages/tailwind-config/shared-styles.css`.
+
+### Tests — Vitest in `apps/api`
+
+Integration tests only, no mocks: `appRouter.createCaller` with a fake logged-in user, against the real test database. Test files sit next to the router they cover (`routers/<domain>/<domain>.test.ts`); shared setup lives in `apps/api/test/` — `helpers.ts` has the `caller` and `createTestReservation(people)`. Files run one at a time because they share one database.
 
 ### Build pipeline
 

@@ -10,12 +10,12 @@
 		// or web cannot typecheck the source it imports from here.
 		"lib": ["ES2025"],
 
-		"rootDir": "./src",
+		"rootDir": ".",
 		"outDir": "./dist",
 		"verbatimModuleSyntax": true,
 		"paths": {
 			"~/*": ["./src/*"]
 		}
 	},
-	"include": ["src/**/*"]
+	"include": ["src/**/*", "test/**/*", "vitest.config.ts"]
 }

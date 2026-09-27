@@ -21,3 +21,6 @@ pnpm turbo db:migrate
 
 # Start dev servers
 pnpm dev
+
+# Run the API tests (Postgres must be up; uses its own ski_blazek_test database)
+pnpm test
