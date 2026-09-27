@@ -96,6 +96,18 @@ export const useAdvancePerson = () =>
 		})
 	)
 
+/** Only for a person with no items, whom staff move by hand. */
+export const useUndoPerson = () =>
+	useMutation(
+		trpc.person.undo.mutationOptions({
+			onSuccess: invalidateAfterStep,
+			onError: (error) => {
+				invalidateAfterStep()
+				notifyError(error.message, 'Krok se nepodařilo vrátit.')
+			},
+		})
+	)
+
 export const useAdvanceReservation = () =>
 	useMutation(
 		trpc.reservation.advance.mutationOptions({

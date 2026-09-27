@@ -3,6 +3,7 @@ import { statusStepInputSchema } from '../../schemas/statusStep'
 import { protectedProcedure, router } from '../_context'
 import { advancePerson } from './methods/advancePerson'
 import { cancelPerson } from './methods/cancelPerson'
+import { undoPerson } from './methods/undoPerson'
 
 export const personRouter = router({
 	cancel: protectedProcedure
@@ -11,4 +12,7 @@ export const personRouter = router({
 	advance: protectedProcedure
 		.input(statusStepInputSchema)
 		.mutation(async ({ input }) => await advancePerson(input)),
+	undo: protectedProcedure
+		.input(statusStepInputSchema)
+		.mutation(async ({ input }) => await undoPerson(input)),
 })

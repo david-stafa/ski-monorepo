@@ -7,8 +7,10 @@ import type { StatusStepInput } from '../../../schemas/statusStep'
 /**
  * Moves everything in a reservation one step: only the items at the
  * reservation's rolled-up status move, across all its people, so items already
- * further along are left alone and nothing ever skips a step. Each person and
- * then the reservation roll up afterwards.
+ * further along are left alone and nothing ever skips a step. People with no
+ * items (accessories only) have nothing to roll up from, so those at that
+ * status move themselves. Each person and then the reservation roll up
+ * afterwards.
  */
 export const advanceReservation = async ({ id, from }: StatusStepInput) => {
 	const to = nextStatus(from)
@@ -39,15 +41,24 @@ export const advanceReservation = async ({ id, from }: StatusStepInput) => {
 				message: 'Rezervaci mezitím změnil někdo jiný. Obnovte stránku a zkuste to znovu.',
 			})
 
-		const { count } = await tx.reservationItem.updateMany({
+		const movedItems = await tx.reservationItem.updateMany({
 			where: { reservationId: id, status: from },
 			data,
 		})
-		// Everyone left at this status rents only accessories (MY-74).
-		if (count === 0)
+		const movedPeople = await tx.person.updateMany({
+			where: {
+				reservationId: id,
+				status: from,
+				reservationItems: { none: { status: { not: 'CANCELLED' } } },
+			},
+			data: { status: to },
+		})
+		// Only when everyone on it has been cancelled: a reservation keeps its
+		// status then, with nobody left to move.
+		if (movedItems.count + movedPeople.count === 0)
 			throw new TRPCError({
 				code: 'CONFLICT',
-				message: 'Rezervace nemá žádné vybavení, které by šlo posunout',
+				message: 'Rezervace nemá nic, co by šlo posunout',
 			})
 
 		// Each call also rolls the reservation up; the last one leaves it right.

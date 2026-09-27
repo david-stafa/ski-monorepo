@@ -1,9 +1,14 @@
+import { previousStatus } from '@ski-blazek/api/schemas'
 import type { EquipmentItemType } from '@ski-blazek/db/browser'
 import { Badge } from '@ski-blazek/ui/components/badge'
+import { Button } from '@ski-blazek/ui/components/button'
+import { Undo2Icon } from 'lucide-react'
 import type { Outputs } from '~/lib/trpc'
 import { getPersonAccessories } from '../helpers/getPersonAccessories'
+import { getPersonStepStatuses } from '../helpers/getPersonStepStatuses'
 import { LEVEL_LABELS } from '../helpers/levelMeta'
-import { useAdvancePerson } from '../reservationQueries'
+import { RESERVATION_STATUS_META } from '../helpers/reservationStatus'
+import { useAdvancePerson, useUndoPerson } from '../reservationQueries'
 import { GenderIcon } from './GenderIcon'
 import { NextStepButton } from './NextStepButton'
 import { ReservationItemRow } from './ReservationItemRow'
@@ -24,6 +29,8 @@ type ReservationPersonCardProps = {
 
 export const ReservationPersonCard = ({ person }: ReservationPersonCardProps) => {
 	const advance = useAdvancePerson()
+	const undo = useUndoPerson()
+	const isBusy = advance.isPending || undo.isPending
 	// Cancelled items stay on the record but are not handed over.
 	const items = person.reservationItems
 		.filter((item) => item.status !== 'CANCELLED')
@@ -31,6 +38,9 @@ export const ReservationPersonCard = ({ person }: ReservationPersonCardProps) =>
 			(a, b) => TYPE_ORDER.indexOf(a.equipmentItem.type) - TYPE_ORDER.indexOf(b.equipmentItem.type)
 		)
 	const accessories = getPersonAccessories(person)
+	// With no items to undo one by one (accessories only), staff undo the
+	// person itself.
+	const previous = items.length === 0 ? previousStatus(person.status) : undefined
 
 	return (
 		<div className="bg-background rounded-lg border p-3">
@@ -41,12 +51,25 @@ export const ReservationPersonCard = ({ person }: ReservationPersonCardProps) =>
 					{person.age} let · {person.height} cm · {person.weight} kg
 				</span>
 				{person.level && <Badge variant="outline">{LEVEL_LABELS[person.level]}</Badge>}
-				{/* rolled up from their items by the API */}
+				{/* rolled up from their items by the API, or moved by hand without any */}
 				<span className="ml-auto flex items-center gap-2">
+					{previous && (
+						<Button
+							variant="ghost"
+							size="xs"
+							disabled={isBusy}
+							title={`Vrátit zpět na „${RESERVATION_STATUS_META[previous].label}“`}
+							// `from` is the status on screen: if it's stale, the API refuses
+							onClick={() => undo.mutate({ id: person.id, from: person.status })}
+						>
+							<Undo2Icon data-icon="inline-start" />
+							Zpět
+						</Button>
+					)}
 					<NextStepButton
 						status={person.status}
-						itemStatuses={items.map((item) => item.status)}
-						disabled={advance.isPending}
+						statuses={getPersonStepStatuses(person)}
+						disabled={isBusy}
 						// `from` is the status on screen: if it's stale, the API refuses
 						onAdvance={() => advance.mutate({ id: person.id, from: person.status })}
 					/>
