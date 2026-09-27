@@ -1,7 +1,8 @@
-import { type Prisma, prisma } from '@ski-blazek/db'
+import { type Prisma, prisma, ReservationStatus } from '@ski-blazek/db'
 import { TRPCError } from '@trpc/server'
 import { lockReservation, recomputeRolledUpStatus } from '../../../lib/recomputeRolledUpStatus'
 import { previousStatus, STEP_TIMESTAMP } from '../../../lib/statusFlow'
+import { isItemAvailable } from '../../../routers/equipment/_shared/methods/findAvailable'
 import type { StatusStepInput } from '../../../schemas/statusStep'
 
 /** One step back, to undo a mistake. Clears the timestamp of the step it
@@ -22,6 +23,26 @@ export const undoReservationItem = async ({ id, from }: StatusStepInput) => {
 		const item = await tx.reservationItem.findUnique({ where: { id } })
 		if (!item) throw new TRPCError({ code: 'NOT_FOUND', message: 'Položka nebyla nalezena' })
 		await lockReservation(tx, item.reservationId)
+
+		// Returned freed the equipment, so someone else may have booked it since.
+		// Undoing would take it back over their booking — refuse instead, like a
+		// Cancelled item that can't come back for the same reason.
+		if (from === ReservationStatus.RETURNED) {
+			const isAvailable = await isItemAvailable(
+				{
+					id: item.equipmentItemId,
+					startDate: item.startDate,
+					endDate: item.endDate,
+					excludeReservationId: item.reservationId,
+				},
+				tx
+			)
+			if (!isAvailable)
+				throw new TRPCError({
+					code: 'CONFLICT',
+					message: 'Vybavení si mezitím zarezervoval někdo jiný, vrácení nelze vzít zpět',
+				})
+		}
 
 		// Conditional on `from`: if the item has moved since the staff member saw
 		// it, nothing matches and nothing changes.

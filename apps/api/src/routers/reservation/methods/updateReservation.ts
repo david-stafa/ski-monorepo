@@ -66,9 +66,19 @@ export const updateReservation = async (data: UpdateReservationInput) => {
 
 		// Checked against everyone *except* this reservation, so re-submitting the
 		// gear it already holds is not a conflict with itself.
-		for (const { equipment } of data.people) {
-			for (const equipmentItemId of Object.values(equipment)) {
+		for (const person of data.people) {
+			const heldItems = person.id ? (existingPeople.get(person.id)?.reservationItems ?? []) : []
+			for (const equipmentItemId of Object.values(person.equipment)) {
 				if (!equipmentItemId) continue
+
+				// A Returned item holds nothing, so its gear may since be booked by
+				// someone else. Kept as it is, it must not block the rest of the edit
+				// (and it can't be swapped anyway, see below).
+				const isKeptReturned = heldItems.some(
+					(item) =>
+						item.equipmentItemId === equipmentItemId && item.status === ReservationStatus.RETURNED
+				)
+				if (isKeptReturned) continue
 
 				const isAvailable = await isItemAvailable(
 					{

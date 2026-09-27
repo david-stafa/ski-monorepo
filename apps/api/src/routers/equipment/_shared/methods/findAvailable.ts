@@ -1,4 +1,4 @@
-import { type Prisma, prisma } from '@ski-blazek/db'
+import { type Prisma, prisma, ReservationStatus } from '@ski-blazek/db'
 import { OCCUPYING_STATUSES } from '../../../../lib/statusFlow'
 import type { FindAvailableInput, IsItemAvailableInput } from '../../../../schemas/equipmentItem'
 
@@ -34,8 +34,29 @@ export const findAvailable = async ({
 		where: {
 			type,
 			retiredAt: null,
-			// available = no overlapping active booking exists
-			reservationItems: { none: overlappingActiveBooking(reqStart, reqEnd, excludeReservationId) },
+			OR: [
+				// available = no overlapping active booking exists
+				{
+					reservationItems: {
+						none: overlappingActiveBooking(reqStart, reqEnd, excludeReservationId),
+					},
+				},
+				// When editing, the reservation's own Returned gear stays listed even if
+				// someone has booked it since — its slot is locked, but still has to
+				// show what's in it.
+				...(excludeReservationId
+					? [
+							{
+								reservationItems: {
+									some: {
+										reservationId: excludeReservationId,
+										status: ReservationStatus.RETURNED,
+									},
+								},
+							},
+						]
+					: []),
+			],
 		},
 		include: {
 			ski: true,
