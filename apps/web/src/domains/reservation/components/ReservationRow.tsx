@@ -7,6 +7,7 @@ import { ChevronRightIcon } from 'lucide-react'
 import { useState } from 'react'
 import { formatDate } from '~/lib/format'
 import { trpc } from '~/lib/trpc'
+import { getPersonStepStatuses } from '../helpers/getPersonStepStatuses'
 import type { ReservationListItem } from '../reservation.types'
 import { useAdvanceReservation } from '../reservationQueries'
 import { NextStepButton } from './NextStepButton'
@@ -78,9 +79,7 @@ export const ReservationRow = ({ reservation }: ReservationRowProps) => {
 								<div className="flex justify-end">
 									<NextStepButton
 										status={data.status}
-										itemStatuses={people.flatMap((person) =>
-											person.reservationItems.map((item) => item.status)
-										)}
+										statuses={people.flatMap(getPersonStepStatuses)}
 										disabled={advance.isPending}
 										onAdvance={() => advance.mutate({ id: data.id, from: data.status })}
 									/>

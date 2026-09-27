@@ -260,6 +260,45 @@ describe('advance', () => {
 		const returned = await caller.reservation.advance({ id, from: 'PICKED_UP' })
 		expect(returned.status).toBe('RETURNED')
 	})
+
+	it('moves a family with an accessories-only person, one step at a time', async () => {
+		const skiId = await createTestSki()
+		const id = await createTestReservation([{ SKI: skiId }, {}])
+		const statusesByPerson = async () => {
+			const reservation = await caller.reservation.get({ id })
+			return Object.fromEntries(reservation.people.map((person) => [person.name, person.status]))
+		}
+		const people = (await caller.reservation.get({ id })).people
+		const skier = people.find((person) => person.name === 'Person 1')
+		const goggles = people.find((person) => person.name === 'Person 2')
+		if (!skier || !goggles) throw new Error('the family is incomplete')
+
+		// the skier goes ahead on their own; the goggles person holds the family back
+		await caller.person.advance({ id: skier.id, from: 'BOOKED' })
+		expect(await statusesByPerson()).toEqual({ 'Person 1': 'PREPARED', 'Person 2': 'BOOKED' })
+		expect((await caller.reservation.get({ id })).status).toBe('BOOKED')
+
+		// only the goggles person is at Booked, so only they move
+		expect((await caller.reservation.advance({ id, from: 'BOOKED' })).status).toBe('PREPARED')
+		expect(await statusesByPerson()).toEqual({ 'Person 1': 'PREPARED', 'Person 2': 'PREPARED' })
+		expect(await statusesByEquipment(id)).toEqual({ [skiId]: 'PREPARED' })
+
+		// both are at Prepared now, so both move
+		expect((await caller.reservation.advance({ id, from: 'PREPARED' })).status).toBe('PICKED_UP')
+		expect(await statusesByPerson()).toEqual({ 'Person 1': 'PICKED_UP', 'Person 2': 'PICKED_UP' })
+		expect(await statusesByEquipment(id)).toEqual({ [skiId]: 'PICKED_UP' })
+
+		expect((await caller.reservation.advance({ id, from: 'PICKED_UP' })).status).toBe('RETURNED')
+		expect(await statusesByPerson()).toEqual({ 'Person 1': 'RETURNED', 'Person 2': 'RETURNED' })
+	})
+
+	it('moves a reservation where nobody has gear', async () => {
+		const id = await createTestReservation([{}, {}])
+
+		expect((await caller.reservation.advance({ id, from: 'BOOKED' })).status).toBe('PREPARED')
+		const reservation = await caller.reservation.get({ id })
+		expect(reservation.people.map((person) => person.status)).toEqual(['PREPARED', 'PREPARED'])
+	})
 })
 
 describe('update rolls the statuses up', () => {
@@ -303,6 +342,42 @@ describe('update rolls the statuses up', () => {
 		await caller.person.advance({ id: person?.id ?? '', from: 'BOOKED' })
 
 		await editEquipment(id, { SKI_BOOT: bootId })
+
+		const reservation = await caller.reservation.get({ id })
+		expect(reservation.people[0]?.status).toBe('BOOKED')
+		expect(reservation.status).toBe('BOOKED')
+	})
+
+	it('a person who loses all their gear keeps their status, and is moved by hand', async () => {
+		const skiId = await createTestSki()
+		const id = await createTestReservation([{ SKI: skiId }])
+		const [person] = (await caller.reservation.get({ id })).people
+		const personId = person?.id ?? ''
+		await caller.person.advance({ id: personId, from: 'BOOKED' })
+
+		await editEquipment(id, { SKI: null })
+
+		let reservation = await caller.reservation.get({ id })
+		expect(reservation.people[0]?.status).toBe('PREPARED')
+		expect(reservation.status).toBe('PREPARED')
+
+		// from here on the person itself moves, and can be undone
+		expect((await caller.person.advance({ id: personId, from: 'PREPARED' })).status).toBe(
+			'PICKED_UP'
+		)
+		expect((await caller.person.undo({ id: personId, from: 'PICKED_UP' })).status).toBe('PREPARED')
+		reservation = await caller.reservation.get({ id })
+		expect(reservation.status).toBe('PREPARED')
+	})
+
+	it('a Prepared accessories-only person who gets gear added drops back to Booked', async () => {
+		const skiId = await createTestSki()
+		const id = await createTestReservation([{}])
+		const [person] = (await caller.reservation.get({ id })).people
+		await caller.person.advance({ id: person?.id ?? '', from: 'BOOKED' })
+		expect((await caller.reservation.get({ id })).status).toBe('PREPARED')
+
+		await editEquipment(id, { SKI: skiId })
 
 		const reservation = await caller.reservation.get({ id })
 		expect(reservation.people[0]?.status).toBe('BOOKED')

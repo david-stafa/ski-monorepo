@@ -161,3 +161,87 @@ describe('person.advance', () => {
 		expect(person.reservationItems.every((item) => item.status === 'PREPARED')).toBe(true)
 	})
 })
+
+/**
+ * Someone renting only accessories (goggles, poles, covers) has no reservation
+ * items, so there is nothing to roll their status up from: staff move the
+ * person itself, one step at a time, and undo it the same way.
+ */
+describe('a person with accessories only', () => {
+	it('goes through every status by hand and back again with undo', async () => {
+		const reservationId = await createTestReservation([{}])
+		const { id } = await getPerson(reservationId)
+
+		expect((await caller.person.advance({ id, from: 'BOOKED' })).status).toBe('PREPARED')
+		expect((await caller.person.advance({ id, from: 'PREPARED' })).status).toBe('PICKED_UP')
+		expect((await caller.person.advance({ id, from: 'PICKED_UP' })).status).toBe('RETURNED')
+		// the reservation rolled up with them
+		expect((await caller.reservation.get({ id: reservationId })).status).toBe('RETURNED')
+		await expect(caller.person.advance({ id, from: 'RETURNED' })).rejects.toMatchObject({
+			code: 'CONFLICT',
+		})
+
+		expect((await caller.person.undo({ id, from: 'RETURNED' })).status).toBe('PICKED_UP')
+		expect((await caller.person.undo({ id, from: 'PICKED_UP' })).status).toBe('PREPARED')
+		expect((await caller.person.undo({ id, from: 'PREPARED' })).status).toBe('BOOKED')
+		expect((await caller.reservation.get({ id: reservationId })).status).toBe('BOOKED')
+		await expect(caller.person.undo({ id, from: 'BOOKED' })).rejects.toMatchObject({
+			code: 'CONFLICT',
+			message: 'U rezervované ani zrušené osoby není co vracet zpět',
+		})
+	})
+
+	it('undo is refused for a person with gear, whose undo is per item', async () => {
+		const { reservationId } = await createMixedPerson()
+		const { id } = await getPerson(reservationId)
+		await caller.person.advance({ id, from: 'BOOKED' })
+
+		await expect(caller.person.undo({ id, from: 'PREPARED' })).rejects.toMatchObject({
+			code: 'CONFLICT',
+			message: 'Osoba má vybavení, vraťte zpět jednotlivé položky',
+		})
+		const person = await getPerson(reservationId)
+		expect(person.status).toBe('PREPARED')
+		expect(person.reservationItems.every((item) => item.status === 'PREPARED')).toBe(true)
+	})
+
+	it('a step or undo from a status the person has already left changes nothing', async () => {
+		const reservationId = await createTestReservation([{}])
+		const { id } = await getPerson(reservationId)
+		await caller.person.advance({ id, from: 'BOOKED' })
+
+		await expect(caller.person.advance({ id, from: 'BOOKED' })).rejects.toMatchObject({
+			code: 'CONFLICT',
+		})
+		await expect(caller.person.undo({ id, from: 'PICKED_UP' })).rejects.toMatchObject({
+			code: 'CONFLICT',
+		})
+		expect((await getPerson(reservationId)).status).toBe('PREPARED')
+	})
+
+	it('undo is refused for a Cancelled or missing person', async () => {
+		const reservationId = await createTestReservation([{}, {}])
+		const { id } = await getPerson(reservationId)
+		await caller.person.cancel({ id })
+
+		await expect(caller.person.undo({ id, from: 'CANCELLED' })).rejects.toMatchObject({
+			code: 'CONFLICT',
+		})
+		await expect(caller.person.undo({ id: 'missing', from: 'PREPARED' })).rejects.toMatchObject({
+			code: 'NOT_FOUND',
+		})
+	})
+
+	it('two staff clicking at once move them only one step', async () => {
+		const reservationId = await createTestReservation([{}])
+		const { id } = await getPerson(reservationId)
+
+		const results = await Promise.allSettled([
+			caller.person.advance({ id, from: 'BOOKED' }),
+			caller.person.advance({ id, from: 'BOOKED' }),
+		])
+
+		expect(results.map((result) => result.status).sort()).toEqual(['fulfilled', 'rejected'])
+		expect((await getPerson(reservationId)).status).toBe('PREPARED')
+	})
+})

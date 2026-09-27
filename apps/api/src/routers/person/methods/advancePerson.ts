@@ -8,6 +8,9 @@ import type { StatusStepInput } from '../../../schemas/statusStep'
  * Moves everything for one person one step: only the items at the person's
  * rolled-up status move, so items already further along are left alone and
  * nothing ever skips a step. The person then rolls up to the next status.
+ *
+ * A person with no items (renting only accessories, or whose gear was all
+ * removed) has nothing to roll up from, so the person itself moves instead.
  */
 export const advancePerson = async ({ id, from }: StatusStepInput) => {
 	const to = nextStatus(from)
@@ -36,16 +39,14 @@ export const advancePerson = async ({ id, from }: StatusStepInput) => {
 				message: 'Osobu mezitím změnil někdo jiný. Obnovte stránku a zkuste to znovu.',
 			})
 
-		const { count } = await tx.reservationItem.updateMany({
-			where: { personId: id, status: from },
-			data,
+		const itemCount = await tx.reservationItem.count({
+			where: { personId: id, status: { not: 'CANCELLED' } },
 		})
-		// A person renting only accessories has no items to move (MY-74).
-		if (count === 0)
-			throw new TRPCError({
-				code: 'CONFLICT',
-				message: 'Osoba nemá žádné vybavení, které by šlo posunout',
-			})
+		if (itemCount === 0) {
+			await tx.person.update({ where: { id }, data: { status: to } })
+		} else {
+			await tx.reservationItem.updateMany({ where: { personId: id, status: from }, data })
+		}
 
 		await recomputeRolledUpStatus(tx, { personId: id, reservationId: person.reservationId })
 		return await tx.person.findUniqueOrThrow({ where: { id } })
