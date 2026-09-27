@@ -1,27 +1,11 @@
 import { describe, expect, it } from 'vitest'
-import { caller, createTestReservation, createTestSki } from '../../../test/helpers'
-
-const createSkiBoot = async () => {
-	const boot = await caller.equipment.skiBoot.create({
-		brand: 'Salomon',
-		model: 'S/Pro',
-		length: 27.5,
-		color: null,
-		isKids: false,
-		gender: null,
-	})
-	return boot.equipmentItem.id
-}
-
-const createSnowboard = async () => {
-	const board = await caller.equipment.snowboard.create({
-		brand: 'Burton',
-		model: 'Custom',
-		length: 156,
-		gender: null,
-	})
-	return board.equipmentItem.id
-}
+import {
+	caller,
+	createTestReservation,
+	createTestSki,
+	createTestSkiBoot,
+	createTestSnowboard,
+} from '../../../test/helpers'
 
 /** The reservation item that books this piece of equipment. */
 const findItem = async (reservationId: string, equipmentItemId: string) => {
@@ -83,8 +67,8 @@ describe('reservationItem.advance / undo', () => {
 describe('rolled-up status', () => {
 	it('a person is at the least advanced status among their items', async () => {
 		const skiId = await createTestSki()
-		const bootId = await createSkiBoot()
-		const boardId = await createSnowboard()
+		const bootId = await createTestSkiBoot()
+		const boardId = await createTestSnowboard()
 		const reservationId = await createTestReservation([
 			{ SKI: skiId, SKI_BOOT: bootId, SNOWBOARD: boardId },
 		])
@@ -228,7 +212,7 @@ describe('stale and racing steps', () => {
 
 	it('two staff preparing different items of one person at once still roll the person up', async () => {
 		const skiId = await createTestSki()
-		const bootId = await createSkiBoot()
+		const bootId = await createTestSkiBoot()
 		const reservationId = await createTestReservation([{ SKI: skiId, SKI_BOOT: bootId }])
 		const ski = await findItem(reservationId, skiId)
 		const boot = await findItem(reservationId, bootId)

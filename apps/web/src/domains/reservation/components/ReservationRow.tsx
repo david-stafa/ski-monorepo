@@ -8,6 +8,8 @@ import { useState } from 'react'
 import { formatDate } from '~/lib/format'
 import { trpc } from '~/lib/trpc'
 import type { ReservationListItem } from '../reservation.types'
+import { useAdvanceReservation } from '../reservationQueries'
+import { NextStepButton } from './NextStepButton'
 import { ReservationActions } from './ReservationActions'
 import { ReservationPersonCard } from './ReservationPersonCard'
 import { ReservationStatusBadge } from './ReservationStatusBadge'
@@ -21,6 +23,7 @@ type ReservationRowProps = {
 
 export const ReservationRow = ({ reservation }: ReservationRowProps) => {
 	const [isOpen, setIsOpen] = useState(false)
+	const advance = useAdvanceReservation()
 
 	// The full person + gear tree is only worth fetching for the rows an admin
 	// actually opens, so it hangs off the expander rather than the list query.
@@ -67,10 +70,22 @@ export const ReservationRow = ({ reservation }: ReservationRowProps) => {
 			{isOpen && (
 				<TableRow className="hover:bg-transparent">
 					<TableCell colSpan={COLUMN_COUNT} className="bg-muted/40 p-4">
-						{isPending || !people ? (
+						{isPending || !data || !people ? (
 							<Skeleton className="h-24 w-full" />
 						) : (
 							<div className="space-y-3">
+								{/* the whole family in one click; `from` is the status on screen */}
+								<div className="flex justify-end">
+									<NextStepButton
+										status={data.status}
+										itemStatuses={people.flatMap((person) =>
+											person.reservationItems.map((item) => item.status)
+										)}
+										disabled={advance.isPending}
+										onAdvance={() => advance.mutate({ id: data.id, from: data.status })}
+									/>
+								</div>
+
 								{reservation.note && (
 									<p className="text-sm">
 										<span className="text-muted-foreground">Poznámka: </span>

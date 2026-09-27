@@ -64,3 +64,27 @@ export const createTestSki = async () => {
 	})
 	return ski.equipmentItem.id
 }
+
+/** Adds a ski boot to the stock. Returns its equipment item id. */
+export const createTestSkiBoot = async () => {
+	const boot = await caller.equipment.skiBoot.create({
+		brand: 'Salomon',
+		model: 'S/Pro',
+		length: 27.5,
+		color: null,
+		isKids: false,
+		gender: null,
+	})
+	return boot.equipmentItem.id
+}
+
+/** Adds a snowboard to the stock. Returns its equipment item id. */
+export const createTestSnowboard = async () => {
+	const board = await caller.equipment.snowboard.create({
+		brand: 'Burton',
+		model: 'Custom',
+		length: 156,
+		gender: null,
+	})
+	return board.equipmentItem.id
+}

@@ -1,5 +1,6 @@
 import { prisma, ReservationStatus } from '@ski-blazek/db'
 import { TRPCError } from '@trpc/server'
+import { lockReservation, recomputeRolledUpStatus } from '../../../lib/recomputeRolledUpStatus'
 import { isItemAvailable } from '../../../routers/equipment/_shared/methods/findAvailable'
 import type { UpdateReservationInput } from '../../../schemas/reservation'
 import { personColumns } from './personColumns'
@@ -15,6 +16,9 @@ const NOT_CANCELLED = { not: CANCELLED }
 
 export const updateReservation = async (data: UpdateReservationInput) => {
 	return await prisma.$transaction(async (tx) => {
+		// Before reading, so a status step can't change an item between this
+		// read and the edit below.
+		await lockReservation(tx, data.id)
 		const existing = await tx.reservation.findUnique({
 			where: { id: data.id },
 			include: {
@@ -173,6 +177,16 @@ export const updateReservation = async (data: UpdateReservationInput) => {
 					})
 				}
 			}
+		}
+
+		// Dropped, swapped and added items all move the rolled-up statuses: a new
+		// Booked item holds its person back, a dropped one may let them move on.
+		const people = await tx.person.findMany({
+			where: { reservationId: data.id },
+			select: { id: true },
+		})
+		for (const person of people) {
+			await recomputeRolledUpStatus(tx, { personId: person.id, reservationId: data.id })
 		}
 
 		return { reservation: { id: data.id } }

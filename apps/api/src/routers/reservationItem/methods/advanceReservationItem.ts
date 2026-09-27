@@ -2,11 +2,11 @@ import { type Prisma, prisma } from '@ski-blazek/db'
 import { TRPCError } from '@trpc/server'
 import { lockReservation, recomputeRolledUpStatus } from '../../../lib/recomputeRolledUpStatus'
 import { nextStatus, STEP_TIMESTAMP } from '../../../lib/statusFlow'
-import type { ReservationItemStepInput } from '../../../schemas/reservationItem'
+import type { StatusStepInput } from '../../../schemas/statusStep'
 
 /** Booked → Prepared → Picked up → Returned, one step, setting the timestamp
  * of the step it enters. */
-export const advanceReservationItem = async ({ id, from }: ReservationItemStepInput) => {
+export const advanceReservationItem = async ({ id, from }: StatusStepInput) => {
 	const to = nextStatus(from)
 	if (!to)
 		throw new TRPCError({

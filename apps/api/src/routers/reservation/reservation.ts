@@ -4,7 +4,9 @@ import {
 	reservationInputSchema,
 	updateReservationInputSchema,
 } from '../../schemas/reservation'
+import { statusStepInputSchema } from '../../schemas/statusStep'
 import { protectedProcedure, router } from '../_context'
+import { advanceReservation } from './methods/advanceReservation'
 import { cancelReservation } from './methods/cancelReservation'
 import { createReservation } from './methods/createReservation'
 import { getReservation } from './methods/getReservation'
@@ -32,4 +34,7 @@ export const reservationRouter = router({
 	cancel: protectedProcedure
 		.input(reservationIdInputSchema)
 		.mutation(async ({ input }) => await cancelReservation(input)),
+	advance: protectedProcedure
+		.input(statusStepInputSchema)
+		.mutation(async ({ input }) => await advanceReservation(input)),
 })

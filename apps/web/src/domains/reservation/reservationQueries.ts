@@ -52,12 +52,12 @@ export const useCancelReservation = () =>
 	)
 
 /**
- * A reservation item's step also moves the person's and the reservation's
+ * A step on an item, a person or a reservation also moves the person's and the reservation's
  * rolled-up status, so the open detail and the list's badge are both stale.
  * No success toast: the badge changing is the feedback, and the prep counter
  * clicks these dozens of times in a row.
  */
-const invalidateAfterItemStep = () => {
+const invalidateAfterStep = () => {
 	invalidateReservationList()
 	queryClient.invalidateQueries({ queryKey: trpc.reservation.get.queryKey() })
 }
@@ -65,10 +65,10 @@ const invalidateAfterItemStep = () => {
 export const useAdvanceReservationItem = () =>
 	useMutation(
 		trpc.reservationItem.advance.mutationOptions({
-			onSuccess: invalidateAfterItemStep,
+			onSuccess: invalidateAfterStep,
 			// a CONFLICT means the page was stale; refetch so it shows the truth
 			onError: (error) => {
-				invalidateAfterItemStep()
+				invalidateAfterStep()
 				notifyError(error.message, 'Položku se nepodařilo posunout.')
 			},
 		})
@@ -77,10 +77,32 @@ export const useAdvanceReservationItem = () =>
 export const useUndoReservationItem = () =>
 	useMutation(
 		trpc.reservationItem.undo.mutationOptions({
-			onSuccess: invalidateAfterItemStep,
+			onSuccess: invalidateAfterStep,
 			onError: (error) => {
-				invalidateAfterItemStep()
+				invalidateAfterStep()
 				notifyError(error.message, 'Krok se nepodařilo vrátit.')
+			},
+		})
+	)
+
+export const useAdvancePerson = () =>
+	useMutation(
+		trpc.person.advance.mutationOptions({
+			onSuccess: invalidateAfterStep,
+			onError: (error) => {
+				invalidateAfterStep()
+				notifyError(error.message, 'Osobu se nepodařilo posunout.')
+			},
+		})
+	)
+
+export const useAdvanceReservation = () =>
+	useMutation(
+		trpc.reservation.advance.mutationOptions({
+			onSuccess: invalidateAfterStep,
+			onError: (error) => {
+				invalidateAfterStep()
+				notifyError(error.message, 'Rezervaci se nepodařilo posunout.')
 			},
 		})
 	)
