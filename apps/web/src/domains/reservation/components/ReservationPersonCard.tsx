@@ -1,10 +1,11 @@
 import type { EquipmentItemType } from '@ski-blazek/db/browser'
 import { Badge } from '@ski-blazek/ui/components/badge'
 import type { Outputs } from '~/lib/trpc'
-import { getEquipmentItemLabel } from '../helpers/getEquipmentItemLabel'
 import { getPersonAccessories } from '../helpers/getPersonAccessories'
 import { LEVEL_LABELS } from '../helpers/levelMeta'
 import { GenderIcon } from './GenderIcon'
+import { ReservationItemRow } from './ReservationItemRow'
+import { ReservationStatusBadge } from './ReservationStatusBadge'
 
 type ReservationPerson = Outputs['reservation']['get']['people'][number]
 
@@ -37,6 +38,10 @@ export const ReservationPersonCard = ({ person }: ReservationPersonCardProps) =>
 					{person.age} let · {person.height} cm · {person.weight} kg
 				</span>
 				{person.level && <Badge variant="outline">{LEVEL_LABELS[person.level]}</Badge>}
+				{/* rolled up from their items by the API */}
+				<span className="ml-auto">
+					<ReservationStatusBadge status={person.status} />
+				</span>
 			</div>
 
 			{items.length === 0 ? (
@@ -44,9 +49,7 @@ export const ReservationPersonCard = ({ person }: ReservationPersonCardProps) =>
 			) : (
 				<ul className="space-y-1">
 					{items.map((item) => (
-						<li key={item.id} className="font-mono text-sm">
-							{getEquipmentItemLabel(item.equipmentItem)}
-						</li>
+						<ReservationItemRow key={item.id} item={item} />
 					))}
 				</ul>
 			)}

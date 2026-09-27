@@ -50,3 +50,37 @@ export const useCancelReservation = () =>
 			onError: (error) => notifyError(error.message, 'Nepodařilo se zrušit rezervaci.'),
 		})
 	)
+
+/**
+ * A reservation item's step also moves the person's and the reservation's
+ * rolled-up status, so the open detail and the list's badge are both stale.
+ * No success toast: the badge changing is the feedback, and the prep counter
+ * clicks these dozens of times in a row.
+ */
+const invalidateAfterItemStep = () => {
+	invalidateReservationList()
+	queryClient.invalidateQueries({ queryKey: trpc.reservation.get.queryKey() })
+}
+
+export const useAdvanceReservationItem = () =>
+	useMutation(
+		trpc.reservationItem.advance.mutationOptions({
+			onSuccess: invalidateAfterItemStep,
+			// a CONFLICT means the page was stale; refetch so it shows the truth
+			onError: (error) => {
+				invalidateAfterItemStep()
+				notifyError(error.message, 'Položku se nepodařilo posunout.')
+			},
+		})
+	)
+
+export const useUndoReservationItem = () =>
+	useMutation(
+		trpc.reservationItem.undo.mutationOptions({
+			onSuccess: invalidateAfterItemStep,
+			onError: (error) => {
+				invalidateAfterItemStep()
+				notifyError(error.message, 'Krok se nepodařilo vrátit.')
+			},
+		})
+	)

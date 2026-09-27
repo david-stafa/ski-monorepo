@@ -1,18 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { caller, createTestReservation } from '../../../test/helpers'
-
-const createSki = async () => {
-	const ski = await caller.equipment.ski.create({
-		brand: 'Atomic',
-		model: 'Redster',
-		length: 170,
-		isOld: false,
-		isVIP: false,
-		isKids: false,
-		gender: null,
-	})
-	return ski.equipmentItem.id
-}
+import { caller, createTestReservation, createTestSki } from '../../../test/helpers'
 
 /** Is the ski free to book for these dates, per the picker's own query? */
 const isSkiAvailable = async (equipmentItemId: string, startDate: string, endDate: string) => {
@@ -26,7 +13,7 @@ const isSkiAvailable = async (equipmentItemId: string, startDate: string, endDat
 
 describe('reservation', () => {
 	it('starts out Booked', async () => {
-		const skiId = await createSki()
+		const skiId = await createTestSki()
 
 		const id = await createTestReservation([{ SKI: skiId }])
 		const reservation = await caller.reservation.get({ id })
@@ -37,7 +24,7 @@ describe('reservation', () => {
 	})
 
 	it('books its people and their items too', async () => {
-		const skiId = await createSki()
+		const skiId = await createTestSki()
 
 		const id = await createTestReservation([{ SKI: skiId }, {}])
 		const reservation = await caller.reservation.get({ id })
@@ -50,21 +37,21 @@ describe('reservation', () => {
 describe('availability', () => {
 	// createTestReservation books 2027-01-10 → 2027-01-15
 	it('a Booked item blocks overlapping dates', async () => {
-		const skiId = await createSki()
+		const skiId = await createTestSki()
 		await createTestReservation([{ SKI: skiId }])
 
 		expect(await isSkiAvailable(skiId, '2027-01-14', '2027-01-20')).toBe(false)
 	})
 
 	it('a Booked item leaves the dates after it free', async () => {
-		const skiId = await createSki()
+		const skiId = await createTestSki()
 		await createTestReservation([{ SKI: skiId }])
 
 		expect(await isSkiAvailable(skiId, '2027-01-15', '2027-01-20')).toBe(true)
 	})
 
 	it("a cancelled reservation's item is free again", async () => {
-		const skiId = await createSki()
+		const skiId = await createTestSki()
 		const id = await createTestReservation([{ SKI: skiId }])
 
 		await caller.reservation.cancel({ id })

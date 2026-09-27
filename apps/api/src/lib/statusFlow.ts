@@ -1,4 +1,4 @@
-import { ReservationStatus } from '@ski-blazek/db'
+import { ReservationStatus } from '@ski-blazek/db/browser'
 
 /**
  * The status flow: the one place that owns the rules for the status shared by
@@ -63,3 +63,14 @@ export const OCCUPYING_STATUSES: readonly ReservationStatus[] = [
 	ReservationStatus.PREPARED,
 	ReservationStatus.PICKED_UP,
 ]
+
+/** The timestamp each step sets when an item enters it. Undo clears the one
+ * for the step it leaves, so they always match the current status. Booked has
+ * none: that's just `createdAt`. */
+export const STEP_TIMESTAMP: Partial<
+	Record<ReservationStatus, 'preparedAt' | 'pickedUpAt' | 'returnedAt'>
+> = {
+	PREPARED: 'preparedAt',
+	PICKED_UP: 'pickedUpAt',
+	RETURNED: 'returnedAt',
+}

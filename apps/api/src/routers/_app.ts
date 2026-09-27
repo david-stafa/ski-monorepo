@@ -3,11 +3,13 @@ import { equipmentRouter } from './equipment/equipment'
 import { fittingRouter } from './fitting/fitting'
 import { personRouter } from './person/person'
 import { reservationRouter } from './reservation/reservation'
+import { reservationItemRouter } from './reservationItem/reservationItem'
 
 export const appRouter = router({
 	equipment: equipmentRouter,
 	reservation: reservationRouter,
 	person: personRouter,
+	reservationItem: reservationItemRouter,
 	fitting: fittingRouter,
 })
 
