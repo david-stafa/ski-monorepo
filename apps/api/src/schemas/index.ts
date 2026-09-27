@@ -12,6 +12,7 @@ export {
 	canRemoveItem,
 	nextStatus,
 	previousStatus,
+	STATUS_STEPS,
 } from '../lib/statusFlow'
 export { type ArchivedFilter, archivedFilterSchema } from './equipmentItem'
 export {
@@ -77,6 +78,7 @@ export {
 	type UpdateSnowboardBootInput,
 	updateSnowboardBootInputSchema,
 } from './snowboardBoot'
+export type { ReservationStepInput } from './statusStep'
 export {
 	type CheckedFilter,
 	isChecked,

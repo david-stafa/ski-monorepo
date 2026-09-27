@@ -1,6 +1,9 @@
+import { nextStatus, previousStatus, type ReservationStepInput } from '@ski-blazek/api/schemas'
+import { toast } from '@ski-blazek/ui/components/toast'
 import { useMutation } from '@tanstack/react-query'
 import { notifyError, notifySuccess } from '~/lib/notify'
 import { queryClient, trpc } from '~/lib/trpc'
+import { type StepUnit, toStepInput } from './helpers/stepUnits'
 
 /** Invalidate every cached reservation list so it refetches after a mutation. */
 const invalidateReservationList = () =>
@@ -60,8 +63,9 @@ export const useCancelReservation = () =>
  * A step or a cancel on an item, a person or a reservation also moves the
  * person's and the reservation's rolled-up status, so the open detail, the
  * list's badge and the edit form are all stale.
- * No success toast: the badge changing is the feedback, and the prep counter
- * clicks these dozens of times in a row.
+ * No success toast: the status changing is the feedback, and the prep counter
+ * clicks these dozens of times in a row. Bulk steps are the exception, for
+ * their undo (see useBulkStep).
  */
 const invalidateAfterStatusChange = () => {
 	invalidateReservationList()
@@ -116,16 +120,62 @@ export const useUndoPerson = () =>
 		})
 	)
 
-export const useAdvanceReservation = () =>
-	useMutation(
-		trpc.reservation.advance.mutationOptions({
+/**
+ * Moves exactly the given units one step, all or nothing — the counter drawer's
+ * person checkbox and "Vydat zbývající", and the detail page's "→ … vše".
+ * These are the only steps with an undo toast: a single item's undo is its own
+ * checkbox or menu, but a bulk step is too much to put back by hand. The undo
+ * sends the same units back from where they landed, so it reverts exactly what
+ * this step moved.
+ */
+type BulkStep = {
+	reservationId: string
+	units: StepUnit[]
+	direction: ReservationStepInput['direction']
+	/** The toast's text, e.g. "Vydáno: Petr Novák (3)". */
+	title: string
+}
+
+export const useBulkStep = () => {
+	const step = useMutation(
+		trpc.reservation.step.mutationOptions({
 			onSuccess: invalidateAfterStatusChange,
+			// a CONFLICT means the page was stale; refetch so it shows the truth
 			onError: (error) => {
 				invalidateAfterStatusChange()
-				notifyError(error.message, 'Rezervaci se nepodařilo posunout.')
+				notifyError(error.message, 'Krok se nepodařilo provést.')
 			},
 		})
 	)
+
+	const run = ({ reservationId, units, direction, title }: BulkStep) => {
+		step.mutate(toStepInput(reservationId, direction, units), {
+			onSuccess: () =>
+				toast.add({
+					title,
+					timeout: 5000,
+					actionProps: {
+						children: 'Zpět',
+						onClick: () => {
+							// each unit from where this step left it, the other way
+							const landed = units.map((unit) => ({
+								...unit,
+								status:
+									(direction === 'forward'
+										? nextStatus(unit.status)
+										: previousStatus(unit.status)) ?? unit.status,
+							}))
+							step.mutate(
+								toStepInput(reservationId, direction === 'forward' ? 'back' : 'forward', landed)
+							)
+						},
+					},
+				}),
+		})
+	}
+
+	return { run, isPending: step.isPending }
+}
 
 /** Refreshes the same as a step: the person drops off the open detail, and
  * the reservation's rolled-up status may move on without them. */
