@@ -174,6 +174,21 @@ describe('refused steps', () => {
 		expect((await findItem(reservationId, skiId)).status).toBe('CANCELLED')
 	})
 
+	it('undoing a return is refused once someone else has booked the gear', async () => {
+		const skiId = await createTestSki()
+		const reservationId = await createTestReservation([{ SKI: skiId }])
+		const { id } = await findItem(reservationId, skiId)
+		await advanceTo(id, 'RETURNED')
+		// the ski is back early, so another customer takes it for the same dates
+		await createTestReservation([{ SKI: skiId }])
+
+		await expect(caller.reservationItem.undo({ id, from: 'RETURNED' })).rejects.toMatchObject({
+			code: 'CONFLICT',
+			message: 'Vybavení si mezitím zarezervoval někdo jiný, vrácení nelze vzít zpět',
+		})
+		expect((await findItem(reservationId, skiId)).status).toBe('RETURNED')
+	})
+
 	it('a missing item is not found', async () => {
 		await expect(
 			caller.reservationItem.advance({ id: 'missing', from: 'BOOKED' })

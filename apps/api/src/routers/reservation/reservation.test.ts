@@ -557,6 +557,41 @@ describe('update rules', () => {
 		})
 	})
 
+	it('a Returned item booked by someone else since does not block the edit', async () => {
+		const skiId = await createTestSki()
+		const bootId = await createTestSkiBoot()
+		const id = await createTestReservation([{ SKI: skiId, SKI_BOOT: bootId }])
+		await advanceItemTo(id, skiId, 'RETURNED')
+		await createTestReservation([{ SKI: skiId }])
+
+		const form = await caller.reservation.getForEdit({ id })
+		await caller.reservation.update({ ...form, phoneNumber: '777000000' })
+
+		expect((await caller.reservation.get({ id })).phoneNumber).toBe('777000000')
+		expect(await statusesByEquipment(id)).toEqual({ [skiId]: 'RETURNED', [bootId]: 'BOOKED' })
+	})
+
+	it("the edit form's picker still lists its Returned gear booked by someone else since", async () => {
+		const skiId = await createTestSki()
+		const bootId = await createTestSkiBoot()
+		const id = await createTestReservation([{ SKI: skiId, SKI_BOOT: bootId }])
+		await advanceItemTo(id, skiId, 'RETURNED')
+		await createTestReservation([{ SKI: skiId }])
+
+		const listed = async (excludeReservationId: string) => {
+			const available = await caller.equipment.equipmentItem.findAvailable({
+				type: 'SKI',
+				startDate: new Date('2027-01-10'),
+				endDate: new Date('2027-01-15'),
+				excludeReservationId,
+			})
+			return available.some((item) => item.id === skiId)
+		}
+		expect(await listed(id)).toBe(true)
+		// only for the reservation that returned it
+		expect(await isSkiAvailable(skiId, '2027-01-10', '2027-01-15')).toBe(false)
+	})
+
 	it('removing a person who holds a Picked up item is refused', async () => {
 		const skiId = await createTestSki()
 		const id = await createTestReservation([{}, { SKI: skiId }])
