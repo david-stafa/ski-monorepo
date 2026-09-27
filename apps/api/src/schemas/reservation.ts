@@ -117,7 +117,9 @@ export type ReservationDetail = z.infer<typeof reservationDetailSchema>
 
 export const getReservationsInputSchema = paginationSchema.extend({
 	search: z.string().optional(),
-	status: z.enum(ReservationStatus).optional(),
+	// matches a reservation whose rolled-up status is any of these; empty or
+	// absent means no status filter
+	statuses: z.array(z.enum(ReservationStatus)).optional(),
 	// date-only ISO strings ('2026-08-06') — these live in the URL as search
 	// params, so keep them readable; listReservations widens them to a day range
 	from: z.iso.date().optional(),

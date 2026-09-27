@@ -12,12 +12,7 @@ import {
 	SelectValue,
 } from '@ski-blazek/ui/components/select'
 import { ListFilterIcon } from 'lucide-react'
-import { RESERVATION_STATUS_OPTIONS } from '../helpers/reservationStatus'
-
-/** Base UI rejects an empty string as an item value, so "no filter" needs a sentinel. */
-const ALL = 'ALL'
-
-const STATUS_ITEMS = [{ value: ALL, label: 'Všechny stavy' }, ...RESERVATION_STATUS_OPTIONS]
+import { RESERVATION_STATUS_META, RESERVATION_STATUS_OPTIONS } from '../helpers/reservationStatus'
 
 const KIND_ITEMS: { value: ReservationKindFilter; label: string }[] = [
 	{ value: 'all', label: 'Všechny typy' },
@@ -28,16 +23,24 @@ const KIND_ITEMS: { value: ReservationKindFilter; label: string }[] = [
 type ReservationFiltersProps = {
 	kind: ReservationKindFilter
 	onKindChange: (kind: ReservationKindFilter) => void
-	/** Leave both status props out on a page whose status is fixed (prep). */
-	status?: ReservationStatus
-	onStatusChange?: (status: ReservationStatus | undefined) => void
+	/** Leave both status props out on a page whose status is fixed (prep).
+	 * An empty list means no status filter. */
+	statuses?: ReservationStatus[]
+	onStatusesChange?: (statuses: ReservationStatus[]) => void
 }
+
+/** The ticked statuses in dropdown order rather than click order, so the same
+ * choice always gives the same URL (and the reset button sees it as default). */
+const inDropdownOrder = (statuses: ReservationStatus[]) =>
+	RESERVATION_STATUS_OPTIONS.map((option) => option.value).filter((status) =>
+		statuses.includes(status)
+	)
 
 export const ReservationFilters = ({
 	kind,
 	onKindChange,
-	status,
-	onStatusChange,
+	statuses,
+	onStatusesChange,
 }: ReservationFiltersProps) => (
 	<Popover>
 		<PopoverTrigger render={<Button variant="default" />}>
@@ -45,23 +48,28 @@ export const ReservationFilters = ({
 			Filtry
 		</PopoverTrigger>
 		<PopoverContent align="start" className="flex flex-col gap-3 p-3">
-			{onStatusChange && (
+			{onStatusesChange && (
 				<div className="flex justify-between gap-4">
 					<Label htmlFor="status">Status</Label>
 					<Select
 						id="status"
-						items={STATUS_ITEMS}
-						value={status ?? ALL}
-						onValueChange={(value) =>
-							onStatusChange(value === ALL ? undefined : (value as ReservationStatus))
-						}
+						multiple
+						items={RESERVATION_STATUS_OPTIONS}
+						value={statuses ?? []}
+						onValueChange={(value) => onStatusesChange(inDropdownOrder(value))}
 					>
 						<SelectTrigger className="w-45 m-0" size="sm">
-							<SelectValue />
+							<SelectValue>
+								{(value: ReservationStatus[]) =>
+									value.length === 0
+										? 'Všechny stavy'
+										: value.map((status) => RESERVATION_STATUS_META[status].label).join(', ')
+								}
+							</SelectValue>
 						</SelectTrigger>
 						<SelectContent>
 							<SelectGroup>
-								{STATUS_ITEMS.map((item) => (
+								{RESERVATION_STATUS_OPTIONS.map((item) => (
 									<SelectItem key={item.value} value={item.value}>
 										{item.label}
 									</SelectItem>

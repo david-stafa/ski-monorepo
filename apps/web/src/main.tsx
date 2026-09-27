@@ -12,12 +12,14 @@ import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { Loader2Icon } from 'lucide-react'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { stringifySearch } from './lib/listSearchParams'
 import { queryClient } from './lib/trpc'
 import { routeTree } from './routeTree.gen'
 
 // Create a new router instance
 const router = createRouter({
 	routeTree,
+	stringifySearch,
 	defaultPendingMs: 1000,
 	defaultPendingMinMs: 500,
 	defaultPendingComponent: () => (

@@ -31,7 +31,7 @@ export const Route = createFileRoute('/_authenticated/reservation/pick-up')({
 
 function RouteComponent() {
 	const { filters, setFilters, resetFilters } = useFilters(Route.id)
-	const { page, itemsPerPage, orderBy, orderDirection, search, status, kind, from, to } = filters
+	const { page, itemsPerPage, orderBy, orderDirection, search, statuses, kind, from, to } = filters
 
 	const handleFilterClick = (nextOrderBy: GetReservationsInput['orderBy']) => {
 		setFilters({
@@ -76,8 +76,8 @@ function RouteComponent() {
 					<ReservationFilters
 						kind={kind}
 						onKindChange={(kind) => setFilters({ kind, page: 1 })}
-						status={status ?? undefined}
-						onStatusChange={(status) => setFilters({ status: status ?? null, page: 1 })}
+						statuses={statuses}
+						onStatusesChange={(statuses) => setFilters({ statuses, page: 1 })}
 					/>
 				</div>
 			</div>
