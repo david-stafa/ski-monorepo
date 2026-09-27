@@ -49,3 +49,18 @@ export const createTestReservation = async (people: Partial<PersonEquipment>[]) 
 	})
 	return reservation.id
 }
+
+/** Adds a ski to the stock. Returns its equipment item id, the one a
+ * reservation books. */
+export const createTestSki = async () => {
+	const ski = await caller.equipment.ski.create({
+		brand: 'Atomic',
+		model: 'Redster',
+		length: 170,
+		isOld: false,
+		isVIP: false,
+		isKids: false,
+		gender: null,
+	})
+	return ski.equipmentItem.id
+}
