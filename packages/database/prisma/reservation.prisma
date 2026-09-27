@@ -4,6 +4,7 @@ model Reservation {
     phoneNumber String
     note        String?
     status      ReservationStatus @default(BOOKED)
+    cancelledAt DateTime?
     /// Seasonal reservation: kept until the season return deadline. Chosen by
     /// staff at create time, never derived from the dates — see CONTEXT.md.
     seasonal    Boolean           @default(false)
@@ -28,7 +29,8 @@ model Person {
     level  Level?
     note   String?
 
-    status PersonStatus @default(ACTIVE)
+    status      ReservationStatus @default(BOOKED)
+    cancelledAt DateTime?
 
     poles          Int?
     backProtection Boolean @default(false)
@@ -46,10 +48,17 @@ model Person {
 }
 
 model ReservationItem {
-    id        String                @id @default(cuid(2))
+    id        String            @id @default(cuid(2))
     startDate DateTime
     endDate   DateTime
-    status    ReservationItemStatus @default(ACTIVE)
+    status    ReservationStatus @default(BOOKED)
+
+    /// When the item entered each status. Undo clears the one it reverses, so
+    /// these always match the current status.
+    preparedAt  DateTime?
+    pickedUpAt  DateTime?
+    returnedAt  DateTime?
+    cancelledAt DateTime?
 
     reservationId String
     reservation   Reservation @relation(fields: [reservationId], references: [id], onDelete: Cascade)
@@ -121,20 +130,16 @@ enum Gender {
     FEMALE
 }
 
+/// One status shared by reservation items, people and reservations — see
+/// `Status` in CONTEXT.md and docs/adr/0001. The item's is the source of truth;
+/// the person's and reservation's are stored roll-ups. The rules (step order,
+/// roll-up, what can be cancelled, what occupies availability) live in
+/// apps/api/src/lib/statusFlow.ts.
 enum ReservationStatus {
     BOOKED
+    PREPARED
     PICKED_UP
     RETURNED
-    CANCELLED
-}
-
-enum PersonStatus {
-    ACTIVE
-    CANCELLED
-}
-
-enum ReservationItemStatus {
-    ACTIVE
     CANCELLED
 }
 
