@@ -158,9 +158,7 @@ function RouteComponent() {
 							</TableCell>
 						</TableRow>
 					) : (
-						data.reservations.map((item) => (
-							<ReservationRow reservation={item} key={item.id} expandable={false} />
-						))
+						data.reservations.map((item) => <ReservationRow reservation={item} key={item.id} />)
 					)}
 				</TableBody>
 			</Table>

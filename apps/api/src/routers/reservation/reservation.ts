@@ -4,14 +4,14 @@ import {
 	reservationInputSchema,
 	updateReservationInputSchema,
 } from '../../schemas/reservation'
-import { statusStepInputSchema } from '../../schemas/statusStep'
+import { reservationStepInputSchema } from '../../schemas/statusStep'
 import { protectedProcedure, router } from '../_context'
-import { advanceReservation } from './methods/advanceReservation'
 import { cancelReservation } from './methods/cancelReservation'
 import { createReservation } from './methods/createReservation'
 import { getReservation } from './methods/getReservation'
 import { getReservationForEdit } from './methods/getReservationForEdit'
 import { listReservations } from './methods/listReservations'
+import { stepReservation } from './methods/stepReservation'
 import { updateReservation } from './methods/updateReservation'
 
 export const reservationRouter = router({
@@ -34,7 +34,8 @@ export const reservationRouter = router({
 	cancel: protectedProcedure
 		.input(reservationIdInputSchema)
 		.mutation(async ({ input }) => await cancelReservation(input)),
-	advance: protectedProcedure
-		.input(statusStepInputSchema)
-		.mutation(async ({ input }) => await advanceReservation(input)),
+	// the counter sheets and the detail page: exactly these items, one step each
+	step: protectedProcedure
+		.input(reservationStepInputSchema)
+		.mutation(async ({ input }) => await stepReservation(input)),
 })

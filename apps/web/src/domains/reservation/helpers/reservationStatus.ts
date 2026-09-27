@@ -5,18 +5,39 @@ type BadgeVariant = React.ComponentProps<typeof Badge>['variant']
 
 /**
  * Single source of truth for how a reservation status is shown: the Czech label
- * and the badge colour. Typed as `Record<ReservationStatus, …>` so adding a new
+ * the badge colour, and the text colour where it is shown as plain text (the
+ * detail page and the counter drawer, see StatusText). Typed as `Record<ReservationStatus, …>` so adding a new
  * status to the Prisma enum is a compile error until it is filled in here.
  */
 export const RESERVATION_STATUS_META: Record<
 	ReservationStatus,
-	{ label: string; variant: BadgeVariant }
+	{ label: string; variant: BadgeVariant; textClassName: string }
 > = {
-	[ReservationStatus.BOOKED]: { label: 'Rezervováno', variant: 'secondary' },
-	[ReservationStatus.PREPARED]: { label: 'Připraveno', variant: 'cyan' },
-	[ReservationStatus.PICKED_UP]: { label: 'Vyzvednuto', variant: 'default' },
-	[ReservationStatus.RETURNED]: { label: 'Vráceno', variant: 'success' },
-	[ReservationStatus.CANCELLED]: { label: 'Zrušeno', variant: 'destructive' },
+	[ReservationStatus.BOOKED]: {
+		label: 'Rezervováno',
+		variant: 'secondary',
+		textClassName: 'text-muted-foreground',
+	},
+	[ReservationStatus.PREPARED]: {
+		label: 'Připraveno',
+		variant: 'cyan',
+		textClassName: 'text-cyan-600 dark:text-cyan-400',
+	},
+	[ReservationStatus.PICKED_UP]: {
+		label: 'Vyzvednuto',
+		variant: 'default',
+		textClassName: 'text-primary',
+	},
+	[ReservationStatus.RETURNED]: {
+		label: 'Vráceno',
+		variant: 'success',
+		textClassName: 'text-success',
+	},
+	[ReservationStatus.CANCELLED]: {
+		label: 'Zrušeno',
+		variant: 'destructive',
+		textClassName: 'text-destructive',
+	},
 }
 
 /**

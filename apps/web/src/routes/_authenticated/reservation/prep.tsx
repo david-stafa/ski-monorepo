@@ -11,12 +11,15 @@ import {
 import { TypographyH1 } from '@ski-blazek/ui/components/typography'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
+import { useState } from 'react'
 import { CustomItemPerPageSelect, CustomPagination } from '~/components/ui/CustomPagination'
 import { DateRangeFilter } from '~/components/ui/DateRangeFilter'
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
 import { ReservationFilters } from '~/domains/reservation/components/ReservationFilters'
 import { ReservationRow } from '~/domains/reservation/components/ReservationRow'
+import { ReservationStepDrawer } from '~/domains/reservation/components/ReservationStepDrawer'
+import { SHEET_STEPS } from '~/domains/reservation/helpers/sheetSteps'
 import { prepSearchSchema, toListInput } from '~/domains/reservation/prepSearch'
 import { useFilters } from '~/hooks/useFilter'
 import { trpc } from '~/lib/trpc'
@@ -31,6 +34,7 @@ export const Route = createFileRoute('/_authenticated/reservation/prep')({
 
 function RouteComponent() {
 	const { filters, setFilters, resetFilters } = useFilters(Route.id)
+	const [openId, setOpenId] = useState<string | null>(null)
 	const { page, itemsPerPage, orderBy, orderDirection, search, kind, from, to } = filters
 
 	const handleFilterClick = (nextOrderBy: GetReservationsInput['orderBy']) => {
@@ -75,7 +79,7 @@ function RouteComponent() {
 				</div>
 			</div>
 
-			{/*  Table — each row expands to the gear that has to leave the rack  */}
+			{/*  Table — a row opens the gear that has to come off the shelf in the drawer  */}
 			<Table>
 				<TableHeader>
 					<TableRow>
@@ -112,10 +116,18 @@ function RouteComponent() {
 							</TableCell>
 						</TableRow>
 					) : (
-						data.reservations.map((item) => <ReservationRow key={item.id} reservation={item} />)
+						data.reservations.map((item) => (
+							<ReservationRow key={item.id} reservation={item} onOpen={() => setOpenId(item.id)} />
+						))
 					)}
 				</TableBody>
 			</Table>
+
+			<ReservationStepDrawer
+				reservationId={openId}
+				step={SHEET_STEPS.prep}
+				onClose={() => setOpenId(null)}
+			/>
 
 			<div className="flex items-center justify-between">
 				{/*  Pagination  */}

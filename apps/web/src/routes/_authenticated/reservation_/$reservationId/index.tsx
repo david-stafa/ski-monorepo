@@ -1,19 +1,33 @@
-import { canCancel, canEdit } from '@ski-blazek/api/schemas'
+import { canCancel, canEdit, nextStatus } from '@ski-blazek/api/schemas'
 import { Badge } from '@ski-blazek/ui/components/badge'
 import { Button } from '@ski-blazek/ui/components/button'
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
+} from '@ski-blazek/ui/components/dropdown-menu'
 import { TypographyH1 } from '@ski-blazek/ui/components/typography'
 import { useSuspenseQuery } from '@tanstack/react-query'
-import { createFileRoute, useCanGoBack, useNavigate, useRouter } from '@tanstack/react-router'
-import { ArrowLeftIcon, BanIcon, PencilIcon } from 'lucide-react'
+import { createFileRoute, Link, useCanGoBack, useNavigate, useRouter } from '@tanstack/react-router'
+import {
+	ArrowLeftIcon,
+	ArrowRightIcon,
+	BanIcon,
+	EllipsisVerticalIcon,
+	PencilIcon,
+} from 'lucide-react'
 import { useState } from 'react'
-import { ButtonLink } from '~/components/ui/button-link'
 import { CancelReservationDialog } from '~/domains/reservation/components/CancelReservationDialog'
-import { NextStepButton } from '~/domains/reservation/components/NextStepButton'
 import { OverdueBadge } from '~/domains/reservation/components/OverdueBadge'
 import { ReservationPersonCard } from '~/domains/reservation/components/ReservationPersonCard'
-import { ReservationStatusBadge } from '~/domains/reservation/components/ReservationStatusBadge'
-import { getPersonStepStatuses } from '~/domains/reservation/helpers/getPersonStepStatuses'
-import { useAdvanceReservation } from '~/domains/reservation/reservationQueries'
+import { ReservationStepper } from '~/domains/reservation/components/ReservationStepper'
+import {
+	NEXT_STEP_ACTION_LABELS,
+	RESERVATION_STATUS_META,
+} from '~/domains/reservation/helpers/reservationStatus'
+import { getPersonUnits, itemsWord } from '~/domains/reservation/helpers/stepUnits'
+import { useBulkStep } from '~/domains/reservation/reservationQueries'
 import { formatDate } from '~/lib/format'
 import { trpc } from '~/lib/trpc'
 
@@ -30,7 +44,7 @@ function RouteComponent() {
 	const router = useRouter()
 	const canGoBack = useCanGoBack()
 	const navigate = useNavigate()
-	const advance = useAdvanceReservation()
+	const bulk = useBulkStep()
 	const [cancelOpen, setCancelOpen] = useState(false)
 
 	const { data: reservation } = useSuspenseQuery(
@@ -39,7 +53,11 @@ function RouteComponent() {
 
 	const items = reservation.people.flatMap((person) => person.reservationItems)
 	// Cancelled people stay on the page, but a step never moves them.
-	const activePeople = reservation.people.filter((person) => person.status !== 'CANCELLED')
+	const units = reservation.people.flatMap(getPersonUnits)
+	// "→ … vše" moves what holds the family back: everything at its rolled-up
+	// status, so what's further along is left alone and nothing skips a step
+	const next = nextStatus(reservation.status)
+	const toMove = units.filter((unit) => unit.status === reservation.status)
 	// only while nothing on it has been picked up
 	const cancellable = canCancel(reservation.status, [
 		...reservation.people.map((person) => person.status),
@@ -61,13 +79,12 @@ function RouteComponent() {
 				Zpět
 			</Button>
 
-			{/*  Title, status and actions  */}
+			{/*  Title, Overdue as the one loud badge, the one primary action  */}
 			<section className="mb-6 flex flex-wrap items-start justify-between gap-4">
 				<div>
 					<div className="mb-2 flex flex-wrap items-center gap-2">
 						<TypographyH1>{reservation.name}</TypographyH1>
 						{reservation.seasonal && <Badge variant="outline">Sezónní</Badge>}
-						<ReservationStatusBadge status={reservation.status} />
 						{reservation.overdue && <OverdueBadge />}
 					</div>
 					<p className="text-muted-foreground">
@@ -77,32 +94,61 @@ function RouteComponent() {
 				</div>
 
 				<div className="flex items-center gap-2">
-					{/* the whole family in one click; `from` is the status on screen */}
-					<NextStepButton
-						status={reservation.status}
-						statuses={activePeople.flatMap(getPersonStepStatuses)}
-						disabled={advance.isPending}
-						onAdvance={() => advance.mutate({ id: reservation.id, from: reservation.status })}
-					/>
-					{canEdit(reservation.status) && (
-						<ButtonLink
-							to="/reservation/$reservationId/edit"
-							params={{ reservationId: reservation.id }}
-							variant="outline"
-							size="sm"
+					{next && toMove.length > 0 && (
+						<Button
+							size="lg"
+							disabled={bulk.isPending}
+							onClick={() =>
+								bulk.run({
+									reservationId: reservation.id,
+									units: toMove,
+									direction: 'forward',
+									title: `${RESERVATION_STATUS_META[next].label}: ${toMove.length} ${itemsWord(toMove.length)}`,
+								})
+							}
 						>
-							<PencilIcon className="size-4" />
-							Upravit
-						</ButtonLink>
-					)}
-					{cancellable && (
-						<Button variant="destructive" size="sm" onClick={() => setCancelOpen(true)}>
-							<BanIcon className="size-4" />
-							Zrušit rezervaci
+							{NEXT_STEP_ACTION_LABELS[next]} vše
+							<ArrowRightIcon data-icon="inline-end" />
 						</Button>
+					)}
+					{(canEdit(reservation.status) || cancellable) && (
+						<DropdownMenu>
+							<DropdownMenuTrigger
+								render={<Button variant="outline" size="icon-lg" aria-label="Další akce" />}
+							>
+								<EllipsisVerticalIcon />
+							</DropdownMenuTrigger>
+							<DropdownMenuContent align="end">
+								{canEdit(reservation.status) && (
+									<DropdownMenuItem
+										render={
+											<Link
+												to="/reservation/$reservationId/edit"
+												params={{ reservationId: reservation.id }}
+											/>
+										}
+									>
+										<PencilIcon />
+										Upravit rezervaci
+									</DropdownMenuItem>
+								)}
+								{/* only while nothing on it has been picked up */}
+								{cancellable && (
+									<DropdownMenuItem variant="destructive" onClick={() => setCancelOpen(true)}>
+										<BanIcon />
+										Zrušit rezervaci
+									</DropdownMenuItem>
+								)}
+							</DropdownMenuContent>
+						</DropdownMenu>
 					)}
 				</div>
 			</section>
+
+			{/*  Where the whole family is  */}
+			<div className="mb-6">
+				<ReservationStepper units={units} current={reservation.status} />
+			</div>
 
 			<CancelReservationDialog
 				open={cancelOpen}
@@ -128,7 +174,7 @@ function RouteComponent() {
 					</p>
 				) : (
 					reservation.people.map((person) => (
-						<ReservationPersonCard key={person.id} person={person} showCancelled />
+						<ReservationPersonCard key={person.id} person={person} />
 					))
 				)}
 			</div>

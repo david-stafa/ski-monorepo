@@ -44,6 +44,28 @@ const editEquipment = async (id: string, equipment: Partial<PersonEquipment>) =>
 	})
 }
 
+/**
+ * Moves the whole reservation one step, as the detail page's "→ … vše" does:
+ * everything at its rolled-up status, items and accessories-only people alike.
+ */
+const advanceReservation = async (id: string) => {
+	const reservation = await caller.reservation.get({ id })
+	const from = reservation.status
+	const people = reservation.people.filter((person) => person.status !== 'CANCELLED')
+	return await caller.reservation.step({
+		id,
+		direction: 'forward',
+		items: people
+			.flatMap((person) => person.reservationItems)
+			.filter((item) => item.status === from)
+			.map((item) => ({ id: item.id, from })),
+		people: people
+			.filter((person) => person.status === from)
+			.filter((person) => person.reservationItems.every((item) => item.status === 'CANCELLED'))
+			.map((person) => ({ id: person.id, from })),
+	})
+}
+
 /** Steps one reservation item forward until it reaches `to`. */
 const advanceItemTo = async (
 	id: string,
@@ -136,7 +158,7 @@ describe('cancel', () => {
 	it('cancels a Prepared reservation with everything on it, and frees its gear', async () => {
 		const skiId = await createTestSki()
 		const id = await createTestReservation([{ SKI: skiId }, {}])
-		await caller.reservation.advance({ id, from: 'BOOKED' })
+		await advanceReservation(id)
 
 		const cancelled = await caller.reservation.cancel({ id })
 
@@ -219,9 +241,9 @@ describe('list', () => {
 			pickedUp: await createTestReservation([{}]),
 			cancelled: await createTestReservation([{}]),
 		}
-		await caller.reservation.advance({ id: ids.prepared, from: 'BOOKED' })
-		await caller.reservation.advance({ id: ids.pickedUp, from: 'BOOKED' })
-		await caller.reservation.advance({ id: ids.pickedUp, from: 'PREPARED' })
+		await advanceReservation(ids.prepared)
+		await advanceReservation(ids.pickedUp)
+		await advanceReservation(ids.pickedUp)
 		await caller.reservation.cancel({ id: ids.cancelled })
 		return ids
 	}
@@ -281,8 +303,8 @@ describe('overdue', () => {
 
 	it('an accessories-only person still Picked up is overdue', async () => {
 		const id = await createTestReservation([{}])
-		await caller.reservation.advance({ id, from: 'BOOKED' })
-		await caller.reservation.advance({ id, from: 'PREPARED' })
+		await advanceReservation(id)
+		await advanceReservation(id)
 
 		const reservation = await caller.reservation.get({ id })
 
@@ -293,7 +315,7 @@ describe('overdue', () => {
 	it('gear never picked up is not overdue', async () => {
 		const skiId = await createTestSki()
 		const id = await createTestReservation([{ SKI: skiId }, {}])
-		await caller.reservation.advance({ id, from: 'BOOKED' })
+		await advanceReservation(id)
 
 		expect((await caller.reservation.get({ id })).overdue).toBe(false)
 	})
@@ -322,10 +344,10 @@ describe('overdue', () => {
 			}),
 		}
 		for (const id of Object.values(ids)) {
-			await caller.reservation.advance({ id, from: 'BOOKED' })
-			await caller.reservation.advance({ id, from: 'PREPARED' })
+			await advanceReservation(id)
+			await advanceReservation(id)
 		}
-		await caller.reservation.advance({ id: ids.returnedEarlier, from: 'PICKED_UP' })
+		await advanceReservation(ids.returnedEarlier)
 
 		const { reservations, totalCount } = await caller.reservation.list({
 			...window,
@@ -341,8 +363,8 @@ describe('overdue', () => {
 
 	it('the return list still narrows by search', async () => {
 		const id = await createTestReservation([{}])
-		await caller.reservation.advance({ id, from: 'BOOKED' })
-		await caller.reservation.advance({ id, from: 'PREPARED' })
+		await advanceReservation(id)
+		await advanceReservation(id)
 		const input = { from: '2027-01-18', to: '2027-01-24', dateMode: 'RETURN_DUE' } as const
 
 		expect((await caller.reservation.list({ ...input, search: 'Novák' })).totalCount).toBe(1)
@@ -350,200 +372,261 @@ describe('overdue', () => {
 	})
 })
 
-describe('advance', () => {
-	/**
-	 * A family of three: Dad with a ski and ski boots, a child with a snowboard,
-	 * and Mum with a ski, who was cancelled. The child has already picked up and
-	 * Dad's ski is prepared, so the family starts out Booked only because of
-	 * Dad's boots.
-	 */
-	const createMixedFamily = async () => {
+describe('step', () => {
+	/** Dad has a Prepared ski and Booked boots; the child has a Prepared snowboard. */
+	const createPickUpFamily = async () => {
 		const gear = {
 			dadSki: await createTestSki(),
 			dadBoots: await createTestSkiBoot(),
 			childBoard: await createTestSnowboard(),
-			mumSki: await createTestSki(),
 		}
 		const id = await createTestReservation([
 			{ SKI: gear.dadSki, SKI_BOOT: gear.dadBoots },
 			{ SNOWBOARD: gear.childBoard },
-			{ SKI: gear.mumSki },
 		])
+		await advanceItemTo(id, gear.dadSki, 'PREPARED')
+		await advanceItemTo(id, gear.childBoard, 'PREPARED')
 		const items = await itemsByEquipment(id)
 		const itemId = (equipmentItemId: string) => items[equipmentItemId]?.id ?? ''
-		const mum = (await caller.reservation.get({ id })).people.find(
-			(person) => person.name === 'Person 3'
-		)
-		if (!mum) throw new Error('Mum is missing')
-
-		await caller.person.cancel({ id: mum.id })
-		await caller.reservationItem.advance({ id: itemId(gear.childBoard), from: 'BOOKED' })
-		await caller.reservationItem.advance({ id: itemId(gear.childBoard), from: 'PREPARED' })
-		await caller.reservationItem.advance({ id: itemId(gear.dadSki), from: 'BOOKED' })
-		return { id, gear }
+		return { id, gear, itemId }
 	}
 
-	it('steps a mixed family through to Returned, never moving items that are ahead', async () => {
-		const { id, gear } = await createMixedFamily()
-		expect(await statusesByEquipment(id)).toEqual({
-			[gear.dadSki]: 'PREPARED',
-			[gear.dadBoots]: 'BOOKED',
-			[gear.childBoard]: 'PICKED_UP',
-			[gear.mumSki]: 'CANCELLED',
+	it('moves exactly the listed items, leaving a Booked one behind', async () => {
+		const { id, gear, itemId } = await createPickUpFamily()
+
+		const reservation = await caller.reservation.step({
+			id,
+			direction: 'forward',
+			items: [
+				{ id: itemId(gear.dadSki), from: 'PREPARED' },
+				{ id: itemId(gear.childBoard), from: 'PREPARED' },
+			],
+			people: [],
 		})
 
-		const prepared = await caller.reservation.advance({ id, from: 'BOOKED' })
-		expect(prepared.status).toBe('PREPARED')
-		expect(await statusesByEquipment(id)).toEqual({
-			[gear.dadSki]: 'PREPARED',
-			[gear.dadBoots]: 'PREPARED',
-			[gear.childBoard]: 'PICKED_UP',
-			[gear.mumSki]: 'CANCELLED',
-		})
-
-		const pickedUp = await caller.reservation.advance({ id, from: 'PREPARED' })
-		expect(pickedUp.status).toBe('PICKED_UP')
 		expect(await statusesByEquipment(id)).toEqual({
 			[gear.dadSki]: 'PICKED_UP',
-			[gear.dadBoots]: 'PICKED_UP',
+			[gear.dadBoots]: 'BOOKED',
 			[gear.childBoard]: 'PICKED_UP',
-			[gear.mumSki]: 'CANCELLED',
 		})
-
-		const returned = await caller.reservation.advance({ id, from: 'PICKED_UP' })
-		expect(returned.status).toBe('RETURNED')
-		expect(await statusesByEquipment(id)).toEqual({
-			[gear.dadSki]: 'RETURNED',
-			[gear.dadBoots]: 'RETURNED',
-			[gear.childBoard]: 'RETURNED',
-			[gear.mumSki]: 'CANCELLED',
-		})
-
-		// each person rolled up with them; the cancelled one stays cancelled
-		const reservation = await caller.reservation.get({ id })
-		const people = Object.fromEntries(
-			reservation.people.map((person) => [person.name, person.status])
-		)
-		expect(people).toEqual({
-			'Person 1': 'RETURNED',
-			'Person 2': 'RETURNED',
-			'Person 3': 'CANCELLED',
+		// Dad's boots still hold him and the family back
+		expect(reservation.status).toBe('BOOKED')
+		const people = (await caller.reservation.get({ id })).people
+		expect(Object.fromEntries(people.map((person) => [person.name, person.status]))).toEqual({
+			'Person 1': 'BOOKED',
+			'Person 2': 'PICKED_UP',
 		})
 	})
 
 	it('sets the timestamp on the moved items only', async () => {
-		const { id, gear } = await createMixedFamily()
+		const { id, gear, itemId } = await createPickUpFamily()
 		const before = await itemsByEquipment(id)
 
-		await caller.reservation.advance({ id, from: 'BOOKED' })
+		await caller.reservation.step({
+			id,
+			direction: 'forward',
+			items: [{ id: itemId(gear.dadSki), from: 'PREPARED' }],
+			people: [],
+		})
 
 		const after = await itemsByEquipment(id)
-		// only Dad's boots moved
-		expect(after[gear.dadBoots]?.preparedAt).not.toBeNull()
-		expect(after[gear.dadBoots]?.pickedUpAt).toBeNull()
+		expect(after[gear.dadSki]?.pickedUpAt).not.toBeNull()
 		expect(after[gear.dadSki]?.preparedAt).toEqual(before[gear.dadSki]?.preparedAt)
-		expect(after[gear.dadSki]?.pickedUpAt).toBeNull()
-		expect(after[gear.childBoard]?.preparedAt).toEqual(before[gear.childBoard]?.preparedAt)
-		expect(after[gear.childBoard]?.pickedUpAt).toEqual(before[gear.childBoard]?.pickedUpAt)
-		expect(after[gear.childBoard]?.returnedAt).toBeNull()
-		expect(after[gear.mumSki]?.preparedAt).toBeNull()
+		expect(after[gear.childBoard]?.pickedUpAt).toBeNull()
+		expect(after[gear.dadBoots]?.preparedAt).toBeNull()
 	})
-	it('is refused with nothing left to do, and for a missing reservation', async () => {
-		const skiId = await createTestSki()
-		const id = await createTestReservation([{ SKI: skiId }])
-		await caller.reservation.advance({ id, from: 'BOOKED' })
-		await caller.reservation.advance({ id, from: 'PREPARED' })
-		await caller.reservation.advance({ id, from: 'PICKED_UP' })
 
-		await expect(caller.reservation.advance({ id, from: 'RETURNED' })).rejects.toMatchObject({
-			code: 'CONFLICT',
-			message: 'Vrácenou ani zrušenou rezervaci nelze posunout dál',
+	it('stepping back the same targets undoes exactly that step', async () => {
+		const { id, gear, itemId } = await createPickUpFamily()
+		// the child's board went out earlier, on its own
+		await caller.reservationItem.advance({ id: itemId(gear.childBoard), from: 'PREPARED' })
+		const handedOut = [{ id: itemId(gear.dadSki), from: 'PREPARED' as const }]
+		await caller.reservation.step({ id, direction: 'forward', items: handedOut, people: [] })
+
+		const reservation = await caller.reservation.step({
+			id,
+			direction: 'back',
+			items: handedOut.map((target) => ({ id: target.id, from: 'PICKED_UP' as const })),
+			people: [],
 		})
+
+		expect(await statusesByEquipment(id)).toEqual({
+			[gear.dadSki]: 'PREPARED',
+			[gear.dadBoots]: 'BOOKED',
+			[gear.childBoard]: 'PICKED_UP',
+		})
+		expect((await itemsByEquipment(id))[gear.dadSki]?.pickedUpAt).toBeNull()
+		expect(reservation.status).toBe('BOOKED')
+	})
+
+	it('one item already moved from another screen refuses the whole step', async () => {
+		const { id, gear, itemId } = await createPickUpFamily()
+		// a colleague hands the board out while this page still shows it Prepared
+		await caller.reservationItem.advance({ id: itemId(gear.childBoard), from: 'PREPARED' })
+
 		await expect(
-			caller.reservation.advance({ id: 'missing', from: 'BOOKED' })
-		).rejects.toMatchObject({ code: 'NOT_FOUND' })
-	})
-
-	it('a Cancelled reservation cannot advance', async () => {
-		const skiId = await createTestSki()
-		const id = await createTestReservation([{ SKI: skiId }])
-		await caller.reservation.cancel({ id })
-
-		await expect(caller.reservation.advance({ id, from: 'CANCELLED' })).rejects.toMatchObject({
-			code: 'CONFLICT',
-			message: 'Vrácenou ani zrušenou rezervaci nelze posunout dál',
-		})
-	})
-
-	it('a second click from an outdated page changes nothing', async () => {
-		const skiId = await createTestSki()
-		const id = await createTestReservation([{ SKI: skiId }])
-		await caller.reservation.advance({ id, from: 'BOOKED' })
-
-		await expect(caller.reservation.advance({ id, from: 'BOOKED' })).rejects.toMatchObject({
+			caller.reservation.step({
+				id,
+				direction: 'forward',
+				items: [
+					{ id: itemId(gear.dadSki), from: 'PREPARED' },
+					{ id: itemId(gear.childBoard), from: 'PREPARED' },
+				],
+				people: [],
+			})
+		).rejects.toMatchObject({
 			code: 'CONFLICT',
 			message: 'Rezervaci mezitím změnil někdo jiný. Obnovte stránku a zkuste to znovu.',
 		})
-		expect(await statusesByEquipment(id)).toEqual({ [skiId]: 'PREPARED' })
+		expect(await statusesByEquipment(id)).toEqual({
+			[gear.dadSki]: 'PREPARED',
+			[gear.dadBoots]: 'BOOKED',
+			[gear.childBoard]: 'PICKED_UP',
+		})
 	})
 
-	it('works after a person is cancelled, rolling the reservation up first', async () => {
-		const firstSkiId = await createTestSki()
-		const secondSkiId = await createTestSki()
-		const id = await createTestReservation([{ SKI: firstSkiId }, { SKI: secondSkiId }])
-		const [first, second] = (await caller.reservation.get({ id })).people.sort((a, b) =>
-			a.name.localeCompare(b.name)
-		)
-		if (!first || !second) throw new Error('the family is incomplete')
-		const firstItem = first.reservationItems[0]?.id ?? ''
-		await caller.reservationItem.advance({ id: firstItem, from: 'BOOKED' })
-		await caller.reservationItem.advance({ id: firstItem, from: 'PREPARED' })
+	it('refuses an item of another reservation, and a missing reservation', async () => {
+		const { id, gear, itemId } = await createPickUpFamily()
+		const otherId = await createTestReservation([{ SKI: await createTestSki() }])
 
-		// only the second person held the reservation back at Booked
-		await caller.person.cancel({ id: second.id })
-		expect((await caller.reservation.get({ id })).status).toBe('PICKED_UP')
-
-		const returned = await caller.reservation.advance({ id, from: 'PICKED_UP' })
-		expect(returned.status).toBe('RETURNED')
+		await expect(
+			caller.reservation.step({
+				id: otherId,
+				direction: 'forward',
+				items: [{ id: itemId(gear.dadSki), from: 'PREPARED' }],
+				people: [],
+			})
+		).rejects.toMatchObject({ code: 'NOT_FOUND' })
+		await expect(
+			caller.reservation.step({
+				id: 'missing',
+				direction: 'forward',
+				items: [{ id: itemId(gear.dadSki), from: 'PREPARED' }],
+				people: [],
+			})
+		).rejects.toMatchObject({ code: 'NOT_FOUND' })
+		expect((await statusesByEquipment(id))[gear.dadSki]).toBe('PREPARED')
 	})
 
-	it('moves a family with an accessories-only person, one step at a time', async () => {
+	it('a Returned item cannot go further, a Cancelled one cannot move at all', async () => {
+		const skiId = await createTestSki()
+		const id = await createTestReservation([{ SKI: skiId }])
+		await advanceItemTo(id, skiId, 'RETURNED')
+		const itemId = (await itemsByEquipment(id))[skiId]?.id ?? ''
+
+		await expect(
+			caller.reservation.step({
+				id,
+				direction: 'forward',
+				items: [{ id: itemId, from: 'RETURNED' }],
+				people: [],
+			})
+		).rejects.toMatchObject({ code: 'CONFLICT' })
+
+		const cancelledSki = await createTestSki()
+		const cancelledId = await createTestReservation([{ SKI: cancelledSki }])
+		await caller.reservation.cancel({ id: cancelledId })
+		const cancelledItemId = (await itemsByEquipment(cancelledId))[cancelledSki]?.id ?? ''
+		await expect(
+			caller.reservation.step({
+				id: cancelledId,
+				direction: 'back',
+				items: [{ id: cancelledItemId, from: 'CANCELLED' }],
+				people: [],
+			})
+		).rejects.toMatchObject({ code: 'CONFLICT' })
+	})
+
+	it('undoing a return is refused once someone else has booked the gear', async () => {
+		const skiId = await createTestSki()
+		const id = await createTestReservation([{ SKI: skiId }])
+		await advanceItemTo(id, skiId, 'RETURNED')
+		const itemId = (await itemsByEquipment(id))[skiId]?.id ?? ''
+		// the ski is back early, so another customer takes it for the same dates
+		await createTestReservation([{ SKI: skiId }])
+
+		await expect(
+			caller.reservation.step({
+				id,
+				direction: 'back',
+				items: [{ id: itemId, from: 'RETURNED' }],
+				people: [],
+			})
+		).rejects.toMatchObject({
+			code: 'CONFLICT',
+			message: 'Vybavení si mezitím zarezervoval někdo jiný, vrácení nelze vzít zpět',
+		})
+		expect(await statusesByEquipment(id)).toEqual({ [skiId]: 'RETURNED' })
+	})
+
+	it('moves an accessories-only person by hand, and refuses a person with gear', async () => {
 		const skiId = await createTestSki()
 		const id = await createTestReservation([{ SKI: skiId }, {}])
-		const statusesByPerson = async () => {
-			const reservation = await caller.reservation.get({ id })
-			return Object.fromEntries(reservation.people.map((person) => [person.name, person.status]))
-		}
 		const people = (await caller.reservation.get({ id })).people
 		const skier = people.find((person) => person.name === 'Person 1')
 		const goggles = people.find((person) => person.name === 'Person 2')
 		if (!skier || !goggles) throw new Error('the family is incomplete')
 
-		// the skier goes ahead on their own; the goggles person holds the family back
-		await caller.person.advance({ id: skier.id, from: 'BOOKED' })
-		expect(await statusesByPerson()).toEqual({ 'Person 1': 'PREPARED', 'Person 2': 'BOOKED' })
-		expect((await caller.reservation.get({ id })).status).toBe('BOOKED')
+		await caller.reservation.step({
+			id,
+			direction: 'forward',
+			items: [],
+			people: [{ id: goggles.id, from: 'BOOKED' }],
+		})
+		const statusesByPerson = async () =>
+			Object.fromEntries(
+				(await caller.reservation.get({ id })).people.map((person) => [person.name, person.status])
+			)
+		expect(await statusesByPerson()).toEqual({ 'Person 1': 'BOOKED', 'Person 2': 'PREPARED' })
 
-		// only the goggles person is at Booked, so only they move
-		expect((await caller.reservation.advance({ id, from: 'BOOKED' })).status).toBe('PREPARED')
-		expect(await statusesByPerson()).toEqual({ 'Person 1': 'PREPARED', 'Person 2': 'PREPARED' })
-		expect(await statusesByEquipment(id)).toEqual({ [skiId]: 'PREPARED' })
-
-		// both are at Prepared now, so both move
-		expect((await caller.reservation.advance({ id, from: 'PREPARED' })).status).toBe('PICKED_UP')
-		expect(await statusesByPerson()).toEqual({ 'Person 1': 'PICKED_UP', 'Person 2': 'PICKED_UP' })
-		expect(await statusesByEquipment(id)).toEqual({ [skiId]: 'PICKED_UP' })
-
-		expect((await caller.reservation.advance({ id, from: 'PICKED_UP' })).status).toBe('RETURNED')
-		expect(await statusesByPerson()).toEqual({ 'Person 1': 'RETURNED', 'Person 2': 'RETURNED' })
+		await expect(
+			caller.reservation.step({
+				id,
+				direction: 'forward',
+				items: [],
+				people: [{ id: skier.id, from: 'BOOKED' }],
+			})
+		).rejects.toMatchObject({
+			code: 'CONFLICT',
+			message: 'Osoba má vybavení, posuňte jednotlivé položky',
+		})
+		expect(await statusesByPerson()).toEqual({ 'Person 1': 'BOOKED', 'Person 2': 'PREPARED' })
 	})
 
-	it('moves a reservation where nobody has gear', async () => {
-		const id = await createTestReservation([{}, {}])
+	it('refuses a step with nothing in it', async () => {
+		const { id } = await createPickUpFamily()
 
-		expect((await caller.reservation.advance({ id, from: 'BOOKED' })).status).toBe('PREPARED')
+		await expect(
+			caller.reservation.step({ id, direction: 'forward', items: [], people: [] })
+		).rejects.toMatchObject({ code: 'CONFLICT', message: 'Není co posunout' })
+	})
+
+	it('an item listed twice still moves only one step', async () => {
+		const { id, gear, itemId } = await createPickUpFamily()
+		const ski = { id: itemId(gear.dadSki), from: 'PREPARED' as const }
+
+		await expect(
+			caller.reservation.step({ id, direction: 'forward', items: [ski, ski], people: [] })
+		).rejects.toMatchObject({ code: 'BAD_REQUEST' })
+		expect((await statusesByEquipment(id))[gear.dadSki]).toBe('PREPARED')
+	})
+
+	it('moves a whole mixed family to its next status, as the detail page does', async () => {
+		const skiId = await createTestSki()
+		const id = await createTestReservation([{ SKI: skiId }, {}])
 		const reservation = await caller.reservation.get({ id })
-		expect(reservation.people.map((person) => person.status)).toEqual(['PREPARED', 'PREPARED'])
+		const item = reservation.people.flatMap((person) => person.reservationItems)[0]
+		const goggles = reservation.people.find((person) => person.reservationItems.length === 0)
+		if (!item || !goggles) throw new Error('the family is incomplete')
+
+		const prepared = await caller.reservation.step({
+			id,
+			direction: 'forward',
+			items: [{ id: item.id, from: 'BOOKED' }],
+			people: [{ id: goggles.id, from: 'BOOKED' }],
+		})
+
+		expect(prepared.status).toBe('PREPARED')
 	})
 })
 
