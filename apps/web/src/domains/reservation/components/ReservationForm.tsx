@@ -18,6 +18,10 @@ import { type InitialValuesProps, initialValues } from '../helpers/initialValues
 import { useCreateReservation, useUpdateReservation } from '../reservationQueries'
 import { PersonFormCard } from './PersonFormCard'
 
+/** Where a create goes once saved: the new reservation's detail, or a blank
+ * form for the next one. An edit always goes back to the detail. */
+type SubmitMeta = { next: 'detail' | 'new' }
+
 type ReservationFormProps = {
 	reservation?: ReservationDetail
 	searchParams?: InitialValuesProps
@@ -80,16 +84,25 @@ export const ReservationForm = ({ reservation, searchParams }: ReservationFormPr
 				}
 			},
 		},
-		onSubmit: async ({ value }) => {
+		onSubmitMeta: { next: 'detail' } as SubmitMeta,
+		onSubmit: async ({ value, meta }) => {
 			// An edit writes back to the row it was loaded from and leaves the
 			// edit screen, so there is nothing to reset.
 			if (reservation) {
 				await updateReservation.mutateAsync({ ...value, id: reservation.id })
-				await navigate({ to: '/reservation' })
+				await navigate({
+					to: '/reservation/$reservationId',
+					params: { reservationId: reservation.id },
+				})
 			} else {
 				const created = await createReservation.mutateAsync(value)
 
-				if (created) {
+				if (meta.next === 'detail') {
+					await navigate({
+						to: '/reservation/$reservationId',
+						params: { reservationId: created.reservation.id },
+					})
+				} else {
 					// reset to a blank form, not the defaults — a form prefilled from a
 					// fitting would otherwise come back with the same customer in it
 					form.reset(initialValues())
@@ -205,11 +218,23 @@ export const ReservationForm = ({ reservation, searchParams }: ReservationFormPr
 				</form.AppField>
 
 				<form.AppForm>
-					<form.SubscribeButton
-						label={isEdit ? 'Uložit změny' : 'Vytvořit rezervaci'}
-						className="w-full"
-						size={'lg'}
-					/>
+					<div className="flex gap-2">
+						<form.SubscribeButton
+							label={isEdit ? 'Uložit změny' : 'Vytvořit rezervaci'}
+							className="flex-1"
+							size={'lg'}
+						/>
+						{!isEdit && (
+							<form.SubscribeButton
+								label="Vytvořit a přidat další"
+								variant="outline"
+								className="flex-1"
+								size={'lg'}
+								type="button"
+								onClick={() => form.handleSubmit({ next: 'new' })}
+							/>
+						)}
+					</div>
 				</form.AppForm>
 			</form>
 		</div>

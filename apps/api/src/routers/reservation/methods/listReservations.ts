@@ -1,5 +1,6 @@
 import { prisma } from '@ski-blazek/db'
 import type { Prisma } from '@ski-blazek/db/browser'
+import { isReservationOverdue, overdueWhere } from '../../../lib/overdue'
 import { canCancel } from '../../../lib/statusFlow'
 import type { GetReservationsInput } from '../../../schemas/reservation'
 
@@ -22,15 +23,22 @@ export const listReservations = async ({
 	// zone, silently shifting the window when the server isn't running in UTC.
 	const fromDate = from ? new Date(`${from}T00:00:00.000Z`) : undefined
 	const toDate = to ? new Date(`${to}T23:59:59.999Z`) : undefined
+	const now = new Date()
 
 	const dateWhere: Prisma.ReservationWhereInput =
 		!fromDate || !toDate
 			? {}
 			: dateMode === 'RETURN'
 				? { endDate: { gte: fromDate, lte: toDate } } // takes gear back this week
-				: dateMode === 'ACTIVE'
-					? { startDate: { lte: toDate }, endDate: { gte: fromDate } } // out at any point this week
-					: { startDate: { gte: fromDate, lte: toDate } } // PICKUP (default): hands gear out this week
+				: dateMode === 'RETURN_DUE'
+					? // takes gear back this week, or should have already
+						{
+							endDate: { lte: toDate },
+							OR: [{ endDate: { gte: fromDate } }, overdueWhere(now)],
+						}
+					: dateMode === 'ACTIVE'
+						? { startDate: { lte: toDate }, endDate: { gte: fromDate } } // out at any point this week
+						: { startDate: { gte: fromDate, lte: toDate } } // PICKUP (default): hands gear out this week
 
 	const where: Prisma.ReservationWhereInput = {
 		...(search && {
@@ -46,7 +54,8 @@ export const listReservations = async ({
 		}),
 		...(statuses && statuses.length > 0 && { status: { in: statuses } }),
 		...(kind !== 'all' && { seasonal: kind === 'seasonal' }),
-		...dateWhere,
+		// under AND, so its own OR can't overwrite the search's
+		AND: [dateWhere],
 	}
 
 	const [rows, totalCount] = await prisma.$transaction([
@@ -63,8 +72,8 @@ export const listReservations = async ({
 				seasonal: true,
 				createdAt: true,
 				_count: { select: { people: true, reservationItems: true } },
-				// only to work out `canCancel` below
-				people: { select: { status: true } },
+				// only to work out `canCancel` and `overdue` below
+				people: { select: { status: true, reservationItems: { select: { status: true } } } },
 				reservationItems: { select: { status: true } },
 			},
 			skip: (page - 1) * itemsPerPage,
@@ -85,6 +94,7 @@ export const listReservations = async ({
 			reservation.status,
 			[...people, ...reservationItems].map((child) => child.status)
 		),
+		overdue: isReservationOverdue({ endDate: reservation.endDate, people }, now),
 	}))
 
 	return { reservations, totalCount }

@@ -16,7 +16,8 @@ import { useCancelReservation } from '../reservationQueries'
 type CancelReservationDialogProps = {
 	open: boolean
 	onOpenChange: (open: boolean) => void
-	reservation: ReservationListItem
+	// the list row as it is, or the detail page's reservation counted the same way
+	reservation: Pick<ReservationListItem, 'id' | 'name' | 'startDate' | 'endDate' | '_count'>
 }
 
 export const CancelReservationDialog = ({

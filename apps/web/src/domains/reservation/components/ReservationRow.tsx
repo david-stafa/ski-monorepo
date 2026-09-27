@@ -3,6 +3,7 @@ import { Button } from '@ski-blazek/ui/components/button'
 import { Skeleton } from '@ski-blazek/ui/components/skeleton'
 import { TableCell, TableRow } from '@ski-blazek/ui/components/table'
 import { useQuery } from '@tanstack/react-query'
+import { Link } from '@tanstack/react-router'
 import { ChevronRightIcon } from 'lucide-react'
 import { useState } from 'react'
 import { formatDate } from '~/lib/format'
@@ -11,6 +12,7 @@ import { getPersonStepStatuses } from '../helpers/getPersonStepStatuses'
 import type { ReservationListItem } from '../reservation.types'
 import { useAdvanceReservation } from '../reservationQueries'
 import { NextStepButton } from './NextStepButton'
+import { OverdueBadge } from './OverdueBadge'
 import { ReservationActions } from './ReservationActions'
 import { ReservationPersonCard } from './ReservationPersonCard'
 import { ReservationStatusBadge } from './ReservationStatusBadge'
@@ -20,9 +22,12 @@ const COLUMN_COUNT = 8
 
 type ReservationRowProps = {
 	reservation: ReservationListItem
+	/** The counter pages open the gear in place to work through a queue; the
+	 * main list sends the admin to the detail page instead. */
+	expandable?: boolean
 }
 
-export const ReservationRow = ({ reservation }: ReservationRowProps) => {
+export const ReservationRow = ({ reservation, expandable = true }: ReservationRowProps) => {
 	const [isOpen, setIsOpen] = useState(false)
 	const advance = useAdvanceReservation()
 
@@ -39,19 +44,27 @@ export const ReservationRow = ({ reservation }: ReservationRowProps) => {
 		<>
 			<TableRow>
 				<TableCell className="flex items-center gap-2">
-					<Button
-						variant="ghost"
-						size="icon-sm"
-						aria-expanded={isOpen}
-						aria-label={isOpen ? 'Skrýt vybavení' : 'Zobrazit vybavení'}
-						onClick={() => setIsOpen((open) => !open)}
-					>
-						<ChevronRightIcon className={`transition-transform ${isOpen ? 'rotate-90' : ''}`} />
-					</Button>
+					{expandable && (
+						<Button
+							variant="ghost"
+							size="icon-sm"
+							aria-expanded={isOpen}
+							aria-label={isOpen ? 'Skrýt vybavení' : 'Zobrazit vybavení'}
+							onClick={() => setIsOpen((open) => !open)}
+						>
+							<ChevronRightIcon className={`transition-transform ${isOpen ? 'rotate-90' : ''}`} />
+						</Button>
+					)}
 					<ReservationActions reservation={reservation} />
 				</TableCell>
 				<TableCell>
-					{reservation.name}
+					<Link
+						to="/reservation/$reservationId"
+						params={{ reservationId: reservation.id }}
+						className="font-medium hover:underline"
+					>
+						{reservation.name}
+					</Link>
 					{reservation.seasonal && (
 						<Badge variant="outline" className="ml-2">
 							Sezónní
@@ -60,7 +73,14 @@ export const ReservationRow = ({ reservation }: ReservationRowProps) => {
 				</TableCell>
 				<TableCell>{reservation.phoneNumber}</TableCell>
 				<TableCell>{formatDate(reservation.startDate)}</TableCell>
-				<TableCell>{formatDate(reservation.endDate)}</TableCell>
+				<TableCell>
+					{formatDate(reservation.endDate)}
+					{reservation.overdue && (
+						<span className="ml-2">
+							<OverdueBadge />
+						</span>
+					)}
+				</TableCell>
 				<TableCell>{reservation._count.people}</TableCell>
 				<TableCell>{reservation._count.reservationItems}</TableCell>
 				<TableCell>
@@ -68,7 +88,7 @@ export const ReservationRow = ({ reservation }: ReservationRowProps) => {
 				</TableCell>
 			</TableRow>
 
-			{isOpen && (
+			{expandable && isOpen && (
 				<TableRow className="hover:bg-transparent">
 					<TableCell colSpan={COLUMN_COUNT} className="bg-muted/40 p-4">
 						{isPending || !data || !people ? (

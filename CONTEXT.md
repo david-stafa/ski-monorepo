@@ -46,6 +46,10 @@ The equipment is back in the shop. Returned equipment can be booked again immedi
 The equipment will not go out on this reservation. Only something that is still Booked or Prepared can be cancelled. Once the equipment has been picked up, it can only end as Returned, even if it comes back early.
 _Avoid_: Deleted, removed
 
+**Overdue**:
+A reservation item still Picked up after its reservation's end date has passed. On the end date itself the item is due, not overdue; it becomes overdue the next day. A person with no reservation items (renting only accessories) is overdue on the same terms, since their accessories are still out. A person or reservation is overdue when any of its items or people is, so one child's skis still out keep the whole family overdue after the parents have returned theirs. Seasonal reservations follow the same rule, since their end date is the season return deadline. Equipment that was never picked up is not overdue.
+_Avoid_: Late, past due, unreturned
+
 **Rolled-up status**:
 A person's status is worked out from their reservation items, and a reservation's status from its people: it is the least advanced status among the ones not cancelled. A family where one ski has not been picked up yet is not Picked up. A person with no reservation items (someone renting only accessories) has no items to work it out from, so staff move that person through the statuses directly. A person or reservation becomes Cancelled only when staff cancel it, never because everything under it happens to be cancelled.
 _Avoid_: Overall status, summary status
