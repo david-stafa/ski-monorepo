@@ -1,10 +1,12 @@
 import { nextStatus, previousStatus } from '@ski-blazek/api/schemas'
 import { Button } from '@ski-blazek/ui/components/button'
+import { cn } from '@ski-blazek/ui/lib/utils'
 import { ArrowRightIcon, Undo2Icon } from 'lucide-react'
 import type { Outputs } from '~/lib/trpc'
 import { getEquipmentItemLabel } from '../helpers/getEquipmentItemLabel'
 import { RESERVATION_STATUS_META } from '../helpers/reservationStatus'
 import { useAdvanceReservationItem, useUndoReservationItem } from '../reservationQueries'
+import { OverdueBadge } from './OverdueBadge'
 import { ReservationStatusBadge } from './ReservationStatusBadge'
 
 type ReservationItem = Outputs['reservation']['get']['people'][number]['reservationItems'][number]
@@ -23,9 +25,15 @@ export const ReservationItemRow = ({ item }: ReservationItemRowProps) => {
 	const isBusy = advance.isPending || undo.isPending
 
 	return (
-		<li className="flex flex-wrap items-center gap-2">
+		<li
+			className={cn(
+				'flex flex-wrap items-center gap-2',
+				item.status === 'CANCELLED' && 'opacity-60'
+			)}
+		>
 			<span className="font-mono text-sm">{getEquipmentItemLabel(item.equipmentItem)}</span>
 			<ReservationStatusBadge status={item.status} />
+			{item.overdue && <OverdueBadge />}
 
 			<div className="ml-auto flex gap-1">
 				{previous && (

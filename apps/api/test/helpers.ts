@@ -19,17 +19,21 @@ export const caller: ReturnType<typeof appRouter.createCaller> = appRouter.creat
 /**
  * Creates a reservation through `reservation.create`, one person per entry in
  * `people`, each holding the equipment given for them (unlisted slots stay
- * empty). Returns the new reservation's id.
+ * empty). Runs 10–15 January 2027 unless `dates` say otherwise. Returns the new
+ * reservation's id.
  *
  *   await createTestReservation([{ SKI: ski.equipmentItem.id }, {}])
  */
-export const createTestReservation = async (people: Partial<PersonEquipment>[]) => {
+export const createTestReservation = async (
+	people: Partial<PersonEquipment>[],
+	dates: { startDate: string; endDate: string } = { startDate: '2027-01-10', endDate: '2027-01-15' }
+) => {
 	const { reservation } = await caller.reservation.create({
 		name: 'Jan Novák',
 		phoneNumber: '777123456',
 		note: null,
-		startDate: new Date('2027-01-10'),
-		endDate: new Date('2027-01-15'),
+		startDate: new Date(dates.startDate),
+		endDate: new Date(dates.endDate),
 		seasonal: false,
 		people: people.map((equipment, index) => ({
 			name: `Person ${index + 1}`,

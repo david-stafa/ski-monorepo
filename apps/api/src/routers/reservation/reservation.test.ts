@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import {
 	caller,
 	createTestReservation,
@@ -244,6 +244,109 @@ describe('list', () => {
 
 		expect(await listedIds([])).toEqual(all)
 		expect(await listedIds()).toEqual(all)
+	})
+})
+
+describe('overdue', () => {
+	// the test reservation ends 15 January 2027; this is five days later
+	beforeEach(() => {
+		vi.useFakeTimers({ toFake: ['Date'] })
+		vi.setSystemTime(new Date('2027-01-20T12:00:00Z'))
+	})
+	afterEach(() => {
+		vi.useRealTimers()
+	})
+
+	it('marks the item still out, its person and the reservation — not the gear already back', async () => {
+		const dadSki = await createTestSki()
+		const childSki = await createTestSki()
+		const id = await createTestReservation([{ SKI: dadSki }, { SKI: childSki }])
+		await advanceItemTo(id, dadSki, 'RETURNED')
+		await advanceItemTo(id, childSki, 'PICKED_UP')
+
+		const reservation = await caller.reservation.get({ id })
+		const overdueByPerson = Object.fromEntries(
+			reservation.people.map((person) => [person.name, person.overdue])
+		)
+		const overdueByEquipment = Object.fromEntries(
+			reservation.people
+				.flatMap((person) => person.reservationItems)
+				.map((item) => [item.equipmentItemId, item.overdue])
+		)
+
+		expect(reservation.overdue).toBe(true)
+		expect(overdueByPerson).toEqual({ 'Person 1': false, 'Person 2': true })
+		expect(overdueByEquipment).toEqual({ [dadSki]: false, [childSki]: true })
+	})
+
+	it('an accessories-only person still Picked up is overdue', async () => {
+		const id = await createTestReservation([{}])
+		await caller.reservation.advance({ id, from: 'BOOKED' })
+		await caller.reservation.advance({ id, from: 'PREPARED' })
+
+		const reservation = await caller.reservation.get({ id })
+
+		expect(reservation.overdue).toBe(true)
+		expect(reservation.people[0]?.overdue).toBe(true)
+	})
+
+	it('gear never picked up is not overdue', async () => {
+		const skiId = await createTestSki()
+		const id = await createTestReservation([{ SKI: skiId }, {}])
+		await caller.reservation.advance({ id, from: 'BOOKED' })
+
+		expect((await caller.reservation.get({ id })).overdue).toBe(false)
+	})
+
+	it('on the end date itself nothing is overdue yet', async () => {
+		const skiId = await createTestSki()
+		const id = await createTestReservation([{ SKI: skiId }], {
+			startDate: '2027-01-10',
+			endDate: '2027-01-20T23:59:59.999Z',
+		})
+		await advanceItemTo(id, skiId, 'PICKED_UP')
+
+		expect((await caller.reservation.get({ id })).overdue).toBe(false)
+	})
+
+	it('the return list holds what is due in the window plus everything overdue', async () => {
+		const window = { from: '2027-01-18', to: '2027-01-24' }
+		const inWindow = { startDate: '2027-01-17', endDate: '2027-01-22' }
+		const ids = {
+			overdue: await createTestReservation([{}]),
+			returnedEarlier: await createTestReservation([{}]),
+			dueThisWeek: await createTestReservation([{}], inWindow),
+			dueLater: await createTestReservation([{}], {
+				startDate: '2027-01-20',
+				endDate: '2027-01-30',
+			}),
+		}
+		for (const id of Object.values(ids)) {
+			await caller.reservation.advance({ id, from: 'BOOKED' })
+			await caller.reservation.advance({ id, from: 'PREPARED' })
+		}
+		await caller.reservation.advance({ id: ids.returnedEarlier, from: 'PICKED_UP' })
+
+		const { reservations, totalCount } = await caller.reservation.list({
+			...window,
+			dateMode: 'RETURN_DUE',
+		})
+		const overdueById = Object.fromEntries(
+			reservations.map((reservation) => [reservation.id, reservation.overdue])
+		)
+
+		expect(totalCount).toBe(2)
+		expect(overdueById).toEqual({ [ids.overdue]: true, [ids.dueThisWeek]: false })
+	})
+
+	it('the return list still narrows by search', async () => {
+		const id = await createTestReservation([{}])
+		await caller.reservation.advance({ id, from: 'BOOKED' })
+		await caller.reservation.advance({ id, from: 'PREPARED' })
+		const input = { from: '2027-01-18', to: '2027-01-24', dateMode: 'RETURN_DUE' } as const
+
+		expect((await caller.reservation.list({ ...input, search: 'Novák' })).totalCount).toBe(1)
+		expect((await caller.reservation.list({ ...input, search: 'Dvořák' })).totalCount).toBe(0)
 	})
 })
 

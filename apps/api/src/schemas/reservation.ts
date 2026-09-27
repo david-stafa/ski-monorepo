@@ -125,7 +125,9 @@ export const getReservationsInputSchema = paginationSchema.extend({
 	from: z.iso.date().optional(),
 	to: z.iso.date().optional(),
 	// TODO: Create shared dateMode enum - maybe use unum from Prisma
-	dateMode: z.enum(['PICKUP', 'RETURN', 'ACTIVE']).optional(),
+	// RETURN_DUE is RETURN plus everything overdue from before the window: the
+	// return counter's list of gear that should be coming back
+	dateMode: z.enum(['PICKUP', 'RETURN', 'RETURN_DUE', 'ACTIVE']).optional(),
 	// seasonal vs regular reservations; 'all' keeps both
 	kind: z.enum(['all', 'seasonal', 'regular']).default('all'),
 	orderBy: z.enum(['name', 'startDate', 'endDate']).default('startDate'),
