@@ -2,11 +2,11 @@ import { type Prisma, prisma } from '@ski-blazek/db'
 import { TRPCError } from '@trpc/server'
 import { lockReservation, recomputeRolledUpStatus } from '../../../lib/recomputeRolledUpStatus'
 import { previousStatus, STEP_TIMESTAMP } from '../../../lib/statusFlow'
-import type { ReservationItemStepInput } from '../../../schemas/reservationItem'
+import type { StatusStepInput } from '../../../schemas/statusStep'
 
 /** One step back, to undo a mistake. Clears the timestamp of the step it
  * leaves. */
-export const undoReservationItem = async ({ id, from }: ReservationItemStepInput) => {
+export const undoReservationItem = async ({ id, from }: StatusStepInput) => {
 	const to = previousStatus(from)
 	if (!to)
 		throw new TRPCError({

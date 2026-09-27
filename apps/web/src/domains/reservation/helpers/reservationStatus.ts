@@ -27,3 +27,13 @@ export const RESERVATION_STATUS_OPTIONS = Object.values(ReservationStatus).map((
 	value: status,
 	label: RESERVATION_STATUS_META[status].label,
 }))
+
+/**
+ * The button that moves a person or a reservation into a status, named for the
+ * action rather than the result: "Připravit" moves Booked to Prepared.
+ */
+export const NEXT_STEP_ACTION_LABELS: Partial<Record<ReservationStatus, string>> = {
+	[ReservationStatus.PREPARED]: 'Připravit',
+	[ReservationStatus.PICKED_UP]: 'Vydat',
+	[ReservationStatus.RETURNED]: 'Vrátit',
+}

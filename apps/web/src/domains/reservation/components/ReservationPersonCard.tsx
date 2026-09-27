@@ -3,7 +3,9 @@ import { Badge } from '@ski-blazek/ui/components/badge'
 import type { Outputs } from '~/lib/trpc'
 import { getPersonAccessories } from '../helpers/getPersonAccessories'
 import { LEVEL_LABELS } from '../helpers/levelMeta'
+import { useAdvancePerson } from '../reservationQueries'
 import { GenderIcon } from './GenderIcon'
+import { NextStepButton } from './NextStepButton'
 import { ReservationItemRow } from './ReservationItemRow'
 import { ReservationStatusBadge } from './ReservationStatusBadge'
 
@@ -21,6 +23,7 @@ type ReservationPersonCardProps = {
 }
 
 export const ReservationPersonCard = ({ person }: ReservationPersonCardProps) => {
+	const advance = useAdvancePerson()
 	// Cancelled items stay on the record but are not handed over.
 	const items = person.reservationItems
 		.filter((item) => item.status !== 'CANCELLED')
@@ -39,7 +42,14 @@ export const ReservationPersonCard = ({ person }: ReservationPersonCardProps) =>
 				</span>
 				{person.level && <Badge variant="outline">{LEVEL_LABELS[person.level]}</Badge>}
 				{/* rolled up from their items by the API */}
-				<span className="ml-auto">
+				<span className="ml-auto flex items-center gap-2">
+					<NextStepButton
+						status={person.status}
+						itemStatuses={items.map((item) => item.status)}
+						disabled={advance.isPending}
+						// `from` is the status on screen: if it's stale, the API refuses
+						onAdvance={() => advance.mutate({ id: person.id, from: person.status })}
+					/>
 					<ReservationStatusBadge status={person.status} />
 				</span>
 			</div>
