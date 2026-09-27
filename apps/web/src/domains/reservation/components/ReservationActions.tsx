@@ -1,3 +1,4 @@
+import { canEdit } from '@ski-blazek/api/schemas'
 import { Button } from '@ski-blazek/ui/components/button'
 import {
 	DropdownMenu,
@@ -26,17 +27,19 @@ export const ReservationActions = ({ reservation }: ReservationActionsProps) => 
 				</DropdownMenuTrigger>
 				<DropdownMenuContent>
 					{/* EDIT */}
-					<DropdownMenuItem
-						render={
-							<Link
-								to="/reservation/$reservationId/edit"
-								params={{ reservationId: reservation.id }}
-							/>
-						}
-					>
-						<PencilIcon />
-						Upravit rezervaci
-					</DropdownMenuItem>
+					{canEdit(reservation.status) && (
+						<DropdownMenuItem
+							render={
+								<Link
+									to="/reservation/$reservationId/edit"
+									params={{ reservationId: reservation.id }}
+								/>
+							}
+						>
+							<PencilIcon />
+							Upravit rezervaci
+						</DropdownMenuItem>
+					)}
 					{/* CANCEL — only while nothing has been picked up, and not twice */}
 					{reservation.canCancel && (
 						<DropdownMenuItem variant="destructive" onClick={() => setCancelOpen(true)}>

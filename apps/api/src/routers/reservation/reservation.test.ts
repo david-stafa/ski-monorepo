@@ -18,6 +18,49 @@ const isSkiAvailable = async (equipmentItemId: string, startDate: string, endDat
 	return available.some((item) => item.id === equipmentItemId)
 }
 
+/** Every item of the reservation: its status and timestamps, keyed by the
+ * equipment it books. Rows come back in no set order, hence the keys. */
+const itemsByEquipment = async (id: string) => {
+	const reservation = await caller.reservation.get({ id })
+	const items = reservation.people.flatMap((person) => person.reservationItems)
+	return Object.fromEntries(items.map((item) => [item.equipmentItemId, item]))
+}
+
+const statusesByEquipment = async (id: string) => {
+	const items = await itemsByEquipment(id)
+	return Object.fromEntries(Object.entries(items).map(([key, item]) => [key, item.status]))
+}
+
+/** Saves the edit form for this reservation, with every person's equipment
+ * changed as given (a one-person reservation, unless the change fits all). */
+const editEquipment = async (id: string, equipment: Partial<PersonEquipment>) => {
+	const form = await caller.reservation.getForEdit({ id })
+	return await caller.reservation.update({
+		...form,
+		people: form.people.map((person) => ({
+			...person,
+			equipment: { ...person.equipment, ...equipment },
+		})),
+	})
+}
+
+/** Steps one reservation item forward until it reaches `to`. */
+const advanceItemTo = async (
+	id: string,
+	equipmentItemId: string,
+	to: 'PREPARED' | 'PICKED_UP' | 'RETURNED'
+) => {
+	const reservation = await caller.reservation.get({ id })
+	const item = reservation.people
+		.flatMap((person) => person.reservationItems)
+		.find((item) => item.equipmentItemId === equipmentItemId)
+	if (!item) throw new Error(`no reservation item books ${equipmentItemId}`)
+	const steps = ['BOOKED', 'PREPARED', 'PICKED_UP', 'RETURNED'] as const
+	for (const from of steps.slice(0, steps.indexOf(to))) {
+		await caller.reservationItem.advance({ id: item.id, from })
+	}
+}
+
 describe('reservation', () => {
 	it('starts out Booked', async () => {
 		const skiId = await createTestSki()
@@ -168,19 +211,6 @@ describe('cancel', () => {
 })
 
 describe('advance', () => {
-	/** Every item of the reservation: its status and timestamps, keyed by the
-	 * equipment it books. Rows come back in no set order, hence the keys. */
-	const itemsByEquipment = async (id: string) => {
-		const reservation = await caller.reservation.get({ id })
-		const items = reservation.people.flatMap((person) => person.reservationItems)
-		return Object.fromEntries(items.map((item) => [item.equipmentItemId, item]))
-	}
-
-	const statusesByEquipment = async (id: string) => {
-		const items = await itemsByEquipment(id)
-		return Object.fromEntries(Object.entries(items).map(([key, item]) => [key, item.status]))
-	}
-
 	/**
 	 * A family of three: Dad with a ski and ski boots, a child with a snowboard,
 	 * and Mum with a ski, who was cancelled. The child has already picked up and
@@ -378,19 +408,6 @@ describe('advance', () => {
 })
 
 describe('update rolls the statuses up', () => {
-	/** The edit form's payload for this reservation, with one person's
-	 * equipment changed. */
-	const editEquipment = async (id: string, equipment: Partial<PersonEquipment>) => {
-		const form = await caller.reservation.getForEdit({ id })
-		await caller.reservation.update({
-			...form,
-			people: form.people.map((person) => ({
-				...person,
-				equipment: { ...person.equipment, ...equipment },
-			})),
-		})
-	}
-
 	it('dropping the only Booked item moves the person and reservation on', async () => {
 		const skiId = await createTestSki()
 		const bootId = await createTestSkiBoot()
@@ -458,5 +475,135 @@ describe('update rolls the statuses up', () => {
 		const reservation = await caller.reservation.get({ id })
 		expect(reservation.people[0]?.status).toBe('BOOKED')
 		expect(reservation.status).toBe('BOOKED')
+	})
+})
+
+describe('update rules', () => {
+	it('swapping a Prepared ski works and frees the old one', async () => {
+		const oldSkiId = await createTestSki()
+		const newSkiId = await createTestSki()
+		const id = await createTestReservation([{ SKI: oldSkiId }])
+		await advanceItemTo(id, oldSkiId, 'PREPARED')
+
+		await editEquipment(id, { SKI: newSkiId })
+
+		const items = (await caller.reservation.get({ id })).people[0]?.reservationItems ?? []
+		const oldItem = items.find((item) => item.equipmentItemId === oldSkiId)
+		expect(oldItem?.status).toBe('CANCELLED')
+		expect(oldItem?.cancelledAt).not.toBeNull()
+		expect(items.find((item) => item.equipmentItemId === newSkiId)?.status).toBe('BOOKED')
+		expect(await isSkiAvailable(oldSkiId, '2027-01-10', '2027-01-15')).toBe(true)
+	})
+
+	it('removing a Picked up item is refused, changing nothing', async () => {
+		const skiId = await createTestSki()
+		const bootId = await createTestSkiBoot()
+		const id = await createTestReservation([{ SKI: skiId, SKI_BOOT: bootId }])
+		await advanceItemTo(id, skiId, 'PICKED_UP')
+
+		await expect(editEquipment(id, { SKI: null, SKI_BOOT: null })).rejects.toMatchObject({
+			code: 'CONFLICT',
+			message: 'Vydané ani vrácené vybavení nelze odebrat ani vyměnit',
+		})
+		expect(await statusesByEquipment(id)).toEqual({ [skiId]: 'PICKED_UP', [bootId]: 'BOOKED' })
+	})
+
+	it('swapping a Returned item is refused', async () => {
+		const skiId = await createTestSki()
+		const otherSkiId = await createTestSki()
+		const bootId = await createTestSkiBoot()
+		const id = await createTestReservation([{ SKI: skiId, SKI_BOOT: bootId }])
+		await advanceItemTo(id, skiId, 'RETURNED')
+
+		await expect(editEquipment(id, { SKI: otherSkiId })).rejects.toMatchObject({
+			code: 'CONFLICT',
+		})
+	})
+
+	it('removing a person who holds a Picked up item is refused', async () => {
+		const skiId = await createTestSki()
+		const id = await createTestReservation([{}, { SKI: skiId }])
+		await advanceItemTo(id, skiId, 'PICKED_UP')
+		const form = await caller.reservation.getForEdit({ id })
+
+		await expect(
+			caller.reservation.update({
+				...form,
+				people: form.people.filter((person) => person.equipment.SKI === null),
+			})
+		).rejects.toMatchObject({
+			code: 'CONFLICT',
+			message: 'Osobu, která už má vybavení vydané, nelze odebrat',
+		})
+		const people = (await caller.reservation.get({ id })).people
+		expect(people.map((person) => person.status).sort()).toEqual(['BOOKED', 'PICKED_UP'])
+	})
+
+	it('removing a Prepared person cancels them and frees their gear', async () => {
+		const skiId = await createTestSki()
+		const id = await createTestReservation([{}, { SKI: skiId }])
+		await advanceItemTo(id, skiId, 'PREPARED')
+		const form = await caller.reservation.getForEdit({ id })
+
+		await caller.reservation.update({
+			...form,
+			people: form.people.filter((person) => person.equipment.SKI === null),
+		})
+
+		const removed = (await caller.reservation.get({ id })).people.find(
+			(person) => person.reservationItems.length > 0
+		)
+		expect(removed?.status).toBe('CANCELLED')
+		expect(removed?.cancelledAt).not.toBeNull()
+		expect(await isSkiAvailable(skiId, '2027-01-10', '2027-01-15')).toBe(true)
+	})
+
+	it('adding an item to a Picked up person rolls them and the reservation back to Booked', async () => {
+		const skiId = await createTestSki()
+		const boardId = await createTestSnowboard()
+		const id = await createTestReservation([{ SKI: skiId }])
+		await advanceItemTo(id, skiId, 'PICKED_UP')
+		expect((await caller.reservation.get({ id })).status).toBe('PICKED_UP')
+
+		await editEquipment(id, { SNOWBOARD: boardId })
+
+		const reservation = await caller.reservation.get({ id })
+		expect(reservation.people[0]?.status).toBe('BOOKED')
+		expect(reservation.status).toBe('BOOKED')
+		expect(await statusesByEquipment(id)).toEqual({ [skiId]: 'PICKED_UP', [boardId]: 'BOOKED' })
+	})
+
+	it('a Returned reservation cannot be edited', async () => {
+		const skiId = await createTestSki()
+		const id = await createTestReservation([{ SKI: skiId }])
+		await advanceItemTo(id, skiId, 'RETURNED')
+
+		await expect(editEquipment(id, {})).rejects.toMatchObject({
+			code: 'CONFLICT',
+			message: 'Vrácenou rezervaci nelze upravit',
+		})
+	})
+
+	it('a Cancelled reservation cannot be edited', async () => {
+		const id = await createTestReservation([{}])
+		// taken before the cancel, like a page left open
+		const form = await caller.reservation.getForEdit({ id })
+		await caller.reservation.cancel({ id })
+
+		await expect(caller.reservation.update(form)).rejects.toMatchObject({
+			code: 'CONFLICT',
+			message: 'Zrušenou rezervaci nelze upravit',
+		})
+	})
+
+	it('the edit form gets the status of each filled slot', async () => {
+		const skiId = await createTestSki()
+		const bootId = await createTestSkiBoot()
+		const id = await createTestReservation([{ SKI: skiId, SKI_BOOT: bootId }])
+		await advanceItemTo(id, skiId, 'PICKED_UP')
+
+		const form = await caller.reservation.getForEdit({ id })
+
+		expect(form.people[0]?.slotStatuses).toEqual({ SKI: 'PICKED_UP', SKI_BOOT: 'BOOKED' })
 	})
 })

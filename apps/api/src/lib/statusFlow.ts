@@ -56,6 +56,16 @@ export const CANCELLABLE_STATUSES: readonly ReservationStatus[] = [
 	ReservationStatus.PREPARED,
 ]
 
+/** Whether an edit may remove or swap this item: only while the customer
+ * isn't holding it yet. */
+export const canRemoveItem = (status: ReservationStatus): boolean =>
+	CANCELLABLE_STATUSES.includes(status)
+
+/** Whether a reservation can still be edited: not once it's finished
+ * (Returned) or called off (Cancelled). */
+export const canEdit = (status: ReservationStatus): boolean =>
+	status !== ReservationStatus.RETURNED && status !== ReservationStatus.CANCELLED
+
 /**
  * Whether a person or a reservation can still be cancelled: it isn't already,
  * and nothing under it has been picked up or returned. `statuses` are those of
