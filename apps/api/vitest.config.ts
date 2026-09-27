@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitest/config'
-import { assertIsTestDatabase, TEST_DATABASE_URL } from './test/testDatabaseUrl'
+import { assertIsTestDatabase, TEST_DATABASE_URL } from './test/testDatabaseUrl.ts'
 
 assertIsTestDatabase(new URL(TEST_DATABASE_URL).pathname.slice(1))
 

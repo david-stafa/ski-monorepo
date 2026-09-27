@@ -13,6 +13,9 @@
 		"rootDir": ".",
 		"outDir": "./dist",
 		"verbatimModuleSyntax": true,
+		// vitest.config.ts imports test/testDatabaseUrl.ts with its extension —
+		// Vite's native config loader needs it. Safe: tsc never emits here.
+		"allowImportingTsExtensions": true,
 		"paths": {
 			"~/*": ["./src/*"]
 		}
