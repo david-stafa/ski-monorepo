@@ -13,6 +13,7 @@ import { useState } from 'react'
 import { DateRangeField } from '~/components/form/DateRangeField'
 import { useAppForm } from '~/components/form/SharedFormFields'
 import { createEmptyPerson } from '../helpers/createEmptyPerson'
+import { getPersonEditLocks } from '../helpers/getPersonEditLocks'
 import { type InitialValuesProps, initialValues } from '../helpers/initialValues'
 import { useCreateReservation, useUpdateReservation } from '../reservationQueries'
 import { PersonFormCard } from './PersonFormCard'
@@ -174,15 +175,21 @@ export const ReservationForm = ({ reservation, searchParams }: ReservationFormPr
 
 						return (
 							<div className="flex flex-col gap-4">
-								{peopleField.state.value.map((_, i) => (
-									<PersonFormCard
-										key={personKeys[i]}
-										form={form}
-										index={i}
-										onRemove={() => removePerson(i)}
-										excludeReservationId={reservation?.id}
-									/>
-								))}
+								{peopleField.state.value.map((person, i) => {
+									const saved = reservation?.people.find(({ id }) => id === person.id)
+									const { lockedSlots, canRemove } = getPersonEditLocks(saved)
+									return (
+										<PersonFormCard
+											key={personKeys[i]}
+											form={form}
+											index={i}
+											onRemove={() => removePerson(i)}
+											canRemove={canRemove}
+											lockedSlots={lockedSlots}
+											excludeReservationId={reservation?.id}
+										/>
+									)
+								})}
 								<Button
 									onClick={addPerson}
 									type="button"

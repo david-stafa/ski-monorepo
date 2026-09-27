@@ -399,11 +399,13 @@ export function ComboboxField({
 	label,
 	isLoading,
 	placeholder,
+	disabled,
 }: {
 	options: SelectFieldOption[]
 	label: string
 	isLoading: boolean
 	placeholder?: string
+	disabled?: boolean
 }) {
 	const field = useFieldContext<string | null>()
 
@@ -415,6 +417,7 @@ export function ComboboxField({
 			<Combobox
 				items={options}
 				value={selected}
+				disabled={disabled}
 				onValueChange={(item: SelectFieldOption | null) =>
 					field.handleChange(item ? item.value : null)
 				}
@@ -433,6 +436,7 @@ export function ComboboxField({
 					id={field.name}
 					className="w-auto min-w-50 self-start [&_input]:field-sizing-content"
 					showClear
+					disabled={disabled}
 					onBlur={field.handleBlur}
 				/>
 				<ComboboxContent className="w-fit">

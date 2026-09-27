@@ -1,4 +1,4 @@
-import { Gender } from '@ski-blazek/db/browser'
+import { type EquipmentItemType, Gender } from '@ski-blazek/db/browser'
 import { Button } from '@ski-blazek/ui/components/button'
 import { TypographyH4 } from '@ski-blazek/ui/components/typography'
 import { TrashIcon, UserIcon } from 'lucide-react'
@@ -12,8 +12,23 @@ import { EquipmentComboboxField } from './EquipmentComboboxField'
 export const PersonFormCard = withForm({
 	// only read for type inference — the real values come from the parent form
 	defaultValues: initialValues(),
-	props: { index: 0, onRemove: () => {}, excludeReservationId: undefined as string | undefined },
-	render: function PersonFormCard({ form, index, onRemove, excludeReservationId }) {
+	props: {
+		index: 0,
+		onRemove: () => {},
+		// false once they hold gear that has been picked up (see getPersonEditLocks)
+		canRemove: true,
+		// slots whose gear has been picked up or returned: shown, but not changeable
+		lockedSlots: [] as EquipmentItemType[],
+		excludeReservationId: undefined as string | undefined,
+	},
+	render: function PersonFormCard({
+		form,
+		index,
+		onRemove,
+		canRemove,
+		lockedSlots,
+		excludeReservationId,
+	}) {
 		return (
 			<form.Subscribe
 				selector={(s) => ({
@@ -39,8 +54,8 @@ export const PersonFormCard = withForm({
 							</div>
 							<Button
 								type="button"
-								disabled={index === 0}
-								hidden={index === 0}
+								disabled={index === 0 || !canRemove}
+								hidden={index === 0 || !canRemove}
 								onClick={() => onRemove()}
 							>
 								<TrashIcon />
@@ -96,6 +111,7 @@ export const PersonFormCard = withForm({
 									<EquipmentComboboxField
 										label="Lyže"
 										type="SKI"
+										disabled={lockedSlots.includes('SKI')}
 										startDate={startDate}
 										endDate={endDate}
 										excludeReservationId={excludeReservationId}
@@ -107,6 +123,7 @@ export const PersonFormCard = withForm({
 									<EquipmentComboboxField
 										label="Lyžařské boty"
 										type="SKI_BOOT"
+										disabled={lockedSlots.includes('SKI_BOOT')}
 										startDate={startDate}
 										endDate={endDate}
 										excludeReservationId={excludeReservationId}
@@ -130,6 +147,7 @@ export const PersonFormCard = withForm({
 									<EquipmentComboboxField
 										label="Snowboard"
 										type="SNOWBOARD"
+										disabled={lockedSlots.includes('SNOWBOARD')}
 										startDate={startDate}
 										endDate={endDate}
 										excludeReservationId={excludeReservationId}
@@ -141,6 +159,7 @@ export const PersonFormCard = withForm({
 									<EquipmentComboboxField
 										label="Snowboardové boty"
 										type="SNOWBOARD_BOOT"
+										disabled={lockedSlots.includes('SNOWBOARD_BOOT')}
 										startDate={startDate}
 										endDate={endDate}
 										excludeReservationId={excludeReservationId}
@@ -154,6 +173,7 @@ export const PersonFormCard = withForm({
 									<EquipmentComboboxField
 										label="Helma"
 										type="HELMET"
+										disabled={lockedSlots.includes('HELMET')}
 										startDate={startDate}
 										endDate={endDate}
 										excludeReservationId={excludeReservationId}

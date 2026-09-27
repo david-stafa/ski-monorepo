@@ -1,5 +1,5 @@
-import type { EquipmentItemType, Person } from '@ski-blazek/db'
-import { Gender, Goggle, Level, ReservationStatus } from '@ski-blazek/db/browser'
+import type { Person } from '@ski-blazek/db'
+import { EquipmentItemType, Gender, Goggle, Level, ReservationStatus } from '@ski-blazek/db/browser'
 import z from 'zod'
 import { paginationSchema } from './pagination'
 
@@ -106,6 +106,9 @@ export const reservationDetailSchema = reservationFieldsSchema.extend({
 		personInputSchema.extend({
 			id: z.string(),
 			status: z.enum(ReservationStatus),
+			// the status of the item in each filled slot, so the form can lock
+			// gear that has already been picked up
+			slotStatuses: z.partialRecord(z.enum(EquipmentItemType), z.enum(ReservationStatus)),
 		})
 	),
 })

@@ -1,4 +1,4 @@
-import { prisma } from '@ski-blazek/db'
+import { type EquipmentItemType, prisma, type ReservationStatus } from '@ski-blazek/db'
 import { TRPCError } from '@trpc/server'
 import {
 	createEmptyEquipment,
@@ -56,8 +56,10 @@ export const getReservationForEdit = async ({
 		seasonal: reservation.seasonal,
 		people: reservation.people.map((person) => {
 			const equipment = createEmptyEquipment()
+			const slotStatuses: Partial<Record<EquipmentItemType, ReservationStatus>> = {}
 			for (const item of person.reservationItems) {
 				equipment[item.equipmentItem.type] = item.equipmentItemId
+				slotStatuses[item.equipmentItem.type] = item.status
 			}
 
 			return {
@@ -76,6 +78,7 @@ export const getReservationForEdit = async ({
 				level: person.level,
 				note: person.note,
 				equipment,
+				slotStatuses,
 			}
 		}),
 	}

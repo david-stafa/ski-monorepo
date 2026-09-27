@@ -1,6 +1,7 @@
 import { prisma, ReservationStatus } from '@ski-blazek/db'
 import { TRPCError } from '@trpc/server'
 import { lockReservation, recomputeRolledUpStatus } from '../../../lib/recomputeRolledUpStatus'
+import { canCancel, canRemoveItem } from '../../../lib/statusFlow'
 import { isItemAvailable } from '../../../routers/equipment/_shared/methods/findAvailable'
 import type { UpdateReservationInput } from '../../../schemas/reservation'
 import { personColumns } from './personColumns'
@@ -10,6 +11,10 @@ import { personColumns } from './personColumns'
  * person or item keeps its row and moves to CANCELLED. That is not only for
  * history — availability only counts items that are not Returned or Cancelled,
  * so flipping the status is exactly what releases the gear back into the pool.
+ *
+ * And like a cancel, only what hasn't left the shop can be removed: a Picked up
+ * or Returned item can't be dropped or swapped, nor can the person holding it.
+ * It can only end as Returned.
  */
 const CANCELLED = ReservationStatus.CANCELLED
 const NOT_CANCELLED = { not: CANCELLED }
@@ -40,6 +45,11 @@ export const updateReservation = async (data: UpdateReservationInput) => {
 
 		if (existing.status === CANCELLED) {
 			throw new TRPCError({ code: 'CONFLICT', message: 'Zrušenou rezervaci nelze upravit' })
+		}
+
+		// Everything on it is finished, so it's read-only like a cancelled one.
+		if (existing.status === ReservationStatus.RETURNED) {
+			throw new TRPCError({ code: 'CONFLICT', message: 'Vrácenou rezervaci nelze upravit' })
 		}
 
 		// A person id in the payload must belong to this reservation — without the
@@ -98,6 +108,14 @@ export const updateReservation = async (data: UpdateReservationInput) => {
 		const keptPersonIds = new Set(data.people.map((person) => person.id))
 		for (const person of existing.people) {
 			if (keptPersonIds.has(person.id)) continue
+
+			const itemStatuses = person.reservationItems.map((item) => item.status)
+			if (!canCancel(person.status, itemStatuses)) {
+				throw new TRPCError({
+					code: 'CONFLICT',
+					message: 'Osobu, která už má vybavení vydané, nelze odebrat',
+				})
+			}
 
 			await tx.person.update({
 				where: { id: person.id },
@@ -159,6 +177,12 @@ export const updateReservation = async (data: UpdateReservationInput) => {
 				}
 
 				if (held) {
+					if (!canRemoveItem(held.status)) {
+						throw new TRPCError({
+							code: 'CONFLICT',
+							message: 'Vydané ani vrácené vybavení nelze odebrat ani vyměnit',
+						})
+					}
 					await tx.reservationItem.update({
 						where: { id: held.id },
 						data: { status: CANCELLED, cancelledAt: new Date() },
