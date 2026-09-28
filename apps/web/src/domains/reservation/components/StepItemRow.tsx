@@ -7,6 +7,7 @@ import { NEXT_STEP_ACTION_LABELS, RESERVATION_STATUS_META } from '../helpers/res
 import type { SheetStep } from '../helpers/sheetSteps'
 import { type ReservationItem, statusRank } from '../helpers/stepUnits'
 import { useAdvanceReservationItem, useUndoReservationItem } from '../reservationQueries'
+import { ItemFlagNote, isItemBehind } from './FlagBadges'
 import { StatusText } from './StatusText'
 
 type StepItemRowProps = {
@@ -93,8 +94,10 @@ export const StepItemRow = ({ item, step }: StepItemRowProps) => {
 					disabled={isBusy}
 					onCheckedChange={toggle}
 				/>
-				<span className={cn('font-mono text-sm', item.overdue && 'text-destructive')}>{label}</span>
-				{item.overdue && <span className="text-destructive text-xs">po termínu</span>}
+				<span className={cn('font-mono text-sm', isItemBehind(item) && 'text-destructive')}>
+					{label}
+				</span>
+				<ItemFlagNote item={item} />
 				<span className="ml-auto">
 					<StatusText status={shownDone ? step.to : step.from} />
 				</span>

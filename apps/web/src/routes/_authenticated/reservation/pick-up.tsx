@@ -35,7 +35,7 @@ export const Route = createFileRoute('/_authenticated/reservation/pick-up')({
 function RouteComponent() {
 	const { filters, setFilters, resetFilters } = useFilters(Route.id)
 	const [openId, setOpenId] = useState<string | null>(null)
-	const { page, itemsPerPage, orderBy, orderDirection, search, statuses, kind, from, to } = filters
+	const { page, itemsPerPage, orderBy, orderDirection, search, kind, from, to } = filters
 
 	const handleFilterClick = (nextOrderBy: GetReservationsInput['orderBy']) => {
 		setFilters({
@@ -45,7 +45,7 @@ function RouteComponent() {
 		})
 	}
 
-	/*  Reservations starting inside the selected window  */
+	/*  Reservations starting inside the selected window, or flagged from before it  */
 	const { data } = useSuspenseQuery(trpc.reservation.list.queryOptions(toListInput(filters)))
 
 	return (
@@ -77,12 +77,7 @@ function RouteComponent() {
 						currentSearch={filters}
 					/>
 
-					<ReservationFilters
-						kind={kind}
-						onKindChange={(kind) => setFilters({ kind, page: 1 })}
-						statuses={statuses}
-						onStatusesChange={(statuses) => setFilters({ statuses, page: 1 })}
-					/>
+					<ReservationFilters kind={kind} onKindChange={(kind) => setFilters({ kind, page: 1 })} />
 				</div>
 			</div>
 

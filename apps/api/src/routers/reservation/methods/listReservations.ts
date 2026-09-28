@@ -1,8 +1,71 @@
 import { prisma } from '@ski-blazek/db'
-import type { Prisma } from '@ski-blazek/db/browser'
+import { type Prisma, ReservationStatus } from '@ski-blazek/db/browser'
+import { holdsWhere } from '../../../lib/holds'
 import { isReservationOverdue, overdueWhere } from '../../../lib/overdue'
+import {
+	isReservationLatePrep,
+	isReservationMissedPickup,
+	isReservationPrepToday,
+	latePrepWhere,
+	missedPickupWhere,
+	prepTodayWhere,
+} from '../../../lib/startDateFlags'
 import { canCancel } from '../../../lib/statusFlow'
 import type { GetReservationsInput } from '../../../schemas/reservation'
+
+/**
+ * Which reservations fall in the `fromDate`–`toDate` window. The *_DUE modes
+ * are the counter pages' lists: what is due in the window, plus everything
+ * flagged from before it — a customer who should have come last Friday must
+ * not fall off the sheet because the week turned over — and only reservations
+ * still holding gear in that page's status(es).
+ */
+const windowWhere = (
+	dateMode: GetReservationsInput['dateMode'],
+	fromDate: Date,
+	toDate: Date,
+	now: Date
+): Prisma.ReservationWhereInput => {
+	switch (dateMode) {
+		case 'PREP_DUE':
+			return {
+				startDate: { lte: toDate },
+				AND: [
+					{ OR: [{ startDate: { gte: fromDate } }, prepTodayWhere(now), latePrepWhere(now)] },
+					holdsWhere([ReservationStatus.BOOKED]),
+				],
+			}
+		case 'PICKUP_DUE':
+			return {
+				startDate: { lte: toDate },
+				AND: [
+					{
+						OR: [
+							{ startDate: { gte: fromDate } },
+							prepTodayWhere(now),
+							latePrepWhere(now),
+							missedPickupWhere(now),
+						],
+					},
+					holdsWhere([ReservationStatus.BOOKED, ReservationStatus.PREPARED]),
+				],
+			}
+		case 'RETURN_DUE':
+			return {
+				endDate: { lte: toDate },
+				AND: [
+					{ OR: [{ endDate: { gte: fromDate } }, overdueWhere(now)] },
+					holdsWhere([ReservationStatus.PICKED_UP]),
+				],
+			}
+		case 'RETURN': // takes gear back this week
+			return { endDate: { gte: fromDate, lte: toDate } }
+		case 'ACTIVE': // out at any point this week
+			return { startDate: { lte: toDate }, endDate: { gte: fromDate } }
+		default: // PICKUP: hands gear out this week
+			return { startDate: { gte: fromDate, lte: toDate } }
+	}
+}
 
 export const listReservations = async ({
 	orderBy,
@@ -25,20 +88,7 @@ export const listReservations = async ({
 	const toDate = to ? new Date(`${to}T23:59:59.999Z`) : undefined
 	const now = new Date()
 
-	const dateWhere: Prisma.ReservationWhereInput =
-		!fromDate || !toDate
-			? {}
-			: dateMode === 'RETURN'
-				? { endDate: { gte: fromDate, lte: toDate } } // takes gear back this week
-				: dateMode === 'RETURN_DUE'
-					? // takes gear back this week, or should have already
-						{
-							endDate: { lte: toDate },
-							OR: [{ endDate: { gte: fromDate } }, overdueWhere(now)],
-						}
-					: dateMode === 'ACTIVE'
-						? { startDate: { lte: toDate }, endDate: { gte: fromDate } } // out at any point this week
-						: { startDate: { gte: fromDate, lte: toDate } } // PICKUP (default): hands gear out this week
+	const dateWhere = !fromDate || !toDate ? {} : windowWhere(dateMode, fromDate, toDate, now)
 
 	const where: Prisma.ReservationWhereInput = {
 		...(search && {
@@ -72,7 +122,7 @@ export const listReservations = async ({
 				seasonal: true,
 				createdAt: true,
 				_count: { select: { people: true, reservationItems: true } },
-				// only to work out `canCancel` and `overdue` below
+				// only to work out `canCancel` and the flags below
 				people: { select: { status: true, reservationItems: { select: { status: true } } } },
 				reservationItems: { select: { status: true } },
 			},
@@ -95,6 +145,9 @@ export const listReservations = async ({
 			[...people, ...reservationItems].map((child) => child.status)
 		),
 		overdue: isReservationOverdue({ endDate: reservation.endDate, people }, now),
+		prepToday: isReservationPrepToday({ startDate: reservation.startDate, people }, now),
+		latePrep: isReservationLatePrep({ startDate: reservation.startDate, people }, now),
+		missedPickup: isReservationMissedPickup({ startDate: reservation.startDate, people }, now),
 	}))
 
 	return { reservations, totalCount }

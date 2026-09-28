@@ -3,7 +3,7 @@ import { TableCell, TableRow } from '@ski-blazek/ui/components/table'
 import { Link } from '@tanstack/react-router'
 import { formatDate } from '~/lib/format'
 import type { ReservationListItem } from '../reservation.types'
-import { OverdueBadge } from './OverdueBadge'
+import { LatePrepBadge, MissedPickupBadge, OverdueBadge, PrepTodayBadge } from './FlagBadges'
 import { ReservationActions } from './ReservationActions'
 import { ReservationStatusBadge } from './ReservationStatusBadge'
 
@@ -40,7 +40,16 @@ export const ReservationRow = ({ reservation, onOpen }: ReservationRowProps) => 
 			)}
 		</TableCell>
 		<TableCell>{reservation.phoneNumber}</TableCell>
-		<TableCell>{formatDate(reservation.startDate)}</TableCell>
+		<TableCell>
+			{formatDate(reservation.startDate)}
+			{(reservation.prepToday || reservation.latePrep || reservation.missedPickup) && (
+				<span className="ml-2 inline-flex gap-1">
+					{reservation.prepToday && <PrepTodayBadge />}
+					{reservation.latePrep && <LatePrepBadge />}
+					{reservation.missedPickup && <MissedPickupBadge />}
+				</span>
+			)}
+		</TableCell>
 		<TableCell>
 			{formatDate(reservation.endDate)}
 			{reservation.overdue && (

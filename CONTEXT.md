@@ -47,8 +47,19 @@ The equipment will not go out on this reservation. Only something that is still 
 _Avoid_: Deleted, removed
 
 **Overdue**:
-A reservation item still Picked up after its reservation's end date has passed. On the end date itself the item is due, not overdue; it becomes overdue the next day. A person with no reservation items (renting only accessories) is overdue on the same terms, since their accessories are still out. A person or reservation is overdue when any of its items or people is, so one child's skis still out keep the whole family overdue after the parents have returned theirs. Seasonal reservations follow the same rule, since their end date is the season return deadline. Equipment that was never picked up is not overdue.
+A reservation item still Picked up after its reservation's end date has passed. On the end date itself the item is due, not overdue; it becomes overdue the next day. A person with no reservation items (renting only accessories) is overdue on the same terms, since their accessories are still out. A person or reservation is overdue when any of its items or people is, so one child's skis still out keep the whole family overdue after the parents have returned theirs. Seasonal reservations follow the same rule, since their end date is the season return deadline. Equipment that was never picked up is not overdue; it is a Late prep or a Missed pickup instead.
 _Avoid_: Late, past due, unreturned
+
+**Prep today**:
+A reservation item still Booked on its reservation's start date: it has to be prepared today. The next day it becomes a Late prep. Rolls up like Overdue: a person or reservation is Prep today when any of its items or people is, and a person renting only accessories counts when they are still Booked themselves.
+
+**Late prep**:
+A reservation item still Booked after its reservation's start date has passed. It stays a Late prep until staff prepare it or cancel it, even once the reservation's end date has passed too. Rolls up like Overdue.
+_Avoid_: Unprepared, overdue prep
+
+**Missed pickup**:
+A reservation item still Prepared after its reservation's start date has passed: it was ready, but the customer has not taken it. On the start date itself it is not missed yet. It stays a Missed pickup until staff hand it over or cancel it, even once the reservation's end date has passed too. Rolls up like Overdue, so a family where one child's skis were never collected is a Missed pickup even while the parents' gear is out, and can be Overdue at the same time.
+_Avoid_: No-show, overdue pickup
 
 **Rolled-up status**:
 A person's status is worked out from their reservation items, and a reservation's status from its people: it is the least advanced status among the ones not cancelled. A family where one ski has not been picked up yet is not Picked up. A person with no reservation items (someone renting only accessories) has no items to work it out from, so staff move that person through the statuses directly. A person or reservation becomes Cancelled only when staff cancel it, never because everything under it happens to be cancelled.

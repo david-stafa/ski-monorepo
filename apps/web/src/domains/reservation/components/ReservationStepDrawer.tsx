@@ -23,7 +23,7 @@ import { NEXT_STEP_ACTION_LABELS, RESERVATION_STATUS_META } from '../helpers/res
 import type { SheetStep } from '../helpers/sheetSteps'
 import { getPersonUnits, itemsWord, statusRank } from '../helpers/stepUnits'
 import { useBulkStep } from '../reservationQueries'
-import { OverdueBadge } from './OverdueBadge'
+import { FlagBadges } from './FlagBadges'
 import { StepPersonBlock } from './StepPersonBlock'
 
 type ReservationStepDrawerProps = {
@@ -80,7 +80,7 @@ const DrawerBody = ({ reservationId, step }: { reservationId: string; step: Shee
 			<SheetHeader className="border-b pr-12">
 				<div className="flex items-center gap-2">
 					<SheetTitle className="text-lg">{reservation.name}</SheetTitle>
-					{reservation.overdue && <OverdueBadge />}
+					<FlagBadges flags={reservation} />
 					<DropdownMenu>
 						<DropdownMenuTrigger
 							render={

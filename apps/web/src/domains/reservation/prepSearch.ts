@@ -1,15 +1,23 @@
 import { type GetReservationsInput, getReservationsInputSchema } from '@ski-blazek/api/schemas'
-import { ReservationStatus } from '@ski-blazek/db/browser'
 import { z } from 'zod'
 import { getWeekRange } from '~/lib/dateRange'
 
-// No status in the URL: the prep view is a to-do list, so it is fixed to Booked
-// (see toListInput). A fully prepared reservation drops off it; a partly
-// prepared one stays, because it still rolls up to Booked.
+/**
+ * Search params for the prep page, a to-do list of gear still to come off the
+ * shelf. It is the shared reservation list input with no status in the URL —
+ * `PREP_DUE` itself keeps only what still has something Booked, so a fully
+ * prepared reservation drops off and a partly prepared one stays — and:
+ *
+ * - `from` / `to` default to the current week, resolved in the browser for the
+ *   same reason as on the pick-up page.
+ * - `dateMode` is fixed to PREP_DUE: starts in the window, plus every Prep
+ *   today and Late prep from before it, so browsing next week still shows what
+ *   has to be ready today.
+ */
 export const prepSearchSchema = getReservationsInputSchema.omit({ statuses: true }).extend({
 	from: z.iso.date().default(() => getWeekRange().from),
 	to: z.iso.date().default(() => getWeekRange().to),
-	dateMode: z.literal('PICKUP').default('PICKUP'),
+	dateMode: z.literal('PREP_DUE').default('PREP_DUE'),
 })
 
 export type PrepSearch = z.infer<typeof prepSearchSchema>
@@ -34,7 +42,6 @@ export const toListInput = ({
 	page,
 	itemsPerPage,
 	search,
-	statuses: [ReservationStatus.BOOKED],
 	from,
 	to,
 	dateMode,

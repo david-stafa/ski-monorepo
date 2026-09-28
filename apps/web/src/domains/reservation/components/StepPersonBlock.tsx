@@ -21,7 +21,7 @@ import {
 } from '../helpers/stepUnits'
 import { useAdvancePerson, useBulkStep, useUndoPerson } from '../reservationQueries'
 import { CancelPersonDialog } from './CancelPersonDialog'
-import { OverdueBadge } from './OverdueBadge'
+import { FlagBadges } from './FlagBadges'
 import { StatusText } from './StatusText'
 import { StepItemRow } from './StepItemRow'
 
@@ -114,7 +114,7 @@ export const StepPersonBlock = ({ person, step }: StepPersonBlockProps) => {
 					</span>
 				</span>
 				<span className="ml-auto flex items-center gap-1">
-					{person.overdue && <OverdueBadge />}
+					<FlagBadges flags={person} />
 					{accessoriesOnly ? (
 						<StatusText status={shownAll ? step.to : person.status} />
 					) : (

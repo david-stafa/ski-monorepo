@@ -19,7 +19,7 @@ import {
 } from 'lucide-react'
 import { useState } from 'react'
 import { CancelReservationDialog } from '~/domains/reservation/components/CancelReservationDialog'
-import { OverdueBadge } from '~/domains/reservation/components/OverdueBadge'
+import { FlagBadges } from '~/domains/reservation/components/FlagBadges'
 import { ReservationPersonCard } from '~/domains/reservation/components/ReservationPersonCard'
 import { ReservationStepper } from '~/domains/reservation/components/ReservationStepper'
 import {
@@ -79,13 +79,13 @@ function RouteComponent() {
 				Zpět
 			</Button>
 
-			{/*  Title, Overdue as the one loud badge, the one primary action  */}
+			{/*  Title, the flags as the loud badges, the one primary action  */}
 			<section className="mb-6 flex flex-wrap items-start justify-between gap-4">
 				<div>
 					<div className="mb-2 flex flex-wrap items-center gap-2">
 						<TypographyH1>{reservation.name}</TypographyH1>
 						{reservation.seasonal && <Badge variant="outline">Sezónní</Badge>}
-						{reservation.overdue && <OverdueBadge />}
+						<FlagBadges flags={reservation} />
 					</div>
 					<p className="text-muted-foreground">
 						{reservation.phoneNumber} · {formatDate(reservation.startDate)} –{' '}

@@ -44,7 +44,7 @@ function RouteComponent() {
 			page: 1,
 		})
 	}
-	/*  Reservations starting inside the selected window  */
+	/*  Reservations starting inside the selected window, or flagged from before it  */
 	const { data } = useSuspenseQuery(trpc.reservation.list.queryOptions(toListInput(filters)))
 	return (
 		<div>

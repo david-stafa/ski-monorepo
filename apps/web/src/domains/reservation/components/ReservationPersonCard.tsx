@@ -29,8 +29,8 @@ import {
 	useUndoReservationItem,
 } from '../reservationQueries'
 import { CancelPersonDialog } from './CancelPersonDialog'
+import { FlagBadges, ItemFlagNote, isItemBehind } from './FlagBadges'
 import { GenderIcon } from './GenderIcon'
-import { OverdueBadge } from './OverdueBadge'
 import { StatusText } from './StatusText'
 
 /**
@@ -65,7 +65,7 @@ export const ReservationPersonCard = ({ person }: { person: ReservationPerson })
 				</span>
 				{person.level && <Badge variant="outline">{LEVEL_LABELS[person.level]}</Badge>}
 				<span className="ml-auto flex items-center gap-2">
-					{person.overdue && <OverdueBadge />}
+					<FlagBadges flags={person} />
 					{/* rolled up from their items by the API, or moved by hand without any */}
 					<StatusText status={person.status} />
 					{(movedByHand || cancellable) && (
@@ -112,10 +112,10 @@ const ItemRow = ({ item }: { item: ReservationItem }) => (
 			item.status === 'CANCELLED' && 'text-muted-foreground line-through'
 		)}
 	>
-		<span className={cn('font-mono text-sm', item.overdue && 'text-destructive')}>
+		<span className={cn('font-mono text-sm', isItemBehind(item) && 'text-destructive')}>
 			{getEquipmentItemLabel(item.equipmentItem)}
 		</span>
-		{item.overdue && <span className="text-destructive text-xs">po termínu</span>}
+		<ItemFlagNote item={item} />
 		<span className="ml-auto flex items-center gap-1">
 			<StatusText status={item.status} />
 			{item.status === 'CANCELLED' ? (

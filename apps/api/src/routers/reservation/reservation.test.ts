@@ -372,6 +372,213 @@ describe('overdue', () => {
 	})
 })
 
+describe('start date flags', () => {
+	// the test reservation starts 10 January 2027
+	const setToday = (date: string) => vi.setSystemTime(new Date(`${date}T12:00:00Z`))
+	beforeEach(() => {
+		vi.useFakeTimers({ toFake: ['Date'] })
+	})
+	afterEach(() => {
+		vi.useRealTimers()
+	})
+
+	it('a Booked item on its start date is Prep today, and so are its person and reservation', async () => {
+		const dadSki = await createTestSki()
+		const childSki = await createTestSki()
+		const id = await createTestReservation([{ SKI: dadSki }, { SKI: childSki }])
+		await advanceItemTo(id, dadSki, 'PREPARED')
+		setToday('2027-01-10')
+
+		const reservation = await caller.reservation.get({ id })
+
+		expect(reservation.prepToday).toBe(true)
+		expect(
+			Object.fromEntries(reservation.people.map((person) => [person.name, person.prepToday]))
+		).toEqual({ 'Person 1': false, 'Person 2': true })
+		expect(
+			Object.fromEntries(
+				reservation.people
+					.flatMap((person) => person.reservationItems)
+					.map((item) => [item.equipmentItemId, item.prepToday])
+			)
+		).toEqual({ [dadSki]: false, [childSki]: true })
+	})
+
+	it('from the day after the start date it is a Late prep instead, even past the end date', async () => {
+		const skiId = await createTestSki()
+		const id = await createTestReservation([{ SKI: skiId }])
+
+		setToday('2027-01-11')
+		const nextDay = await caller.reservation.get({ id })
+		expect(nextDay.prepToday).toBe(false)
+		expect(nextDay.latePrep).toBe(true)
+		expect(nextDay.people[0]?.latePrep).toBe(true)
+		expect(nextDay.people[0]?.reservationItems[0]?.latePrep).toBe(true)
+
+		setToday('2027-01-20')
+		expect((await caller.reservation.get({ id })).latePrep).toBe(true)
+	})
+
+	it('a Prepared item is not missed on its start date, only from the day after', async () => {
+		const skiId = await createTestSki()
+		const id = await createTestReservation([{ SKI: skiId }])
+		await advanceItemTo(id, skiId, 'PREPARED')
+
+		setToday('2027-01-10')
+		expect((await caller.reservation.get({ id })).missedPickup).toBe(false)
+
+		setToday('2027-01-11')
+		const nextDay = await caller.reservation.get({ id })
+		expect(nextDay.missedPickup).toBe(true)
+		expect(nextDay.latePrep).toBe(false)
+		expect(nextDay.people[0]?.missedPickup).toBe(true)
+		expect(nextDay.people[0]?.reservationItems[0]?.missedPickup).toBe(true)
+	})
+
+	it('a family whose child never collected is a Missed pickup and Overdue at once', async () => {
+		const dadSki = await createTestSki()
+		const childSki = await createTestSki()
+		const id = await createTestReservation([{ SKI: dadSki }, { SKI: childSki }])
+		await advanceItemTo(id, dadSki, 'PICKED_UP')
+		await advanceItemTo(id, childSki, 'PREPARED')
+		setToday('2027-01-20')
+
+		const reservation = await caller.reservation.get({ id })
+
+		expect(reservation.overdue).toBe(true)
+		expect(reservation.missedPickup).toBe(true)
+		expect(
+			Object.fromEntries(reservation.people.map((person) => [person.name, person.missedPickup]))
+		).toEqual({ 'Person 1': false, 'Person 2': true })
+	})
+
+	it('an accessories-only person still Booked counts on their own', async () => {
+		const id = await createTestReservation([{}])
+		setToday('2027-01-10')
+
+		const reservation = await caller.reservation.get({ id })
+
+		expect(reservation.prepToday).toBe(true)
+		expect(reservation.people[0]?.prepToday).toBe(true)
+	})
+
+	/** Lists the window as the given page does, as `id → the flags asked for`. */
+	const listFlags = async (
+		dateMode: GetReservationsInput['dateMode'],
+		window: { from: string; to: string },
+		flags: ('prepToday' | 'latePrep' | 'missedPickup' | 'overdue')[]
+	) => {
+		const { reservations, totalCount } = await caller.reservation.list({ ...window, dateMode })
+		expect(totalCount).toBe(reservations.length)
+		return Object.fromEntries(
+			reservations.map((reservation) => [
+				reservation.id,
+				Object.fromEntries(flags.map((flag) => [flag, reservation[flag]])),
+			])
+		)
+	}
+
+	it('the prep list holds the window plus everything still to prepare from before it', async () => {
+		const ids = {
+			late: await createTestReservation([{}]),
+			today: await createTestReservation([{}], { startDate: '2027-01-20', endDate: '2027-01-22' }),
+			inWindow: await createTestReservation([{}], {
+				startDate: '2027-01-26',
+				endDate: '2027-01-28',
+			}),
+			preparedEarlier: await createTestReservation([{}]),
+			preparedInWindow: await createTestReservation([{}], {
+				startDate: '2027-01-27',
+				endDate: '2027-01-29',
+			}),
+			afterWindow: await createTestReservation([{}], {
+				startDate: '2027-02-05',
+				endDate: '2027-02-07',
+			}),
+		}
+		await advanceReservation(ids.preparedEarlier)
+		await advanceReservation(ids.preparedInWindow)
+		setToday('2027-01-20')
+
+		// looking ahead to next week
+		expect(
+			await listFlags('PREP_DUE', { from: '2027-01-25', to: '2027-01-31' }, [
+				'prepToday',
+				'latePrep',
+			])
+		).toEqual({
+			[ids.late]: { prepToday: false, latePrep: true },
+			[ids.today]: { prepToday: true, latePrep: false },
+			[ids.inWindow]: { prepToday: false, latePrep: false },
+		})
+	})
+
+	it('the pick-up list holds the window plus everything flagged from before it', async () => {
+		const early = { startDate: '2027-01-10', endDate: '2027-01-15' }
+		const today = { startDate: '2027-01-20', endDate: '2027-01-22' }
+		const ids = {
+			prepToday: await createTestReservation([{}], today),
+			latePrep: await createTestReservation([{}], early),
+			missedPickup: await createTestReservation([{}], early),
+			preparedForToday: await createTestReservation([{}], today),
+			pickedUpEarlier: await createTestReservation([{}], early),
+			inWindow: await createTestReservation([{}], {
+				startDate: '2027-01-26',
+				endDate: '2027-01-28',
+			}),
+			pickedUpInWindow: await createTestReservation([{}], {
+				startDate: '2027-01-27',
+				endDate: '2027-01-29',
+			}),
+		}
+		await advanceReservation(ids.missedPickup)
+		await advanceReservation(ids.pickedUpInWindow)
+		await advanceReservation(ids.pickedUpInWindow)
+		await advanceReservation(ids.preparedForToday)
+		await advanceReservation(ids.pickedUpEarlier)
+		await advanceReservation(ids.pickedUpEarlier)
+		setToday('2027-01-20')
+
+		// looking ahead to next week; today's Prepared ones are ordinary rows of this week
+		expect(
+			await listFlags('PICKUP_DUE', { from: '2027-01-25', to: '2027-01-31' }, [
+				'prepToday',
+				'latePrep',
+				'missedPickup',
+			])
+		).toEqual({
+			[ids.prepToday]: { prepToday: true, latePrep: false, missedPickup: false },
+			[ids.latePrep]: { prepToday: false, latePrep: true, missedPickup: false },
+			[ids.missedPickup]: { prepToday: false, latePrep: false, missedPickup: true },
+			[ids.inWindow]: { prepToday: false, latePrep: false, missedPickup: false },
+		})
+	})
+
+	it('the return list keeps a family with gear out, though one child never collected', async () => {
+		const dadSki = await createTestSki()
+		const childSki = await createTestSki()
+		const family = await createTestReservation([{ SKI: dadSki }, { SKI: childSki }])
+		await advanceItemTo(family, dadSki, 'PICKED_UP')
+		await advanceItemTo(family, childSki, 'PREPARED')
+		const returned = await createTestReservation([{}])
+		await advanceReservation(returned)
+		await advanceReservation(returned)
+		await advanceReservation(returned)
+		const neverCollected = await createTestReservation([{}])
+		await advanceReservation(neverCollected)
+		setToday('2027-01-12')
+
+		// the family rolls up to Prepared, yet the dad's skis are due back this week
+		expect((await caller.reservation.get({ id: family })).status).toBe('PREPARED')
+		expect(
+			await listFlags('RETURN_DUE', { from: '2027-01-11', to: '2027-01-17' }, [
+				'missedPickup',
+				'overdue',
+			])
+		).toEqual({ [family]: { missedPickup: true, overdue: false } })
+	})
+})
+
 describe('step', () => {
 	/** Dad has a Prepared ski and Booked boots; the child has a Prepared snowboard. */
 	const createPickUpFamily = async () => {
