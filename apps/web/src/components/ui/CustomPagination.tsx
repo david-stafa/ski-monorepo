@@ -1,6 +1,7 @@
 import {
 	Pagination,
 	PaginationContent,
+	PaginationEllipsis,
 	PaginationItem,
 	PaginationLink,
 	PaginationNext,
@@ -16,6 +17,30 @@ import {
 import { cn } from '@ski-blazek/ui/lib/utils'
 import { Link } from '@tanstack/react-router'
 
+/**
+ * Which page buttons to show: the first page, the last page, and the current
+ * page with one neighbour on each side. Anything skipped becomes a 'gap' (…).
+ *
+ * Page 9 of 30  →  1 … 8 9 10 … 30
+ *
+ * A gap that would hide just one page shows that page instead, since the
+ * number takes the same space as the "…" would.
+ */
+function getVisiblePages(currentPage: number, totalPages: number): (number | 'gap')[] {
+	const wanted = new Set([1, currentPage - 1, currentPage, currentPage + 1, totalPages])
+	const sorted = [...wanted].filter((page) => page >= 1 && page <= totalPages).sort((a, b) => a - b)
+
+	const result: (number | 'gap')[] = []
+	let previous = 0
+	for (const page of sorted) {
+		if (page - previous === 2) result.push(previous + 1)
+		if (page - previous > 2) result.push('gap')
+		result.push(page)
+		previous = page
+	}
+	return result
+}
+
 type CustomPaginationProps = {
 	currentPage: number
 	itemsCount: number
@@ -28,7 +53,7 @@ export const CustomPagination = ({
 	itemsPerPage,
 }: CustomPaginationProps) => {
 	const totalPages = Math.ceil(itemsCount / itemsPerPage)
-	const pages = Array.from({ length: totalPages }, (_, index) => index + 1)
+	const pages = getVisiblePages(currentPage, totalPages)
 
 	if (itemsCount === 0) return null
 
@@ -50,20 +75,28 @@ export const CustomPagination = ({
 								className={cn(currentPage === 1 && 'invisible')}
 							/>
 						}
+						text="Zpět"
 					/>
 				</PaginationItem>
 
 				{/* Pages */}
-				{pages.map((page) => (
-					<PaginationItem key={page}>
-						<PaginationLink
-							isActive={currentPage === page}
-							render={<Link to="." search={(prev) => ({ ...prev, page, itemsPerPage })} />}
-						>
-							{page}
-						</PaginationLink>
-					</PaginationItem>
-				))}
+				{pages.map((page, index) =>
+					page === 'gap' ? (
+						// A gap never moves on its own, so its position is a stable key.
+						<PaginationItem key={`gap-${index}`}>
+							<PaginationEllipsis />
+						</PaginationItem>
+					) : (
+						<PaginationItem key={page}>
+							<PaginationLink
+								isActive={currentPage === page}
+								render={<Link to="." search={(prev) => ({ ...prev, page, itemsPerPage })} />}
+							>
+								{page}
+							</PaginationLink>
+						</PaginationItem>
+					)
+				)}
 
 				{/* Next page */}
 				<PaginationItem>
@@ -80,6 +113,7 @@ export const CustomPagination = ({
 								className={cn(currentPage === totalPages && 'invisible')}
 							/>
 						}
+						text="Další"
 					/>
 				</PaginationItem>
 			</PaginationContent>
