@@ -135,7 +135,7 @@ const RowMenu = ({ children }: { children: React.ReactNode }) => (
 		<DropdownMenuTrigger render={<Button variant="ghost" size="icon-sm" aria-label="Další akce" />}>
 			<EllipsisVerticalIcon />
 		</DropdownMenuTrigger>
-		<DropdownMenuContent>{children}</DropdownMenuContent>
+		<DropdownMenuContent className="w-fit">{children}</DropdownMenuContent>
 	</DropdownMenu>
 )
 
@@ -158,13 +158,17 @@ const StepMenuItems = ({
 			{next && (
 				<DropdownMenuItem disabled={disabled} onClick={onAdvance}>
 					<ArrowRightIcon />
-					Posunout na {RESERVATION_STATUS_META[next].label}
+					<p>
+						Posunout na <b>{RESERVATION_STATUS_META[next].label}</b>
+					</p>
 				</DropdownMenuItem>
 			)}
 			{previous && (
-				<DropdownMenuItem disabled={disabled} onClick={onUndo}>
+				<DropdownMenuItem disabled={disabled} onClick={onUndo} className="w-full">
 					<Undo2Icon />
-					Vrátit na {RESERVATION_STATUS_META[previous].label}
+					<p>
+						Vrátit na <b>{RESERVATION_STATUS_META[previous].label}</b>
+					</p>
 				</DropdownMenuItem>
 			)}
 		</>
