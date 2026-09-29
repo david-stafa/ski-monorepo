@@ -1,4 +1,6 @@
 import { Badge } from '@ski-blazek/ui/components/badge'
+import { cn } from '@ski-blazek/ui/lib/utils'
+import { TriangleAlertIcon } from 'lucide-react'
 
 /*
  * Prep today, Late prep, Missed pickup and Overdue (see CONTEXT.md). Whether
@@ -7,44 +9,57 @@ import { Badge } from '@ski-blazek/ui/components/badge'
 
 type Flags = { prepToday: boolean; latePrep: boolean; missedPickup: boolean; overdue: boolean }
 
-/** One label per flag, for the badges and the notes beside items alike. */
-const FLAG_LABELS = {
-	prepToday: 'Připravit dnes',
-	latePrep: 'Nepřipraveno',
-	missedPickup: 'Nevyzvednuto',
-	overdue: 'Po termínu',
-} as const
+const PrepTodayBadge = () => <Badge variant="info">Připravit dnes</Badge>
 
-export const PrepTodayBadge = () => <Badge variant="info">{FLAG_LABELS.prepToday}</Badge>
-export const LatePrepBadge = () => <Badge variant="warning">{FLAG_LABELS.latePrep}</Badge>
-export const MissedPickupBadge = () => <Badge variant="warning">{FLAG_LABELS.missedPickup}</Badge>
-export const OverdueBadge = () => <Badge variant="warning">{FLAG_LABELS.overdue}</Badge>
+const BehindBadge = ({ label }: { label: string }) => (
+	<Badge variant="warning" className="font-semibold">
+		<TriangleAlertIcon strokeWidth={2.5} />
+		{label}
+	</Badge>
+)
 
-/** Every flag a reservation or person carries — a family can be a Missed
- * pickup and Overdue at once. */
+/** Every flag a reservation, person or item carries, in lifecycle order — a
+ * family can be a Missed pickup and Overdue at once. */
 export const FlagBadges = ({ flags }: { flags: Flags }) => (
 	<>
 		{flags.prepToday && <PrepTodayBadge />}
-		{flags.latePrep && <LatePrepBadge />}
-		{flags.missedPickup && <MissedPickupBadge />}
-		{flags.overdue && <OverdueBadge />}
+		{flags.latePrep && <BehindBadge label="Nepřipraveno" />}
+		{flags.missedPickup && <BehindBadge label="Nevyzvednuto" />}
+		{flags.overdue && <BehindBadge label="Nevráceno" />}
 	</>
 )
+
+const hasFlags = (flags: Flags) =>
+	flags.prepToday || flags.latePrep || flags.missedPickup || flags.overdue
+
+type FlagsOrStatusProps = {
+	flags: Flags
+	/** The status, shown when there is no flag. */
+	status: React.ReactNode
+	/** Stacked in a table's status column, side by side everywhere else. */
+	direction: 'col' | 'row'
+}
+
+/**
+ * A row's status spot: its flags if it has any, otherwise its status. Each
+ * flag already says which status it is in, so nothing is lost (see
+ * docs/reservation-status-display.md).
+ */
+export const FlagsOrStatus = ({ flags, status, direction }: FlagsOrStatusProps) => {
+	if (!hasFlags(flags)) return status
+	return (
+		<span
+			className={cn(
+				'flex gap-1',
+				direction === 'col' ? 'flex-col items-start' : 'flex-wrap items-center'
+			)}
+		>
+			<FlagBadges flags={flags} />
+		</span>
+	)
+}
 
 /** Whether an item is behind — should have been prepared, collected or
  * brought back already — so its label should stand out. Prep today is still
  * on time. */
 export const isItemBehind = (item: Flags) => item.latePrep || item.missedPickup || item.overdue
-
-/** The note beside an item. Its status allows it only one flag at a time. */
-export const ItemFlagNote = ({ item }: { item: Flags }) => {
-	if (item.prepToday) return <span className="text-primary text-xs">{FLAG_LABELS.prepToday}</span>
-	if (item.latePrep) return <ItemBehindNote label={FLAG_LABELS.latePrep} />
-	if (item.missedPickup) return <ItemBehindNote label={FLAG_LABELS.missedPickup} />
-	if (item.overdue) return <ItemBehindNote label={FLAG_LABELS.overdue} />
-	return null
-}
-
-const ItemBehindNote = ({ label }: { label: string }) => (
-	<span className="text-destructive text-xs">{label}</span>
-)

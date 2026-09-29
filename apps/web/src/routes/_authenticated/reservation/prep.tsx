@@ -90,7 +90,7 @@ function RouteComponent() {
 						>
 							Jméno
 						</TableHeadSortable>
-						<TableHead>Telefon</TableHead>
+						<TableHead>Stav</TableHead>
 						<TableHeadSortable
 							sorted={orderBy === 'startDate' ? orderDirection : false}
 							onClick={() => handleFilterClick('startDate')}
@@ -103,9 +103,9 @@ function RouteComponent() {
 						>
 							Do
 						</TableHeadSortable>
+						<TableHead>Telefon</TableHead>
 						<TableHead>Osoby</TableHead>
 						<TableHead>Vybavení</TableHead>
-						<TableHead>Stav</TableHead>
 					</TableRow>
 				</TableHeader>
 				<TableBody>

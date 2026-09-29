@@ -25,8 +25,8 @@ export const RESERVATION_STATUS_META: Record<
 	},
 	[ReservationStatus.PICKED_UP]: {
 		label: 'Vyzvednuto',
-		variant: 'default',
-		textClassName: 'text-primary',
+		variant: 'violet',
+		textClassName: 'text-violet-600 dark:text-violet-400',
 	},
 	[ReservationStatus.RETURNED]: {
 		label: 'Vráceno',

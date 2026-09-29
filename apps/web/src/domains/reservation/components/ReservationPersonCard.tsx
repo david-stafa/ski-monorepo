@@ -29,7 +29,7 @@ import {
 	useUndoReservationItem,
 } from '../reservationQueries'
 import { CancelPersonDialog } from './CancelPersonDialog'
-import { FlagBadges, ItemFlagNote, isItemBehind } from './FlagBadges'
+import { FlagsOrStatus, isItemBehind } from './FlagBadges'
 import { GenderIcon } from './GenderIcon'
 import { StatusText } from './StatusText'
 
@@ -65,9 +65,12 @@ export const ReservationPersonCard = ({ person }: { person: ReservationPerson })
 				</span>
 				{person.level && <Badge variant="outline">{LEVEL_LABELS[person.level]}</Badge>}
 				<span className="ml-auto flex items-center gap-2">
-					<FlagBadges flags={person} />
-					{/* rolled up from their items by the API, or moved by hand without any */}
-					<StatusText status={person.status} />
+					{/* status rolled up from their items by the API, or moved by hand without any */}
+					<FlagsOrStatus
+						flags={person}
+						direction="row"
+						status={<StatusText status={person.status} />}
+					/>
 					{(movedByHand || cancellable) && (
 						<RowMenu>
 							{movedByHand && <PersonStepItems person={person} />}
@@ -115,9 +118,8 @@ const ItemRow = ({ item }: { item: ReservationItem }) => (
 		<span className={cn('font-mono text-sm', isItemBehind(item) && 'text-destructive')}>
 			{getEquipmentItemLabel(item.equipmentItem)}
 		</span>
-		<ItemFlagNote item={item} />
 		<span className="ml-auto flex items-center gap-1">
-			<StatusText status={item.status} />
+			<FlagsOrStatus flags={item} direction="row" status={<StatusText status={item.status} />} />
 			{item.status === 'CANCELLED' ? (
 				// keeps the status column lined up with the rows that have a menu
 				<span className="size-8" />

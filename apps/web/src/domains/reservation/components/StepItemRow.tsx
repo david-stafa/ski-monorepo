@@ -1,13 +1,14 @@
 import { nextStatus } from '@ski-blazek/api/schemas'
+import type { ReservationStatus } from '@ski-blazek/db/browser'
 import { Button } from '@ski-blazek/ui/components/button'
 import { Checkbox } from '@ski-blazek/ui/components/checkbox'
 import { cn } from '@ski-blazek/ui/lib/utils'
 import { getEquipmentItemLabel } from '../helpers/getEquipmentItemLabel'
-import { NEXT_STEP_ACTION_LABELS, RESERVATION_STATUS_META } from '../helpers/reservationStatus'
+import { NEXT_STEP_ACTION_LABELS } from '../helpers/reservationStatus'
 import type { SheetStep } from '../helpers/sheetSteps'
 import { type ReservationItem, statusRank } from '../helpers/stepUnits'
 import { useAdvanceReservationItem, useUndoReservationItem } from '../reservationQueries'
-import { ItemFlagNote, isItemBehind } from './FlagBadges'
+import { FlagsOrStatus, isItemBehind } from './FlagBadges'
 import { StatusText } from './StatusText'
 
 type StepItemRowProps = {
@@ -15,11 +16,18 @@ type StepItemRowProps = {
 	step: SheetStep
 }
 
+/** What gear not yet at a sheet's step is waiting for. Worded unlike the Late
+ * prep and Missed pickup flags, which it gives way to when the gear has one. */
+const WAITING_LABELS: Partial<Record<ReservationStatus, string>> = {
+	BOOKED: 'Čeká na přípravu',
+	PREPARED: 'Čeká na výdej',
+}
+
 /**
  * One piece of gear on a counter sheet. Ticked means it has made this sheet's
  * step; unticking steps it back. Gear not yet at the step is greyed out as
- * "Nepřipraveno" (or "Nevyzvednuto" on Vrácení), with a button when it is only
- * the one step short; gear already past it is ticked and locked.
+ * waiting ("Čeká na přípravu"), or shows its flag, with a button when it is
+ * only the one step short; gear already past it is ticked and locked.
  */
 export const StepItemRow = ({ item, step }: StepItemRowProps) => {
 	const advance = useAdvanceReservationItem()
@@ -37,9 +45,13 @@ export const StepItemRow = ({ item, step }: StepItemRowProps) => {
 				<Checkbox className="size-5" disabled checked={false} />
 				<span className="text-muted-foreground font-mono text-sm">{label}</span>
 				<span className="ml-auto flex items-center gap-2">
-					<span className="text-warning text-sm">
-						Ne{RESERVATION_STATUS_META[step.from].label.toLowerCase()}
-					</span>
+					<FlagsOrStatus
+						flags={item}
+						direction="row"
+						status={
+							<span className="text-muted-foreground text-sm">{WAITING_LABELS[item.status]}</span>
+						}
+					/>
 					{oneStepShort && (
 						<Button
 							variant="outline"
@@ -62,7 +74,11 @@ export const StepItemRow = ({ item, step }: StepItemRowProps) => {
 				<Checkbox className="size-5" disabled checked />
 				<span className="text-muted-foreground font-mono text-sm">{label}</span>
 				<span className="ml-auto">
-					<StatusText status={item.status} />
+					<FlagsOrStatus
+						flags={item}
+						direction="row"
+						status={<StatusText status={item.status} />}
+					/>
 				</span>
 			</li>
 		)
@@ -97,9 +113,18 @@ export const StepItemRow = ({ item, step }: StepItemRowProps) => {
 				<span className={cn('font-mono text-sm', isItemBehind(item) && 'text-destructive')}>
 					{label}
 				</span>
-				<ItemFlagNote item={item} />
 				<span className="ml-auto">
-					<StatusText status={shownDone ? step.to : step.from} />
+					{/* its flags are for where it was: while the click is on its way,
+					    show where it's going, then whatever the API says */}
+					{isBusy ? (
+						<StatusText status={shownDone ? step.to : step.from} />
+					) : (
+						<FlagsOrStatus
+							flags={item}
+							direction="row"
+							status={<StatusText status={shownDone ? step.to : step.from} />}
+						/>
+					)}
 				</span>
 			</label>
 		</li>

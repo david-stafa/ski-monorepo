@@ -1,9 +1,10 @@
 import { Badge } from '@ski-blazek/ui/components/badge'
 import { TableCell, TableRow } from '@ski-blazek/ui/components/table'
+import { cn } from '@ski-blazek/ui/lib/utils'
 import { Link } from '@tanstack/react-router'
 import { formatDate } from '~/lib/format'
 import type { ReservationListItem } from '../reservation.types'
-import { LatePrepBadge, MissedPickupBadge, OverdueBadge, PrepTodayBadge } from './FlagBadges'
+import { FlagsOrStatus } from './FlagBadges'
 import { ReservationActions } from './ReservationActions'
 import { ReservationStatusBadge } from './ReservationStatusBadge'
 
@@ -15,6 +16,10 @@ type ReservationRowProps = {
 	onOpen?: () => void
 }
 
+// Long names are cut short so the status column right after them stays put;
+// the full name is in the tooltip.
+const NAME_CLASS = 'inline-block max-w-56 truncate align-middle font-medium'
+
 export const ReservationRow = ({ reservation, onOpen }: ReservationRowProps) => (
 	<TableRow className={onOpen && 'h-14 cursor-pointer'} onClick={onOpen}>
 		{/* its own menu, not a click on the row */}
@@ -23,12 +28,15 @@ export const ReservationRow = ({ reservation, onOpen }: ReservationRowProps) => 
 		</TableCell>
 		<TableCell>
 			{onOpen ? (
-				<span className="font-medium">{reservation.name}</span>
+				<span className={NAME_CLASS} title={reservation.name}>
+					{reservation.name}
+				</span>
 			) : (
 				<Link
 					to="/reservation/$reservationId"
 					params={{ reservationId: reservation.id }}
-					className="font-medium hover:underline"
+					className={cn(NAME_CLASS, 'hover:underline')}
+					title={reservation.name}
 				>
 					{reservation.name}
 				</Link>
@@ -39,29 +47,17 @@ export const ReservationRow = ({ reservation, onOpen }: ReservationRowProps) => 
 				</Badge>
 			)}
 		</TableCell>
+		<TableCell>
+			<FlagsOrStatus
+				flags={reservation}
+				direction="col"
+				status={<ReservationStatusBadge status={reservation.status} />}
+			/>
+		</TableCell>
+		<TableCell>{formatDate(reservation.startDate)}</TableCell>
+		<TableCell>{formatDate(reservation.endDate)}</TableCell>
 		<TableCell>{reservation.phoneNumber}</TableCell>
-		<TableCell>
-			{formatDate(reservation.startDate)}
-			{(reservation.prepToday || reservation.latePrep || reservation.missedPickup) && (
-				<span className="ml-2 inline-flex gap-1">
-					{reservation.prepToday && <PrepTodayBadge />}
-					{reservation.latePrep && <LatePrepBadge />}
-					{reservation.missedPickup && <MissedPickupBadge />}
-				</span>
-			)}
-		</TableCell>
-		<TableCell>
-			{formatDate(reservation.endDate)}
-			{reservation.overdue && (
-				<span className="ml-2">
-					<OverdueBadge />
-				</span>
-			)}
-		</TableCell>
 		<TableCell>{reservation._count.people}</TableCell>
 		<TableCell>{reservation._count.reservationItems}</TableCell>
-		<TableCell>
-			<ReservationStatusBadge status={reservation.status} />
-		</TableCell>
 	</TableRow>
 )

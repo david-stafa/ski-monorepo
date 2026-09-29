@@ -7,7 +7,6 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from '@ski-blazek/ui/components/dropdown-menu'
-import { cn } from '@ski-blazek/ui/lib/utils'
 import { BanIcon, EllipsisVerticalIcon } from 'lucide-react'
 import { useState } from 'react'
 import { getPersonAccessories } from '../helpers/getPersonAccessories'
@@ -21,7 +20,7 @@ import {
 } from '../helpers/stepUnits'
 import { useAdvancePerson, useBulkStep, useUndoPerson } from '../reservationQueries'
 import { CancelPersonDialog } from './CancelPersonDialog'
-import { FlagBadges } from './FlagBadges'
+import { FlagsOrStatus } from './FlagBadges'
 import { StatusText } from './StatusText'
 import { StepItemRow } from './StepItemRow'
 
@@ -52,7 +51,6 @@ export const StepPersonBlock = ({ person, step }: StepPersonBlockProps) => {
 	const waiting = units.filter((unit) => statusRank(unit.status) < statusRank(step.from))
 	const all = movable.length > 0 && notMoved.length === 0 && waiting.length === 0
 	const some = moved.length > 0 && !all
-	const doneCount = units.filter((unit) => statusRank(unit.status) >= statusRank(step.to)).length
 
 	// The tick shows where the click is going at once; if the API refuses,
 	// the refetch puts it back.
@@ -114,18 +112,15 @@ export const StepPersonBlock = ({ person, step }: StepPersonBlockProps) => {
 					</span>
 				</span>
 				<span className="ml-auto flex items-center gap-1">
-					<FlagBadges flags={person} />
-					{accessoriesOnly ? (
+					{/* like an item row: while a click is on its way, where it's going */}
+					{isBusy ? (
 						<StatusText status={shownAll ? step.to : person.status} />
 					) : (
-						<span
-							className={cn(
-								'text-sm tabular-nums',
-								doneCount === units.length ? 'text-primary' : 'text-muted-foreground'
-							)}
-						>
-							{doneCount}/{units.length} {RESERVATION_STATUS_META[step.to].label.toLowerCase()}
-						</span>
+						<FlagsOrStatus
+							flags={person}
+							direction="row"
+							status={<StatusText status={person.status} />}
+						/>
 					)}
 					{cancellable && (
 						<DropdownMenu>
