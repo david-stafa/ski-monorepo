@@ -67,6 +67,16 @@ const windowWhere = (
 	}
 }
 
+/**
+ * The main list's filter: starts on or after `fromDate`, ends on or before
+ * `toDate`. Unlike the window modes each end works alone, and neither means no
+ * date filter at all.
+ */
+const withinWhere = (fromDate?: Date, toDate?: Date): Prisma.ReservationWhereInput => ({
+	...(fromDate && { startDate: { gte: fromDate } }),
+	...(toDate && { endDate: { lte: toDate } }),
+})
+
 export const listReservations = async ({
 	orderBy,
 	orderDirection,
@@ -88,7 +98,12 @@ export const listReservations = async ({
 	const toDate = to ? new Date(`${to}T23:59:59.999Z`) : undefined
 	const now = new Date()
 
-	const dateWhere = !fromDate || !toDate ? {} : windowWhere(dateMode, fromDate, toDate, now)
+	let dateWhere: Prisma.ReservationWhereInput = {}
+	if (dateMode === 'WITHIN') {
+		dateWhere = withinWhere(fromDate, toDate)
+	} else if (fromDate && toDate) {
+		dateWhere = windowWhere(dateMode, fromDate, toDate, now)
+	}
 
 	const where: Prisma.ReservationWhereInput = {
 		...(search && {

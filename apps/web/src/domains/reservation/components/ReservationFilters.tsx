@@ -12,6 +12,7 @@ import {
 	SelectValue,
 } from '@ski-blazek/ui/components/select'
 import { ListFilterIcon } from 'lucide-react'
+import { DateFilter } from '~/components/ui/DateFilter'
 import { RESERVATION_STATUS_META, RESERVATION_STATUS_OPTIONS } from '../helpers/reservationStatus'
 
 const KIND_ITEMS: { value: ReservationKindFilter; label: string }[] = [
@@ -27,6 +28,12 @@ type ReservationFiltersProps = {
 	 * An empty list means no status filter. */
 	statuses?: ReservationStatus[]
 	onStatusesChange?: (statuses: ReservationStatus[]) => void
+	/** Leave the date props out on a page with its own date window (the
+	 * counter pages). Undefined means that end is open. */
+	from?: string
+	to?: string
+	onFromChange?: (from: string | undefined) => void
+	onToChange?: (to: string | undefined) => void
 }
 
 /** The ticked statuses in dropdown order rather than click order, so the same
@@ -41,6 +48,10 @@ export const ReservationFilters = ({
 	onKindChange,
 	statuses,
 	onStatusesChange,
+	from,
+	to,
+	onFromChange,
+	onToChange,
 }: ReservationFiltersProps) => (
 	<Popover>
 		<PopoverTrigger render={<Button variant="default" />}>
@@ -102,6 +113,20 @@ export const ReservationFilters = ({
 					</SelectContent>
 				</Select>
 			</div>
+
+			{onFromChange && (
+				<div className="flex items-center justify-between gap-4">
+					<Label htmlFor="from">Od</Label>
+					<DateFilter id="from" className="w-45" value={from} onValueChange={onFromChange} />
+				</div>
+			)}
+
+			{onToChange && (
+				<div className="flex items-center justify-between gap-4">
+					<Label htmlFor="to">Do</Label>
+					<DateFilter id="to" className="w-45" value={to} onValueChange={onToChange} />
+				</div>
+			)}
 		</PopoverContent>
 	</Popover>
 )

@@ -267,6 +267,23 @@ describe('list', () => {
 		expect(await listedIds([])).toEqual(all)
 		expect(await listedIds()).toEqual(all)
 	})
+
+	it('the main date filter bounds the start and the end, each on its own', async () => {
+		const ids = {
+			early: await createTestReservation([{}], { startDate: '2027-01-05', endDate: '2027-01-12' }),
+			middle: await createTestReservation([{}], { startDate: '2027-01-10', endDate: '2027-01-15' }),
+			late: await createTestReservation([{}], { startDate: '2027-01-14', endDate: '2027-01-20' }),
+		}
+		const listWithin = async (dates: { from?: string; to?: string }) => {
+			const { reservations } = await caller.reservation.list({ ...dates, dateMode: 'WITHIN' })
+			return reservations.map((reservation) => reservation.id).sort()
+		}
+
+		expect(await listWithin({ from: '2027-01-10' })).toEqual([ids.middle, ids.late].sort())
+		expect(await listWithin({ to: '2027-01-15' })).toEqual([ids.early, ids.middle].sort())
+		expect(await listWithin({ from: '2027-01-10', to: '2027-01-15' })).toEqual([ids.middle])
+		expect(await listWithin({})).toEqual(Object.values(ids).sort())
+	})
 })
 
 describe('overdue', () => {

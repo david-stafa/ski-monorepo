@@ -25,7 +25,18 @@ import { trpc } from '~/lib/trpc'
 export const Route = createFileRoute('/_authenticated/reservation/')({
 	validateSearch: listSearchSchema,
 	loaderDeps: ({
-		search: { page, itemsPerPage, orderBy, orderDirection, search, statuses, kind },
+		search: {
+			page,
+			itemsPerPage,
+			orderBy,
+			orderDirection,
+			search,
+			statuses,
+			kind,
+			from,
+			to,
+			dateMode,
+		},
 	}) => ({
 		page,
 		itemsPerPage,
@@ -34,6 +45,9 @@ export const Route = createFileRoute('/_authenticated/reservation/')({
 		search,
 		statuses,
 		kind,
+		from,
+		to,
+		dateMode,
 	}),
 	loader: async ({ context, deps }) => {
 		return context.queryClient.ensureQueryData(context.trpc.reservation.list.queryOptions(deps))
@@ -43,7 +57,18 @@ export const Route = createFileRoute('/_authenticated/reservation/')({
 
 function RouteComponent() {
 	const {
-		filters: { page, itemsPerPage, orderBy, orderDirection, search, statuses, kind },
+		filters: {
+			page,
+			itemsPerPage,
+			orderBy,
+			orderDirection,
+			search,
+			statuses,
+			kind,
+			from,
+			to,
+			dateMode,
+		},
 		setFilters,
 		resetFilters,
 	} = useFilters(Route.id)
@@ -66,6 +91,9 @@ function RouteComponent() {
 			search,
 			statuses,
 			kind,
+			from,
+			to,
+			dateMode,
 		})
 	)
 
@@ -106,6 +134,9 @@ function RouteComponent() {
 							search,
 							statuses,
 							kind,
+							from,
+							to,
+							dateMode,
 						}}
 					/>
 
@@ -117,6 +148,10 @@ function RouteComponent() {
 						onStatusesChange={(statuses) =>
 							setFilters({ statuses: statuses.length > 0 ? statuses : undefined, page: 1 })
 						}
+						from={from}
+						to={to}
+						onFromChange={(from) => setFilters({ from, page: 1 })}
+						onToChange={(to) => setFilters({ to, page: 1 })}
 					/>
 				</div>
 			</div>

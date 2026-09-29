@@ -127,9 +127,10 @@ export const getReservationsInputSchema = paginationSchema.extend({
 	// TODO: Create shared dateMode enum - maybe use unum from Prisma
 	// The *_DUE modes are the counter pages' lists: the window plus everything
 	// flagged from before it, and only reservations still holding gear in that
-	// page's status(es) — see listReservations
+	// page's status(es) — see listReservations. WITHIN is the main list's: each
+	// end is optional and bounds the reservation's own dates
 	dateMode: z
-		.enum(['PICKUP', 'PREP_DUE', 'PICKUP_DUE', 'RETURN', 'RETURN_DUE', 'ACTIVE'])
+		.enum(['PICKUP', 'PREP_DUE', 'PICKUP_DUE', 'RETURN', 'RETURN_DUE', 'ACTIVE', 'WITHIN'])
 		.optional(),
 	// seasonal vs regular reservations; 'all' keeps both
 	kind: z.enum(['all', 'seasonal', 'regular']).default('all'),
