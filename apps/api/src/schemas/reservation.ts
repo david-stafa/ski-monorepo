@@ -134,7 +134,7 @@ export const getReservationsInputSchema = paginationSchema.extend({
 		.optional(),
 	// seasonal vs regular reservations; 'all' keeps both
 	kind: z.enum(['all', 'seasonal', 'regular']).default('all'),
-	orderBy: z.enum(['name', 'startDate', 'endDate']).default('startDate'),
+	orderBy: z.enum(['name', 'startDate', 'endDate', 'createdAt']).default('startDate'),
 	orderDirection: z.enum(['asc', 'desc']).default('asc'),
 })
 

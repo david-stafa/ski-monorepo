@@ -14,13 +14,15 @@ type ReservationRowProps = {
 	 * queue: the whole row is the tap target then. Without it, the name links to
 	 * the detail page, as on the main list. */
 	onOpen?: () => void
+	/** Only the main list has the Vytvořeno column. */
+	showCreatedAt?: boolean
 }
 
 // Long names are cut short so the status column right after them stays put;
 // the full name is in the tooltip.
 const NAME_CLASS = 'inline-block max-w-56 truncate align-middle font-medium'
 
-export const ReservationRow = ({ reservation, onOpen }: ReservationRowProps) => (
+export const ReservationRow = ({ reservation, onOpen, showCreatedAt }: ReservationRowProps) => (
 	<TableRow className={onOpen && 'h-14 cursor-pointer'} onClick={onOpen}>
 		{/* its own menu, not a click on the row */}
 		<TableCell onClick={(event) => event.stopPropagation()}>
@@ -59,5 +61,6 @@ export const ReservationRow = ({ reservation, onOpen }: ReservationRowProps) => 
 		<TableCell>{reservation.phoneNumber}</TableCell>
 		<TableCell>{reservation._count.people}</TableCell>
 		<TableCell>{reservation._count.reservationItems}</TableCell>
+		{showCreatedAt && <TableCell>{formatDate(reservation.createdAt)}</TableCell>}
 	</TableRow>
 )

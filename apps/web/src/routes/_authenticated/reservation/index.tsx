@@ -183,17 +183,25 @@ function RouteComponent() {
 						<TableHead>Telefon</TableHead>
 						<TableHead>Osoby</TableHead>
 						<TableHead>Vybavení</TableHead>
+						<TableHeadSortable
+							sorted={orderBy === 'createdAt' ? orderDirection : false}
+							onClick={() => handleFilterClick('createdAt')}
+						>
+							Vytvořeno
+						</TableHeadSortable>
 					</TableRow>
 				</TableHeader>
 				<TableBody>
 					{data.reservations.length === 0 ? (
 						<TableRow>
-							<TableCell colSpan={8} className="h-50 text-center">
+							<TableCell colSpan={9} className="h-50 text-center">
 								Žádné rezervace nebyly nalezeny.
 							</TableCell>
 						</TableRow>
 					) : (
-						data.reservations.map((item) => <ReservationRow reservation={item} key={item.id} />)
+						data.reservations.map((item) => (
+							<ReservationRow reservation={item} key={item.id} showCreatedAt />
+						))
 					)}
 				</TableBody>
 			</Table>
