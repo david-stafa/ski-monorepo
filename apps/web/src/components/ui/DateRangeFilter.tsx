@@ -79,6 +79,7 @@ export const DateRangeFilter = ({ from, to, onRangeChange }: DateRangeFilterProp
 					onSelect={handleSelect}
 					defaultMonth={parseISO(from)}
 					numberOfMonths={2}
+					showOutsideDays={false}
 					autoFocus
 				/>
 			</PopoverContent>
