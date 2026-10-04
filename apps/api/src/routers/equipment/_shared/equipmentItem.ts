@@ -4,6 +4,7 @@ import { protectedProcedure, router } from '../../_context'
 import { archiveUnchecked } from './methods/archiveUnchecked'
 import { deleteEquipmentItem } from './methods/deleteEquipmentItem'
 import { findAvailable } from './methods/findAvailable'
+import { findReservations } from './methods/findReservations'
 import { previewStockSweep } from './methods/previewStockSweep'
 import { retireEquipmentItem } from './methods/retireEquipmentItem'
 import { setChecked } from './methods/setChecked'
@@ -22,6 +23,9 @@ export const equipmentItemRouter = router({
 	findAvailable: protectedProcedure.input(findAvailableInputSchema).query(async ({ input }) => {
 		return await findAvailable(input)
 	}),
+	findReservations: protectedProcedure
+		.input(equipmentIdInputSchema)
+		.query(async ({ input }) => await findReservations(input)),
 
 	/*  Roční inventura  */
 	setChecked: protectedProcedure.input(setCheckedInputSchema).mutation(async ({ input }) => {

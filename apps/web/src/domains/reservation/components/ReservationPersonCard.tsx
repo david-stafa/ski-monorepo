@@ -10,6 +10,7 @@ import {
 	DropdownMenuTrigger,
 } from '@ski-blazek/ui/components/dropdown-menu'
 import { cn } from '@ski-blazek/ui/lib/utils'
+import { Link } from '@tanstack/react-router'
 import { ArrowRightIcon, BanIcon, EllipsisVerticalIcon, Undo2Icon } from 'lucide-react'
 import { useState } from 'react'
 import { getEquipmentItemLabel } from '../helpers/getEquipmentItemLabel'
@@ -115,9 +116,13 @@ const ItemRow = ({ item }: { item: ReservationItem }) => (
 			item.status === 'CANCELLED' && 'text-muted-foreground line-through'
 		)}
 	>
-		<span className={cn('font-mono text-sm', isItemBehind(item) && 'text-destructive')}>
+		<Link
+			to="/equipment/$equipmentId"
+			params={{ equipmentId: item.equipmentItem.id }}
+			className={cn('font-mono text-sm hover:underline', isItemBehind(item) && 'text-destructive')}
+		>
 			{getEquipmentItemLabel(item.equipmentItem)}
-		</span>
+		</Link>
 		<span className="ml-auto flex items-center gap-1">
 			<FlagsOrStatus flags={item} direction="row" status={<StatusText status={item.status} />} />
 			{item.status === 'CANCELLED' ? (

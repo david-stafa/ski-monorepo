@@ -12,7 +12,7 @@ import {
 import { TypographyH1 } from '@ski-blazek/ui/components/typography'
 import { cn } from '@ski-blazek/ui/lib/utils'
 import { useSuspenseQuery } from '@tanstack/react-query'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { z } from 'zod'
 import { GenderBadge } from '~/components/ui/badges/GenderBadge'
 import { CustomItemPerPageSelect, CustomPagination } from '~/components/ui/CustomPagination'
@@ -67,6 +67,7 @@ function RouteComponent() {
 		setFilters,
 		resetFilters,
 	} = useFilters(Route.id)
+	const navigate = useNavigate()
 
 	const isInventory = Boolean(inventory)
 	const defaultSearch = getSnowboardInputSchema.parse({})
@@ -212,14 +213,22 @@ function RouteComponent() {
 						data.snowboards.map((item) => (
 							<TableRow
 								key={item.id}
+								onClick={() =>
+									navigate({
+										to: '/equipment/$equipmentId',
+										params: { equipmentId: item.equipmentItemId },
+									})
+								}
 								className={cn(
+									'cursor-pointer',
 									isInventory &&
 										isChecked(item.equipmentItem.lastCheckedAt) &&
 										'bg-success/10 hover:bg-success/15'
 								)}
 							>
 								{isInventory && (
-									<TableCell>
+									// its own control, not a click on the row
+									<TableCell onClick={(event) => event.stopPropagation()}>
 										<StockCheckCheckbox
 											equipmentItemId={item.equipmentItemId}
 											lastCheckedAt={item.equipmentItem.lastCheckedAt}
@@ -227,7 +236,11 @@ function RouteComponent() {
 										/>
 									</TableCell>
 								)}
-								<TableCell className="flex items-center gap-2">
+								<TableCell
+									className="flex items-center gap-2"
+									// its menu and dialogs, not a click on the row
+									onClick={(event) => event.stopPropagation()}
+								>
 									<SnowboardActions defaultValues={item} />
 								</TableCell>
 								<TableCell>{formatArticleNumber(item.equipmentItem)}</TableCell>

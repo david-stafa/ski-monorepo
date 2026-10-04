@@ -3,11 +3,23 @@ import { formatArticleNumber } from '~/domains/equipment/_shared/helpers/formatA
 import { formatCircumference, helmetSizeLabel } from '~/domains/equipment/helmet/helmetOptions'
 import type { Outputs } from '~/lib/trpc'
 
-type AvailableItem = Outputs['equipment']['equipmentItem']['findAvailable'][number]
+/** Only the fields the label reads, so any query that includes the five
+ * subtype relations can use it — not just findAvailable. */
+type LabelledItem = Pick<
+	Outputs['equipment']['equipmentItem']['findAvailable'][number],
+	| 'type'
+	| 'articleGroup'
+	| 'articleNumber'
+	| 'ski'
+	| 'snowboard'
+	| 'skiBoot'
+	| 'snowboardBoot'
+	| 'helmet'
+>
 
 /** Drops the parts a piece of gear does not have and spaces out the rest. */
 const line = (...parts: (string | false | null | undefined)[]) => parts.filter(Boolean).join(' ')
-const describeEquipmentItem = (item: AvailableItem): string | null => {
+const describeEquipmentItem = (item: LabelledItem): string | null => {
 	switch (item.type) {
 		case 'SKI': {
 			const ski = item.ski
@@ -68,7 +80,7 @@ const describeEquipmentItem = (item: AvailableItem): string | null => {
 	}
 }
 
-export const getEquipmentItemLabel = (item: AvailableItem): string => {
+export const getEquipmentItemLabel = (item: LabelledItem): string => {
 	const article = formatArticleNumber(item)
 	const description = describeEquipmentItem(item)
 
