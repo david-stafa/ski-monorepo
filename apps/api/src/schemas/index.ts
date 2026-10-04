@@ -45,7 +45,7 @@ export {
 	reservationIdInputSchema,
 	reservationInputSchema,
 } from './reservation'
-export { seasonReturnDeadline, seasonStart } from './season'
+export { seasonPickupDate, seasonReturnDeadline, seasonStart } from './season'
 export {
 	type CreateSkiInput,
 	createSkiInputSchema,

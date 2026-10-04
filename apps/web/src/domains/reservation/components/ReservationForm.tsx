@@ -3,6 +3,7 @@ import {
 	type ReservationDetail,
 	type ReservationInput,
 	reservationInputSchema,
+	seasonPickupDate,
 	seasonReturnDeadline,
 } from '@ski-blazek/api/schemas'
 import { Button } from '@ski-blazek/ui/components/button'
@@ -17,10 +18,6 @@ import { getPersonEditLocks } from '../helpers/getPersonEditLocks'
 import { type InitialValuesProps, initialValues } from '../helpers/initialValues'
 import { useCreateReservation, useUpdateReservation } from '../reservationQueries'
 import { PersonFormCard } from './PersonFormCard'
-
-/** Where a create goes once saved: the new reservation's detail, or a blank
- * form for the next one. An edit always goes back to the detail. */
-type SubmitMeta = { next: 'detail' | 'new' }
 
 type ReservationFormProps = {
 	reservation?: ReservationDetail
@@ -71,10 +68,16 @@ export const ReservationForm = ({ reservation, searchParams }: ReservationFormPr
 					if (!fieldApi.state.value) return
 
 					const deadline = seasonReturnDeadline(formApi.state.values.startDate)
+					const pickUp = seasonPickupDate(formApi.state.values.startDate)
 					// e.g. prefilled from a fitting — the end date is already right
-					if (deadline.getTime() === formApi.state.values.endDate.getTime()) return
+					if (
+						deadline.getTime() === formApi.state.values.endDate.getTime() &&
+						pickUp.getTime() === formApi.state.values.startDate.getTime()
+					)
+						return
 
 					formApi.setFieldValue('endDate', deadline)
+					formApi.setFieldValue('startDate', pickUp)
 					clearPickedGear()
 					return
 				}
@@ -84,8 +87,8 @@ export const ReservationForm = ({ reservation, searchParams }: ReservationFormPr
 				}
 			},
 		},
-		onSubmitMeta: { next: 'detail' } as SubmitMeta,
-		onSubmit: async ({ value, meta }) => {
+
+		onSubmit: async ({ value }) => {
 			// An edit writes back to the row it was loaded from and leaves the
 			// edit screen, so there is nothing to reset.
 			if (reservation) {
@@ -97,18 +100,10 @@ export const ReservationForm = ({ reservation, searchParams }: ReservationFormPr
 			} else {
 				const created = await createReservation.mutateAsync(value)
 
-				if (meta.next === 'detail') {
-					await navigate({
-						to: '/reservation/$reservationId',
-						params: { reservationId: created.reservation.id },
-					})
-				} else {
-					// reset to a blank form, not the defaults — a form prefilled from a
-					// fitting would otherwise come back with the same customer in it
-					form.reset(initialValues())
-					setPersonKeys([crypto.randomUUID()])
-					await navigate({ to: '/reservation/create' })
-				}
+				await navigate({
+					to: '/reservation/$reservationId',
+					params: { reservationId: created.reservation.id },
+				})
 			}
 		},
 	})
@@ -224,16 +219,6 @@ export const ReservationForm = ({ reservation, searchParams }: ReservationFormPr
 							className="flex-1"
 							size={'lg'}
 						/>
-						{!isEdit && (
-							<form.SubscribeButton
-								label="Vytvořit a přidat další"
-								variant="outline"
-								className="flex-1"
-								size={'lg'}
-								type="button"
-								onClick={() => form.handleSubmit({ next: 'new' })}
-							/>
-						)}
 					</div>
 				</form.AppForm>
 			</form>

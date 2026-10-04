@@ -29,6 +29,8 @@ export const seasonStart = (at: Date = new Date()) => {
  */
 const SEASON_RETURN_DEADLINE = { month: 2, day: 31 }
 
+const SEASON_PICKUP_DATE = { month: 9, day: 26 }
+
 /**
  * End of the return-deadline day in the season `at` falls in — the end date a
  * seasonal reservation starting at `at` gets. Returned as end of day, matching
@@ -39,6 +41,17 @@ export const seasonReturnDeadline = (at: Date) =>
 		seasonStart(at).getFullYear() + 1,
 		SEASON_RETURN_DEADLINE.month,
 		SEASON_RETURN_DEADLINE.day,
+		23,
+		59,
+		59,
+		999
+	)
+
+export const seasonPickupDate = (at: Date) =>
+	new Date(
+		seasonStart(at).getFullYear(),
+		SEASON_PICKUP_DATE.month,
+		SEASON_PICKUP_DATE.day,
 		23,
 		59,
 		59,
