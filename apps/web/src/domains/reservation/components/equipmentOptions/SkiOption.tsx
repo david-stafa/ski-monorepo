@@ -1,3 +1,4 @@
+import { GenderBadge } from '~/components/ui/badges/GenderBadge'
 import { KidsBadge } from '~/components/ui/badges/KidsBadge'
 import { LengthBadge } from '~/components/ui/badges/LengthBadge'
 import { OldBadge } from '~/components/ui/badges/OldBadge'
@@ -12,6 +13,7 @@ export const SkiOption = ({ article, ski }: { article: string; ski: SkiDetail })
 			<>
 				{/* Display Kids Badge only when it might be tricky to decide if it is adult or kid ski */}
 				{ski.isKids && ski.length >= 140 && <KidsBadge />}
+				{ski.gender === 'FEMALE' && <GenderBadge gender="FEMALE" isKid={ski.isKids} />}
 				{ski.isOld && <OldBadge />}
 				{ski.isVIP && <VipBadge />}
 			</>
