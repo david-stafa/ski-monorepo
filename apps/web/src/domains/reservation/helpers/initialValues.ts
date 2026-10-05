@@ -1,4 +1,8 @@
-import { type ReservationInput, seasonReturnDeadline } from '@ski-blazek/api/schemas'
+import {
+	type ReservationInput,
+	seasonPickupDate,
+	seasonReturnDeadline,
+} from '@ski-blazek/api/schemas'
 import { addDays, endOfDay, startOfDay } from 'date-fns'
 import { createEmptyPerson } from './createEmptyPerson'
 
@@ -19,7 +23,7 @@ export const initialValues = ({
 	return {
 		name: name ?? '',
 		phoneNumber: phoneNumber ?? '',
-		startDate: today,
+		startDate: seasonal ? seasonPickupDate(today) : today,
 		endDate: seasonal ? seasonReturnDeadline(today) : tomorrow,
 		seasonal,
 		note: null,
