@@ -2,12 +2,14 @@ import { type EquipmentItemType, Gender } from '@ski-blazek/db/browser'
 import { Button } from '@ski-blazek/ui/components/button'
 import { TypographyH4 } from '@ski-blazek/ui/components/typography'
 import { TrashIcon, UserIcon } from 'lucide-react'
+import { useState } from 'react'
 import { withForm } from '~/components/form/SharedFormFields'
 import { goggleOptions } from '../helpers/goggleOptions'
 import { initialValues } from '../helpers/initialValues'
 import { LEVEL_OPTIONS } from '../helpers/levelMeta'
 import { poleOptions } from '../helpers/poleOptions'
 import { EquipmentComboboxField } from './EquipmentComboboxField'
+import { RemovePersonDialog } from './RemovePersonDialog'
 
 export const PersonFormCard = withForm({
 	// only read for type inference — the real values come from the parent form
@@ -17,6 +19,8 @@ export const PersonFormCard = withForm({
 		onRemove: () => {},
 		// false once they hold gear that has been picked up (see getPersonEditLocks)
 		canRemove: true,
+		// already stored on the reservation, so removing them cancels them on save
+		isSaved: false,
 		// slots whose gear has been picked up or returned: shown, but not changeable
 		lockedSlots: [] as EquipmentItemType[],
 		excludeReservationId: undefined as string | undefined,
@@ -26,9 +30,12 @@ export const PersonFormCard = withForm({
 		index,
 		onRemove,
 		canRemove,
+		isSaved,
 		lockedSlots,
 		excludeReservationId,
 	}) {
+		const [removeOpen, setRemoveOpen] = useState(false)
+
 		return (
 			<form.Subscribe
 				selector={(s) => ({
@@ -56,11 +63,18 @@ export const PersonFormCard = withForm({
 								type="button"
 								disabled={index === 0 || !canRemove}
 								hidden={index === 0 || !canRemove}
-								onClick={() => onRemove()}
+								onClick={() => setRemoveOpen(true)}
 							>
 								<TrashIcon />
 								Smazat osobu
 							</Button>
+							<RemovePersonDialog
+								open={removeOpen}
+								onOpenChange={setRemoveOpen}
+								name={form.getFieldValue(`people[${index}].name`) || `Osoba ${index + 1}`}
+								isSaved={isSaved}
+								onRemove={onRemove}
+							/>
 						</div>
 
 						<section className="flex gap-4">

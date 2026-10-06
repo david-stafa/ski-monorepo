@@ -193,6 +193,7 @@ export const ReservationForm = ({ reservation, searchParams }: ReservationFormPr
 											index={i}
 											onRemove={() => removePerson(i)}
 											canRemove={canRemove}
+											isSaved={saved !== undefined}
 											lockedSlots={lockedSlots}
 											excludeReservationId={reservation?.id}
 										/>
