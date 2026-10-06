@@ -10,6 +10,7 @@ import {
 import { BanIcon, EllipsisVerticalIcon } from 'lucide-react'
 import { useState } from 'react'
 import { getPersonAccessories } from '../helpers/getPersonAccessories'
+import { LEVEL_LABELS } from '../helpers/levelMeta'
 import { RESERVATION_STATUS_META } from '../helpers/reservationStatus'
 import type { SheetStep } from '../helpers/sheetSteps'
 import {
@@ -21,6 +22,7 @@ import {
 import { useAdvancePerson, useBulkStep, useUndoPerson } from '../reservationQueries'
 import { CancelPersonDialog } from './CancelPersonDialog'
 import { FlagsOrStatus } from './FlagBadges'
+import { GenderIcon } from './GenderIcon'
 import { StatusText } from './StatusText'
 import { StepItemRow } from './StepItemRow'
 
@@ -106,9 +108,13 @@ export const StepPersonBlock = ({ person, step }: StepPersonBlockProps) => {
 					onCheckedChange={toggle}
 				/>
 				<span className="min-w-0">
-					<span className="block font-medium">{person.name}</span>
+					<span className="flex gap-1 font-medium">
+						<GenderIcon gender={person.gender} size={12} />
+						{person.name}
+					</span>
 					<span className="text-muted-foreground block text-sm">
 						{person.age} let · {person.height} cm · {person.weight} kg
+						{person.level && ` · ${LEVEL_LABELS[person.level]}`}
 					</span>
 				</span>
 				<span className="ml-auto flex items-center gap-1">
