@@ -47,7 +47,7 @@ export const ReservationStepDrawer = ({
 		{/* full width on a phone, a side panel from tablet up */}
 		<SheetContent
 			side="right"
-			className="gap-0 data-[side=right]:w-full data-[side=right]:sm:max-w-xl"
+			className="gap-0 data-[side=right]:w-full data-[side=right]:sm:max-w-2xl"
 		>
 			{reservationId && <DrawerBody reservationId={reservationId} step={step} />}
 		</SheetContent>

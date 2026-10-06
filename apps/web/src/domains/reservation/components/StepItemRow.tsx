@@ -3,12 +3,12 @@ import type { ReservationStatus } from '@ski-blazek/db/browser'
 import { Button } from '@ski-blazek/ui/components/button'
 import { Checkbox } from '@ski-blazek/ui/components/checkbox'
 import { cn } from '@ski-blazek/ui/lib/utils'
-import { getEquipmentItemLabel } from '../helpers/getEquipmentItemLabel'
 import { NEXT_STEP_ACTION_LABELS } from '../helpers/reservationStatus'
 import type { SheetStep } from '../helpers/sheetSteps'
 import { type ReservationItem, statusRank } from '../helpers/stepUnits'
 import { useAdvanceReservationItem, useUndoReservationItem } from '../reservationQueries'
-import { FlagsOrStatus, isItemBehind } from './FlagBadges'
+import { EquipmentItemOptionLabel } from './EquipmentItemOptionLabel'
+import { FlagsOrStatus } from './FlagBadges'
 import { StatusText } from './StatusText'
 
 type StepItemRowProps = {
@@ -32,7 +32,6 @@ const WAITING_LABELS: Partial<Record<ReservationStatus, string>> = {
 export const StepItemRow = ({ item, step }: StepItemRowProps) => {
 	const advance = useAdvanceReservationItem()
 	const undo = useUndoReservationItem()
-	const label = getEquipmentItemLabel(item.equipmentItem)
 	const rank = statusRank(item.status)
 
 	// not there yet, e.g. Booked boots on Výdej: offer the missing step
@@ -43,7 +42,9 @@ export const StepItemRow = ({ item, step }: StepItemRowProps) => {
 		return (
 			<li className="flex min-h-12 items-center gap-3 px-3">
 				<Checkbox className="size-5" disabled checked={false} />
-				<span className="text-muted-foreground font-mono text-sm">{label}</span>
+				<span className="text-muted-foreground font-mono text-sm">
+					<EquipmentItemOptionLabel item={item.equipmentItem} />
+				</span>
 				<span className="ml-auto flex items-center gap-2">
 					<FlagsOrStatus
 						flags={item}
@@ -72,7 +73,9 @@ export const StepItemRow = ({ item, step }: StepItemRowProps) => {
 		return (
 			<li className="flex min-h-12 items-center gap-3 px-3">
 				<Checkbox className="size-5" disabled checked />
-				<span className="text-muted-foreground font-mono text-sm">{label}</span>
+				<span className="text-muted-foreground font-mono text-sm">
+					<EquipmentItemOptionLabel item={item.equipmentItem} />
+				</span>
 				<span className="ml-auto">
 					<FlagsOrStatus
 						flags={item}
@@ -110,8 +113,8 @@ export const StepItemRow = ({ item, step }: StepItemRowProps) => {
 					disabled={isBusy}
 					onCheckedChange={toggle}
 				/>
-				<span className={cn('font-mono text-sm', isItemBehind(item) && 'text-destructive')}>
-					{label}
+				<span className="font-mono text-sm">
+					<EquipmentItemOptionLabel item={item.equipmentItem} />
 				</span>
 				<span className="ml-auto">
 					{/* its flags are for where it was: while the click is on its way,

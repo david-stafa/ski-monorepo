@@ -13,7 +13,6 @@ import { cn } from '@ski-blazek/ui/lib/utils'
 import { Link } from '@tanstack/react-router'
 import { ArrowRightIcon, BanIcon, EllipsisVerticalIcon, Undo2Icon } from 'lucide-react'
 import { useState } from 'react'
-import { getEquipmentItemLabel } from '../helpers/getEquipmentItemLabel'
 import { getPersonAccessories } from '../helpers/getPersonAccessories'
 import { LEVEL_LABELS } from '../helpers/levelMeta'
 import { RESERVATION_STATUS_META } from '../helpers/reservationStatus'
@@ -30,7 +29,8 @@ import {
 	useUndoReservationItem,
 } from '../reservationQueries'
 import { CancelPersonDialog } from './CancelPersonDialog'
-import { FlagsOrStatus, isItemBehind } from './FlagBadges'
+import { EquipmentItemOptionLabel } from './EquipmentItemOptionLabel'
+import { FlagsOrStatus } from './FlagBadges'
 import { GenderIcon } from './GenderIcon'
 import { StatusText } from './StatusText'
 
@@ -119,9 +119,9 @@ const ItemRow = ({ item }: { item: ReservationItem }) => (
 		<Link
 			to="/equipment/$equipmentId"
 			params={{ equipmentId: item.equipmentItem.id }}
-			className={cn('font-mono text-sm hover:underline', isItemBehind(item) && 'text-destructive')}
+			className="font-mono text-sm hover:underline"
 		>
-			{getEquipmentItemLabel(item.equipmentItem)}
+			<EquipmentItemOptionLabel item={item.equipmentItem} />
 		</Link>
 		<span className="ml-auto flex items-center gap-1">
 			<FlagsOrStatus flags={item} direction="row" status={<StatusText status={item.status} />} />

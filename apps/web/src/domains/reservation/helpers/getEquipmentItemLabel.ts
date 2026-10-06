@@ -32,7 +32,8 @@ const describeEquipmentItem = (item: LabelledItem): string | null => {
 				// anyway; the label keeps it so typing "dětské" finds all of them.
 				ski.isKids && 'Dětské',
 				ski.isOld && 'Starší',
-				ski.isVIP && 'VIP'
+				ski.isVIP && 'VIP',
+				ski.gender === 'FEMALE' && 'Dámské'
 			)
 		}
 		case 'SNOWBOARD': {
