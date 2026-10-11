@@ -32,7 +32,7 @@ import { CancelPersonDialog } from './CancelPersonDialog'
 import { EquipmentItemOptionLabel } from './EquipmentItemOptionLabel'
 import { FlagsOrStatus } from './FlagBadges'
 import { GenderIcon } from './GenderIcon'
-import { StatusText } from './StatusText'
+import { ReservationStatusBadge } from './ReservationStatusBadge'
 
 /**
  * One person on the detail page, the full record: every item with its status
@@ -70,7 +70,7 @@ export const ReservationPersonCard = ({ person }: { person: ReservationPerson })
 					<FlagsOrStatus
 						flags={person}
 						direction="row"
-						status={<StatusText status={person.status} />}
+						status={<ReservationStatusBadge status={person.status} />}
 					/>
 					{(movedByHand || cancellable) && (
 						<RowMenu>
@@ -124,7 +124,11 @@ const ItemRow = ({ item }: { item: ReservationItem }) => (
 			<EquipmentItemOptionLabel item={item.equipmentItem} />
 		</Link>
 		<span className="ml-auto flex items-center gap-1">
-			<FlagsOrStatus flags={item} direction="row" status={<StatusText status={item.status} />} />
+			<FlagsOrStatus
+				flags={item}
+				direction="row"
+				status={<ReservationStatusBadge status={item.status} />}
+			/>
 			{item.status === 'CANCELLED' ? (
 				// keeps the status column lined up with the rows that have a menu
 				<span className="size-8" />

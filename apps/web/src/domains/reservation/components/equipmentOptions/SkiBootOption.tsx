@@ -1,8 +1,8 @@
-import { KidsBadge } from '~/components/ui/badges/KidsBadge'
-import { LengthBadge } from '~/components/ui/badges/LengthBadge'
+import { KidsBadge } from '~/domains/equipment/_shared/components/badges/KidsBadge'
+import { LengthBadge } from '~/domains/equipment/_shared/components/badges/LengthBadge'
 import { colorLabel } from '~/domains/equipment/_shared/helpers/colorOptions'
+import type { SkiBootDetail } from '~/domains/equipment/_shared/types'
 import { OptionName, OptionRow } from './OptionRow'
-import type { SkiBootDetail } from './types'
 
 export const SkiBootOption = ({ article, boot }: { article: string; boot: SkiBootDetail }) => (
 	<OptionRow article={article} flags={boot.isKids ? <KidsBadge /> : undefined}>

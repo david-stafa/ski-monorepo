@@ -1,8 +1,8 @@
 import { Badge } from '@ski-blazek/ui/components/badge'
-import { KidsBadge } from '~/components/ui/badges/KidsBadge'
-import { LengthBadge } from '~/components/ui/badges/LengthBadge'
+import { KidsBadge } from '~/domains/equipment/_shared/components/badges/KidsBadge'
+import { LengthBadge } from '~/domains/equipment/_shared/components/badges/LengthBadge'
+import type { SnowboardBootDetail } from '~/domains/equipment/_shared/types'
 import { OptionName, OptionRow } from './OptionRow'
-import type { SnowboardBootDetail } from './types'
 
 export const SnowboardBootOption = ({
 	article,

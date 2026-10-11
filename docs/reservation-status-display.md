@@ -4,15 +4,15 @@ Inventory for the status-display cleanup. Terms are the ones in `CONTEXT.md`.
 
 ## Statuses
 
-Where an item, person or reservation is in its lifecycle. An item has its own; a person and a reservation have a rolled-up one (the least advanced status that isn't Cancelled). Labels and colours live in `RESERVATION_STATUS_META` (`apps/web/src/domains/reservation/helpers/reservationStatus.ts`).
+Where an item, person or reservation is in its lifecycle. An item has its own; a person and a reservation have a rolled-up one (the least advanced status that isn't Cancelled). Labels and colours live in `RESERVATION_STATUS_META` (`apps/web/src/domains/reservation/helpers/reservationStatus.ts`). A status is always shown as a badge (list, detail and drawer alike), never as plain text.
 
-| Status | Means | Label | Badge (list) | Text (detail, drawer) |
-| --- | --- | --- | --- | --- |
-| Booked | promised for the dates, nothing done yet | Rezervováno | `secondary` (grey) | muted grey |
-| Prepared | ready to hand over | Připraveno | `cyan` | cyan |
-| Picked up | the customer has it | Vyzvednuto | `violet` | violet |
-| Returned | back in the shop | Vráceno | `success` (green) | green |
-| Cancelled | won't go out on this reservation | Zrušeno | `destructive` (red) | red |
+| Status | Means | Label | Badge |
+| --- | --- | --- | --- |
+| Booked | promised for the dates, nothing done yet | Rezervováno | `secondary` (grey) |
+| Prepared | ready to hand over | Připraveno | `cyan` |
+| Picked up | the customer has it | Vyzvednuto | `violet` |
+| Returned | back in the shop | Vráceno | `success` (green) |
+| Cancelled | won't go out on this reservation | Zrušeno | `destructive` (red) |
 
 ## Flags
 

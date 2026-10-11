@@ -1,10 +1,10 @@
-import { GenderBadge } from '~/components/ui/badges/GenderBadge'
-import { KidsBadge } from '~/components/ui/badges/KidsBadge'
-import { LengthBadge } from '~/components/ui/badges/LengthBadge'
-import { OldBadge } from '~/components/ui/badges/OldBadge'
-import { VipBadge } from '~/components/ui/badges/VipBadge'
+import { GenderBadge } from '~/domains/equipment/_shared/components/badges/GenderBadge'
+import { KidsBadge } from '~/domains/equipment/_shared/components/badges/KidsBadge'
+import { LengthBadge } from '~/domains/equipment/_shared/components/badges/LengthBadge'
+import { OldBadge } from '~/domains/equipment/_shared/components/badges/OldBadge'
+import { VipBadge } from '~/domains/equipment/_shared/components/badges/VipBadge'
+import type { SkiDetail } from '~/domains/equipment/_shared/types'
 import { OptionName, OptionRow } from './OptionRow'
-import type { SkiDetail } from './types'
 
 export const SkiOption = ({ article, ski }: { article: string; ski: SkiDetail }) => (
 	<OptionRow

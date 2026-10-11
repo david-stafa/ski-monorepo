@@ -5,8 +5,10 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from '@ski-blazek/ui/components/dropdown-menu'
+import { Progress, ProgressLabel } from '@ski-blazek/ui/components/progress'
 import {
 	Sheet,
+	SheetClose,
 	SheetContent,
 	SheetDescription,
 	SheetFooter,
@@ -16,14 +18,24 @@ import {
 import { Skeleton } from '@ski-blazek/ui/components/skeleton'
 import { useQuery } from '@tanstack/react-query'
 import { Link } from '@tanstack/react-router'
-import { ArrowRightIcon, CheckIcon, EllipsisVerticalIcon, ExternalLinkIcon } from 'lucide-react'
-import { formatDate } from '~/lib/format'
+import { format } from 'date-fns'
+import { cs } from 'date-fns/locale'
+import {
+	ArrowRightIcon,
+	CalendarIcon,
+	CheckIcon,
+	EllipsisVerticalIcon,
+	ExternalLinkIcon,
+	MessageCircleIcon,
+	PhoneIcon,
+	XIcon,
+} from 'lucide-react'
+import { formatPhone } from '~/lib/format'
 import { trpc } from '~/lib/trpc'
 import { NEXT_STEP_ACTION_LABELS, RESERVATION_STATUS_META } from '../helpers/reservationStatus'
 import type { SheetStep } from '../helpers/sheetSteps'
 import { getPersonUnits, itemsWord, statusRank } from '../helpers/stepUnits'
 import { useBulkStep } from '../reservationQueries'
-import { FlagBadges } from './FlagBadges'
 import { StepPersonBlock } from './StepPersonBlock'
 
 type ReservationStepDrawerProps = {
@@ -47,7 +59,8 @@ export const ReservationStepDrawer = ({
 		{/* full width on a phone, a side panel from tablet up */}
 		<SheetContent
 			side="right"
-			className="gap-0 data-[side=right]:w-full data-[side=right]:sm:max-w-2xl"
+			showCloseButton={false}
+			className="gap-0 data-[side=right]:w-full data-[side=right]:sm:max-w-xl"
 		>
 			{reservationId && <DrawerBody reservationId={reservationId} step={step} />}
 		</SheetContent>
@@ -73,14 +86,15 @@ const DrawerBody = ({ reservationId, step }: { reservationId: string; step: Shee
 	const remaining = units.filter((unit) => unit.status === step.from)
 	const waiting = units.filter((unit) => statusRank(unit.status) < statusRank(step.from))
 	const anyDone = units.some((unit) => unit.status === step.to)
+	// done = reached this step's target or went past it (a returned item was also picked up)
+	const doneCount = units.filter((unit) => statusRank(unit.status) >= statusRank(step.to)).length
 	const action = NEXT_STEP_ACTION_LABELS[step.to]
 
 	return (
 		<>
-			<SheetHeader className="border-b pr-12">
+			<SheetHeader className="border-b">
 				<div className="flex items-center gap-2">
 					<SheetTitle className="text-lg">{reservation.name}</SheetTitle>
-					<FlagBadges flags={reservation} />
 					<DropdownMenu>
 						<DropdownMenuTrigger
 							render={
@@ -108,20 +122,44 @@ const DrawerBody = ({ reservationId, step }: { reservationId: string; step: Shee
 							</DropdownMenuItem>
 						</DropdownMenuContent>
 					</DropdownMenu>
+					{/* in the row instead of the sheet's own absolutely placed one, so it lines up */}
+					<SheetClose
+						render={
+							<Button variant="ghost" size="icon-sm" className="bg-secondary" aria-label="Zavřít" />
+						}
+					>
+						<XIcon />
+					</SheetClose>
 				</div>
-				<SheetDescription>
-					{reservation.phoneNumber} · {formatDate(reservation.startDate)} –{' '}
-					{formatDate(reservation.endDate)}
+				<SheetDescription className="flex flex-row gap-4 text-sm">
+					<span className="flex items-center gap-1">
+						<PhoneIcon size={14} />
+						{formatPhone(reservation.phoneNumber)}
+					</span>
+					<span className="flex items-center gap-1">
+						<CalendarIcon size={14} />
+						{format(reservation.startDate, 'EEEEEE d. M.', { locale: cs })} –{' '}
+						{format(reservation.endDate, 'EEEEEE d. M. yyyy', { locale: cs })}
+					</span>
 				</SheetDescription>
+				{units.length > 0 && (
+					<Progress value={(doneCount / units.length) * 100} className="mt-1">
+						<ProgressLabel>
+							{RESERVATION_STATUS_META[step.to].label} {doneCount} z {units.length}
+						</ProgressLabel>
+					</Progress>
+				)}
 			</SheetHeader>
 
-			<div className="flex-1 space-y-3 overflow-y-auto p-4">
-				<p className="text-muted-foreground text-sm">{step.hint}</p>
+			<div className="flex-1 space-y-4 overflow-y-auto p-4">
 				{reservation.note && (
-					<p className="text-sm">
-						<span className="text-muted-foreground">Poznámka: </span>
-						{reservation.note}
-					</p>
+					<div className="flex w-full items-start gap-2 rounded-2xl bg-input/50 px-3 py-2 text-sm">
+						<MessageCircleIcon size={14} className="mt-0.5 shrink-0 text-muted-foreground" />
+						<p>
+							<span className="text-muted-foreground">Poznámka: </span>
+							{reservation.note}
+						</p>
+					</div>
 				)}
 				{people.length === 0 ? (
 					<p className="text-muted-foreground text-sm">

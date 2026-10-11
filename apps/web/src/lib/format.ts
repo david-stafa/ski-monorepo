@@ -18,3 +18,13 @@ export const formatDate = (d: Date) => format(d, 'd. M. yyyy', { locale: cs })
  * toDateString(new Date(2026, 7, 1)) // '2026-08-01'
  */
 export const toDateString = (d: Date) => format(d, 'yyyy-MM-dd')
+
+export const formatPhone = (phone: string): string => {
+	const digits = phone.replace(/\D/g, '')
+
+	const local = digits.length === 12 && digits.startsWith('420') ? digits.slice(3) : digits
+
+	if (local.length !== 9) return phone
+
+	return `${local.slice(0, 3)} ${local.slice(3, 6)} ${local.slice(6)}`
+}

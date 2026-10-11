@@ -1,8 +1,8 @@
 import { Badge } from '@ski-blazek/ui/components/badge'
 import { colorLabel } from '~/domains/equipment/_shared/helpers/colorOptions'
+import type { HelmetDetail } from '~/domains/equipment/_shared/types'
 import { formatCircumference, helmetSizeLabel } from '~/domains/equipment/helmet/helmetOptions'
 import { OptionName, OptionRow } from './OptionRow'
-import type { HelmetDetail } from './types'
 
 export const HelmetOption = ({ article, helmet }: { article: string; helmet: HelmetDetail }) => {
 	// Both are optional until stocktaking fills them in, so each drops out on its

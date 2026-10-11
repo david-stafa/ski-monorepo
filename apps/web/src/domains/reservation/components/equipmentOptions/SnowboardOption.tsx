@@ -1,6 +1,6 @@
-import { LengthBadge } from '~/components/ui/badges/LengthBadge'
+import { LengthBadge } from '~/domains/equipment/_shared/components/badges/LengthBadge'
+import type { SnowboardDetail } from '~/domains/equipment/_shared/types'
 import { OptionName, OptionRow } from './OptionRow'
-import type { SnowboardDetail } from './types'
 
 export const SnowboardOption = ({
 	article,

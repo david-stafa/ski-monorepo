@@ -7,7 +7,8 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from '@ski-blazek/ui/components/dropdown-menu'
-import { BanIcon, EllipsisVerticalIcon } from 'lucide-react'
+import { TypographyLarge } from '@ski-blazek/ui/components/typography'
+import { BanIcon, EllipsisVerticalIcon, MessageCircleIcon } from 'lucide-react'
 import { useState } from 'react'
 import { getPersonAccessories } from '../helpers/getPersonAccessories'
 import { LEVEL_LABELS } from '../helpers/levelMeta'
@@ -21,9 +22,7 @@ import {
 } from '../helpers/stepUnits'
 import { useAdvancePerson, useBulkStep, useUndoPerson } from '../reservationQueries'
 import { CancelPersonDialog } from './CancelPersonDialog'
-import { FlagsOrStatus } from './FlagBadges'
 import { GenderIcon } from './GenderIcon'
-import { StatusText } from './StatusText'
 import { StepItemRow } from './StepItemRow'
 
 type StepPersonBlockProps = {
@@ -97,9 +96,9 @@ export const StepPersonBlock = ({ person, step }: StepPersonBlockProps) => {
 	)
 
 	return (
-		<div className="overflow-hidden rounded-lg border">
+		<div className="overflow-hidden rounded-2xl border">
 			{/* biome-ignore lint/a11y/noLabelWithoutControl: Base UI's Checkbox renders its input inside */}
-			<label className="bg-muted/40 flex min-h-14 cursor-pointer items-center gap-3 px-3 py-2">
+			<label className="bg-muted/40 flex min-h-20 cursor-pointer items-center gap-3 px-3 py-2">
 				<Checkbox
 					className="size-5"
 					checked={shownAll}
@@ -107,44 +106,44 @@ export const StepPersonBlock = ({ person, step }: StepPersonBlockProps) => {
 					disabled={movable.length === 0 || isBusy}
 					onCheckedChange={toggle}
 				/>
-				<span className="min-w-0">
-					<span className="flex gap-1 font-medium">
+				<span className="flex min-w-0 flex-1 flex-col gap-0.5">
+					<span className="flex items-center gap-2">
 						<GenderIcon gender={person.gender} size={12} />
-						{person.name}
+						<TypographyLarge className="flex min-w-0 gap-1 font-medium">
+							{person.name}
+						</TypographyLarge>
+						<span className="ml-auto flex shrink-0 items-center gap-1">
+							{cancellable && (
+								<DropdownMenu>
+									<DropdownMenuTrigger
+										render={<Button variant="ghost" size="icon-sm" aria-label="Další akce" />}
+									>
+										<EllipsisVerticalIcon />
+									</DropdownMenuTrigger>
+									<DropdownMenuContent>
+										<DropdownMenuItem variant="destructive" onClick={() => setCancelOpen(true)}>
+											<BanIcon />
+											Zrušit osobu
+										</DropdownMenuItem>
+									</DropdownMenuContent>
+								</DropdownMenu>
+							)}
+						</span>
 					</span>
-					<span className="text-muted-foreground block text-sm">
+					<span className="text-muted-foreground text-sm">
 						{person.age} let · {person.height} cm · {person.weight} kg
 						{person.level && ` · ${LEVEL_LABELS[person.level]}`}
 					</span>
 				</span>
-				<span className="ml-auto flex items-center gap-1">
-					{/* like an item row: while a click is on its way, where it's going */}
-					{isBusy ? (
-						<StatusText status={shownAll ? step.to : person.status} />
-					) : (
-						<FlagsOrStatus
-							flags={person}
-							direction="row"
-							status={<StatusText status={person.status} />}
-						/>
-					)}
-					{cancellable && (
-						<DropdownMenu>
-							<DropdownMenuTrigger
-								render={<Button variant="ghost" size="icon-sm" aria-label="Další akce" />}
-							>
-								<EllipsisVerticalIcon />
-							</DropdownMenuTrigger>
-							<DropdownMenuContent>
-								<DropdownMenuItem variant="destructive" onClick={() => setCancelOpen(true)}>
-									<BanIcon />
-									Zrušit osobu
-								</DropdownMenuItem>
-							</DropdownMenuContent>
-						</DropdownMenu>
-					)}
-				</span>
 			</label>
+
+			{/* right under the name: it's about this person, read before the gear */}
+			{person.note && (
+				<div className="flex gap-3 border-t px-3 py-2.5 text-sm">
+					<MessageCircleIcon size={16} className="text-muted-foreground mt-0.5 shrink-0" />
+					<p>{person.note}</p>
+				</div>
+			)}
 
 			{items.length > 0 && (
 				<ul className="divide-y border-t">
@@ -154,14 +153,24 @@ export const StepPersonBlock = ({ person, step }: StepPersonBlockProps) => {
 				</ul>
 			)}
 
-			{/* no status of their own: they go out and come back with the person */}
+			{/* no status of their own: they go out and come back with the person, so
+			    no checkbox — indented to line up with the item text above */}
 			{accessories.length > 0 && (
-				<p className="text-muted-foreground border-t px-3 py-2 text-sm">
-					+ {accessories.join(', ')}
-				</p>
-			)}
-			{person.note && (
-				<p className="text-muted-foreground border-t px-3 py-2 text-sm italic">{person.note}</p>
+				<div className="flex flex-col gap-2 border-t py-3 pr-3 pl-11">
+					<p className="text-muted-foreground flex items-baseline gap-2 text-xs font-semibold tracking-wide">
+						DOPLŇKY
+					</p>
+					<ul className="flex flex-wrap gap-2">
+						{accessories.map((accessory) => (
+							<li
+								key={accessory}
+								className="bg-muted flex items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-[13px] leading-none font-medium"
+							>
+								{accessory}
+							</li>
+						))}
+					</ul>
+				</div>
 			)}
 
 			<CancelPersonDialog open={cancelOpen} onOpenChange={setCancelOpen} person={person} />

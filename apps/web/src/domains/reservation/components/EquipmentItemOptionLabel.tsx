@@ -1,10 +1,10 @@
 import { formatArticleNumber } from '~/domains/equipment/_shared/helpers/formatArticleNumber'
+import type { AvailableItem } from '~/domains/equipment/_shared/types'
 import { HelmetOption } from './equipmentOptions/HelmetOption'
 import { SkiBootOption } from './equipmentOptions/SkiBootOption'
 import { SkiOption } from './equipmentOptions/SkiOption'
 import { SnowboardBootOption } from './equipmentOptions/SnowboardBootOption'
 import { SnowboardOption } from './equipmentOptions/SnowboardOption'
-import type { AvailableItem } from './equipmentOptions/types'
 
 /** A detail row is missing, which the app cannot produce — see below. */
 const ArticleOnly = ({ article }: { article: string }) => (
