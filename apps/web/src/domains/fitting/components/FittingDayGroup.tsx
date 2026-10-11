@@ -28,16 +28,16 @@ export const FittingDayGroup = ({ date, fittings, columnCount }: FittingDayGroup
 			{fittings.map((fitting) => (
 				<TableRow
 					key={fitting.id}
-					className={cn('hover:bg-muted/20', isOver(fitting) && 'text-muted-foreground ')}
+					className={cn('hover:bg-muted/20', isOver(fitting) && 'text-muted-foreground')}
 				>
-					<TableCell className="tabular-nums whitespace-nowrap">
+					<TableCell className="whitespace-nowrap tabular-nums">
 						{fitting.startTime}–{fitting.endTime}
 					</TableCell>
 					<TableCell>
 						{fitting.firstName} {fitting.lastName}
 					</TableCell>
 					<TableCell className="tabular-nums">{fitting.peopleCount}</TableCell>
-					<TableCell className="tabular-nums whitespace-nowrap">{fitting.phone}</TableCell>
+					<TableCell className="whitespace-nowrap tabular-nums">{fitting.phone}</TableCell>
 					<TableCell>
 						<ButtonLink
 							size="sm"

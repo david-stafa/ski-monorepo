@@ -54,7 +54,7 @@ export const ReservationPersonCard = ({ person }: { person: ReservationPerson })
 	return (
 		<div
 			className={cn(
-				'bg-background rounded-lg border',
+				'rounded-lg border bg-background',
 				person.status === 'CANCELLED' && 'opacity-60'
 			)}
 		>
@@ -96,12 +96,12 @@ export const ReservationPersonCard = ({ person }: { person: ReservationPerson })
 			)}
 
 			{accessories.length > 0 && (
-				<p className="text-muted-foreground border-t px-3 py-2 text-sm">
+				<p className="border-t px-3 py-2 text-muted-foreground text-sm">
 					+ {accessories.join(', ')}
 				</p>
 			)}
 			{person.note && (
-				<p className="text-muted-foreground border-t px-3 py-2 text-sm italic">{person.note}</p>
+				<p className="border-t px-3 py-2 text-muted-foreground text-sm italic">{person.note}</p>
 			)}
 
 			<CancelPersonDialog open={cancelOpen} onOpenChange={setCancelOpen} person={person} />

@@ -100,11 +100,11 @@ function RouteComponent() {
 	return (
 		<div>
 			{/*  TODO: stats  */}
-			<section className="flex justify-between items-center mb-6">
+			<section className="mb-6 flex items-center justify-between">
 				{/*  Title with total count  */}
 				<TypographyH1 className="mb-6">
 					Rezervace
-					<span className="ml-1 align-super text-sm text-gray-500">({data.totalCount})</span>
+					<span className="ml-1 align-super text-gray-500 text-sm">({data.totalCount})</span>
 				</TypographyH1>
 
 				<ButtonLink to="/reservation/create" size="sm">
@@ -206,7 +206,7 @@ function RouteComponent() {
 				</TableBody>
 			</Table>
 
-			<div className="flex items-center justify-between ">
+			<div className="flex items-center justify-between">
 				{/*  Pagination  */}
 				<CustomPagination
 					currentPage={page}

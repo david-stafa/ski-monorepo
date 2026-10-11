@@ -172,7 +172,7 @@ const DrawerBody = ({ reservationId, step }: { reservationId: string; step: Shee
 
 			<SheetFooter className="border-t">
 				{waiting.length > 0 && (
-					<p className="text-muted-foreground text-center text-sm">
+					<p className="text-center text-muted-foreground text-sm">
 						Na předchozí krok čeká: {waiting.length} {itemsWord(waiting.length)}
 					</p>
 				)}

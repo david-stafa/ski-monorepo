@@ -34,6 +34,13 @@
 			},
 			"suspicious": {
 				"noUndeclaredEnvVars": "warn"
+			},
+			"nursery": {
+				"useSortedClasses": {
+					"level": "error",
+					"fix": "safe",
+					"options": { "functions": ["cn", "clsx", "cva", "twMerge"] }
+				}
 			}
 		}
 	},

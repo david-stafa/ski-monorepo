@@ -98,7 +98,7 @@ export const StepPersonBlock = ({ person, step }: StepPersonBlockProps) => {
 	return (
 		<div className="overflow-hidden rounded-2xl border">
 			{/* biome-ignore lint/a11y/noLabelWithoutControl: Base UI's Checkbox renders its input inside */}
-			<label className="bg-muted/40 flex min-h-20 cursor-pointer items-center gap-3 px-3 py-2">
+			<label className="flex min-h-20 cursor-pointer items-center gap-3 bg-muted/40 px-3 py-2">
 				<Checkbox
 					className="size-5"
 					checked={shownAll}
@@ -140,7 +140,7 @@ export const StepPersonBlock = ({ person, step }: StepPersonBlockProps) => {
 			{/* right under the name: it's about this person, read before the gear */}
 			{person.note && (
 				<div className="flex gap-3 border-t px-3 py-2.5 text-sm">
-					<MessageCircleIcon size={16} className="text-muted-foreground mt-0.5 shrink-0" />
+					<MessageCircleIcon size={16} className="mt-0.5 shrink-0 text-muted-foreground" />
 					<p>{person.note}</p>
 				</div>
 			)}
@@ -157,14 +157,14 @@ export const StepPersonBlock = ({ person, step }: StepPersonBlockProps) => {
 			    no checkbox — indented to line up with the item text above */}
 			{accessories.length > 0 && (
 				<div className="flex flex-col gap-2 border-t py-3 pr-3 pl-11">
-					<p className="text-muted-foreground flex items-baseline gap-2 text-xs font-semibold tracking-wide">
+					<p className="flex items-baseline gap-2 font-semibold text-muted-foreground text-xs tracking-wide">
 						DOPLŇKY
 					</p>
 					<ul className="flex flex-wrap gap-2">
 						{accessories.map((accessory) => (
 							<li
 								key={accessory}
-								className="bg-muted flex items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-[13px] leading-none font-medium"
+								className="flex items-center gap-1.5 rounded-md border bg-muted px-2.5 py-1.5 font-medium text-[13px] leading-none"
 							>
 								{accessory}
 							</li>

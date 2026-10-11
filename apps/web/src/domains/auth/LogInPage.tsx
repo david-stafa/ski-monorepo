@@ -12,7 +12,7 @@ export const LogInPage = () => {
 	return (
 		<div className="flex min-h-screen">
 			{/*  Brand panel  */}
-			<div className="bg-primary text-primary-foreground relative hidden w-1/2 flex-col justify-between overflow-hidden p-12 md:flex">
+			<div className="relative hidden w-1/2 flex-col justify-between overflow-hidden bg-primary p-12 text-primary-foreground md:flex">
 				{/*  Decorative ridgeline — inert, so it stays out of the a11y tree  */}
 				<svg
 					aria-hidden="true"
@@ -36,20 +36,20 @@ export const LogInPage = () => {
 				{/*  Wordmark  */}
 				<div className="relative flex items-center gap-2.5">
 					<MountainSnowIcon className="size-7" />
-					<span className="text-xl font-semibold tracking-tight">Ski Blažek</span>
+					<span className="font-semibold text-xl tracking-tight">Ski Blažek</span>
 				</div>
 
 				{/*  Claim  */}
 				<div className="relative max-w-md">
-					<p className="text-3xl leading-snug font-semibold tracking-tight text-balance">
+					<p className="text-balance font-semibold text-3xl leading-snug tracking-tight">
 						Půjčovna, která má přehled.
 					</p>
-					<p className="text-primary-foreground/70 mt-4 leading-7">
+					<p className="mt-4 text-primary-foreground/70 leading-7">
 						Rezervace, výdej a evidence vybavení na jednom místě.
 					</p>
 				</div>
 
-				<p className="text-primary-foreground/60 relative text-sm">
+				<p className="relative text-primary-foreground/60 text-sm">
 					© {new Date().getFullYear()} Ski Blazek
 				</p>
 			</div>
@@ -58,13 +58,13 @@ export const LogInPage = () => {
 			<div className="flex w-full items-center justify-center px-6 py-12 md:w-1/2 md:px-14">
 				<div className="w-full max-w-sm">
 					{/*  Stands in for the brand panel below `md`, where it is hidden  */}
-					<div className="text-primary mb-10 flex items-center gap-2.5 md:hidden">
+					<div className="mb-10 flex items-center gap-2.5 text-primary md:hidden">
 						<MountainSnowIcon className="size-6" />
-						<span className="text-lg font-semibold tracking-tight">Ski Blažek</span>
+						<span className="font-semibold text-lg tracking-tight">Ski Blažek</span>
 					</div>
 
 					<TypographyH2>Přihlášení</TypographyH2>
-					<TypographyP className="text-muted-foreground mt-2 mb-8">
+					<TypographyP className="mt-2 mb-8 text-muted-foreground">
 						Vyplňte formulář níže a přihlaste se do svého účtu.
 					</TypographyP>
 

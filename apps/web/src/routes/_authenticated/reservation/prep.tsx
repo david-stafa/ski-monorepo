@@ -51,7 +51,7 @@ function RouteComponent() {
 			{/*  Title with total count  */}
 			<TypographyH1 className="mb-6">
 				Příprava
-				<span className="ml-1 align-super text-sm text-gray-500">({data.totalCount})</span>
+				<span className="ml-1 align-super text-gray-500 text-sm">({data.totalCount})</span>
 			</TypographyH1>
 
 			{/*  Date window, filters and reset  */}

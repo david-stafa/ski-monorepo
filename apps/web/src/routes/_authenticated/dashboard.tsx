@@ -35,7 +35,7 @@ function Dashboard() {
 		<div>
 			<div className="flex justify-between">
 				<TypographyH1 className="mb-4">Týdenní přehled</TypographyH1>
-				<div className="mb-4 items-center justify-end gap-1 hidden md:flex">
+				<div className="mb-4 hidden items-center justify-end gap-1 md:flex">
 					<ModeToggle />
 					<Button onClick={handleSignOut} variant="secondary" disabled={isLoading}>
 						<LogOut className="size-4" />

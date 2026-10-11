@@ -36,7 +36,7 @@ export const RemovePersonDialog = ({
 			<DialogContent>
 				<DialogHeader>
 					<DialogTitle className="flex items-center gap-2">
-						<TriangleAlertIcon className="text-destructive size-5" />
+						<TriangleAlertIcon className="size-5 text-destructive" />
 						Opravdu chcete odebrat osobu {name}?
 					</DialogTitle>
 					<DialogDescription>

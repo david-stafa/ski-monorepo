@@ -3,7 +3,7 @@ import { cn } from '../lib/utils'
 export function TypographyH1({ children, className, ...props }: React.ComponentProps<'h1'>) {
 	return (
 		<h1
-			className={cn('scroll-m-20 text-4xl font-extrabold tracking-tight text-balance', className)}
+			className={cn('scroll-m-20 text-balance font-extrabold text-4xl tracking-tight', className)}
 			{...props}
 		>
 			{children}
@@ -13,7 +13,7 @@ export function TypographyH1({ children, className, ...props }: React.ComponentP
 
 export function TypographyH2({ children, className, ...props }: React.ComponentProps<'h2'>) {
 	return (
-		<h2 className={cn('scroll-m-20 text-3xl font-semibold tracking-tight', className)} {...props}>
+		<h2 className={cn('scroll-m-20 font-semibold text-3xl tracking-tight', className)} {...props}>
 			{children}
 		</h2>
 	)
@@ -21,7 +21,7 @@ export function TypographyH2({ children, className, ...props }: React.ComponentP
 
 export function TypographyH3({ children, className, ...props }: React.ComponentProps<'h3'>) {
 	return (
-		<h3 className={cn('scroll-m-20 text-2xl font-semibold tracking-tight', className)} {...props}>
+		<h3 className={cn('scroll-m-20 font-semibold text-2xl tracking-tight', className)} {...props}>
 			{children}
 		</h3>
 	)
@@ -29,7 +29,7 @@ export function TypographyH3({ children, className, ...props }: React.ComponentP
 
 export function TypographyH4({ children, className, ...props }: React.ComponentProps<'h4'>) {
 	return (
-		<h4 className={cn('scroll-m-20 text-xl font-semibold tracking-tight', className)} {...props}>
+		<h4 className={cn('scroll-m-20 font-semibold text-xl tracking-tight', className)} {...props}>
 			{children}
 		</h4>
 	)
@@ -57,7 +57,7 @@ export function TypographyBlockquote({
 
 export function TypographyLarge({ children, className, ...props }: React.ComponentProps<'div'>) {
 	return (
-		<div className={cn('text-lg font-semibold', className)} {...props}>
+		<div className={cn('font-semibold text-lg', className)} {...props}>
 			{children}
 		</div>
 	)
@@ -65,7 +65,7 @@ export function TypographyLarge({ children, className, ...props }: React.Compone
 
 export function TypographySmall({ children, className, ...props }: React.ComponentProps<'small'>) {
 	return (
-		<small className={cn('text-sm leading-tight font-medium', className)} {...props}>
+		<small className={cn('font-medium text-sm leading-tight', className)} {...props}>
 			{children}
 		</small>
 	)
@@ -73,7 +73,7 @@ export function TypographySmall({ children, className, ...props }: React.Compone
 
 export function TypographyMuted({ children, className, ...props }: React.ComponentProps<'p'>) {
 	return (
-		<p className={cn('text-sm text-muted-foreground', className)} {...props}>
+		<p className={cn('text-muted-foreground text-sm', className)} {...props}>
 			{children}
 		</p>
 	)

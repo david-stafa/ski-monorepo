@@ -101,7 +101,7 @@ function RouteComponent() {
 			<div className="mb-6 flex justify-between gap-2">
 				<TypographyH1>
 					Helmy
-					<span className="ml-1 align-super text-sm text-gray-500">({data.totalCount})</span>
+					<span className="ml-1 align-super text-gray-500 text-sm">({data.totalCount})</span>
 				</TypographyH1>
 				<div className="flex items-center gap-2">
 					{isInventory && <StockSweepButton type={EquipmentItemType.HELMET} />}

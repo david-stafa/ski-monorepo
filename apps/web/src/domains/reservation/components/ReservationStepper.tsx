@@ -28,7 +28,7 @@ export const ReservationStepper = ({ units, current }: ReservationStepperProps) 
 					<div className="flex flex-col items-center gap-1 text-center">
 						<span
 							className={cn(
-								'flex size-9 items-center justify-center rounded-full border-2 text-sm font-medium',
+								'flex size-9 items-center justify-center rounded-full border-2 font-medium text-sm',
 								complete && 'border-primary bg-primary text-primary-foreground',
 								!complete && isCurrent && 'border-primary text-primary',
 								!complete && !isCurrent && 'text-muted-foreground'

@@ -9,8 +9,8 @@ export const EquipmentItemName = ({ item }: { item: AvailableItem }) => {
 
 	return (
 		<span className="truncate">
-			<span className="text-base font-medium">{detail.brand}</span>
-			{detail.model && <span className="text-muted-foreground ml-2">{detail.model}</span>}
+			<span className="font-medium text-base">{detail.brand}</span>
+			{detail.model && <span className="ml-2 text-muted-foreground">{detail.model}</span>}
 		</span>
 	)
 }

@@ -48,7 +48,7 @@ export const StockSweepDialog = ({ open, onOpenChange, type }: StockSweepDialogP
 			<DialogContent>
 				<DialogHeader>
 					<DialogTitle className="flex items-center gap-2">
-						<TriangleAlertIcon className="text-warning size-5" />
+						<TriangleAlertIcon className="size-5 text-warning" />
 						Archivovat nezkontrolované ({items.length})
 					</DialogTitle>
 					<DialogDescription>
@@ -65,7 +65,7 @@ export const StockSweepDialog = ({ open, onOpenChange, type }: StockSweepDialogP
 					<ul className="max-h-72 divide-y overflow-y-auto rounded-md border text-sm">
 						{items.map((item) => (
 							<li key={item.id} className="flex items-center gap-3 px-3 py-1.5">
-								<span className="text-muted-foreground w-16 shrink-0 tabular-nums">
+								<span className="w-16 shrink-0 text-muted-foreground tabular-nums">
 									{formatArticleNumber(item)}
 								</span>
 								<span>{item.label}</span>

@@ -69,7 +69,7 @@ export const ReservationFilters = ({
 						value={statuses ?? []}
 						onValueChange={(value) => onStatusesChange(inDropdownOrder(value))}
 					>
-						<SelectTrigger className="w-45 m-0" size="sm">
+						<SelectTrigger className="m-0 w-45" size="sm">
 							<SelectValue>
 								{(value: ReservationStatus[]) =>
 									value.length === 0
@@ -99,7 +99,7 @@ export const ReservationFilters = ({
 					value={kind}
 					onValueChange={(value) => onKindChange(value as ReservationKindFilter)}
 				>
-					<SelectTrigger className="w-45 m-0" size="sm">
+					<SelectTrigger className="m-0 w-45" size="sm">
 						<SelectValue />
 					</SelectTrigger>
 					<SelectContent>

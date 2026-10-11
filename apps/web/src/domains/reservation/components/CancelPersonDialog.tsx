@@ -30,7 +30,7 @@ export const CancelPersonDialog = ({ open, onOpenChange, person }: CancelPersonD
 			<DialogContent>
 				<DialogHeader>
 					<DialogTitle className="flex items-center gap-2">
-						<TriangleAlertIcon className="text-destructive size-5" />
+						<TriangleAlertIcon className="size-5 text-destructive" />
 						Opravdu chcete zrušit osobu {person.name}?
 					</DialogTitle>
 					<DialogDescription>

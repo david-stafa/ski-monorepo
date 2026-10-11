@@ -36,7 +36,7 @@ export const ActivateDialog = ({
 			<DialogContent>
 				<DialogHeader>
 					<DialogTitle className="flex items-center gap-2">
-						<TriangleAlertIcon className="text-primary size-5" />
+						<TriangleAlertIcon className="size-5 text-primary" />
 						{title}
 					</DialogTitle>
 					<DialogDescription>{description}</DialogDescription>

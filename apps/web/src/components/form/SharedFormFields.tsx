@@ -196,7 +196,7 @@ export function SelectField<TValue extends string | number = string>({
 				<SelectTrigger
 					id={field.name}
 					onBlur={field.handleBlur}
-					className={className ?? 'w-fit max-w-52 min-w-40'}
+					className={className ?? 'w-fit min-w-40 max-w-52'}
 				>
 					<SelectValue
 						placeholder={isLoading ? 'Načítání…' : (placeholder ?? `Vyberte ${label}`)}
@@ -434,14 +434,14 @@ export function ComboboxField({
 				<ComboboxInput
 					placeholder={placeholder || 'Vyberte'}
 					id={field.name}
-					className="w-auto min-w-50 self-start [&_input]:field-sizing-content"
+					className="[&_input]:field-sizing-content w-auto min-w-50 self-start"
 					showClear
 					disabled={disabled}
 					onBlur={field.handleBlur}
 				/>
 				<ComboboxContent className="w-fit">
 					{isLoading ? (
-						<div className="text-muted-foreground flex items-center justify-center p-3">
+						<div className="flex items-center justify-center p-3 text-muted-foreground">
 							<LoaderIcon className="animate-spin" />
 						</div>
 					) : (

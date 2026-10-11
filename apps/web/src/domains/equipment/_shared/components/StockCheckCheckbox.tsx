@@ -32,7 +32,7 @@ export const StockCheckCheckbox = ({
 				className="h-5 w-5"
 			/>
 			{lastCheckedAt && (
-				<div className="text-xs text-muted-foreground">{format(lastCheckedAt, 'H:mm, d.M.yy')}</div>
+				<div className="text-muted-foreground text-xs">{format(lastCheckedAt, 'H:mm, d.M.yy')}</div>
 			)}
 		</div>
 	)

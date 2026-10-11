@@ -104,7 +104,7 @@ export const FittingWeekCard = () => {
 
 			<CardContent>
 				{isError ? (
-					<p className="py-8 text-center text-sm text-muted-foreground">{error.message}</p>
+					<p className="py-8 text-center text-muted-foreground text-sm">{error.message}</p>
 				) : (
 					<Table>
 						<TableHeader>

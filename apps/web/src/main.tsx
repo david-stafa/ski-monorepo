@@ -23,20 +23,20 @@ const router = createRouter({
 	defaultPendingMs: 1000,
 	defaultPendingMinMs: 500,
 	defaultPendingComponent: () => (
-		<div className="bg-background flex h-full w-full items-center justify-center">
-			<Loader2Icon className="text-primary size-10 animate-spin" />
+		<div className="flex h-full w-full items-center justify-center bg-background">
+			<Loader2Icon className="size-10 animate-spin text-primary" />
 		</div>
 	),
 	/* TODO: Add error component for production */
 	defaultErrorComponent: ({ error }) => (
-		<div className="text-foreground bg-background flex min-h-dvh flex-col justify-center p-4">
+		<div className="flex min-h-dvh flex-col justify-center bg-background p-4 text-foreground">
 			<p className="text-destructive">{error.name}</p>
 			<p className="text-destructive">{error.message}</p>
 			<p className="text-muted-foreground text-sm">{error.stack}</p>
 		</div>
 	),
 	defaultNotFoundComponent: () => (
-		<div className="text-foreground bg-background flex min-h-dvh flex-col items-center justify-center gap-4">
+		<div className="flex min-h-dvh flex-col items-center justify-center gap-4 bg-background text-foreground">
 			<TypographyP>Stránka nebyla nalezena...</TypographyP>
 			<Button nativeButton={false} render={<Link to="/" />}>
 				Domů

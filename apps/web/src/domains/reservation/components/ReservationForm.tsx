@@ -120,15 +120,15 @@ export const ReservationForm = ({ reservation, searchParams }: ReservationFormPr
 					form.handleSubmit()
 				}}
 			>
-				<section className="bg-muted/40 mb-4 flex flex-col gap-4 rounded-xl border p-2 md:p-4">
+				<section className="mb-4 flex flex-col gap-4 rounded-xl border bg-muted/40 p-2 md:p-4">
 					<div className="flex items-center gap-2">
 						<FileTextIcon
-							className="bg-primary text-primary-foreground rounded-full p-1.5"
+							className="rounded-full bg-primary p-1.5 text-primary-foreground"
 							size={30}
 						/>
 						<TypographyH4>Základní údaje</TypographyH4>
 					</div>
-					<div className="flex gap-4 items-center">
+					<div className="flex items-center gap-4">
 						<DateRangeField
 							disabled={isEdit}
 							form={form}

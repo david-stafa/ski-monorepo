@@ -36,7 +36,7 @@ export const RetireDialog = ({
 			<DialogContent>
 				<DialogHeader>
 					<DialogTitle className="flex items-center gap-2">
-						<TriangleAlertIcon className="text-warning size-5" />
+						<TriangleAlertIcon className="size-5 text-warning" />
 						{title}
 					</DialogTitle>
 					<DialogDescription>{description}</DialogDescription>

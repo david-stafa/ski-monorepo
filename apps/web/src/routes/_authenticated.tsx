@@ -94,7 +94,7 @@ export function AppSidebar() {
 						<SidebarMenu>
 							<SidebarMenuSubItem>
 								<Button
-									className="w-full mb-1"
+									className="mb-1 w-full"
 									variant="default"
 									size="default"
 									nativeButton={false}

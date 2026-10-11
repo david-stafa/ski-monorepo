@@ -44,12 +44,12 @@ export const PersonFormCard = withForm({
 				})}
 			>
 				{({ startDate, endDate }) => (
-					<div className="bg-muted/40 flex flex-col gap-4 rounded-xl border p-2 md:p-4">
+					<div className="flex flex-col gap-4 rounded-xl border bg-muted/40 p-2 md:p-4">
 						<div className="flex justify-between">
 							<div className="flex items-center gap-2">
 								{/* TODO: ADD Gender Icon insted with subscribe */}
 								<UserIcon
-									className="bg-primary text-primary-foreground rounded-full p-1.5"
+									className="rounded-full bg-primary p-1.5 text-primary-foreground"
 									size={30}
 								/>
 								<form.Subscribe

@@ -58,7 +58,7 @@ function TableHead({ className, ...props }: React.ComponentProps<'th'>) {
 		<th
 			data-slot="table-head"
 			className={cn(
-				'h-12 px-3 text-left align-middle font-medium whitespace-nowrap text-foreground [&:has([role=checkbox])]:pr-0',
+				'h-12 whitespace-nowrap px-3 text-left align-middle font-medium text-foreground [&:has([role=checkbox])]:pr-0',
 				className
 			)}
 			{...props}
@@ -70,7 +70,7 @@ function TableCell({ className, ...props }: React.ComponentProps<'td'>) {
 	return (
 		<td
 			data-slot="table-cell"
-			className={cn('p-3 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0', className)}
+			className={cn('whitespace-nowrap p-3 align-middle [&:has([role=checkbox])]:pr-0', className)}
 			{...props}
 		/>
 	)
@@ -80,7 +80,7 @@ function TableCaption({ className, ...props }: React.ComponentProps<'caption'>) 
 	return (
 		<caption
 			data-slot="table-caption"
-			className={cn('mt-4 text-sm text-muted-foreground', className)}
+			className={cn('mt-4 text-muted-foreground text-sm', className)}
 			{...props}
 		/>
 	)
@@ -101,7 +101,7 @@ function TableHeadSortable({
 		<th
 			data-slot="table-head"
 			className={cn(
-				'h-10 cursor-pointer px-2 text-left align-middle font-medium whitespace-nowrap text-foreground select-none [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]',
+				'h-10 cursor-pointer select-none whitespace-nowrap px-2 text-left align-middle font-medium text-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]',
 				className
 			)}
 			{...props}
@@ -110,7 +110,7 @@ function TableHeadSortable({
 				{children}
 				<ArrowUpDownIcon
 					className={cn(
-						'ml-2 size-4 shrink-0 transition-transform duration-200 text-primary',
+						'ml-2 size-4 shrink-0 text-primary transition-transform duration-200',
 						sorted === 'desc' && 'rotate-180',
 						!sorted && 'text-muted-foreground'
 					)}
