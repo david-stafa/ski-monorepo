@@ -20,6 +20,7 @@ export const getReservation = async ({ id }: ReservationIdInput) => {
 		include: {
 			// Detail view = the full tree: reservation -> people -> their items -> the gear itself.
 			people: {
+				orderBy: { name: 'asc' },
 				include: {
 					reservationItems: {
 						include: {
