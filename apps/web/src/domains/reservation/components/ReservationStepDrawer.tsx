@@ -92,7 +92,7 @@ const DrawerBody = ({ reservationId, step }: { reservationId: string; step: Shee
 
 	return (
 		<>
-			<SheetHeader className="border-b">
+			<SheetHeader className="border-b py-4 md:py-6">
 				<div className="flex items-center gap-2">
 					<SheetTitle className="text-lg">{reservation.name}</SheetTitle>
 					<DropdownMenu>
@@ -170,7 +170,7 @@ const DrawerBody = ({ reservationId, step }: { reservationId: string; step: Shee
 				)}
 			</div>
 
-			<SheetFooter className="border-t">
+			<SheetFooter className="border-t py-4 md:py-6">
 				{waiting.length > 0 && (
 					<p className="text-center text-muted-foreground text-sm">
 						Na předchozí krok čeká: {waiting.length} {itemsWord(waiting.length)}
