@@ -60,7 +60,7 @@ export const ReservationStepDrawer = ({
 		<SheetContent
 			side="right"
 			showCloseButton={false}
-			className="gap-0 data-[side=right]:w-full data-[side=right]:sm:max-w-xl"
+			className="gap-0 overflow-y-auto data-[side=right]:w-full data-[side=right]:sm:max-w-xl"
 		>
 			{reservationId && <DrawerBody reservationId={reservationId} step={step} />}
 		</SheetContent>
@@ -151,7 +151,7 @@ const DrawerBody = ({ reservationId, step }: { reservationId: string; step: Shee
 				)}
 			</SheetHeader>
 
-			<div className="flex-1 space-y-4 overflow-y-auto p-4">
+			<div className="flex-1 space-y-4 p-4">
 				{reservation.note && (
 					<div className="flex w-full items-start gap-2 rounded-2xl bg-input/50 px-3 py-2 text-sm">
 						<MessageCircleIcon size={14} className="mt-0.5 shrink-0 text-muted-foreground" />
@@ -170,7 +170,7 @@ const DrawerBody = ({ reservationId, step }: { reservationId: string; step: Shee
 				)}
 			</div>
 
-			<SheetFooter className="border-t py-4 md:py-6">
+			<SheetFooter className="sticky bottom-0 z-10 bg-linear-to-t from-60% from-popover to-transparent py-4 md:py-6">
 				{waiting.length > 0 && (
 					<p className="text-center text-muted-foreground text-sm">
 						Na předchozí krok čeká: {waiting.length} {itemsWord(waiting.length)}
