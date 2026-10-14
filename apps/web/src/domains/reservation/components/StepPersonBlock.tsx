@@ -8,7 +8,7 @@ import {
 	DropdownMenuTrigger,
 } from '@ski-blazek/ui/components/dropdown-menu'
 import { TypographyLarge } from '@ski-blazek/ui/components/typography'
-import { BanIcon, EllipsisVerticalIcon, MessageCircleIcon } from 'lucide-react'
+import { BanIcon, EllipsisVerticalIcon } from 'lucide-react'
 import { useState } from 'react'
 import { getPersonAccessories } from '../helpers/getPersonAccessories'
 import { LEVEL_LABELS } from '../helpers/levelMeta'
@@ -23,6 +23,7 @@ import {
 import { useAdvancePerson, useBulkStep, useUndoPerson } from '../reservationQueries'
 import { CancelPersonDialog } from './CancelPersonDialog'
 import { GenderIcon } from './GenderIcon'
+import { Note } from './Note'
 import { StepItemRow } from './StepItemRow'
 
 type StepPersonBlockProps = {
@@ -138,12 +139,7 @@ export const StepPersonBlock = ({ person, step }: StepPersonBlockProps) => {
 			</label>
 
 			{/* right under the name: it's about this person, read before the gear */}
-			{person.note && (
-				<div className="flex gap-3 border-t px-3 py-2.5 text-sm">
-					<MessageCircleIcon size={16} className="mt-0.5 shrink-0 text-muted-foreground" />
-					<p>{person.note}</p>
-				</div>
-			)}
+			{person.note && <Note note={person.note} className="border-t px-3 py-2.5" />}
 
 			{items.length > 0 && (
 				<ul className="divide-y border-t">
