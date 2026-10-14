@@ -1,11 +1,9 @@
 import { nextStatus } from '@ski-blazek/api/schemas'
-import type { EquipmentItemType, ReservationStatus } from '@ski-blazek/db/browser'
+import type { ReservationStatus } from '@ski-blazek/db/browser'
 import { Button } from '@ski-blazek/ui/components/button'
 import { Checkbox } from '@ski-blazek/ui/components/checkbox'
 import { cn } from '@ski-blazek/ui/lib/utils'
-import { ArticleNumberBadge } from '~/domains/equipment/_shared/components/badges/ArticleNumberBadge'
-import { EquipmentItemBadges } from '~/domains/equipment/_shared/components/badges/EquipmentBadges'
-import { EquipmentItemName } from '~/domains/equipment/_shared/components/EquipmentItemName'
+import { EquipmentItemDetails } from '~/domains/equipment/_shared/components/EquipmentItemDetails'
 import { NEXT_STEP_ACTION_LABELS } from '../helpers/reservationStatus'
 import type { SheetStep } from '../helpers/sheetSteps'
 import { type ReservationItem, statusRank } from '../helpers/stepUnits'
@@ -23,14 +21,6 @@ type StepItemRowProps = {
 const WAITING_LABELS: Partial<Record<ReservationStatus, string>> = {
 	BOOKED: 'Čeká na přípravu',
 	PREPARED: 'Čeká na výdej',
-}
-
-const EQUIPMENT_TYPE_LABELS: Record<EquipmentItemType, string> = {
-	SKI: 'Lyže',
-	SKI_BOOT: 'Lyžáky',
-	SNOWBOARD: 'Snowboard',
-	SNOWBOARD_BOOT: 'Boty snow.',
-	HELMET: 'Helma',
 }
 
 /**
@@ -52,7 +42,7 @@ export const StepItemRow = ({ item, step }: StepItemRowProps) => {
 		return (
 			<li className="flex items-center gap-3 px-3 py-3">
 				<Checkbox className="size-5" disabled checked={false} />
-				<StepItemDetails
+				<EquipmentItemDetails
 					item={item.equipmentItem}
 					muted
 					aside={
@@ -88,7 +78,7 @@ export const StepItemRow = ({ item, step }: StepItemRowProps) => {
 		return (
 			<li className="flex items-center gap-3 px-3 py-3">
 				<Checkbox className="size-5" disabled checked />
-				<StepItemDetails
+				<EquipmentItemDetails
 					item={item.equipmentItem}
 					aside={
 						<FlagsOrStatus
@@ -128,7 +118,7 @@ export const StepItemRow = ({ item, step }: StepItemRowProps) => {
 					disabled={isBusy}
 					onCheckedChange={toggle}
 				/>
-				<StepItemDetails
+				<EquipmentItemDetails
 					item={item.equipmentItem}
 					aside={
 						// its flags are for where it was: while the click is on its way,
@@ -148,34 +138,3 @@ export const StepItemRow = ({ item, step }: StepItemRowProps) => {
 		</li>
 	)
 }
-
-/**
- * The gear itself, laid out the same on every row. `aside` sits on the right of
- * the first line; `muted` greys out the gear (not the aside) for rows that are
- * still waiting.
- */
-const StepItemDetails = ({
-	item,
-	aside,
-	muted = false,
-}: {
-	item: ReservationItem['equipmentItem']
-	aside: React.ReactNode
-	muted?: boolean
-}) => (
-	<div className="flex w-full min-w-0 flex-col gap-2">
-		<div className="flex items-start justify-between gap-3 md:items-center">
-			<div
-				className={cn('flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1', muted && 'opacity-60')}
-			>
-				<ArticleNumberBadge articleGroup={item.articleGroup} articleNumber={item.articleNumber} />
-				<EquipmentItemName item={item} />
-			</div>
-			<div className="shrink-0">{aside}</div>
-		</div>
-		<div className={cn('flex flex-wrap items-center gap-2', muted && 'opacity-60')}>
-			<span className="text-muted-foreground text-sm">{EQUIPMENT_TYPE_LABELS[item.type]}</span>
-			<EquipmentItemBadges item={item} />
-		</div>
-	</div>
-)

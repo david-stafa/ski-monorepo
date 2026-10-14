@@ -10,6 +10,20 @@ import { cs } from 'date-fns/locale'
 export const formatDate = (d: Date) => format(d, 'd. M. yyyy', { locale: cs })
 
 /**
+ * A from–to range with short Czech weekdays. The year is written once, at the
+ * end, unless the range crosses New Year.
+ *
+ * @example
+ * formatWeekdayRange(new Date(2026, 7, 1), new Date(2026, 7, 8)) // 'so 1. 8. – so 8. 8. 2026'
+ * formatWeekdayRange(new Date(2026, 11, 28), new Date(2027, 0, 3)) // 'po 28. 12. 2026 – ne 3. 1. 2027'
+ */
+export const formatWeekdayRange = (from: Date, to: Date) => {
+	const sameYear = from.getFullYear() === to.getFullYear()
+	const fromPattern = sameYear ? 'EEEEEE d. M.' : 'EEEEEE d. M. yyyy'
+	return `${format(from, fromPattern, { locale: cs })} – ${format(to, 'EEEEEE d. M. yyyy', { locale: cs })}`
+}
+
+/**
  * A calendar date as the plain `yyyy-MM-dd` string the API's `from` / `to`
  * inputs expect. Formatted in local time on purpose — `toISOString()` would
  * shift the day for anyone east or west of UTC.

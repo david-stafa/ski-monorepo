@@ -20,6 +20,7 @@ import {
 import { useState } from 'react'
 import { CancelReservationDialog } from '~/domains/reservation/components/CancelReservationDialog'
 import { FlagBadges } from '~/domains/reservation/components/FlagBadges'
+import { Note } from '~/domains/reservation/components/Note'
 import { ReservationPersonCard } from '~/domains/reservation/components/ReservationPersonCard'
 import { ReservationStepper } from '~/domains/reservation/components/ReservationStepper'
 import {
@@ -28,7 +29,7 @@ import {
 } from '~/domains/reservation/helpers/reservationStatus'
 import { getPersonUnits, itemsWord } from '~/domains/reservation/helpers/stepUnits'
 import { useBulkStep } from '~/domains/reservation/reservationQueries'
-import { formatDate } from '~/lib/format'
+import { formatPhone, formatWeekdayRange } from '~/lib/format'
 import { trpc } from '~/lib/trpc'
 
 export const Route = createFileRoute('/_authenticated/reservation_/$reservationId/')({
@@ -88,8 +89,8 @@ function RouteComponent() {
 						<FlagBadges flags={reservation} />
 					</div>
 					<p className="text-muted-foreground">
-						{reservation.phoneNumber} · {formatDate(reservation.startDate)} –{' '}
-						{formatDate(reservation.endDate)}
+						{formatPhone(reservation.phoneNumber)} ·{' '}
+						{formatWeekdayRange(reservation.startDate, reservation.endDate)}
 					</p>
 				</div>
 
@@ -160,10 +161,7 @@ function RouteComponent() {
 			/>
 
 			{reservation.note && (
-				<p className="mb-4 text-sm">
-					<span className="text-muted-foreground">Poznámka: </span>
-					{reservation.note}
-				</p>
+				<Note note={reservation.note} className="mb-4 rounded-2xl bg-input/50 px-3 py-2" />
 			)}
 
 			{/*  People — the whole record, cancelled ones included  */}

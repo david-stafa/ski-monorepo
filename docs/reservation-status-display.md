@@ -67,7 +67,7 @@ Every row has one status spot. It shows **the row's flags if it has any, otherwi
 | --- | --- | --- |
 | List row (all four pages) | reservation | the status column, 3rd after the actions and the name; flags stacked, otherwise the status badge |
 | Detail page header | reservation | not a status spot: all flags beside the name, the status in the stepper below |
-| Detail person card | person | flags, otherwise the person's status |
+| Detail person card | person | only when moved by hand (no active gear, accessories only): flags, otherwise the person's status. With gear the item rows carry it |
 | Detail item row | item | its flag, otherwise its status |
 | Counter drawer header | reservation | not a status spot: all flags beside the name |
 | Counter drawer person | person | flags, otherwise the person's status, for everyone. No "x/y připraveno" count |

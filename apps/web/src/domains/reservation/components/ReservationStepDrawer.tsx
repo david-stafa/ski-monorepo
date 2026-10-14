@@ -18,8 +18,6 @@ import {
 import { Skeleton } from '@ski-blazek/ui/components/skeleton'
 import { useQuery } from '@tanstack/react-query'
 import { Link } from '@tanstack/react-router'
-import { format } from 'date-fns'
-import { cs } from 'date-fns/locale'
 import {
 	ArrowRightIcon,
 	CalendarIcon,
@@ -30,7 +28,7 @@ import {
 	PhoneIcon,
 	XIcon,
 } from 'lucide-react'
-import { formatPhone } from '~/lib/format'
+import { formatPhone, formatWeekdayRange } from '~/lib/format'
 import { trpc } from '~/lib/trpc'
 import { NEXT_STEP_ACTION_LABELS, RESERVATION_STATUS_META } from '../helpers/reservationStatus'
 import type { SheetStep } from '../helpers/sheetSteps'
@@ -138,8 +136,7 @@ const DrawerBody = ({ reservationId, step }: { reservationId: string; step: Shee
 					</span>
 					<span className="flex items-center gap-1">
 						<CalendarIcon size={14} />
-						{format(reservation.startDate, 'EEEEEE d. M.', { locale: cs })} –{' '}
-						{format(reservation.endDate, 'EEEEEE d. M. yyyy', { locale: cs })}
+						{formatWeekdayRange(reservation.startDate, reservation.endDate)}
 					</span>
 				</SheetDescription>
 				{units.length > 0 && (

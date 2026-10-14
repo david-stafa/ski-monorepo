@@ -1,6 +1,5 @@
 import { canCancel, nextStatus, previousStatus } from '@ski-blazek/api/schemas'
 import type { ReservationStatus } from '@ski-blazek/db/browser'
-import { Badge } from '@ski-blazek/ui/components/badge'
 import { Button } from '@ski-blazek/ui/components/button'
 import {
 	DropdownMenu,
@@ -10,9 +9,9 @@ import {
 	DropdownMenuTrigger,
 } from '@ski-blazek/ui/components/dropdown-menu'
 import { cn } from '@ski-blazek/ui/lib/utils'
-import { Link } from '@tanstack/react-router'
 import { ArrowRightIcon, BanIcon, EllipsisVerticalIcon, Undo2Icon } from 'lucide-react'
 import { useState } from 'react'
+import { EquipmentItemDetails } from '~/domains/equipment/_shared/components/EquipmentItemDetails'
 import { getPersonAccessories } from '../helpers/getPersonAccessories'
 import { LEVEL_LABELS } from '../helpers/levelMeta'
 import { RESERVATION_STATUS_META } from '../helpers/reservationStatus'
@@ -29,14 +28,14 @@ import {
 	useUndoReservationItem,
 } from '../reservationQueries'
 import { CancelPersonDialog } from './CancelPersonDialog'
-import { EquipmentItemOptionLabel } from './EquipmentItemOptionLabel'
 import { FlagsOrStatus } from './FlagBadges'
 import { GenderIcon } from './GenderIcon'
+import { Note } from './Note'
 import { ReservationStatusBadge } from './ReservationStatusBadge'
 
 /**
- * One person on the detail page, the full record: every item with its status
- * as quiet text, cancelled ones struck through. Any single step, forward or
+ * One person on the detail page, the full record: every item with its flag or
+ * status badge, cancelled ones struck through. Any single step, forward or
  * back, lives in the row's ⋯ menu.
  */
 export const ReservationPersonCard = ({ person }: { person: ReservationPerson }) => {
@@ -54,24 +53,29 @@ export const ReservationPersonCard = ({ person }: { person: ReservationPerson })
 	return (
 		<div
 			className={cn(
-				'rounded-lg border bg-background',
+				'rounded-2xl border bg-background',
 				person.status === 'CANCELLED' && 'opacity-60'
 			)}
 		>
-			<div className="flex min-h-12 flex-wrap items-center gap-2 px-3 py-2">
+			<div className="flex min-h-12 flex-wrap items-center gap-2 px-3 py-4">
 				<GenderIcon gender={person.gender} />
-				<span className="font-medium">{person.name}</span>
-				<span className="text-muted-foreground text-sm">
-					{person.age} let · {person.height} cm · {person.weight} kg
-				</span>
-				{person.level && <Badge variant="outline">{LEVEL_LABELS[person.level]}</Badge>}
+				<div className="flex flex-col gap-0.5">
+					<span className="font-medium text-lg">{person.name}</span>
+					<span className="text-muted-foreground text-sm">
+						{person.age} let · {person.height} cm · {person.weight} kg
+						{person.level && ` · ${LEVEL_LABELS[person.level]}`}
+					</span>
+				</div>
 				<span className="ml-auto flex items-center gap-2">
-					{/* status rolled up from their items by the API, or moved by hand without any */}
-					<FlagsOrStatus
-						flags={person}
-						direction="row"
-						status={<ReservationStatusBadge status={person.status} />}
-					/>
+					{/* with gear, each item shows its own flag or status below, so the person's
+					    would only repeat it; shown just when moved by hand */}
+					{movedByHand && (
+						<FlagsOrStatus
+							flags={person}
+							direction="row"
+							status={<ReservationStatusBadge status={person.status} />}
+						/>
+					)}
 					{(movedByHand || cancellable) && (
 						<RowMenu>
 							{movedByHand && <PersonStepItems person={person} />}
@@ -87,6 +91,8 @@ export const ReservationPersonCard = ({ person }: { person: ReservationPerson })
 				</span>
 			</div>
 
+			{person.note && <Note note={person.note} className="border-t px-3 py-2.5" />}
+
 			{items.length > 0 && (
 				<ul className="divide-y border-t">
 					{items.map((item) => (
@@ -95,13 +101,23 @@ export const ReservationPersonCard = ({ person }: { person: ReservationPerson })
 				</ul>
 			)}
 
+			{/* no status or menu of their own: they go out and come back with the person */}
 			{accessories.length > 0 && (
-				<p className="border-t px-3 py-2 text-muted-foreground text-sm">
-					+ {accessories.join(', ')}
-				</p>
-			)}
-			{person.note && (
-				<p className="border-t px-3 py-2 text-muted-foreground text-sm italic">{person.note}</p>
+				<div className="flex flex-col gap-2 border-t px-4 py-3">
+					<p className="flex items-baseline gap-2 font-semibold text-muted-foreground text-xs tracking-wide">
+						DOPLŇKY
+					</p>
+					<ul className="flex flex-wrap gap-2">
+						{accessories.map((accessory) => (
+							<li
+								key={accessory}
+								className="flex items-center gap-1.5 rounded-md border bg-muted px-2.5 py-1.5 font-medium text-[13px] leading-none"
+							>
+								{accessory}
+							</li>
+						))}
+					</ul>
+				</div>
 			)}
 
 			<CancelPersonDialog open={cancelOpen} onOpenChange={setCancelOpen} person={person} />
@@ -109,37 +125,37 @@ export const ReservationPersonCard = ({ person }: { person: ReservationPerson })
 	)
 }
 
-const ItemRow = ({ item }: { item: ReservationItem }) => (
-	<li
-		className={cn(
-			'flex min-h-11 items-center gap-3 px-3',
-			item.status === 'CANCELLED' && 'text-muted-foreground line-through'
-		)}
-	>
-		<Link
-			to="/equipment/$equipmentId"
-			params={{ equipmentId: item.equipmentItem.id }}
-			className="font-mono text-sm hover:underline"
-		>
-			<EquipmentItemOptionLabel item={item.equipmentItem} />
-		</Link>
-		<span className="ml-auto flex items-center gap-1">
-			<FlagsOrStatus
-				flags={item}
-				direction="row"
-				status={<ReservationStatusBadge status={item.status} />}
+const ItemRow = ({ item }: { item: ReservationItem }) => {
+	const cancelled = item.status === 'CANCELLED'
+
+	return (
+		<li className="px-4 py-3">
+			<EquipmentItemDetails
+				item={item.equipmentItem}
+				muted={cancelled}
+				struck={cancelled}
+				linked
+				aside={
+					<span className="flex items-center gap-1">
+						<FlagsOrStatus
+							flags={item}
+							direction="row"
+							status={<ReservationStatusBadge status={item.status} />}
+						/>
+						{cancelled ? (
+							// keeps the status column lined up with the rows that have a menu
+							<span className="size-8" />
+						) : (
+							<RowMenu>
+								<ItemStepItems item={item} />
+							</RowMenu>
+						)}
+					</span>
+				}
 			/>
-			{item.status === 'CANCELLED' ? (
-				// keeps the status column lined up with the rows that have a menu
-				<span className="size-8" />
-			) : (
-				<RowMenu>
-					<ItemStepItems item={item} />
-				</RowMenu>
-			)}
-		</span>
-	</li>
-)
+		</li>
+	)
+}
 
 const RowMenu = ({ children }: { children: React.ReactNode }) => (
 	<DropdownMenu>
