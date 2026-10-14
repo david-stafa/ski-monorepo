@@ -24,7 +24,6 @@ import {
 	CheckIcon,
 	EllipsisVerticalIcon,
 	ExternalLinkIcon,
-	MessageCircleIcon,
 	PhoneIcon,
 	XIcon,
 } from 'lucide-react'
@@ -34,6 +33,7 @@ import { NEXT_STEP_ACTION_LABELS, RESERVATION_STATUS_META } from '../helpers/res
 import type { SheetStep } from '../helpers/sheetSteps'
 import { getPersonUnits, itemsWord, statusRank } from '../helpers/stepUnits'
 import { useBulkStep } from '../reservationQueries'
+import { Note } from './Note'
 import { StepPersonBlock } from './StepPersonBlock'
 
 type ReservationStepDrawerProps = {
@@ -150,13 +150,7 @@ const DrawerBody = ({ reservationId, step }: { reservationId: string; step: Shee
 
 			<div className="flex-1 space-y-4 p-4">
 				{reservation.note && (
-					<div className="flex w-full items-start gap-2 rounded-2xl bg-input/50 px-3 py-2 text-sm">
-						<MessageCircleIcon size={14} className="mt-0.5 shrink-0 text-muted-foreground" />
-						<p>
-							<span className="text-muted-foreground">Poznámka: </span>
-							{reservation.note}
-						</p>
-					</div>
+					<Note note={reservation.note} className="rounded-2xl bg-input/50 px-3 py-2" />
 				)}
 				{people.length === 0 ? (
 					<p className="text-muted-foreground text-sm">
