@@ -53,11 +53,11 @@ export const ReservationPersonCard = ({ person }: { person: ReservationPerson })
 	return (
 		<div
 			className={cn(
-				'rounded-2xl border bg-background',
+				'overflow-clip rounded-2xl border bg-background',
 				person.status === 'CANCELLED' && 'opacity-60'
 			)}
 		>
-			<div className="flex min-h-12 flex-wrap items-center gap-2 px-3 py-4">
+			<div className="flex min-h-12 flex-wrap items-center gap-2 bg-muted/40 px-3 py-4">
 				<GenderIcon gender={person.gender} />
 				<div className="flex flex-col gap-0.5">
 					<span className="font-medium text-lg">{person.name}</span>
