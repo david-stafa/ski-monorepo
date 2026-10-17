@@ -1,35 +1,30 @@
-import { canCancel, canEdit, nextStatus } from '@ski-blazek/api/schemas';
-import { Badge } from '@ski-blazek/ui/components/badge';
-import { Button } from '@ski-blazek/ui/components/button';
+import { canCancel, canEdit, nextStatus } from '@ski-blazek/api/schemas'
+import { Badge } from '@ski-blazek/ui/components/badge'
+import { Button } from '@ski-blazek/ui/components/button'
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from '@ski-blazek/ui/components/dropdown-menu';
-import { TypographyH1 } from '@ski-blazek/ui/components/typography';
-import { useSuspenseQuery } from '@tanstack/react-query';
-import { createFileRoute, Link } from '@tanstack/react-router';
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
+} from '@ski-blazek/ui/components/dropdown-menu'
+import { TypographyH1 } from '@ski-blazek/ui/components/typography'
+import { useSuspenseQuery } from '@tanstack/react-query'
+import { createFileRoute, Link } from '@tanstack/react-router'
+import { ArrowRightIcon, BanIcon, EllipsisVerticalIcon, PencilIcon } from 'lucide-react'
+import { useState } from 'react'
+import { CancelReservationDialog } from '~/domains/reservation/components/CancelReservationDialog'
+import { FlagBadges } from '~/domains/reservation/components/FlagBadges'
+import { Note } from '~/domains/reservation/components/Note'
+import { ReservationPersonCard } from '~/domains/reservation/components/ReservationPersonCard'
+import { ReservationStepper } from '~/domains/reservation/components/ReservationStepper'
 import {
-    ArrowRightIcon,
-    BanIcon,
-    EllipsisVerticalIcon,
-    PencilIcon
-} from 'lucide-react';
-import { useState } from 'react';
-import { CancelReservationDialog } from '~/domains/reservation/components/CancelReservationDialog';
-import { FlagBadges } from '~/domains/reservation/components/FlagBadges';
-import { Note } from '~/domains/reservation/components/Note';
-import { ReservationPersonCard } from '~/domains/reservation/components/ReservationPersonCard';
-import { ReservationStepper } from '~/domains/reservation/components/ReservationStepper';
-import {
-    NEXT_STEP_ACTION_LABELS,
-    RESERVATION_STATUS_META,
-} from '~/domains/reservation/helpers/reservationStatus';
-import { getPersonUnits, itemsWord } from '~/domains/reservation/helpers/stepUnits';
-import { useBulkStep } from '~/domains/reservation/reservationQueries';
-import { formatPhone, formatWeekdayRange } from '~/lib/format';
-import { trpc } from '~/lib/trpc';
+	NEXT_STEP_ACTION_LABELS,
+	RESERVATION_STATUS_META,
+} from '~/domains/reservation/helpers/reservationStatus'
+import { getPersonUnits, itemsWord } from '~/domains/reservation/helpers/stepUnits'
+import { useBulkStep } from '~/domains/reservation/reservationQueries'
+import { formatPhone, formatWeekdayRange } from '~/lib/format'
+import { trpc } from '~/lib/trpc'
 
 export const Route = createFileRoute('/_authenticated/reservation_/$reservationId/')({
 	loader: async ({ context, params }) =>
