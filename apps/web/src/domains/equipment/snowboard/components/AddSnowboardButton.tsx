@@ -6,18 +6,22 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@ski-blazek/ui/components/dialog'
+import { useIsMobile } from '@ski-blazek/ui/hooks/use-mobile'
 import { PlusIcon } from 'lucide-react'
 import { useState } from 'react'
 import { SnowboardForm } from './SnowboardForm'
 
 export const AddSnowboardButton = () => {
 	const [open, setOpen] = useState(false)
+	const isMobile = useIsMobile()
 
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
-			<DialogTrigger render={<Button size="sm" />}>
+			<DialogTrigger
+				render={<Button size={isMobile ? 'icon-lg' : 'lg'} aria-label="Přidat snowboard" />}
+			>
 				<PlusIcon />
-				Přidat snowboard
+				{!isMobile && 'Přidat snowboard'}
 			</DialogTrigger>
 			<DialogContent>
 				<DialogHeader>

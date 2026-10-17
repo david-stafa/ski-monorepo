@@ -13,21 +13,16 @@ import {
 	TableHeadSortable,
 	TableRow,
 } from '@ski-blazek/ui/components/table'
-import { TypographyH1 } from '@ski-blazek/ui/components/typography'
+import { useIsMobile } from '@ski-blazek/ui/hooks/use-mobile'
 import { cn } from '@ski-blazek/ui/lib/utils'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { z } from 'zod'
 import { CustomItemPerPageSelect, CustomPagination } from '~/components/ui/CustomPagination'
-import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
-import { SearchField } from '~/components/ui/SearchField'
 import { GenderBadge } from '~/domains/equipment/_shared/components/badges/GenderBadge'
 import { KidsBadge } from '~/domains/equipment/_shared/components/badges/KidsBadge'
-import { CheckedFilterSelect } from '~/domains/equipment/_shared/components/CheckedFilterSelect'
-import { EquipmentFilterButton } from '~/domains/equipment/_shared/components/EquipmentFilterButton'
-import { InventoryToggleButton } from '~/domains/equipment/_shared/components/InventoryToggleButton'
+import { EquipmentHeader } from '~/domains/equipment/_shared/components/EquipmentHeader'
 import { StockCheckCheckbox } from '~/domains/equipment/_shared/components/StockCheckCheckbox'
-import { StockSweepButton } from '~/domains/equipment/_shared/components/StockSweepButton'
 import { formatArticleNumber } from '~/domains/equipment/_shared/helpers/formatArticleNumber'
 import { AddSnowboardBootButton } from '~/domains/equipment/snowboardBoot/components/AddSnowboardBootButton'
 import { SnowboardBootActions } from '~/domains/equipment/snowboardBoot/components/SnowboardBootActions'
@@ -58,23 +53,13 @@ export const Route = createFileRoute('/_authenticated/equipment/snowboard-boot')
 })
 
 function RouteComponent() {
-	const {
-		filters: {
-			page,
-			itemsPerPage,
-			orderBy,
-			orderDirection,
-			search,
-			checkedFilter,
-			archivedFilter,
-			inventory,
-		},
-		setFilters,
-		resetFilters,
-	} = useFilters(Route.id)
+	const { filters, setFilters, resetFilters } = useFilters(Route.id)
+	const { page, itemsPerPage, orderBy, orderDirection, search, checkedFilter, archivedFilter } =
+		filters
 	const navigate = useNavigate()
+	const isMobile = useIsMobile()
 
-	const isInventory = Boolean(inventory)
+	const isInventory = Boolean(filters.inventory)
 	const defaultSearch = getSnowboardBootInputSchema.parse({})
 
 	const handleFilterClick = (nextOrderBy: GetSnowboardBootInput['orderBy']) => {
@@ -99,67 +84,17 @@ function RouteComponent() {
 	)
 
 	return (
-		<div>
-			{/*  Title  with total count */}
-			<div className="mb-6 flex justify-between gap-2">
-				<TypographyH1>
-					Snowboardové boty
-					<span className="ml-1 align-super text-gray-500 text-sm">({data.totalCount})</span>
-				</TypographyH1>
-				<div className="flex items-center gap-2">
-					{isInventory && <StockSweepButton type={EquipmentItemType.SNOWBOARD_BOOT} />}
-					<InventoryToggleButton
-						inventory={isInventory}
-						onToggle={(next) =>
-							setFilters({
-								inventory: next || undefined,
-								checkedFilter: 'all',
-								page: 1,
-							})
-						}
-					/>
-				</div>
-			</div>
-
-			{/*  Add snowboard boot and reset filters button  */}
-			<div className="mb-4 flex items-center justify-between gap-2">
-				<AddSnowboardBootButton />
-
-				<SearchField searchValue={search} onSearch={(search) => setFilters({ search, page: 1 })} />
-
-				{isInventory && (
-					<CheckedFilterSelect
-						value={checkedFilter}
-						onValueChange={(value) => setFilters({ checkedFilter: value, page: 1 })}
-					/>
-				)}
-
-				<div className="flex items-center gap-2">
-					<ResetFiltersButton
-						/*  In inventory mode reset the filters through `setFilters`, which
-						    merges into the current search — inventura is a mode, not a
-						    filter, and resetting shouldn't drop you out of it.  */
-						resetFilters={
-							isInventory ? () => setFilters({ ...defaultSearch, search: undefined }) : resetFilters
-						}
-						defaultSearch={defaultSearch}
-						currentSearch={{
-							page,
-							itemsPerPage,
-							orderBy,
-							orderDirection,
-							search,
-							checkedFilter,
-							archivedFilter,
-						}}
-					/>
-
-					<EquipmentFilterButton
-						archivedFilter={archivedFilter}
-						onArchivedFilterChange={(archivedFilter) => setFilters({ archivedFilter, page: 1 })}
-					/>
-				</div>
-			</div>
+		<div className="flex flex-col gap-4">
+			<EquipmentHeader
+				label={isMobile ? 'Snowb. boty' : 'Snowboardové boty'}
+				type={EquipmentItemType.SNOWBOARD_BOOT}
+				totalCount={data.totalCount}
+				addButton={<AddSnowboardBootButton />}
+				filters={filters}
+				defaultSearch={defaultSearch}
+				setFilters={setFilters}
+				resetFilters={resetFilters}
+			/>
 
 			{/*  Table  */}
 			<Table>

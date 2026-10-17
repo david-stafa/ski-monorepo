@@ -9,20 +9,14 @@ import {
 	TableHeadSortable,
 	TableRow,
 } from '@ski-blazek/ui/components/table'
-import { TypographyH1 } from '@ski-blazek/ui/components/typography'
 import { cn } from '@ski-blazek/ui/lib/utils'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { z } from 'zod'
 import { CustomItemPerPageSelect, CustomPagination } from '~/components/ui/CustomPagination'
-import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
-import { SearchField } from '~/components/ui/SearchField'
 import { GenderBadge } from '~/domains/equipment/_shared/components/badges/GenderBadge'
-import { CheckedFilterSelect } from '~/domains/equipment/_shared/components/CheckedFilterSelect'
-import { EquipmentFilterButton } from '~/domains/equipment/_shared/components/EquipmentFilterButton'
-import { InventoryToggleButton } from '~/domains/equipment/_shared/components/InventoryToggleButton'
+import { EquipmentHeader } from '~/domains/equipment/_shared/components/EquipmentHeader'
 import { StockCheckCheckbox } from '~/domains/equipment/_shared/components/StockCheckCheckbox'
-import { StockSweepButton } from '~/domains/equipment/_shared/components/StockSweepButton'
 import { colorLabel } from '~/domains/equipment/_shared/helpers/colorOptions'
 import { formatArticleNumber } from '~/domains/equipment/_shared/helpers/formatArticleNumber'
 import { AddHelmetButton } from '~/domains/equipment/helmet/components/AddHelmetButton'
@@ -55,23 +49,12 @@ export const Route = createFileRoute('/_authenticated/equipment/helmet')({
 })
 
 function RouteComponent() {
-	const {
-		filters: {
-			page,
-			itemsPerPage,
-			orderBy,
-			orderDirection,
-			search,
-			checkedFilter,
-			archivedFilter,
-			inventory,
-		},
-		setFilters,
-		resetFilters,
-	} = useFilters(Route.id)
+	const { filters, setFilters, resetFilters } = useFilters(Route.id)
+	const { page, itemsPerPage, orderBy, orderDirection, search, checkedFilter, archivedFilter } =
+		filters
 	const navigate = useNavigate()
 
-	const isInventory = Boolean(inventory)
+	const isInventory = Boolean(filters.inventory)
 	const defaultSearch = getHelmetInputSchema.parse({})
 
 	const handleFilterClick = (nextOrderBy: GetHelmetInput['orderBy']) => {
@@ -96,67 +79,17 @@ function RouteComponent() {
 	)
 
 	return (
-		<div>
-			{/*  Title  with total count */}
-			<div className="mb-6 flex justify-between gap-2">
-				<TypographyH1>
-					Helmy
-					<span className="ml-1 align-super text-gray-500 text-sm">({data.totalCount})</span>
-				</TypographyH1>
-				<div className="flex items-center gap-2">
-					{isInventory && <StockSweepButton type={EquipmentItemType.HELMET} />}
-					<InventoryToggleButton
-						inventory={isInventory}
-						onToggle={(next) =>
-							setFilters({
-								inventory: next || undefined,
-								checkedFilter: 'all',
-								page: 1,
-							})
-						}
-					/>
-				</div>
-			</div>
-
-			{/*  Add helmet and reset filters button  */}
-			<div className="mb-4 flex items-center justify-between gap-2">
-				<AddHelmetButton />
-
-				<SearchField searchValue={search} onSearch={(search) => setFilters({ search, page: 1 })} />
-
-				{isInventory && (
-					<CheckedFilterSelect
-						value={checkedFilter}
-						onValueChange={(value) => setFilters({ checkedFilter: value, page: 1 })}
-					/>
-				)}
-
-				<div className="flex items-center gap-2">
-					<ResetFiltersButton
-						/*  In inventory mode reset the filters through `setFilters`, which
-						    merges into the current search — inventura is a mode, not a
-						    filter, and resetting shouldn't drop you out of it.  */
-						resetFilters={
-							isInventory ? () => setFilters({ ...defaultSearch, search: undefined }) : resetFilters
-						}
-						defaultSearch={defaultSearch}
-						currentSearch={{
-							page,
-							itemsPerPage,
-							orderBy,
-							orderDirection,
-							search,
-							checkedFilter,
-							archivedFilter,
-						}}
-					/>
-
-					<EquipmentFilterButton
-						archivedFilter={archivedFilter}
-						onArchivedFilterChange={(archivedFilter) => setFilters({ archivedFilter, page: 1 })}
-					/>
-				</div>
-			</div>
+		<div className="flex flex-col gap-4">
+			<EquipmentHeader
+				label="Helmy"
+				type={EquipmentItemType.HELMET}
+				totalCount={data.totalCount}
+				addButton={<AddHelmetButton />}
+				filters={filters}
+				defaultSearch={defaultSearch}
+				setFilters={setFilters}
+				resetFilters={resetFilters}
+			/>
 
 			{/*  Table  */}
 			<Table>
