@@ -11,8 +11,6 @@ import {
 import { TypographyH1 } from '@ski-blazek/ui/components/typography'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
-import { PlusIcon } from 'lucide-react'
-import { ButtonLink } from '~/components/ui/button-link'
 import { CustomItemPerPageSelect, CustomPagination } from '~/components/ui/CustomPagination'
 import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
 import { SearchField } from '~/components/ui/SearchField'
@@ -98,28 +96,20 @@ function RouteComponent() {
 	)
 
 	return (
-		<div>
-			{/*  TODO: stats  */}
-			<section className="mb-6 flex items-center justify-between">
-				{/*  Title with total count  */}
-				<TypographyH1 className="mb-6">
-					Rezervace
-					<span className="ml-1 align-super text-gray-500 text-sm">({data.totalCount})</span>
-				</TypographyH1>
-
-				<ButtonLink to="/reservation/create" size="sm">
-					<PlusIcon className="size-4" />
-					Vytvořit rezervaci
-				</ButtonLink>
-			</section>
+		<div className="flex flex-col gap-4">
+			{/*  Title with total count  */}
+			<TypographyH1>
+				Rezervace
+				<span className="ml-1 align-super text-gray-500 text-sm">({data.totalCount})</span>
+			</TypographyH1>
 
 			{/*  Create reservation, filters and reset  */}
-			<div className="mb-4 flex items-center justify-between gap-2">
-				<div></div>
+			<div className="flex items-center justify-between gap-2">
 				<SearchField
 					searchValue={search}
 					placeholder="Hledat jméno nebo telefon..."
 					onSearch={(search) => setFilters({ search, page: 1 })}
+					className="h-10 max-w-none flex-1 md:max-w-xs"
 				/>
 
 				<div className="flex items-center gap-2">
@@ -157,7 +147,7 @@ function RouteComponent() {
 			</div>
 
 			{/*  Table  */}
-			<Table className="mb-2 md:mb-4">
+			<Table>
 				<TableHeader>
 					<TableRow>
 						<TableHead>Akce</TableHead>

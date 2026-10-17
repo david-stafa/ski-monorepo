@@ -13,10 +13,7 @@ import { useSuspenseQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 import { useState } from 'react'
 import { CustomItemPerPageSelect, CustomPagination } from '~/components/ui/CustomPagination'
-import { DateRangeFilter } from '~/components/ui/DateRangeFilter'
-import { ResetFiltersButton } from '~/components/ui/ResetFiltersButton'
-import { SearchField } from '~/components/ui/SearchField'
-import { ReservationFilters } from '~/domains/reservation/components/ReservationFilters'
+import { ReservationListToolbar } from '~/domains/reservation/components/ReservationListToolbar'
 import { ReservationRow } from '~/domains/reservation/components/ReservationRow'
 import { ReservationStepDrawer } from '~/domains/reservation/components/ReservationStepDrawer'
 import { SHEET_STEPS } from '~/domains/reservation/helpers/sheetSteps'
@@ -49,37 +46,26 @@ function RouteComponent() {
 	const { data } = useSuspenseQuery(trpc.reservation.list.queryOptions(toListInput(filters)))
 
 	return (
-		<div>
+		// one gap spaces the whole page: the components themselves carry no margins
+		<div className="flex flex-col gap-4">
 			{/*  Title with total count  */}
-			<TypographyH1 className="mb-6">
+			<TypographyH1>
 				Vrácení
 				<span className="ml-1 align-super text-gray-500 text-sm">({data.totalCount})</span>
 			</TypographyH1>
 
-			{/*  Date window, filters and reset  */}
-			<div className="mb-4 flex flex-wrap items-center justify-between gap-2">
-				<DateRangeFilter
-					from={from}
-					to={to}
-					onRangeChange={(range) => setFilters({ ...range, page: 1 })}
-				/>
-
-				<SearchField
-					searchValue={search}
-					placeholder="Hledat jméno nebo telefon..."
-					onSearch={(search) => setFilters({ search, page: 1 })}
-				/>
-
-				<div className="flex items-center gap-2">
-					<ResetFiltersButton
-						resetFilters={resetFilters}
-						defaultSearch={returnSearchSchema.parse({})}
-						currentSearch={filters}
-					/>
-
-					<ReservationFilters kind={kind} onKindChange={(kind) => setFilters({ kind, page: 1 })} />
-				</div>
-			</div>
+			<ReservationListToolbar
+				from={from}
+				to={to}
+				onRangeChange={(range) => setFilters({ ...range, page: 1 })}
+				search={search}
+				onSearch={(search) => setFilters({ search, page: 1 })}
+				kind={kind}
+				onKindChange={(kind) => setFilters({ kind, page: 1 })}
+				resetFilters={resetFilters}
+				defaultSearch={returnSearchSchema.parse({})}
+				currentSearch={filters}
+			/>
 
 			{/*  Table — a row opens the gear that has to come back in the drawer  */}
 			<Table>

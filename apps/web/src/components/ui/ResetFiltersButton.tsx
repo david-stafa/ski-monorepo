@@ -1,6 +1,5 @@
 import { Button } from '@ski-blazek/ui/components/button'
-import { useIsMobile } from '@ski-blazek/ui/hooks/use-mobile'
-import { cn } from '@ski-blazek/ui/lib/utils'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@ski-blazek/ui/components/tooltip'
 import { RefreshCcwIcon } from 'lucide-react'
 import { areObjectsEqual } from '~/lib/utils'
 
@@ -16,18 +15,25 @@ export const ResetFiltersButton = ({
 	currentSearch,
 }: ResetFiltersButtonProps) => {
 	const isDefault = areObjectsEqual(defaultSearch, currentSearch)
-	const isMobile = useIsMobile()
+
+	if (isDefault) return
 
 	return (
-		<Button
-			variant="outline"
-			size="sm"
-			onClick={resetFilters}
-			disabled={isDefault}
-			className={cn(isMobile && isDefault && 'hidden')}
-		>
-			<RefreshCcwIcon className="size-4" />
-			Resetovat filtry
-		</Button>
+		<Tooltip>
+			<TooltipTrigger
+				// 40px square like the rest of the toolbar; the tooltip carries the label
+				render={
+					<Button
+						variant="outline"
+						size="icon-lg"
+						aria-label="Resetovat filtry"
+						onClick={resetFilters}
+					/>
+				}
+			>
+				<RefreshCcwIcon className="size-4" />
+			</TooltipTrigger>
+			<TooltipContent>Resetovat filtry</TooltipContent>
+		</Tooltip>
 	)
 }

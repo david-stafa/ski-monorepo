@@ -1,4 +1,5 @@
 import { Input } from '@ski-blazek/ui/components/input'
+import { cn } from '@ski-blazek/ui/lib/utils'
 import { useEffect, useRef, useState } from 'react'
 import { useDebounce } from '~/hooks/useDebounce'
 
@@ -6,12 +7,14 @@ type SearchFieldProps = {
 	placeholder?: string
 	onSearch: (value: string) => void
 	searchValue?: string
+	className?: string
 }
 
 export const SearchField = ({
 	placeholder = 'Hledat...',
 	onSearch,
 	searchValue,
+	className,
 }: SearchFieldProps) => {
 	const [value, setValue] = useState(searchValue ?? '')
 	const debouncedValue = useDebounce(value, 300)
@@ -28,7 +31,7 @@ export const SearchField = ({
 
 	return (
 		<Input
-			className="max-w-xs self-center"
+			className={cn('h-10 xl:max-w-2xs', className)}
 			type="text"
 			placeholder={placeholder}
 			value={value}

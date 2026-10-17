@@ -11,6 +11,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '@ski-blazek/ui/components/select'
+import { useIsMobile } from '@ski-blazek/ui/hooks/use-mobile'
 import { ListFilterIcon } from 'lucide-react'
 import { DateFilter } from '~/components/ui/DateFilter'
 import { RESERVATION_STATUS_META, RESERVATION_STATUS_OPTIONS } from '../helpers/reservationStatus'
@@ -52,35 +53,61 @@ export const ReservationFilters = ({
 	to,
 	onFromChange,
 	onToChange,
-}: ReservationFiltersProps) => (
-	<Popover>
-		<PopoverTrigger render={<Button variant="default" />}>
-			<ListFilterIcon />
-			Filtry
-		</PopoverTrigger>
-		<PopoverContent align="start" className="flex flex-col gap-3 p-3">
-			{onStatusesChange && (
+}: ReservationFiltersProps) => {
+	const isMobile = useIsMobile()
+	return (
+		<Popover>
+			<PopoverTrigger render={<Button size={isMobile ? 'icon-lg' : 'lg'} aria-label="Filtry" />}>
+				<ListFilterIcon />
+				{!isMobile && 'Filtry'}
+			</PopoverTrigger>
+			<PopoverContent align="start" className="flex flex-col gap-3 p-3">
+				{onStatusesChange && (
+					<div className="flex justify-between gap-4">
+						<Label htmlFor="status">Status</Label>
+						<Select
+							id="status"
+							multiple
+							items={RESERVATION_STATUS_OPTIONS}
+							value={statuses ?? []}
+							onValueChange={(value) => onStatusesChange(inDropdownOrder(value))}
+						>
+							<SelectTrigger className="m-0 w-45" size="sm">
+								<SelectValue>
+									{(value: ReservationStatus[]) =>
+										value.length === 0
+											? 'Všechny stavy'
+											: value.map((status) => RESERVATION_STATUS_META[status].label).join(', ')
+									}
+								</SelectValue>
+							</SelectTrigger>
+							<SelectContent>
+								<SelectGroup>
+									{RESERVATION_STATUS_OPTIONS.map((item) => (
+										<SelectItem key={item.value} value={item.value}>
+											{item.label}
+										</SelectItem>
+									))}
+								</SelectGroup>
+							</SelectContent>
+						</Select>
+					</div>
+				)}
+
 				<div className="flex justify-between gap-4">
-					<Label htmlFor="status">Status</Label>
+					<Label htmlFor="kind">Typ</Label>
 					<Select
-						id="status"
-						multiple
-						items={RESERVATION_STATUS_OPTIONS}
-						value={statuses ?? []}
-						onValueChange={(value) => onStatusesChange(inDropdownOrder(value))}
+						id="kind"
+						items={KIND_ITEMS}
+						value={kind}
+						onValueChange={(value) => onKindChange(value as ReservationKindFilter)}
 					>
 						<SelectTrigger className="m-0 w-45" size="sm">
-							<SelectValue>
-								{(value: ReservationStatus[]) =>
-									value.length === 0
-										? 'Všechny stavy'
-										: value.map((status) => RESERVATION_STATUS_META[status].label).join(', ')
-								}
-							</SelectValue>
+							<SelectValue />
 						</SelectTrigger>
 						<SelectContent>
 							<SelectGroup>
-								{RESERVATION_STATUS_OPTIONS.map((item) => (
+								{KIND_ITEMS.map((item) => (
 									<SelectItem key={item.value} value={item.value}>
 										{item.label}
 									</SelectItem>
@@ -89,44 +116,21 @@ export const ReservationFilters = ({
 						</SelectContent>
 					</Select>
 				</div>
-			)}
 
-			<div className="flex justify-between gap-4">
-				<Label htmlFor="kind">Typ</Label>
-				<Select
-					id="kind"
-					items={KIND_ITEMS}
-					value={kind}
-					onValueChange={(value) => onKindChange(value as ReservationKindFilter)}
-				>
-					<SelectTrigger className="m-0 w-45" size="sm">
-						<SelectValue />
-					</SelectTrigger>
-					<SelectContent>
-						<SelectGroup>
-							{KIND_ITEMS.map((item) => (
-								<SelectItem key={item.value} value={item.value}>
-									{item.label}
-								</SelectItem>
-							))}
-						</SelectGroup>
-					</SelectContent>
-				</Select>
-			</div>
+				{onFromChange && (
+					<div className="flex items-center justify-between gap-4">
+						<Label htmlFor="from">Od</Label>
+						<DateFilter id="from" className="w-45" value={from} onValueChange={onFromChange} />
+					</div>
+				)}
 
-			{onFromChange && (
-				<div className="flex items-center justify-between gap-4">
-					<Label htmlFor="from">Od</Label>
-					<DateFilter id="from" className="w-45" value={from} onValueChange={onFromChange} />
-				</div>
-			)}
-
-			{onToChange && (
-				<div className="flex items-center justify-between gap-4">
-					<Label htmlFor="to">Do</Label>
-					<DateFilter id="to" className="w-45" value={to} onValueChange={onToChange} />
-				</div>
-			)}
-		</PopoverContent>
-	</Popover>
-)
+				{onToChange && (
+					<div className="flex items-center justify-between gap-4">
+						<Label htmlFor="to">Do</Label>
+						<DateFilter id="to" className="w-45" value={to} onValueChange={onToChange} />
+					</div>
+				)}
+			</PopoverContent>
+		</Popover>
+	)
+}
