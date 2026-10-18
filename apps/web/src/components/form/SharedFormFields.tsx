@@ -400,12 +400,14 @@ export function ComboboxField({
 	isLoading,
 	placeholder,
 	disabled,
+	className,
 }: {
 	options: SelectFieldOption[]
 	label: string
 	isLoading: boolean
 	placeholder?: string
 	disabled?: boolean
+	className?: string
 }) {
 	const field = useFieldContext<string | null>()
 
@@ -434,7 +436,7 @@ export function ComboboxField({
 				<ComboboxInput
 					placeholder={placeholder || 'Vyberte'}
 					id={field.name}
-					className="[&_input]:field-sizing-content w-auto min-w-50 self-start"
+					className={className ?? '[&_input]:field-sizing-content w-auto min-w-50 self-start'}
 					showClear
 					disabled={disabled}
 					onBlur={field.handleBlur}

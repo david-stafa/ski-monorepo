@@ -2,6 +2,7 @@ import { Button } from '@ski-blazek/ui/components/button'
 import { Calendar } from '@ski-blazek/ui/components/calendar'
 import { Label } from '@ski-blazek/ui/components/label'
 import { Popover, PopoverContent, PopoverTrigger } from '@ski-blazek/ui/components/popover'
+import { useIsMobile } from '@ski-blazek/ui/hooks/use-mobile'
 import { endOfDay, startOfDay } from 'date-fns'
 import { CalendarIcon } from 'lucide-react'
 import { useState } from 'react'
@@ -19,6 +20,8 @@ export const DateRangeField = withFieldGroup({
 	props: { label: '', disabled: false } as { label: string; disabled?: boolean },
 	render: function DateRangeFieldGroup({ group, label, disabled }) {
 		const [open, setOpen] = useState(false)
+		// two months side by side are wider than a phone screen
+		const isMobile = useIsMobile()
 
 		return (
 			<group.Field name="startDate">
@@ -74,7 +77,7 @@ export const DateRangeField = withFieldGroup({
 													startField.handleChange(startOfDay(nextFrom))
 													endField.handleChange(endOfDay(range.to ?? nextFrom))
 												}}
-												numberOfMonths={2}
+												numberOfMonths={isMobile ? 1 : 2}
 												showOutsideDays={false}
 												disabled={{ before: new Date() }}
 												autoFocus

@@ -7,16 +7,17 @@ import {
 	seasonReturnDeadline,
 } from '@ski-blazek/api/schemas'
 import { Button } from '@ski-blazek/ui/components/button'
-import { TypographyH1, TypographyH4 } from '@ski-blazek/ui/components/typography'
+import { TypographyH1 } from '@ski-blazek/ui/components/typography'
 import { useNavigate } from '@tanstack/react-router'
-import { FileTextIcon } from 'lucide-react'
+import { FileTextIcon, UserPlusIcon } from 'lucide-react'
 import { useState } from 'react'
 import { DateRangeField } from '~/components/form/DateRangeField'
-import { useAppForm } from '~/components/form/SharedFormFields'
+import { useAppForm, withForm } from '~/components/form/SharedFormFields'
 import { createEmptyPerson } from '../helpers/createEmptyPerson'
 import { getPersonEditLocks } from '../helpers/getPersonEditLocks'
 import { type InitialValuesProps, initialValues } from '../helpers/initialValues'
 import { useCreateReservation, useUpdateReservation } from '../reservationQueries'
+import { FormSection } from './FormSection'
 import { PersonFormCard } from './PersonFormCard'
 
 type ReservationFormProps = {
@@ -108,64 +109,97 @@ export const ReservationForm = ({ reservation, searchParams }: ReservationFormPr
 		},
 	})
 
+	const submitLabel = isEdit ? 'Uložit změny' : 'Vytvořit rezervaci'
+
 	return (
-		<div>
-			<TypographyH1 className="mb-6">
-				{isEdit ? 'Upravit rezervaci' : 'Vytvořit rezervaci'}
-			</TypographyH1>
+		<div className="flex flex-col gap-6">
+			<div className="flex flex-col gap-1">
+				<TypographyH1>{isEdit ? 'Upravit rezervaci' : 'Vytvořit rezervaci'}</TypographyH1>
+				<p className="text-muted-foreground text-sm">
+					{isEdit
+						? 'Termín a sezónnost u existující rezervace změnit nelze.'
+						: 'Vyplňte termín a kontakt, pak vybavení pro každou osobu.'}
+				</p>
+			</div>
 			<form
+				// one column on phones; from xl the reservation details stick to the
+				// left while the people scroll past on the right
+				className="flex flex-col gap-4 xl:grid xl:grid-cols-[22rem_minmax(0,1fr)] xl:items-start xl:gap-6"
 				onSubmit={(e) => {
 					e.preventDefault()
 					e.stopPropagation()
 					form.handleSubmit()
 				}}
 			>
-				<section className="mb-4 flex flex-col gap-4 rounded-xl border bg-muted/40 p-2 md:p-4">
-					<div className="flex items-center gap-2">
-						<FileTextIcon
-							className="rounded-full bg-primary p-1.5 text-primary-foreground"
-							size={30}
-						/>
-						<TypographyH4>Základní údaje</TypographyH4>
-					</div>
-					<div className="flex items-center gap-4">
-						<DateRangeField
-							disabled={isEdit}
-							form={form}
-							fields={{ startDate: 'startDate', endDate: 'endDate' }}
-							label="Termín rezervace"
-						/>
-						{/* create-only, like the dates: shown on edit so staff can see it */}
-						<form.AppField
-							name="seasonal"
-							children={(field) => (
-								<field.CheckboxField
-									label="Sezónní rezervace"
-									disabled={isEdit}
-									orientation="stacked"
+				<div className="flex flex-col gap-4 xl:sticky xl:top-4">
+					<section className="@container overflow-clip rounded-2xl border bg-background">
+						<div className="flex items-center gap-3 border-b bg-muted/40 px-3 py-3 md:px-4">
+							<FileTextIcon
+								className="rounded-full bg-primary p-1.5 text-primary-foreground"
+								size={30}
+							/>
+							<span className="font-medium text-lg">Základní údaje</span>
+						</div>
+						<div className="divide-y">
+							<FormSection title="Termín">
+								<div className="flex flex-wrap items-start gap-x-6 gap-y-3">
+									<DateRangeField
+										disabled={isEdit}
+										form={form}
+										fields={{ startDate: 'startDate', endDate: 'endDate' }}
+										label="Termín rezervace"
+									/>
+									{/* create-only, like the dates: shown on edit so staff can see it */}
+									<form.AppField
+										name="seasonal"
+										children={(field) => (
+											<field.CheckboxField
+												label="Sezónní"
+												disabled={isEdit}
+												orientation="stacked"
+											/>
+										)}
+									/>
+								</div>
+							</FormSection>
+							<FormSection title="Kontakt">
+								<div className="grid @sm:grid-cols-2 gap-3">
+									<form.AppField
+										name="name"
+										children={(field) => (
+											<field.TextField label="Jméno" placeholder="Zadejte jméno" />
+										)}
+									/>
+									<form.AppField
+										name="phoneNumber"
+										children={(field) => (
+											<field.TextField
+												label="Telefon"
+												placeholder="123 456 789"
+												type="tel"
+												inputMode="tel"
+											/>
+										)}
+									/>
+								</div>
+								<form.AppField
+									name="note"
+									children={(field) => (
+										<field.TextAreaField label="Poznámka" placeholder="Zadejte poznámku" />
+									)}
 								/>
-							)}
-						/>
-					</div>
-					<div className="flex gap-2">
-						<form.AppField
-							name="name"
-							children={(field) => <field.TextField label="Jméno" placeholder="Zadejte jméno" />}
-						/>
+							</FormSection>
+						</div>
+					</section>
 
-						<form.AppField
-							name="phoneNumber"
-							children={(field) => <field.TextField label="Telefon" placeholder="123 456 789" />}
-						/>
+					{/* the save button lives here on wide screens; phones get the bar at the bottom */}
+					<div className="hidden flex-col gap-3 rounded-2xl border bg-muted/40 p-4 xl:flex">
+						<ReservationSummary form={form} compact={false} />
+						<form.AppForm>
+							<form.SubscribeButton label={submitLabel} size="lg" className="w-full" />
+						</form.AppForm>
 					</div>
-
-					<form.AppField
-						name="note"
-						children={(field) => (
-							<field.TextAreaField label="Poznámka" placeholder="Zadejte poznámku" />
-						)}
-					/>
-				</section>
+				</div>
 
 				<form.AppField name="people" mode="array">
 					{(peopleField) => {
@@ -202,10 +236,11 @@ export const ReservationForm = ({ reservation, searchParams }: ReservationFormPr
 								<Button
 									onClick={addPerson}
 									type="button"
-									variant={'outline'}
-									className="mb-4"
-									size={'lg'}
+									variant="outline"
+									size="lg"
+									className="h-14 rounded-2xl border-dashed text-muted-foreground"
 								>
+									<UserPlusIcon />
 									Přidat další osobu
 								</Button>
 							</div>
@@ -213,16 +248,56 @@ export const ReservationForm = ({ reservation, searchParams }: ReservationFormPr
 					}}
 				</form.AppField>
 
-				<form.AppForm>
-					<div className="flex gap-2">
-						<form.SubscribeButton
-							label={isEdit ? 'Uložit změny' : 'Vytvořit rezervaci'}
-							className="flex-1"
-							size={'lg'}
-						/>
+				{/* sticks to the bottom of the screen while the form is scrolled */}
+				<div className="sticky bottom-0 -mx-2 flex items-center gap-3 border-t bg-background/95 px-3 py-3 backdrop-blur md:-mx-4 md:px-4 xl:hidden">
+					<div className="min-w-0 flex-1">
+						<ReservationSummary form={form} compact />
 					</div>
-				</form.AppForm>
+					<form.AppForm>
+						<form.SubscribeButton label={submitLabel} size="lg" />
+					</form.AppForm>
+				</div>
 			</form>
 		</div>
 	)
 }
+
+/** How many people and how much gear the reservation holds so far. */
+const ReservationSummary = withForm({
+	// only read for type inference — the real values come from the parent form
+	defaultValues: initialValues(),
+	props: { compact: false },
+	render: function ReservationSummary({ form, compact }) {
+		return (
+			<form.Subscribe
+				selector={(state) => ({
+					people: state.values.people.length,
+					gear: state.values.people.reduce(
+						(count, person) => count + Object.values(person.equipment).filter(Boolean).length,
+						0
+					),
+				})}
+			>
+				{({ people, gear }) =>
+					compact ? (
+						<p className="truncate text-muted-foreground text-sm">
+							Osob: <b className="text-foreground">{people}</b> · Vybavení:{' '}
+							<b className="text-foreground">{gear}</b>
+						</p>
+					) : (
+						<dl className="grid grid-cols-2 gap-3 text-sm">
+							<div className="rounded-lg border bg-background p-3">
+								<dt className="text-muted-foreground">Osob</dt>
+								<dd className="font-semibold text-2xl">{people}</dd>
+							</div>
+							<div className="rounded-lg border bg-background p-3">
+								<dt className="text-muted-foreground">Vybavení</dt>
+								<dd className="font-semibold text-2xl">{gear}</dd>
+							</div>
+						</dl>
+					)
+				}
+			</form.Subscribe>
+		)
+	},
+})
