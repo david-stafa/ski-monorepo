@@ -33,12 +33,16 @@ export const DateRangeField = withFieldGroup({
 
 							return (
 								<div className="flex flex-col gap-2">
-									<Label htmlFor={startField.name}>
-										{label}{' '}
-										<span className="text-muted-foreground italic">
-											{disabled && '(změna termínu zatím není možná)'}
-										</span>
-									</Label>
+									<div className="flex flex-col gap-1">
+										<Label htmlFor={startField.name}>
+											<span className="flex flex-col gap-1">{label}</span>
+										</Label>
+										{disabled && (
+											<span className="text-muted-foreground text-sm italic">
+												(změna termínu zatím není možná)
+											</span>
+										)}
+									</div>
 									<Popover
 										open={open}
 										onOpenChange={(nextOpen) => {

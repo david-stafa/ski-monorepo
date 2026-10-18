@@ -112,15 +112,9 @@ export const ReservationForm = ({ reservation, searchParams }: ReservationFormPr
 	const submitLabel = isEdit ? 'Uložit změny' : 'Vytvořit rezervaci'
 
 	return (
-		<div className="flex flex-col gap-6">
-			<div className="flex flex-col gap-1">
-				<TypographyH1>{isEdit ? 'Upravit rezervaci' : 'Vytvořit rezervaci'}</TypographyH1>
-				<p className="text-muted-foreground text-sm">
-					{isEdit
-						? 'Termín a sezónnost u existující rezervace změnit nelze.'
-						: 'Vyplňte termín a kontakt, pak vybavení pro každou osobu.'}
-				</p>
-			</div>
+		<div className="flex flex-col gap-4">
+			<TypographyH1>{isEdit ? 'Upravit rezervaci' : 'Vytvořit rezervaci'}</TypographyH1>
+
 			<form
 				// one column on phones; from xl the reservation details stick to the
 				// left while the people scroll past on the right
