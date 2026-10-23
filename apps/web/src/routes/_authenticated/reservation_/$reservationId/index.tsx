@@ -10,7 +10,13 @@ import {
 import { TypographyH1 } from '@ski-blazek/ui/components/typography'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowRightIcon, BanIcon, EllipsisVerticalIcon, PencilIcon } from 'lucide-react'
+import {
+	ArrowRightIcon,
+	BanIcon,
+	EllipsisVerticalIcon,
+	PencilIcon,
+	PlusCircleIcon,
+} from 'lucide-react'
 import { useState } from 'react'
 import { CancelReservationDialog } from '~/domains/reservation/components/CancelReservationDialog'
 import { FlagBadges } from '~/domains/reservation/components/FlagBadges'
@@ -97,7 +103,15 @@ function RouteComponent() {
 							>
 								<EllipsisVerticalIcon />
 							</DropdownMenuTrigger>
-							<DropdownMenuContent align="end">
+							<DropdownMenuContent align="end" className="w-fit">
+								<DropdownMenuItem
+									render={
+										<Link to="/reservation/create" search={{ fromReservation: reservation.id }} />
+									}
+								>
+									<PlusCircleIcon />
+									Vytvořit předvyplněnou rezervaci
+								</DropdownMenuItem>
 								{canEdit(reservation.status) && (
 									<DropdownMenuItem
 										render={
