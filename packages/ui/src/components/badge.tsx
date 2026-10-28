@@ -32,6 +32,13 @@ const badgeVariants = cva(
 				slate:
 					'border-slate-200 bg-slate-100 text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 [a]:hover:bg-slate-200 dark:[a]:hover:bg-slate-700',
 				gold: 'border-amber-200 bg-amber-50 text-amber-800 dark:border-amber-800/60 dark:bg-amber-950 dark:text-amber-200 [a]:hover:bg-amber-100 dark:[a]:hover:bg-amber-900',
+				// Escalating attention: outline < soft fill < solid
+				amberOutline:
+					'border-[1.5px] border-amber-500 bg-transparent text-amber-800 dark:border-amber-400 dark:text-amber-300 [a]:hover:bg-amber-50 dark:[a]:hover:bg-amber-950',
+				orange:
+					'border-orange-400 bg-orange-200 text-orange-900 dark:border-orange-700 dark:bg-orange-900/60 dark:text-orange-100 [a]:hover:bg-orange-300 dark:[a]:hover:bg-orange-900',
+				redSolid:
+					'border-red-700 bg-red-700 text-white dark:border-red-600 dark:bg-red-600 [a]:hover:bg-red-800 dark:[a]:hover:bg-red-700',
 			},
 		},
 		defaultVariants: {

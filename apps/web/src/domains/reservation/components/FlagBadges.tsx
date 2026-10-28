@@ -11,8 +11,14 @@ type Flags = { prepToday: boolean; latePrep: boolean; missedPickup: boolean; ove
 
 const PrepTodayBadge = () => <Badge variant="info">Připravit dnes</Badge>
 
-const BehindBadge = ({ label }: { label: string }) => (
-	<Badge variant="warning" className="font-semibold">
+type BehindBadgeProps = {
+	label: string
+	/** Gets louder the later in the lifecycle it is: outline, soft fill, solid. */
+	variant: 'amberOutline' | 'orange' | 'redSolid'
+}
+
+const BehindBadge = ({ label, variant }: BehindBadgeProps) => (
+	<Badge variant={variant} className="font-semibold">
 		<TriangleAlertIcon strokeWidth={2.5} />
 		{label}
 	</Badge>
@@ -23,9 +29,9 @@ const BehindBadge = ({ label }: { label: string }) => (
 export const FlagBadges = ({ flags }: { flags: Flags }) => (
 	<>
 		{flags.prepToday && <PrepTodayBadge />}
-		{flags.latePrep && <BehindBadge label="Nepřipraveno" />}
-		{flags.missedPickup && <BehindBadge label="Nevyzvednuto" />}
-		{flags.overdue && <BehindBadge label="Nevráceno" />}
+		{flags.latePrep && <BehindBadge label="Nepřipraveno" variant="amberOutline" />}
+		{flags.missedPickup && <BehindBadge label="Nevyzvednuto" variant="orange" />}
+		{flags.overdue && <BehindBadge label="Nevráceno" variant="redSolid" />}
 	</>
 )
 
