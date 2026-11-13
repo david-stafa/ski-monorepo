@@ -7,6 +7,9 @@ const createReservationSearch = z.object({
 	phoneNumber: z.string().optional(),
 	seasonal: z.boolean().optional(),
 	fromReservation: z.string().optional(),
+	// which of the source reservation's people to copy — none if empty,
+	// all if missing (an older link without the prefill dialog)
+	people: z.array(z.string()).optional(),
 })
 
 export const Route = createFileRoute('/_authenticated/reservation/create')({
@@ -24,14 +27,18 @@ export const Route = createFileRoute('/_authenticated/reservation/create')({
 function RouteComponent() {
 	const searchParams = Route.useSearch()
 	const sourceReservation = Route.useLoaderData()
+	const { people: pickedIds, ...rest } = searchParams
+	const people = pickedIds
+		? sourceReservation?.people.filter(({ id }) => pickedIds.includes(id))
+		: sourceReservation?.people
 
 	return (
 		<ReservationForm
 			searchParams={{
-				...searchParams,
+				...rest,
 				name: sourceReservation?.name ?? searchParams.name,
 				phoneNumber: sourceReservation?.phoneNumber ?? searchParams.phoneNumber,
-				people: sourceReservation?.people,
+				people,
 			}}
 		/>
 	)
