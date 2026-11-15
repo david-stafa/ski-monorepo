@@ -21,6 +21,7 @@ import { useState } from 'react'
 import { CancelReservationDialog } from '~/domains/reservation/components/CancelReservationDialog'
 import { FlagBadges } from '~/domains/reservation/components/FlagBadges'
 import { Note } from '~/domains/reservation/components/Note'
+import { PrefillReservationDialog } from '~/domains/reservation/components/PrefillReservationDialog'
 import { ReservationPersonCard } from '~/domains/reservation/components/ReservationPersonCard'
 import { ReservationStepper } from '~/domains/reservation/components/ReservationStepper'
 import {
@@ -44,6 +45,7 @@ function RouteComponent() {
 	const { reservationId } = Route.useParams()
 	const bulk = useBulkStep()
 	const [cancelOpen, setCancelOpen] = useState(false)
+	const [prefillOpen, setPrefillOpen] = useState(false)
 
 	const { data: reservation } = useSuspenseQuery(
 		trpc.reservation.get.queryOptions({ id: reservationId })
@@ -104,11 +106,7 @@ function RouteComponent() {
 								<EllipsisVerticalIcon />
 							</DropdownMenuTrigger>
 							<DropdownMenuContent align="end" className="w-fit">
-								<DropdownMenuItem
-									render={
-										<Link to="/reservation/create" search={{ fromReservation: reservation.id }} />
-									}
-								>
+								<DropdownMenuItem onClick={() => setPrefillOpen(true)}>
 									<PlusCircleIcon />
 									Vytvořit předvyplněnou rezervaci
 								</DropdownMenuItem>
@@ -142,6 +140,15 @@ function RouteComponent() {
 			<div className="mb-6">
 				<ReservationStepper units={units} current={reservation.status} />
 			</div>
+
+			{/* mounted only while open, so each open starts from the default selection */}
+			{prefillOpen && (
+				<PrefillReservationDialog
+					open={prefillOpen}
+					onOpenChange={setPrefillOpen}
+					reservation={reservation}
+				/>
+			)}
 
 			<CancelReservationDialog
 				open={cancelOpen}

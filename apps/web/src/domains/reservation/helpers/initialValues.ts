@@ -29,6 +29,7 @@ export const initialValues = ({
 		endDate: seasonal ? seasonReturnDeadline(today) : tomorrow,
 		seasonal,
 		note: null,
-		people: people ? createPrefilledPeople(people) : [createEmptyPerson()],
+		// nobody picked to carry over still leaves one blank person to fill in
+		people: people?.length ? createPrefilledPeople(people) : [createEmptyPerson()],
 	}
 }
