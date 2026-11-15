@@ -98,41 +98,40 @@ function RouteComponent() {
 							<ArrowRightIcon data-icon="inline-end" />
 						</Button>
 					)}
-					{(canEdit(reservation.status) || cancellable) && (
-						<DropdownMenu>
-							<DropdownMenuTrigger
-								render={<Button variant="outline" size="icon-lg" aria-label="Další akce" />}
-							>
-								<EllipsisVerticalIcon />
-							</DropdownMenuTrigger>
-							<DropdownMenuContent align="end" className="w-fit">
-								<DropdownMenuItem onClick={() => setPrefillOpen(true)}>
-									<PlusCircleIcon />
-									Vytvořit předvyplněnou rezervaci
+					{/* always there: prefilling works from any reservation, cancelled ones too */}
+					<DropdownMenu>
+						<DropdownMenuTrigger
+							render={<Button variant="outline" size="icon-lg" aria-label="Další akce" />}
+						>
+							<EllipsisVerticalIcon />
+						</DropdownMenuTrigger>
+						<DropdownMenuContent align="end" className="w-fit">
+							<DropdownMenuItem onClick={() => setPrefillOpen(true)}>
+								<PlusCircleIcon />
+								Vytvořit předvyplněnou rezervaci
+							</DropdownMenuItem>
+							{canEdit(reservation.status) && (
+								<DropdownMenuItem
+									render={
+										<Link
+											to="/reservation/$reservationId/edit"
+											params={{ reservationId: reservation.id }}
+										/>
+									}
+								>
+									<PencilIcon />
+									Upravit rezervaci
 								</DropdownMenuItem>
-								{canEdit(reservation.status) && (
-									<DropdownMenuItem
-										render={
-											<Link
-												to="/reservation/$reservationId/edit"
-												params={{ reservationId: reservation.id }}
-											/>
-										}
-									>
-										<PencilIcon />
-										Upravit rezervaci
-									</DropdownMenuItem>
-								)}
-								{/* only while nothing on it has been picked up */}
-								{cancellable && (
-									<DropdownMenuItem variant="destructive" onClick={() => setCancelOpen(true)}>
-										<BanIcon />
-										Zrušit rezervaci
-									</DropdownMenuItem>
-								)}
-							</DropdownMenuContent>
-						</DropdownMenu>
-					)}
+							)}
+							{/* only while nothing on it has been picked up */}
+							{cancellable && (
+								<DropdownMenuItem variant="destructive" onClick={() => setCancelOpen(true)}>
+									<BanIcon />
+									Zrušit rezervaci
+								</DropdownMenuItem>
+							)}
+						</DropdownMenuContent>
+					</DropdownMenu>
 				</div>
 			</section>
 
