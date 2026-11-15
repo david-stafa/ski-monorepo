@@ -29,7 +29,7 @@ export const ReservationActions = ({ reservation }: ReservationActionsProps) => 
 				<DropdownMenuTrigger render={<Button variant="default" size="icon-sm" />}>
 					<EllipsisVerticalIcon />
 				</DropdownMenuTrigger>
-				<DropdownMenuContent>
+				<DropdownMenuContent className="w-fit">
 					{/* PREFILL — from any reservation, cancelled ones too */}
 					<DropdownMenuItem onClick={() => setPrefillOpen(true)}>
 						<PlusCircleIcon />
