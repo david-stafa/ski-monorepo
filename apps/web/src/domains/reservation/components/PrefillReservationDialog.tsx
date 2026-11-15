@@ -21,12 +21,20 @@ import { GenderIcon } from './GenderIcon'
 type PrefillReservationDialogProps = {
 	open: boolean
 	onOpenChange: (open: boolean) => void
-	reservation: Pick<ReservationDetail, 'id' | 'name' | 'phoneNumber' | 'people'>
+	reservation: Pick<ReservationDetail, 'id' | 'name' | 'phoneNumber' | 'status' | 'people'>
 }
 
-/** Who's ticked when the dialog opens — everyone still on the reservation. */
-const defaultSelection = (people: ReservationDetail['people']) =>
-	new Set(people.filter((person) => person.status !== 'CANCELLED').map(({ id }) => id))
+/**
+ * Who's ticked when the dialog opens — everyone still on the reservation. A
+ * cancelled reservation took its people down with it, so there it's everyone.
+ */
+const defaultSelection = (reservation: Pick<ReservationDetail, 'status' | 'people'>) => {
+	const people =
+		reservation.status === 'CANCELLED'
+			? reservation.people
+			: reservation.people.filter((person) => person.status !== 'CANCELLED')
+	return new Set(people.map(({ id }) => id))
+}
 
 /**
  * The step between "Vytvořit předvyplněnou rezervaci" and the form: the
@@ -40,7 +48,7 @@ export const PrefillReservationDialog = ({
 }: PrefillReservationDialogProps) => {
 	const navigate = useNavigate()
 	// set once per open: the detail page mounts this only while it's open
-	const [selected, setSelected] = useState(() => defaultSelection(reservation.people))
+	const [selected, setSelected] = useState(() => defaultSelection(reservation))
 
 	const allSelected = selected.size === reservation.people.length
 	const noneSelected = selected.size === 0
