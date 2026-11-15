@@ -141,11 +141,14 @@ function RouteComponent() {
 				<ReservationStepper units={units} current={reservation.status} />
 			</div>
 
-			<PrefillReservationDialog
-				open={prefillOpen}
-				onOpenChange={setPrefillOpen}
-				reservation={reservation}
-			/>
+			{/* mounted only while open, so each open starts from the default selection */}
+			{prefillOpen && (
+				<PrefillReservationDialog
+					open={prefillOpen}
+					onOpenChange={setPrefillOpen}
+					reservation={reservation}
+				/>
+			)}
 
 			<CancelReservationDialog
 				open={cancelOpen}

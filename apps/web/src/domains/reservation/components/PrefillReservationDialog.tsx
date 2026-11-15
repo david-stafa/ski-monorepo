@@ -39,6 +39,7 @@ export const PrefillReservationDialog = ({
 	reservation,
 }: PrefillReservationDialogProps) => {
 	const navigate = useNavigate()
+	// set once per open: the detail page mounts this only while it's open
 	const [selected, setSelected] = useState(() => defaultSelection(reservation.people))
 
 	const allSelected = selected.size === reservation.people.length
@@ -52,26 +53,19 @@ export const PrefillReservationDialog = ({
 			return next
 		})
 
-	const handleOpenChange = (next: boolean) => {
-		// start fresh every time it opens
-		if (next) setSelected(defaultSelection(reservation.people))
-		onOpenChange(next)
-	}
-
 	const handleConfirm = () => {
 		onOpenChange(false)
 		navigate({
 			to: '/reservation/create',
 			search: {
 				fromReservation: reservation.id,
-				// keep the source order, not the click order
-				people: reservation.people.filter(({ id }) => selected.has(id)).map(({ id }) => id),
+				personIds: [...selected],
 			},
 		})
 	}
 
 	return (
-		<Dialog open={open} onOpenChange={handleOpenChange}>
+		<Dialog open={open} onOpenChange={onOpenChange}>
 			<DialogContent>
 				<DialogHeader>
 					<DialogTitle>Vytvořit předvyplněnou rezervaci</DialogTitle>
