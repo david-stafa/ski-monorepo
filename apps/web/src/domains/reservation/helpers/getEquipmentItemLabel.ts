@@ -19,11 +19,21 @@ type LabelledItem = Pick<
 
 /** Drops the parts a piece of gear does not have and spaces out the rest. */
 const line = (...parts: (string | false | null | undefined)[]) => parts.filter(Boolean).join(' ')
-const describeEquipmentItem = (item: LabelledItem): string | null => {
+
+/** The separator keeps the article number from running into the measurement
+ * that follows it — "26.4 26 mp" reads as one mangled number otherwise. */
+const withArticle = (article: string, description: string) => `${article} · ${description}`
+
+/** A missing detail row falls back to the bare article number, which is all
+ * there is to show. */
+export const getEquipmentItemLabel = (item: LabelledItem): string => {
+	const article = formatArticleNumber(item)
+
 	switch (item.type) {
 		case 'SKI': {
 			const ski = item.ski
-			if (!ski) return null
+			if (!ski) return article
+			// No article number — the customer asked for skis without it.
 			return line(
 				`${ski.length} cm`,
 				ski.brand,
@@ -38,54 +48,49 @@ const describeEquipmentItem = (item: LabelledItem): string | null => {
 		}
 		case 'SNOWBOARD': {
 			const snowboard = item.snowboard
-			if (!snowboard) return null
-			return line(`${snowboard.length} cm`, snowboard.brand, snowboard.model)
+			if (!snowboard) return article
+			return withArticle(article, line(`${snowboard.length} cm`, snowboard.brand, snowboard.model))
 		}
 		case 'SKI_BOOT': {
 			const boot = item.skiBoot
-			if (!boot) return null
-			return line(
-				`${boot.length} mp`,
-				boot.brand,
-				boot.model,
-				boot.color && colorLabel(boot.color),
-				boot.isKids && 'Dětské'
+			if (!boot) return article
+			// No mondopoint — the customer asked for ski boots without it.
+			return withArticle(
+				article,
+				line(boot.brand, boot.model, boot.color && colorLabel(boot.color), boot.isKids && 'Dětské')
 			)
 		}
 		case 'SNOWBOARD_BOOT': {
 			const boot = item.snowboardBoot
-			if (!boot) return null
-			return line(
-				`${boot.length} mp`,
-				boot.brand,
-				boot.model,
-				boot.isBoa && 'BOA',
-				boot.isKids && 'Dětské'
+			if (!boot) return article
+			return withArticle(
+				article,
+				line(
+					`${boot.length} mp`,
+					boot.brand,
+					boot.model,
+					boot.isBoa && 'BOA',
+					boot.isKids && 'Dětské'
+				)
 			)
 		}
 		case 'HELMET': {
 			const helmet = item.helmet
-			if (!helmet) return null
+			if (!helmet) return article
 			// Size and circumference are both optional until stocktaking fills them
 			// in, so each drops out on its own — the same way the row treats them.
 			const hasCircumference = helmet.circumferenceMin !== null && helmet.circumferenceMax !== null
-			return line(
-				helmet.size && helmetSizeLabel(helmet.size),
-				helmet.brand,
-				helmet.model,
-				colorLabel(helmet.color),
-				hasCircumference && formatCircumference(helmet.circumferenceMin, helmet.circumferenceMax),
-				helmet.withIntegratedGoggles && 'S brýlemi'
+			return withArticle(
+				article,
+				line(
+					helmet.size && helmetSizeLabel(helmet.size),
+					helmet.brand,
+					helmet.model,
+					colorLabel(helmet.color),
+					hasCircumference && formatCircumference(helmet.circumferenceMin, helmet.circumferenceMax),
+					helmet.withIntegratedGoggles && 'S brýlemi'
+				)
 			)
 		}
 	}
-}
-
-export const getEquipmentItemLabel = (item: LabelledItem): string => {
-	const article = formatArticleNumber(item)
-	const description = describeEquipmentItem(item)
-
-	// The separator keeps the article number from running into the measurement
-	// that follows it — "26.86 26.5 mp" reads as one mangled number otherwise.
-	return description ? `${article} · ${description}` : article
 }

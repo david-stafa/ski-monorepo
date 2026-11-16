@@ -10,12 +10,12 @@ export const OptionRow = ({
 	children,
 	flags,
 }: {
-	article: string
+	article?: string
 	children: ReactNode
 	flags?: ReactNode
 }) => (
 	<span className="flex w-full items-center gap-2">
-		<span className="text-muted-foreground tabular-nums">{article}</span>
+		{article && <span className="text-muted-foreground tabular-nums">{article}</span>}
 		{children}
 		{flags && <span className="ml-auto flex items-center gap-1">{flags}</span>}
 	</span>
