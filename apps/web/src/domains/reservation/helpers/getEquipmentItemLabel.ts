@@ -49,7 +49,8 @@ export const getEquipmentItemLabel = (item: LabelledItem): string => {
 		case 'SNOWBOARD': {
 			const snowboard = item.snowboard
 			if (!snowboard) return article
-			return withArticle(article, line(`${snowboard.length} cm`, snowboard.brand, snowboard.model))
+			// No article number — the customer asked for snowboards without it.
+			return line(`${snowboard.length} cm`, snowboard.brand, snowboard.model)
 		}
 		case 'SKI_BOOT': {
 			const boot = item.skiBoot

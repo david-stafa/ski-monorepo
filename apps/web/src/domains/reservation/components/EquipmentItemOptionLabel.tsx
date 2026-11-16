@@ -21,7 +21,7 @@ export const EquipmentItemOptionLabel = ({ item }: { item: AvailableItem }) => {
 
 		case 'SNOWBOARD':
 			if (!item.snowboard) return <ArticleOnly article={article} />
-			return <SnowboardOption article={article} snowboard={item.snowboard} />
+			return <SnowboardOption snowboard={item.snowboard} />
 
 		case 'SKI_BOOT':
 			if (!item.skiBoot) return <ArticleOnly article={article} />
