@@ -6,9 +6,9 @@ import { VipBadge } from '~/domains/equipment/_shared/components/badges/VipBadge
 import type { SkiDetail } from '~/domains/equipment/_shared/types'
 import { OptionName, OptionRow } from './OptionRow'
 
-export const SkiOption = ({ article, ski }: { article: string; ski: SkiDetail }) => (
+/** No article number — the customer asked for skis without it. */
+export const SkiOption = ({ ski }: { ski: SkiDetail }) => (
 	<OptionRow
-		article={article}
 		flags={
 			<>
 				{/* Display Kids Badge only when it might be tricky to decide if it is adult or kid ski */}
